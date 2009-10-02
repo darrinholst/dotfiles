@@ -81,5 +81,3 @@ function prompt_func() {
 PROMPT_COMMAND=prompt_func
 
 complete -C ~/.rake_complete.rb -o default rake
- 
-alias tree="find . -print | sed -e 's;[^/]*/;|___;g;s;___|; |;g'"
