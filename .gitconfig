@@ -1,0 +1,14 @@
+[user]
+	email = darrinholst@gmail.com
+	name = Darrin Holst
+[github]
+	user = darrinholst
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	up = pull
+	lg = log --pretty=format:\"%Cblue%h%Creset - %Cgreen%an%Creset, %ad : %s\" -20
+
