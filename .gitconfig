@@ -7,8 +7,11 @@
 	ui = auto
 [alias]
 	co = checkout
-	ci = commit
+	ci = commit -a
 	st = status
 	up = pull
-	lg = log --pretty=format:\"%Cblue%h%Creset - %Cgreen%an%Creset, %ad : %s\" -20
+	#lg = log --pretty=format:\"%Cblue%h%Creset - %Cgreen%an%Creset, %ad : %s\" -20
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
+	commit = commit -a
+
 
