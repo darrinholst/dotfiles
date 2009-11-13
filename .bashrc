@@ -18,21 +18,47 @@ export JAVA_OPTS="-Xms256m -Xmx512m -XX:MaxPermSize=128m"
 export MYSQL_HOME=/usr/local/mysql
 export GROOVY_HOME=/usr/local/groovy
 #export JRUBY_HOME=/usr/local/jruby
+export ANT_HOME=/usr/local/ant
 
+# PAGER
+if test -n "$(command -v less)" ; then
+  PAGER="less -FirSwX"
+  MANPAGER="less -FiRswX"
+else
+  PAGER=more
+  MANPAGER="$PAGER"
+fi
+
+export PAGER MANPAGER
+
+export PATH=./bin:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$M2_HOME/bin:$PATH
 export PATH=$MYSQL_HOME/bin:$PATH
 export PATH=$GROOVY_HOME/bin:$PATH
 #export PATH=$JRUBY_HOME/bin:$PATH
+export PATH=$ANT_HOME/bin:$PATH
 export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/opt/local/bin:$PATH
 
+
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
+
+# push SSH public key to another box
+push_ssh_cert() {
+  local _host
+  test -f ~/.ssh/id_rsa.pub || ssh-keygen -t rsa
+  for _host in "$@";
+  do
+    echo $_host
+    ssh $_host 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+  done
+}
 
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
