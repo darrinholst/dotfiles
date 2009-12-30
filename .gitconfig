@@ -1,3 +1,6 @@
+[core]
+  ignorecase = false
+
 [user]
 	email = darrinholst@gmail.com
 	name = Darrin Holst
@@ -12,5 +15,6 @@
 	ad = !git add . && git add -u
 	st = status
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
+	rev = reset --hard HEAD
 
 

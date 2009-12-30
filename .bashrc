@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+set -o vi
+
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
 export CLICOLOR=1
@@ -14,11 +16,14 @@ export GEM_OPEN_EDITOR=mate
 export M2_HOME=/usr/local/maven
 export MAVEN_OPTS="-Xmx1024m -Xms512m"
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-export JAVA_OPTS="-Xms256m -Xmx512m -XX:MaxPermSize=128m"
+export JAVA_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=128m"
 export MYSQL_HOME=/usr/local/mysql
 export GROOVY_HOME=/usr/local/groovy
-#export JRUBY_HOME=/usr/local/jruby
+export JRUBY_HOME=/usr/local/jruby
+export RUBY_ENTERPRISE_HOME=/usr/local/ruby-enterprise
 export ANT_HOME=/usr/local/ant
+export HOMEBREW_HOME=/usr/local/homebrew
+export ANDROID_HOME=/usr/local/android
 
 # PAGER
 if test -n "$(command -v less)" ; then
@@ -32,16 +37,19 @@ fi
 export PAGER MANPAGER
 
 export PATH=./bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/opt/local/bin:$PATH
+export PATH=$ANDROID_HOME:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$M2_HOME/bin:$PATH
 export PATH=$MYSQL_HOME/bin:$PATH
 export PATH=$GROOVY_HOME/bin:$PATH
-#export PATH=$JRUBY_HOME/bin:$PATH
 export PATH=$ANT_HOME/bin:$PATH
+export PATH=$HOMEBREW_HOME/bin:$PATH
+export PATH=$JRUBY_HOME/bin:$PATH
+export PATH=$RUBY_ENTERPRISE_HOME/bin:$PATH
 export PATH=~/.gem/ruby/1.8/bin:$PATH
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=/opt/local/bin:$PATH
 
 
 # Alias definitions.
