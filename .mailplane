@@ -36,7 +36,7 @@ div.nH + div.nH div.nH div.no div.nH.nn + div.nH.nn {
 }
 
 /* Hide the "Search the Web" button */
-div[id=':r8'], div[id=':r9'] {
+div[id=':r8'] {
   display: none !important;
 }
 

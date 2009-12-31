@@ -21,8 +21,8 @@ function git_prompt_info {
   fi
 
   if [[ -n $ref ]]; then
-    echo "${PR_GREEN}(${ref#refs/heads/})$remote$state"
+    echo "${PR_GREEN}(${ref#refs/heads/})$remote$state "
   fi
 }
 
-PROMPT='${PR_BOLD_BLUE}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info) ${PR_BOLD_BLUE}$%{${reset_color}%} '
+PROMPT='${PR_BOLD_BLUE}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${PR_BOLD_BLUE}$%{${reset_color}%} '
