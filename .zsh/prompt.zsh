@@ -5,7 +5,7 @@ function git_prompt_info {
   local diverge_pattern="# Your branch and (.*) have diverged"
 
   if [[ ! ${gitst} =~ "working directory clean" ]]; then
-    state=" ${PR_RED}⚡"
+    state="${PR_RED}⚡"
   fi
 
   if [[ ${gitst} =~ ${remote_pattern} ]]; then
@@ -21,7 +21,7 @@ function git_prompt_info {
   fi
 
   if [[ -n $ref ]]; then
-    echo "${PR_GREEN}(${ref#refs/heads/})$remote$state "
+    echo "${PR_GREEN}(${ref#refs/heads/}$remote$state${PR_GREEN}) "
   fi
 }
 
