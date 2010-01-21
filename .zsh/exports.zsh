@@ -1,12 +1,12 @@
 # Our list of directorys we can cd to from anywhere
-# export CDPATH=.:~/Projects:~/Projects/spicycode:~/src/opensource:~/src/relevance:~/src/chad
+export CDPATH=.:~:~/Work:~/Work/geo
 
 # Setup terminal, and turn on colors
 export TERM=xterm-color
 export CLICOLOR=1
 
 # Enable color in grep
-export GREP_OPTIONS='--color=auto' 
+export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
 
 # This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions

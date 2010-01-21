@@ -62,7 +62,7 @@ function extract {
   fi
 }
 
-push_ssh_cert() {
+function push_ssh_cert {
   local _host
   test -f ~/.ssh/id_rsa.pub || ssh-keygen -t rsa
   for _host in "$@";
@@ -70,4 +70,10 @@ push_ssh_cert() {
     echo $_host
     ssh $_host 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
   done
+}
+
+function ignore_intellij_files {
+  echo "*.iml" >> .gitignore
+  echo "*.ipr" >> .gitignore
+  echo "*.iws" >> .gitignore
 }

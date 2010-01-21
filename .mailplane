@@ -24,19 +24,20 @@ div.nH + div.nH div.nH.qp {
   z-index: 100000000 !important;
 }
 
-/* Hide the "Manage this Domain Link" */
-span[id=':qf'] { display:none }
-
 /* Hide the G-mail Logo */
 div.nH + div.nH div.nH div.no div.nH.nn {
   display: none;
 }
+
 div.nH + div.nH div.nH div.no div.nH.nn + div.nH.nn {
   display: block;
 }
 
-/* Hide the "Search the Web" button */
-div[id=':r8'] {
+div.nH + div.pp + div.ps {
+  display: none !important;
+}
+
+div[id=':rf'], span[id=':rd'], span[id=':rc'], span[id=':rf'], span[id=':r5'], span[id=':r6'] {
   display: none !important;
 }
 
