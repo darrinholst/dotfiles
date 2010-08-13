@@ -68,6 +68,7 @@ function push_ssh_cert {
   for _host in "$@";
   do
     echo $_host
+    ssh $_host 'mkdir ~/.ssh'
     ssh $_host 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
   done
 }

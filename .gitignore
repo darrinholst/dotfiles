@@ -39,3 +39,4 @@ Public
 .gnupg
 .Xauthority
 .CFUserTextEncoding
+.rake_tasks

@@ -1,1 +1,2 @@
 --type-set=cucumber=.feature
+--type-set=css=.less

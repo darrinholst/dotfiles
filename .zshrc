@@ -9,3 +9,4 @@ source ~/.zsh/functions.zsh
 source ~/.zsh/history.zsh
 source ~/.zsh/zsh_hooks.zsh
 source ~/.zsh/rake_completion.zsh
+source ~/.rvm/scripts/rvm
