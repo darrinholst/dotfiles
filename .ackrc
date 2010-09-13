@@ -1,2 +1,3 @@
 --type-set=cucumber=.feature
 --type-set=css=.less
+--type-add=ruby=.haml,.rake
