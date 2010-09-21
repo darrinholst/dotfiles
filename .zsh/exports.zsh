@@ -1,5 +1,5 @@
 # Our list of directorys we can cd to from anywhere
-export CDPATH=.:~:~/Work:~/Work/geo
+export CDPATH=.:~:~/Code:~/Dropbox
 
 # Setup terminal, and turn on colors
 export TERM=xterm-color
@@ -16,9 +16,9 @@ export RUBYOPT="rubygems"
 export EDITOR=mate
 export GEM_OPEN_EDITOR=mate
 export M2_HOME=/usr/local/maven
-export MAVEN_OPTS="-Xmx512m"
+export MAVEN_OPTS="-d32 -client -Xmx1024m"
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-export JAVA_OPTS="-Xms128m -Xmx256m -XX:MaxPermSize=128m"
+export JAVA_OPTS="-d32 -client -Xms64m -Xmx256m -XX:MaxPermSize=128m"
 export MYSQL_HOME=/usr/local/mysql
 #export GROOVY_HOME=/usr/local/groovy
 #export JRUBY_HOME=/usr/local/jruby
