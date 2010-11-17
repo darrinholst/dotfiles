@@ -31,6 +31,8 @@ set vb
 " Allow backspacing over indent, eol, and the start of an insert
 set backspace=2
 
+set nowrap
+
 " Make sure that unsaved buffers that are to be put in the background are
 " allowed to go in there (ie. the "must save first" error doesn't come up)
 set hidden
@@ -226,7 +228,7 @@ nmap <silent> <C-o> 10zl
 nmap <silent> <C-i> 10zh
 
 " Highlight all instances of the current word under the cursor
-nmap <silent> ^ :setl hls<CR>:let @/="<C-r><C-w>"<CR>
+" nmap <silent> ^ :setl hls<CR>:let @/="<C-r><C-w>"<CR>
 
 " Search the current file for what's currently in the search
 " register and display matches
@@ -300,7 +302,7 @@ let g:SrcExpl_isUpdateTags = 0
 let g:SrcExpl_updateTagsCmd = "retag.ksh"
 
 " Set "<F9>" key for updating the tags file artificially
-let g:SrcExpl_updateTagsKey = "<F9>" 
+let g:SrcExpl_updateTagsKey = "<F9>"
 
 "-----------------------------------------------------------------------------
 " NERD Tree Plugin Settings
@@ -459,7 +461,7 @@ if has("gui_running")
     set anti
     set number
     set guifont=Anonymous\ Pro:h18
-    colorscheme vibrantink 
+    colorscheme vibrantink
     if !exists("g:vimrcloaded")
         winpos 0 0
         if ! &diff
@@ -471,3 +473,9 @@ if has("gui_running")
     endif
 endif
 :nohls
+
+
+if has("gui_macvim")
+  macmenu &File.New\ Tab key=<nop>
+  map <D-t> <Plug>PeepOpen
+end

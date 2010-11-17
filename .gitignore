@@ -40,3 +40,6 @@ Public
 .Xauthority
 .CFUserTextEncoding
 .rake_tasks
+.redcar
+Applications/
+work/

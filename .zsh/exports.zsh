@@ -42,3 +42,4 @@ export PATH=$HOMEBREW_HOME/bin:$PATH
 #export PATH=$RUBY_ENTERPRISE_HOME/bin:$PATH
 #export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=/usr/local/narwhal/bin:$PATH
+export PATH=/Applications/IntelliJ\ IDEA\ 9.0.2.app/Contents/MacOS:$PATH
