@@ -2,14 +2,16 @@
 " Global Stuff
 "-----------------------------------------------------------------------------
 
+let mapleader = ","
+
 " Set filetype stuff to on
 filetype on
 filetype plugin on
 filetype indent on
 
 " Tabstops are 4 spaces
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 " set the search scan to wrap lines
 set wrapscan
@@ -94,7 +96,7 @@ set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 set scrolloff=8
 
 " Allow the cursor to go in to "invalid" places
-set virtualedit=all
+set virtualedit=onemore
 
 " These things start comment lines
 set comments=sl:/*,mb:\ *,ex:\ */,O://,b:#,:%,:XCOMM,n:>,fb:-
@@ -152,8 +154,7 @@ nmap <silent> ,md :!mkdir -p %:p:h<CR>
 nmap <silent> ,n :set invhls<CR>:set hls?<CR>
 
 " put the vim directives for my file editing settings in
-nmap <silent> ,vi
-     \ ovim:set ts=4 sts=4 sw=4:<CR>vim600:fdm=marker fdl=1 fdc=0:<ESC>
+nmap <silent> ,vi ovim:set ts=4 sts=4 sw=4:<CR>vim600:fdm=marker fdl=1 fdc=0:<ESC>
 
 " Show all available VIM servers
 nmap <silent> ,ss :echo serverlist()<CR>
@@ -227,21 +228,15 @@ nmap <silent> ,sv :so $MYVIMRC<CR>
 nmap <silent> <C-o> 10zl
 nmap <silent> <C-i> 10zh
 
-" Highlight all instances of the current word under the cursor
-" nmap <silent> ^ :setl hls<CR>:let @/="<C-r><C-w>"<CR>
-
 " Search the current file for what's currently in the search
 " register and display matches
-nmap <silent> ,gs
-     \ :vimgrep /<C-r>// %<CR>:ccl<CR>:cwin<CR><C-W>J:set nohls<CR>
+nmap <silent> ,gs :vimgrep /<C-r>// %<CR>:ccl<CR>:cwin<CR><C-W>J:set nohls<CR>
 
 " Search the current file for the word under the cursor and display matches
-nmap <silent> ,gw
-     \ :vimgrep /<C-r><C-w>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:set nohls<CR>
+nmap <silent> ,gw :vimgrep /<C-r><C-w>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:set nohls<CR>
 
 " Search the current file for the WORD under the cursor and display matches
-nmap <silent> ,gW
-     \ :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:set nohls<CR>
+nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:set nohls<CR>
 
 " Swap two words
 nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
@@ -255,71 +250,13 @@ nmap <silent> ,da :exec "1," . bufnr('$') . "bd"<cr>
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
 
-" I don't like it when the matching parens are automatically highlighted
-let loaded_matchparen = 1
-
-"-----------------------------------------------------------------------------
-" MiniBufExplorer Plugin Settings
-"-----------------------------------------------------------------------------
-" Yup, I don't like this one either
-let loaded_minibufexplorer = 1
-
-"-----------------------------------------------------------------------------
-" ShowMarks Plugin Stuff
-"-----------------------------------------------------------------------------
-" I don't think I like this
-let g:loaded_showmarks = 1
-
-"-----------------------------------------------------------------------------
-" Source Explorer Plugin Settings
-"-----------------------------------------------------------------------------
-" The switch of the Source Explorer
-nmap <silent> <F8> :SrcExplToggle<CR>
-
-" Set the height of Source Explorer window
-let g:SrcExpl_winHeight = 16
-
-" Set 10 ms for refreshing the Source Explorer
-let g:SrcExpl_refreshTime = 10
-
-" In order to Avoid conflicts, the Source Explorer should know what plugins
-" are using buffers. And you need add their bufname into the list below
-" according to the command ":buffers!"
-let g:SrcExpl_pluginList = [
-            \ "_NERD_tree_",
-            \ "Source_Explorer"
-            \ ]
-" Enable/Disable the local definition searching, and note that this is not
-" guaranteed to work, the Source Explorer doesn't check the syntax for now.
-" It only searches for a match with the keyword according to command 'gd'
-let g:SrcExpl_searchLocalDef = 1
-
-" Do not let the Source Explorer update the tags file when opening
-let g:SrcExpl_isUpdateTags = 0
-
-" Use program 'ctags' with argument '--sort=foldcase -R' to create or
-" update a tags file
-let g:SrcExpl_updateTagsCmd = "retag.ksh"
-
-" Set "<F9>" key for updating the tags file artificially
-let g:SrcExpl_updateTagsKey = "<F9>"
-
 "-----------------------------------------------------------------------------
 " NERD Tree Plugin Settings
 "-----------------------------------------------------------------------------
-" Toggle the NERD Tree on an off with F7
 nmap <F7> :NERDTreeToggle<CR>
-
-" Close the NERD Tree with Shift-F7
 nmap <S-F7> :NERDTreeClose<CR>
-
-" Store the bookmarks file in perforce
 let NERDTreeBookmarksFile="~/.vim/NERDTreeBookmarks"
-
-" Show the bookmarks table on startup
 let NERDTreeShowBookmarks=1
-
-" Don't display these kinds of files
 let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
             \ '\.ilk$', '^BuildLog.htm$', '\.pdb$', '\.idb$',
             \ '\.embed\.manifest$', '\.embed\.manifest.res$',
@@ -337,54 +274,6 @@ nmap <silent> ,ok :FSAbove<CR>
 nmap <silent> ,oK :FSSplitAbove<CR>
 nmap <silent> ,oj :FSBelow<CR>
 nmap <silent> ,oJ :FSSplitBelow<CR>
-
-"-----------------------------------------------------------------------------
-" SnipMate Settings
-"-----------------------------------------------------------------------------
-"source ~/.vim/snippets/support_functions.vim
-"source ~/.vim/snippets/support_functions_derek.vim
-
-function! ListKnownSnippetLanguageTypes(A, L, P)
-    let filesanddirs = split(globpath(g:snippets_dir, a:A . "*"), "\n")
-    let dirsonly = []
-    for f in filesanddirs
-        if isdirectory(f)
-            let each = split(f, '/')
-            let dirsonly = add(dirsonly, each[-1])
-        end
-    endfor
-    return dirsonly
-endfunction
-
-function! ReloadSnippets(type)
-    call ResetSnippets()
-    if a:type != ""
-        call ExtractSnips(g:snippets_dir . a:type, a:type)
-    else
-        let alltypes = ListKnownSnippetLanguageTypes("", "", "")
-        for type in alltypes
-            call ExtractSnips(g:snippets_dir . type, type)
-        endfor
-    endif
-endfunction
-
-command! -complete=customlist,ListKnownSnippetLanguageTypes
-         \ -nargs=? RS call ReloadSnippets("<args>")
-
-"-----------------------------------------------------------------------------
-" FuzzyFinder Settings
-"-----------------------------------------------------------------------------
-nmap ,fb :FuzzyFinderBuffer<CR>
-nmap ,ff :FuzzyFinderFile<CR>
-nmap ,ft :FuzzyFinderTag<CR>
-
-"-----------------------------------------------------------------------------
-" UltiSnips Settings
-"-----------------------------------------------------------------------------
-set runtimepath+=~/.vim/ultisnips
-let g:UltiSnipsExpandTrigger="<c-9>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "-----------------------------------------------------------------------------
 " Functions
@@ -474,8 +363,24 @@ if has("gui_running")
 endif
 :nohls
 
+"-----------------------------------------------------------------------------
+" JSON prettifier
+"-----------------------------------------------------------------------------
+map ,jt <Esc>:%!json_xs -f json -t json-pretty<CR>
+au BufRead,BufNewFile *.json set filetype=json
 
-if has("gui_macvim")
-  macmenu &File.New\ Tab key=<nop>
-  map <D-t> <Plug>PeepOpen
-end
+"-----------------------------------------------------------------------------
+" ACK setup
+"-----------------------------------------------------------------------------
+function! AckGrep(command)
+  cexpr system("ack " . a:command)
+  cw " show quickfix window already
+endfunction
+
+command! -nargs=+ -complete=file Ack call AckGrep(<q-args>)
+map ,a :Ack<space>
+
+" Switch to alternate file
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>
+
