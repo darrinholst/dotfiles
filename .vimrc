@@ -4,6 +4,8 @@
 
 let mapleader = ","
 
+:au FocusLost * :wa
+
 " Set filetype stuff to on
 filetype on
 filetype plugin on
@@ -288,9 +290,10 @@ endfunction
 "-----------------------------------------------------------------------------
 " Auto commands
 "-----------------------------------------------------------------------------
-augroup derek_scons
-    au!
-    au BufNewFile,BufRead SCons* setf scons
+augroup cleanup_files
+  au!
+  au BufWritePre *.html,*.json,*.js,*.rb :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.html,*.json,*.js,*.rb retab!
 augroup END
 
 augroup derek_xsd
@@ -383,4 +386,21 @@ map ,a :Ack<space>
 " Switch to alternate file
 map <C-Tab> :bnext<cr>
 map <C-S-Tab> :bprevious<cr>
+
+"-----------------------------------------------------------------------------
+" Cleanup after save
+"-----------------------------------------------------------------------------
+
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
 

@@ -50,3 +50,6 @@ work/
 .palm-run
 .ruby_inline
 .rvm*
+.netrwhist
+*.swp
+.zsh/cache
