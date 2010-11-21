@@ -5,6 +5,10 @@ let mapleader = ","
 " set visual bell -- i hate that damned beeping
 set vb
 
+" Make sure that unsaved buffers that are to be put in the background are
+" allowed to go in there (ie. the "must save first" error doesn't come up)
+set hidden
+
 " Turn off that stupid highlight search
 nmap <silent> ,n :set invhls<CR>:set hls?<CR>
 
