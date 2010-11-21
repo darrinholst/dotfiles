@@ -1,0 +1,70 @@
+set guifont=Anonymous\ Pro:h18
+let mapleader = ","
+:au FocusLost * :wa
+
+" set visual bell -- i hate that damned beeping
+set vb
+
+" Turn off that stupid highlight search
+nmap <silent> ,n :set invhls<CR>:set hls?<CR>
+
+"-----------------------------------------------------------------------------
+" Window Commands
+"-----------------------------------------------------------------------------
+noremap <silent> ,h :wincmd h<CR>
+noremap <silent> ,j :wincmd j<CR>
+noremap <silent> ,k :wincmd k<CR>
+noremap <silent> ,l :wincmd l<CR>
+noremap <silent> ,cj :wincmd j<CR>:close<CR>
+noremap <silent> ,ck :wincmd k<CR>:close<CR>
+noremap <silent> ,ch :wincmd h<CR>:close<CR>
+noremap <silent> ,cl :wincmd l<CR>:close<CR>
+noremap <silent> ,cc :close<CR>
+noremap <silent> ,cw :cclose<CR>
+
+"-----------------------------------------------------------------------------
+" Buffer Commands
+"-----------------------------------------------------------------------------
+noremap <silent> ,bd :bd<CR>
+noremap <silent> ,bb :BufExplorer<CR>
+map <C-Tab> :bu #<cr>
+
+"-----------------------------------------------------------------------------
+" NERD Tree Plugin Settings
+"-----------------------------------------------------------------------------
+nmap <F7> :NERDTreeToggle<CR>
+
+"-----------------------------------------------------------------------------
+" Auto commands
+"-----------------------------------------------------------------------------
+augroup cleanup_files
+  au!
+  au BufWritePre *.html,*.json,*.js,*.rb :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.html,*.json,*.js,*.rb retab!
+augroup END
+
+"-----------------------------------------------------------------------------
+" JSON prettifier
+"-----------------------------------------------------------------------------
+map ,jt <Esc>:%!json_xs -f json -t json-pretty<CR>
+au BufRead,BufNewFile *.json set filetype=json
+
+"-----------------------------------------------------------------------------
+" Ack
+"-----------------------------------------------------------------------------
+map ,a :Ack<space>
+
+"-----------------------------------------------------------------------------
+" Cleanup after save
+"-----------------------------------------------------------------------------
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
