@@ -43,8 +43,8 @@ nmap <F7> :NERDTreeToggle<CR>
 "-----------------------------------------------------------------------------
 augroup cleanup_files
   au!
-  au BufWritePre *.html,*.json,*.js,*.rb :call <SID>StripTrailingWhitespaces()
-  au BufWritePre *.html,*.json,*.js,*.rb retab!
+  au BufWritePre *.css,*.html,*.json,*.js,*.rb :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.css,*.html,*.json,*.js,*.rb retab!
 augroup END
 
 "-----------------------------------------------------------------------------
@@ -72,3 +72,36 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
+
+function! Ruby_eval() range
+  let src = tempname()
+  let dst = "Ruby Output"
+
+  " put current buffer's content in a temp file
+  silent execute ": " . a:firstline . "," . a:lastline . "w " . src
+
+  " open the preview window
+  silent execute ":pedit! " . dst
+
+  " change to preview window
+  wincmd P
+
+  " set options
+  setlocal buftype=nofile
+  setlocal noswapfile
+  setlocal syntax=none
+  setlocal bufhidden=delete
+
+  " replace current buffer with ruby's output
+  silent execute ":%! ruby " . src . " 2>&1 "
+
+  " change back to the source buffer
+  wincmd p
+endfunction
+
+vmap <silent> <F8> :call Ruby_eval()<CR>
+nmap <silent> <F8> mzggVG<F8>`z
+imap <silent> <F8> <Esc><F8>a
+map <silent> <S-F8> <C-W>l:bw<CR>
+imap <silent> <S-F8> <Esc><S-F8>a
+

@@ -1,1 +1,6 @@
 color vibrantink
+
+set guioptions-=L
+set guioptions-=l
+set guioptions-=R
+set guioptions-=r
