@@ -1,7 +1,6 @@
 set guifont=Anonymous\ Pro:h18
 let mapleader = ","
 
-:au BufRead,BufNewFile *.json set filetype=json
 :au FocusLost * :call SaveAll()
 
 function! SaveAll()
@@ -85,28 +84,10 @@ endfunction
 
 function! Ruby_eval() range
   let src = tempname()
-  let dst = "Ruby Output"
-
-  " put current buffer's content in a temp file
-  silent execute ": " . a:firstline . "," . a:lastline . "w " . src
-
-  " open the preview window
-  silent execute ":pedit! " . dst
-
-  " change to preview window
-  wincmd P
-
-  " set options
-  setlocal buftype=nofile
-  setlocal noswapfile
-  setlocal syntax=none
-  setlocal bufhidden=delete
-
-  " replace current buffer with ruby's output
-  silent execute ":%! ruby " . src . " 2>&1 "
-
-  " change back to the source buffer
-  wincmd p
+  let dst = tempname()
+  execute ": " . a:firstline . "," . a:lastline . "w " . src
+  execute ":silent ! ruby " . src . " > " . dst . " 2>&1 "
+  execute ":!mvim " . dst
 endfunction
 
 vmap <silent> <F8> :call Ruby_eval()<CR>
