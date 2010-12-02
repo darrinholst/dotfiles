@@ -53,3 +53,7 @@ work/
 .netrwhist
 *.swp
 .zsh/cache
+.NERDTreeBookmarks
+.bash*
+.bundle/
+.irb_history
