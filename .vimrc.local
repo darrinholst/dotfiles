@@ -1,7 +1,16 @@
 set guifont=Anonymous\ Pro:h18
 let mapleader = ","
-:au FocusLost * :wa
+
 :au BufRead,BufNewFile *.json set filetype=json
+:au FocusLost * :call SaveAll()
+
+function! SaveAll()
+  try
+    wa
+  catch
+    " ignore
+  endtry
+endfunction
 
 " set visual bell -- i hate that damned beeping
 set vb
