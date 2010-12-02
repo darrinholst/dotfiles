@@ -57,3 +57,5 @@ work/
 .bash*
 .bundle/
 .irb_history
+.gvimrc
+.vimrc
