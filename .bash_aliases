@@ -1,5 +1,0 @@
-alias tree="find . -print | sed -e 's;[^/]*/;|___;g;s;___|; |;g'"
-alias ll="ls -l"
-alias la="ls -al"
-alias l.="ls -d .*"
-alias irb="irb --simple-prompt"
