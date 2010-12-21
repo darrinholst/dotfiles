@@ -59,3 +59,5 @@ work/
 .irb_history
 .gvimrc
 .vimrc
+.webex
+.wireshark*

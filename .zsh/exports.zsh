@@ -1,5 +1,5 @@
 # Our list of directorys we can cd to from anywhere
-export CDPATH=.:~:~/Code:~/Dropbox
+export CDPATH=.:~:~/work:~/Dropbox
 
 # Setup terminal, and turn on colors
 export TERM=xterm-color
@@ -14,9 +14,12 @@ export GEM_OPEN_EDITOR=mvim
 export MAVEN_OPTS="-d32 -client -Xmx1024m"
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 export JAVA_OPTS="-d32 -client -Xms64m -Xmx256m -XX:MaxPermSize=128m"
+export HOMEBREW_HOME=/usr/local/homebrew
 
 export PATH=./bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+export PATH=/opt/local/bin:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$HOMEBREW_HOME/bin:$PATH
 
