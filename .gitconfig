@@ -1,23 +1,21 @@
 [core]
   ignorecase = false
-	excludesfile = /Users/dholst/.gitignore-global
-	editor = mate -w
+  excludesfile = /Users/dholst/.gitignore-global
+  editor = mate -w
 
 [user]
-	email = darrinholst@gmail.com
-	name = Darrin Holst
+  email = darrinholst@gmail.com
+  name = Darrin Holst
 
 [github]
-	user = darrinholst
+  user = darrinholst
 
 [color]
-	ui = auto
+  ui = auto
 
 [alias]
-	ad = !git add . && git add -u
-	st = status
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
-	rev = reset --hard HEAD
-	up = pull --rebase
+  st = status
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
+  up = pull --rebase
 
 
