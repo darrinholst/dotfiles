@@ -4,3 +4,7 @@ set guioptions-=L
 set guioptions-=l
 set guioptions-=R
 set guioptions-=r
+
+nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
+nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
+
