@@ -18,10 +18,7 @@ def symlink(f)
   home_path = File.join(ENV["HOME"], f)
   remote_path = File.join(Dir.pwd, f)
 
-  exec "rm -rf #{home_path}"
-  exec "ln -s #{remote_path} #{home_path}"
+  sh "rm -rf #{home_path}"
+  sh "ln -s #{remote_path} #{home_path}"
 end
 
-def exec(command)
-  sh(command)
-end
