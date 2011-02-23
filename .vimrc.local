@@ -1,9 +1,9 @@
-"set guifont=Anonymous\ Pro:h18
 set guifont=Meslo\ LG\ S\ DZ:h16
 let mapleader = ","
-set directory=/tmp
-map <Leader><Leader> :ZoomWin<CR>
 
+"-----------------------------------------------------------------------------
+" auto save files
+"-----------------------------------------------------------------------------
 :au FocusLost * :call SaveAll()
 
 function! SaveAll()
@@ -14,15 +14,43 @@ function! SaveAll()
   endtry
 endfunction
 
+"-----------------------------------------------------------------------------
 " set visual bell -- i hate that damned beeping
+"-----------------------------------------------------------------------------
 set vb
 
+"-----------------------------------------------------------------------------
 " Make sure that unsaved buffers that are to be put in the background are
 " allowed to go in there (ie. the "must save first" error doesn't come up)
+"-----------------------------------------------------------------------------
 set hidden
 
-" Turn off that stupid highlight search
+"-----------------------------------------------------------------------------
+" random key bindings
+"-----------------------------------------------------------------------------
+map ,, :ZoomWin<CR>
 nmap <silent> ,n :set invhls<CR>:set hls?<CR>
+noremap <silent> ,bd :bd<CR>
+noremap <silent> ,bb :BufExplorer<CR>
+map <C-Tab> :bu #<cr>
+nmap <F7> :NERDTreeToggle<CR>
+map ,a :Ack<space>
+vmap <silent> <F8> :call Ruby_eval()<CR>
+nmap <silent> <F8> mzggVG<F8>`z
+imap <silent> <F8> <Esc><F8>a
+map <silent> <S-F8> <C-W>l:bw<CR>
+imap <silent> <S-F8> <Esc><S-F8>a
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+map ,jt <Esc>:%!json_xs -f json -t json-pretty<CR>
+map ,xt :call DoPrettyXML()<CR>
+
+
+"-----------------------------------------------------------------------------
+" rails key bindings
+"-----------------------------------------------------------------------------
+map ,rv :Rview<CR>
+map ,rc :Rcontroller<CR>
+map ,rm :Rmodel<CR>
 
 "-----------------------------------------------------------------------------
 " Window Commands
@@ -39,65 +67,39 @@ noremap <silent> ,cc :close<CR>
 noremap <silent> ,cw :cclose<CR>
 
 "-----------------------------------------------------------------------------
-" Buffer Commands
-"-----------------------------------------------------------------------------
-noremap <silent> ,bd :bd<CR>
-noremap <silent> ,bb :BufExplorer<CR>
-map <C-Tab> :bu #<cr>
-
-"-----------------------------------------------------------------------------
-" NERD Tree Plugin Settings
-"-----------------------------------------------------------------------------
-nmap <F7> :NERDTreeToggle<CR>
-
-"-----------------------------------------------------------------------------
 " Auto commands
 "-----------------------------------------------------------------------------
 augroup cleanup_files
   au!
-  au BufWritePre *.css,*.html,*.json,*.js,*.rb :call <SID>StripTrailingWhitespaces()
-  au BufWritePre *.css,*.html,*.json,*.js,*.rb retab!
+  au BufWritePre *.css,*.html,*.json,*.js,*.rb,*.feature :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.css,*.html,*.json,*.js,*.rb,*.feature retab!
 augroup END
 
-"-----------------------------------------------------------------------------
-" JSON prettifier
-"-----------------------------------------------------------------------------
-map ,jt <Esc>:%!json_xs -f json -t json-pretty<CR>
 au BufRead,BufNewFile *.json set filetype=json
+au BufRead,BufNewFile *.txt setfiletype markdown
 
 "-----------------------------------------------------------------------------
-" Ack
-"-----------------------------------------------------------------------------
-map ,a :Ack<space>
-
-"-----------------------------------------------------------------------------
-" Cleanup after save
+" functions
 "-----------------------------------------------------------------------------
 function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
 endfunction
 
 function! Ruby_eval() range
   let src = tempname()
   let dst = tempname()
   execute ": " . a:firstline . "," . a:lastline . "w " . src
-  execute ":silent ! ruby " . src . " > " . dst . " 2>&1 "
+  execute ":silent ! $HOME/.rvm/bin/ruby-1.9.2-p136 " . src . " > " . dst . " 2>&1 "
   execute ":!mvim " . dst
 endfunction
-
-vmap <silent> <F8> :call Ruby_eval()<CR>
-nmap <silent> <F8> mzggVG<F8>`z
-imap <silent> <F8> <Esc><F8>a
-map <silent> <S-F8> <C-W>l:bw<CR>
-imap <silent> <S-F8> <Esc><S-F8>a
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
@@ -126,10 +128,7 @@ function! DoPrettyXML()
   " restore the filetype
   exe "set ft=" . l:origft
 endfunction
-command! PrettyXML call DoPrettyXML()
 
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
- 
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
@@ -140,5 +139,4 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
-
 
