@@ -5,7 +5,7 @@ function git_prompt_info {
   local diverge_pattern="# Your branch and (.*) have diverged"
 
   if [[ ! ${gitst} =~ "working directory clean" ]]; then
-    state="${PR_RED}⚡"
+    state="${PR_YELLOW}✗"
   fi
 
   if [[ ${gitst} =~ ${remote_pattern} ]]; then
@@ -21,18 +21,21 @@ function git_prompt_info {
   fi
 
   if [[ -n $ref ]]; then
-    echo "${PR_GREEN}(${ref#refs/heads/}$remote$state${PR_GREEN}) "
+    echo "${PR_GREEN}(${ref#refs/heads/})$remote$state${PR_GREEN} "
   fi
 }
 
 function rvm_version {
-	if [ -f ~/.rvm/bin/rvm-prompt ]; then
-	    rvm=$(~/.rvm/bin/rvm-prompt i v p g)
-	    if [ "$rvm" -a "$rvm" != system ]; then
-		    echo "{$rvm} "
-	    fi
-	fi
+  if [ -f ~/.rvm/bin/rvm-prompt ]; then
+      rvm=$(~/.rvm/bin/rvm-prompt i v p g)
+      if [ "$rvm" -a "$rvm" != system ]; then
+        echo "{$rvm} "
+      fi
+  fi
 }
 
-PROMPT='${PR_BOLD_BLUE}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${PR_GREEN}$(rvm_version)${PR_BOLD_BLUE}
+PROMPT='${PR_BOLD_BLUE}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${PR_RED}$(rvm_version)${PR_BOLD_BLUE}
 $%{${reset_color}%} '
+
+RPROMPT='[%*]'
+
