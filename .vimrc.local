@@ -66,6 +66,8 @@ noremap <silent> ,cl :wincmd l<CR>:close<CR>
 noremap <silent> ,cc :close<CR>
 noremap <silent> ,cw :cclose<CR>
 
+command! StripTrailingWhitespaces :call <SID>StripTrailingWhitespaces()
+
 "-----------------------------------------------------------------------------
 " Auto commands
 "-----------------------------------------------------------------------------
