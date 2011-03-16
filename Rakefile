@@ -7,6 +7,7 @@ task 'link' do
   symlink('.gitignore-global')
   symlink('.gvimrc.local')
   symlink('.irbrc')
+  symlink('.vim.local')
   symlink('.vimrc.local')
   symlink('.zsh')
   symlink('.zshenv')

@@ -1,3 +1,6 @@
+set runtimepath+=~/.vim.local
+runtime! plugin/*.vim
+
 set guifont=Meslo\ LG\ S\ DZ:h16
 let mapleader = ","
 
@@ -46,6 +49,11 @@ map ,xt :call DoPrettyXML()<CR>
 
 
 "-----------------------------------------------------------------------------
+" minitabexpl
+"-----------------------------------------------------------------------------
+"let g:miniBufExplMapCTabSwitchBufs = 1
+
+
 " rails key bindings
 "-----------------------------------------------------------------------------
 map ,rv :Rview<CR>
