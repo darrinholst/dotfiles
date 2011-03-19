@@ -1,6 +1,3 @@
-set runtimepath+=~/.vim.local
-runtime! plugin/*.vim
-
 set guifont=Meslo\ LG\ S\ DZ:h16
 let mapleader = ","
 
