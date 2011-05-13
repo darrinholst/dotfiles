@@ -1,3 +1,4 @@
 --type-set=cucumber=.feature
---type-add=css=.less
+--type-set=css=.css,.less,.scss,.sass
 --type-set=javascript=.json,.js
+--type-set=sass=.scss,.sass

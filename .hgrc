@@ -1,0 +1,22 @@
+[ui]
+username = Darrin Holst <darrinholst@gmail.com>
+
+[extensions]
+color=
+hgext.color=
+hgext.churn=
+pager =
+
+[defaults]
+diff = --color=always
+log = --color=always
+status = --color=always
+incoming = --color=always
+outgoing = --color=always
+
+[alias]
+lg = log --color=always -M --template "\x1B[33m{rev}\x1B[0m\t{date|age} \x1B[33m{author|person}\n\t\x1B[32m{desc|firstline}\n\n"
+
+[pager]
+pager=LESS='FSRX' less
+
