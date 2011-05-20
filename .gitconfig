@@ -1,7 +1,7 @@
 [core]
   ignorecase = false
   excludesfile = /Users/dholst/.gitignore-global
-  editor = mate -w
+  editor = "mvim -f"
 
 [user]
   email = darrinholst@gmail.com
