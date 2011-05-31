@@ -1,20 +1,20 @@
 desc 'link em up'
 task 'link' do
-  symlink('.ackrc')
-  symlink('.autotest')
-  symlink('.gemrc')
-  symlink('.gitconfig')
-  symlink('.gitignore-global')
-  symlink('.gvimrc.local')
-  symlink('.irbrc')
-  symlink('.janus.rake')
-  symlink('.vimrc.local')
-  symlink('.zsh')
-  symlink('.zshenv')
-  symlink('.zshrc')
+  symlink_this('.ackrc')
+  symlink_this('.autotest')
+  symlink_this('.gemrc')
+  symlink_this('.gitconfig')
+  symlink_this('.gitignore-global')
+  symlink_this('.gvimrc.local')
+  symlink_this('.irbrc')
+  symlink_this('.janus.rake')
+  symlink_this('.vimrc.local')
+  symlink_this('.oh-my-zsh')
+  symlink_this('.zshenv')
+  symlink_this('.zshrc')
 end
 
-def symlink(f)
+def symlink_this(f)
   home_path = File.join(ENV["HOME"], f)
   remote_path = File.join(Dir.pwd, f)
 
