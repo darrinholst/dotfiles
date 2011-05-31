@@ -9,7 +9,6 @@ task 'link' do
   symlink_this('.irbrc')
   symlink_this('.janus.rake')
   symlink_this('.vimrc.local')
-  symlink_this('.oh-my-zsh')
   symlink_this('.zshenv')
   symlink_this('.zshrc')
 end
