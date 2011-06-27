@@ -11,6 +11,7 @@ task 'link' do
   symlink_this('.vimrc.local')
   symlink_this('.zshenv')
   symlink_this('.zshrc')
+  symlink_this('.oh-my-zsh/custom')
 end
 
 def symlink_this(f)
