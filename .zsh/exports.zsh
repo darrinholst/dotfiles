@@ -12,7 +12,7 @@ export RUBYOPT="rubygems"
 export EDITOR=mvim
 export GEM_OPEN_EDITOR=mvim
 export MAVEN_OPTS="-d32 -client -Xmx1024m" # -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=4000"
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
+export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export JAVA_OPTS="-d32 -client -Xms64m -Xmx256m -XX:MaxPermSize=128m"
 export JRUBY_OPTS="--1.9"
 
