@@ -12,6 +12,7 @@ task 'link' do
   symlink_this('.zshenv')
   symlink_this('.zshrc')
   symlink_this('.oh-my-zsh/custom')
+  symlink_this('.bin')
 end
 
 def symlink_this(f)
