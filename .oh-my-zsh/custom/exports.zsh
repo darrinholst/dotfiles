@@ -25,4 +25,5 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/opt/local/bin:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
+export PATH=/opt/PalmSDK/Current/bin:$PATH
 
