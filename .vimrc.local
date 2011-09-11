@@ -40,7 +40,7 @@ set hidden
 "-----------------------------------------------------------------------------
 map ,, :ZoomWin<CR>
 nmap <silent> ,n :set invhls<CR>:set hls?<CR>
-noremap <silent> ,bb :BufExplorer<CR>
+" noremap <silent> ,bb :BufExplorer<CR>
 map <C-Tab> :bu #<cr>
 nmap <F7> :NERDTreeToggle<CR>
 

@@ -7,11 +7,12 @@ plugins_to_keep = [
   "nerdtree",
   "nerdcommenter",
   "supertab",
-  "unimpaired"
+  "unimpaired",
+  "zoomwin"
 ]
 
 (Rake::Task[:default].prerequisites - plugins_to_keep).each{|plugin| skip_vim_plugin(plugin)}
 
-vim_plugin_task "bufexplorer", "https://github.com/vim-scripts/bufexplorer.zip.git"
+# vim_plugin_task "bufexplorer", "https://github.com/vim-scripts/bufexplorer.zip.git"
 vim_plugin_task "tabular", "https://github.com/godlygeek/tabular.git"
 
