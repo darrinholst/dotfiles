@@ -1,4 +1,4 @@
-set guifont=Meslo\ LG\ S\ DZ:h16
+set guifont=Meslo\ LG\ M:h16
 let mapleader = ","
 
 "-----------------------------------------------------------------------------
@@ -40,7 +40,7 @@ set hidden
 "-----------------------------------------------------------------------------
 map ,, :ZoomWin<CR>
 nmap <silent> ,n :set invhls<CR>:set hls?<CR>
-" noremap <silent> ,bb :BufExplorer<CR>
+noremap <silent> ,bb :BufExplorer<CR>
 map <C-Tab> :bu #<cr>
 nmap <F7> :NERDTreeToggle<CR>
 
@@ -80,7 +80,7 @@ endfunction
 "-----------------------------------------------------------------------------
 " code formatters
 "-----------------------------------------------------------------------------
-map ,jt <Esc>:%!json_xs -f json -t json-pretty<CR>
+map ,jt <Esc>:%!jsonpp<CR>
 map ,xt :call DoPrettyXML()<CR>
 
 function! DoPrettyXML()
