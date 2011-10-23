@@ -73,7 +73,7 @@ function! Ruby_eval() range
   let src = tempname()
   let dst = tempname()
   execute ": " . a:firstline . "," . a:lastline . "w " . src
-  execute ":silent ! $HOME/.rvm/bin/ruby-1.9.2-p136 " . src . " > " . dst . " 2>&1 "
+  execute ":silent ! $HOME/.rvm/bin/ruby " . src . " > " . dst . " 2>&1 "
   execute ":!mvim " . dst
 endfunction
 
