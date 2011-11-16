@@ -130,7 +130,7 @@ endfunction
 "-----------------------------------------------------------------------------
 augroup cleanup_files
   au!
-  au BufWritePre *.css,*.html,*.json,*.js,*.rb,*.feature :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.css,*.html,*.json,*.js,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
   au BufWritePre *.css,*.html,*.json,*.js,*.rb,*.feature retab!
 augroup END
 
