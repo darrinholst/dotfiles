@@ -8,6 +8,7 @@ plugins_to_keep = [
   "nerdcommenter",
   "supertab",
   "unimpaired",
+  "vim-coffee-script",
   "zoomwin"
 ]
 
