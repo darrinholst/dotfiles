@@ -8,3 +8,8 @@ set guioptions-=r
 nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
 nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
 
+macmenu &File.New\ Tab key=<nop>
+macmenu &File.Open\ Tab\.\.\. key=<nop>
+map <D-T> :A<CR>
+imap <D-T> <Esc>:A<CR>
+
