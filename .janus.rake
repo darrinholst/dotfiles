@@ -6,6 +6,8 @@ plugins_to_keep = [
   "javascript",
   "nerdtree",
   "nerdcommenter",
+  "rails",
+  "rspec",
   "supertab",
   "unimpaired",
   "vim-coffee-script",
