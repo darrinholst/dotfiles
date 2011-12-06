@@ -7,8 +7,8 @@ function rvm_version {
   fi
 }
 
-# PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${fg_bold[red]}$(rvm_version)${fg_bold[blue]}
-PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${fg_bold[blue]}
+# PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${fg_bold[blue]}
+PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${fg_bold[red]}$(rvm_version)${fg_bold[blue]}
 $%{${reset_color}%} '
 
 RPROMPT='[%*]'
