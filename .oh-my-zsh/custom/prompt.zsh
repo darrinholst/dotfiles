@@ -14,18 +14,18 @@ function git_prompt_info() {
 
 function git_status() {
   if [[ -n $(git status -s 2> /dev/null) ]]; then
-    the_status=" ✗"
-  else
-    the_status=" "
+    the_status="✗"
   fi
 
   if pushtime=$(git status 2>/dev/null | grep 'Your branch is ahead' 2> /dev/null); then
-    the_status+="↑ "
-  else
-    the_status+=" "
+    the_status+="↑"
   fi
 
-  echo $the_status
+  if [[ -n $the_status ]]; then
+    echo " $the_status "
+  else
+    echo " "
+  fi
 }
 
 PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${fg_bold[red]}$(rvm_version)${fg_bold[blue]}
