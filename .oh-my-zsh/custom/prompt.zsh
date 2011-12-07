@@ -7,14 +7,29 @@ function rvm_version {
   fi
 }
 
-# PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${fg_bold[blue]}
+function git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "%{$fg[yellow]%}(${ref#refs/heads/})$(git_status)"
+}
+
+function git_status() {
+  if [[ -n $(git status -s 2> /dev/null) ]]; then
+    the_status=" ✗"
+  else
+    the_status=" "
+  fi
+
+  if pushtime=$(git status 2>/dev/null | grep 'Your branch is ahead' 2> /dev/null); then
+    the_status+="↑ "
+  else
+    the_status+=" "
+  fi
+
+  echo $the_status
+}
+
 PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${fg_bold[red]}$(rvm_version)${fg_bold[blue]}
 $%{${reset_color}%} '
 
 RPROMPT='[%*]'
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}("
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=") %{$fg[yellow]%}✗%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_CLEAN=") "
 
