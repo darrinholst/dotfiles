@@ -1,5 +1,5 @@
 # Our list of directorys we can cd to from anywhere
-export CDPATH=.:~:~/work
+export CDPATH=.:~:~/Projects
 
 # Setup terminal, and turn on colors
 export TERM=xterm-color
