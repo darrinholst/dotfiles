@@ -110,6 +110,11 @@ noremap <silent> ,ch :wincmd h<CR>:close<CR>
 noremap <silent> ,cl :wincmd l<CR>:close<CR>
 noremap <silent> ,cc :close<CR>
 noremap <silent> ,cw :cclose<CR>
+noremap <silent> <S-Up> 5<C-W>+
+noremap <silent> <S-Down> 5<C-W>-
+noremap <silent> <S-Left> 5<C-W><
+noremap <silent> <S-Right> 5<C-W>>
+
 
 "-----------------------------------------------------------------------------
 " some commands
