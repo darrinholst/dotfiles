@@ -19,4 +19,5 @@ plugins_to_keep = [
 vim_plugin_task "bufexplorer", "https://github.com/vim-scripts/bufexplorer.zip.git"
 vim_plugin_task "tabular", "https://github.com/godlygeek/tabular.git"
 vim_plugin_task "repeat", "https://github.com/tpope/vim-repeat.git"
+vim_plugin_task "indent-object", "https://github.com/michaeljsmith/vim-indent-object.git"
 

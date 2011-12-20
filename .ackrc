@@ -1,4 +1,4 @@
 --type-set=cucumber=.feature
 --type-set=css=.css,.less,.scss,.sass
---type-set=javascript=.json,.js
+--type-set=javascript=.json,.js,.coffee
 --type-set=sass=.scss,.sass

@@ -8,6 +8,9 @@ export CLICOLOR=1
 # This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
 export ARCHFLAGS='-arch x86_64'
 
+# Update janus with this enabled since the latest vim/command-t is crashy in 64bit
+# export ARCHFLAGS='-arch i386'
+
 export RUBYOPT="rubygems"
 export EDITOR=mvim
 export GEM_OPEN_EDITOR=mvim

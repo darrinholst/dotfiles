@@ -139,6 +139,7 @@ augroup cleanup_files
   au BufWritePre *.css,*.coffee,*.html,*.json,*.js,*.rb,*.feature retab!
 augroup END
 
-au BufRead,BufNewFile *.json set filetype=json
+au BufRead,BufNewFile *.json setfiletype json
 au BufRead,BufNewFile *.txt setfiletype markdown
+au BufRead,BufNewFile Capfile,Rakefile,Guardfile setfiletype ruby
 
