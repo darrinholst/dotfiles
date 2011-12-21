@@ -1,10 +1,9 @@
 set guifont=Meslo\ LG\ M:h16
-let mapleader = ","
 
 "-----------------------------------------------------------------------------
 " stuff that Command-T ignores
 "-----------------------------------------------------------------------------
-set wildignore+=vendor/**,tmp/**
+set wildignore+=tmp/**
 
 "-----------------------------------------------------------------------------
 " get the eff out of insert mode on foucs lost
