@@ -59,6 +59,9 @@ set visualbell
 " Start without the toolbar
 set guioptions-=T
 
+" No vertical scrollbar
+set guioptions-=r
+
 " Default gui color scheme
 color ir_black
 
