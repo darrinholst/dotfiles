@@ -1,0 +1,3 @@
+[submodule ".vim/bundle/vim-irblack"]
+	path = .vim/bundle/vim-irblack
+	url = https://github.com/wgibbs/vim-irblack.git
