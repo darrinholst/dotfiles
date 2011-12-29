@@ -97,8 +97,8 @@ set modelines=10
 color ir_black
 
 " Directories for swp files
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
+set backupdir=~/.vim/backup//
+set directory=~/.vim/backup//
 
 " Show (partial) command in the status line
 set showcmd
