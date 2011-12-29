@@ -55,7 +55,7 @@ if has("autocmd")
 endif
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile Capfile,Gemfile,Rakefile,config.ru setfiletype ruby
+au BufRead,BufNewFile Capfile,Gemfile,Rakefile,Guardfile,config.ru setfiletype ruby
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json setfiletype ruby
@@ -67,8 +67,11 @@ set backspace=indent,eol,start
 filetype plugin indent on
 
 " Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" Opens a rename command with the path of the currently edited file filled in
+unmap <leader>rt
+map <Leader>r :Rename <C-R>=expand("%:p") <CR>
 
 " Unimpaired configuration
 " Bubble single lines
@@ -216,7 +219,7 @@ endfunction
 " Auto commands
 augroup cleanup_files
   au!
-  au BufWritePre *.css,*.coffee,*.html,*.json,*.js,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
-  au BufWritePre *.css,*.coffee,*.html,*.json,*.js,*.rb,*.feature retab!
+  au BufWritePre *.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature retab!
 augroup END
 
