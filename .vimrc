@@ -103,10 +103,6 @@ set directory=~/.vim/backup//
 " Show (partial) command in the status line
 set showcmd
 
-
-
-
-
 " get the eff out of insert mode on foucs lost
 :au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
@@ -216,10 +212,20 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
-" Auto commands
 augroup cleanup_files
   au!
   au BufWritePre *.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
   au BufWritePre *.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature retab!
 augroup END
 
+" If the parameter is a directory, cd into it and delete the netrw buffer
+function <SID>CdIfDirectory(directory)
+  if isdirectory(a:directory)
+    exe "cd " . fnameescape(a:directory)
+    bd
+  endif
+endfunction
+
+augroup vim_enter
+  au VimEnter * call <SID>CdIfDirectory(expand("<amatch>"))
+augroup END
