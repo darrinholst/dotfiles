@@ -133,10 +133,6 @@ noremap <silent> <leader>bb :BufExplorer<CR>
 " Ctrl Tab to switch to last buffer used
 map <C-Tab> :bu #<cr>
 
-" Toggle file browser
-nmap <F7> :maca toggleFileBrowser:<CR>
-nmap <S-F7> :maca openFileBrowser:<CR>:maca revealInFileBrowser:<CR>
-
 " auto align |'s
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
