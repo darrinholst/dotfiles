@@ -8,6 +8,9 @@ set number
 set ruler
 syntax on
 
+" Highlight current line
+set cursorline
+
 " Set encoding
 set encoding=utf-8
 

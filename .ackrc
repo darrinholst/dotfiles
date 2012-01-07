@@ -4,3 +4,4 @@
 --type-set=sass=.scss,.sass
 --type-set=html=.html,.tmpl
 --type-set=erb=.erb
+--type-set=mustache=.hbs
