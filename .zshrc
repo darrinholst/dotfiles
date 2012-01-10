@@ -3,3 +3,6 @@ export DISABLE_AUTO_UPDATE="true"
 plugins=(brew bundler gem git osx rails3 rvm)
 
 source $ZSH/oh-my-zsh.sh
+
+unsetopt correct_all
+
