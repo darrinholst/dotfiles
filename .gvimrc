@@ -9,8 +9,10 @@ if has("gui_macvim")
 
   " Command-T for CommandT
   macmenu &File.New\ Tab key=<D-T>
-  map <D-t> :CommandT<CR>
-  imap <D-t> <Esc>:CommandT<CR>
+  " map <D-t> :CommandT<CR>
+  " imap <D-t> <Esc>:CommandT<CR>
+  map <D-t> :CtrlPCurWD<CR>
+  imap <D-t> <Esc>:CtrlPCurWD<CR>
 
   " Command-Return for fullscreen
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
@@ -38,6 +40,10 @@ if has("gui_macvim")
   imap <D-M-Right> <Esc> <C-w>l
   map <D-M-Left> <C-w>h
   imap <D-M-Left> <C-w>h
+
+  " File Browser
+  map <S-F7> :maca openFileBrowser:<cr>
+  map <F7> :maca toggleFileBrowser:<cr>
 else
   " Ctrl-T for Command-T
   map <C-t> :CommandT<CR>

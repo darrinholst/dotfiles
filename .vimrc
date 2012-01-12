@@ -31,7 +31,13 @@ set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,tmp/**
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*/tmp/*
+
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\.git$\|tmp$',
+"   \ 'file': '\.exe$\|\.so$\|\.dll$',
+"   \ 'link': 'bad_symbolic_link',
+"   \ }
 
 " Status bar
 set laststatus=2
@@ -59,6 +65,9 @@ endif
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile Capfile,Gemfile,Rakefile,Guardfile,config.ru setfiletype ruby
+
+au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
+au BufNewFile,BufRead *.pdf.erb set filetype=eruby
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json setfiletype ruby
