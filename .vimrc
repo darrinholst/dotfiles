@@ -1,5 +1,5 @@
 call pathogen#infect()
-set guifont=Meslo\ LG\ M:h16
+set guifont=Meslo\ LG\ M:h15
 
 let mapleader = ","
 set nocompatible
