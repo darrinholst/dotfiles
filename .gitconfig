@@ -14,6 +14,8 @@
   ui = auto
 
 [alias]
+  ad = add -A
+  ci = commit
   st = status
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   up = pull --rebase
