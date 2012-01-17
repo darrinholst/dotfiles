@@ -140,10 +140,13 @@ set hidden
 nmap <silent> <leader>n :set invhls<CR>:set hls?<CR>
 
 " buffer explorer
-noremap <silent> <leader>bb :BufExplorer<CR>
+" noremap <silent> <leader>bb :BufExplorer<CR>
 
 " Ctrl Tab to switch to last buffer used
-map <C-Tab> :bu #<cr>
+" map <C-Tab> :bu #<cr>
+
+let g:LustyJugglerAltTabMode = 1
+noremap <silent> <C-Tab> :LustyJuggler<CR>
 
 " auto align |'s
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a

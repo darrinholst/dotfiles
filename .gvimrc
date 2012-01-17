@@ -11,6 +11,8 @@ if has("gui_macvim")
   macmenu &File.New\ Tab key=<D-T>
   " map <D-t> :CommandT<CR>
   " imap <D-t> <Esc>:CommandT<CR>
+
+  let g:ctrlp_match_window_reversed = 0
   map <D-t> :CtrlPCurWD<CR>
   imap <D-t> <Esc>:CtrlPCurWD<CR>
 
