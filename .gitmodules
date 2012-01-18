@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/vim-command-w"]
 	path = .vim/bundle/vim-command-w
 	url = https://github.com/nathanaelkane/vim-command-w.git
+[submodule ".vim/bundle/MatchTag"]
+	path = .vim/bundle/MatchTag
+	url = https://github.com/gregsexton/MatchTag.git
