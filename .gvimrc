@@ -4,8 +4,8 @@ if has("gui_macvim")
 
   " Command-W closes buffer
   macmenu &File.Close key=<nop>
-  map <D-w> :bd<CR>
-  imap <D-w> <Esc>:bd<CR>
+  nmap <D-w> :CommandW<CR>
+  imap <D-w> <Esc>:CommandW<CR>
 
   " Command-T for CommandT
   macmenu &File.New\ Tab key=<D-T>
@@ -77,6 +77,7 @@ set guioptions-=T
 
 " No vertical scrollbar
 set guioptions-=r
+set guioptions-=L
 
 " Default gui color scheme
 color ir_black
