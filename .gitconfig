@@ -1,7 +1,7 @@
 [core]
   ignorecase = false
   excludesfile = /Users/dholst/.gitignore-global
-  editor = "mvim -f"
+  editor = "vim"
 
 [user]
   email = darrinholst@gmail.com
@@ -17,7 +17,7 @@
   ad = add -A
   ci = commit
   st = status
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
+  lg = log -20 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   up = pull --rebase
   fu = !git reset --hard && git clean -fd
   co = checkout
