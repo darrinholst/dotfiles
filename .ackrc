@@ -1,7 +1,5 @@
 --type-set=cucumber=.feature
---type-set=css=.css,.less,.scss,.sass
---type-set=javascript=.json,.js,.coffee
---type-set=sass=.scss,.sass
---type-set=html=.html,.tmpl
---type-set=erb=.erb
 --type-set=mustache=.hbs
+--type-add=css=.less,.scss,.sass
+--type-add=js=.json,.coffee
+--type-add=html=.tmpl
