@@ -20,5 +20,6 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   up = pull --rebase
   fu = !git reset --hard && git clean -fd
+  co = checkout
 
 
