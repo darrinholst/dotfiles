@@ -88,3 +88,5 @@ function StartTerm()
   setlocal listchars=tab:\ \
 endfunction
 
+au FocusGained * :ClearCtrlPCache
+
