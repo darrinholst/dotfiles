@@ -66,6 +66,7 @@ endif
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile Capfile,Gemfile,Rakefile,Guardfile,config.ru setfiletype ruby
 
+au BufNewFile,BufRead *.html,*.erb let g:html_indent_tags = g:html_indent_tags.'\|p\|li'
 au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
 
@@ -145,6 +146,7 @@ nmap <silent> <leader>n :set invhls<CR>:set hls?<CR>
 " Ctrl Tab to switch to last buffer used
 " map <C-Tab> :bu #<cr>
 
+let g:LustyJugglerSuppressRubyWarning = 1
 let g:LustyJugglerAltTabMode = 1
 noremap <silent> <C-Tab> :LustyJuggler<CR>
 
