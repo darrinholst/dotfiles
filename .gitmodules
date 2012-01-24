@@ -25,9 +25,6 @@
 [submodule ".vim/bundle/ZoomWin"]
 	path = .vim/bundle/ZoomWin
 	url = https://github.com/vim-scripts/ZoomWin.git
-[submodule ".vim/bundle/bufexplorer"]
-	path = .vim/bundle/bufexplorer
-	url = https://github.com/vim-scripts/bufexplorer.zip.git
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
@@ -55,9 +52,6 @@
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule ".vim/bundle/vim-conque"]
-	path = .vim/bundle/vim-conque
-	url = https://github.com/rson/vim-conque.git
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
@@ -67,9 +61,3 @@
 [submodule ".vim/bundle/lusty"]
 	path = .vim/bundle/lusty
 	url = https://github.com/sjbach/lusty.git
-[submodule ".vim/bundle/bufkill-vim"]
-	path = .vim/bundle/bufkill-vim
-	url = https://github.com/hced/bufkill-vim.git
-[submodule ".vim/bundle/vim-command-w"]
-	path = .vim/bundle/vim-command-w
-	url = https://github.com/nathanaelkane/vim-command-w.git

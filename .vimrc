@@ -1,57 +1,56 @@
-call pathogen#infect()
-set guifont=Meslo\ LG\ M:h15
-
-let mapleader = ","
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
 set nocompatible
 
-set number
-set ruler
-syntax on
+" =============== Pathogen Initialization ===============
+" This loads all the plugins in ~/.vim/bundle
+" Use tpope's pathogen plugin to manage all other plugins
+call pathogen#infect()
 
-" Highlight current line
-set cursorline
 
-" Set encoding
-set encoding=utf-8
+" ================ General Config ====================
+let mapleader = ","             "override default map leader
+set guifont=Meslo\ LG\ M:h15    "sweet ass font
+set guioptions-=T               "no toolbar
+set guioptions-=r               "no right scrollbar
+set guioptions-=L               "no left scrollbar
+set encoding=utf-8              "utf-8
+set number                      "show line numbers
+set backspace=indent,eol,start  "allow backspace in insert mode
+set history=1000                "store lots of :cmdline history
+set laststatus=2                "always show the status bar
+set showcmd                     "show incomplete cmds down the bottom
+set showmode                    "show current mode down the bottom
+set autoread                    "reload files changed outside vim
+set hidden                      "buffers can exist in the background without being in a window
+set ruler                       "show row and column
+set cursorline                  "highlight current line
+set vb                          "no beeping
+syntax on                       "syntax highlighting
 
-" Whitespace stuff
-set nowrap
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+
+" ================ Search Settings ==================
+set incsearch        "Find the next match as we type the search
+set hlsearch         "Hilight searches by default
+set ignorecase       "ignore case
+set smartcase        "don't ignore case if there's an uppercase character
+set viminfo='100,f1  "Save up to 100 marks, enable capital marks
+
+
+" ============== Whitespace Settings ================
+set nowrap                      "no line wrapping by default
+set tabstop=2                   "tab == 2 spaces
+set shiftwidth=2                "(auto)indent == 2 spaces
+set softtabstop=2               "please don't use <Tab>s
+set expandtab                   "spaces, not tabs
 set list listchars=tab:\ \ ,trail:·
 nmap <leader>w :set list!<CR>
+filetype plugin on
+filetype indent on
 
-" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-" Tab completion
+" ================ Completion =======================
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*/tmp/*
-
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\.git$\|tmp$',
-"   \ 'file': '\.exe$\|\.so$\|\.dll$',
-"   \ 'link': 'bad_symbolic_link',
-"   \ }
-
-" Status bar
-set laststatus=2
-
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
-
-" Command-T configuration
-let g:CommandTMaxHeight=20
-
-" ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
 
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
@@ -71,13 +70,7 @@ au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
 
 " add json syntax highlighting
-au BufNewFile,BufRead *.json setfiletype ruby
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-" load the plugin and indent settings for the detected filetype
-filetype plugin indent on
+au BufNewFile,BufRead *.json setfiletype javascript
 
 " Opens an edit command with the path of the currently edited file filled in
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -113,9 +106,6 @@ color ir_black
 set backupdir=~/.vim/backup//
 set directory=~/.vim/backup//
 
-" Show (partial) command in the status line
-set showcmd
-
 " get the eff out of insert mode on foucs lost
 :au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
@@ -130,21 +120,8 @@ function! SaveAll()
   endtry
 endfunction
 
-" set visual bell -- i hate that damned beeping
-set vb
-
-" Make sure that unsaved buffers that are to be put in the background are
-" allowed to go in there (ie. the "must save first" error doesn't come up)
-set hidden
-
 " toggle search highligthing
 nmap <silent> <leader>n :set invhls<CR>:set hls?<CR>
-
-" buffer explorer
-" noremap <silent> <leader>bb :BufExplorer<CR>
-
-" Ctrl Tab to switch to last buffer used
-" map <C-Tab> :bu #<cr>
 
 let g:LustyJugglerSuppressRubyWarning = 1
 let g:LustyJugglerAltTabMode = 1
