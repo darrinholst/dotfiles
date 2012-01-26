@@ -18,4 +18,3 @@ if has("gui_macvim")
   map <F7> :maca toggleFileBrowser:<cr>
 endif
 
-
