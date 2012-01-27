@@ -22,3 +22,16 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " Opens a rename command with the path of the currently edited file filled in
 map <Leader>r :Rename <C-R>=expand("%:p") <CR>
+
+function UnmapKeys()
+  nunmap ,lj
+  nunmap ,lg
+  nunmap ,lb
+  nunmap ,lr
+  nunmap ,lf
+  nunmap ,cl
+  vunmap ,cl
+  noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
+endfunction
+
+autocmd VimEnter * call UnmapKeys()
