@@ -24,14 +24,16 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>r :Rename <C-R>=expand("%:p") <CR>
 
 function UnmapKeys()
-  nunmap ,lj
-  nunmap ,lg
-  nunmap ,lb
-  nunmap ,lr
-  nunmap ,lf
-  nunmap ,cl
-  vunmap ,cl
-  noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
+  if has("gui_macvim")
+    nunmap ,lj
+    nunmap ,lg
+    nunmap ,lb
+    nunmap ,lr
+    nunmap ,lf
+    nunmap ,cl
+    vunmap ,cl
+    noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
+  endif
 endfunction
 
 autocmd VimEnter * call UnmapKeys()

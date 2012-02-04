@@ -1,3 +1,5 @@
+set -o vi
+
 # Our list of directorys we can cd to from anywhere
 export CDPATH=.:~:~/Projects
 
