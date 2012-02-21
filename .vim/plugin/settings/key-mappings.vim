@@ -23,6 +23,9 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " Opens a rename command with the path of the currently edited file filled in
 map <Leader>r :Rename <C-R>=expand("%:p") <CR>
 
+nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
+nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
+
 function UnmapKeys()
   if has("gui_macvim")
     nunmap ,lj
