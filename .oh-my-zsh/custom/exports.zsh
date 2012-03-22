@@ -14,7 +14,7 @@ export ARCHFLAGS='-arch x86_64'
 # export ARCHFLAGS='-arch i386'
 
 export RUBYOPT="rubygems"
-export EDITOR=vim
+export EDITOR=subl
 export GEM_OPEN_EDITOR=mvim
 export MAVEN_OPTS="-d32 -client -Xmx1024m" # -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=4000"
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home

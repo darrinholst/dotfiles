@@ -15,13 +15,17 @@ task 'link' do
   symlink_this('.vimrc')
   symlink_this('.zshenv')
   symlink_this('.zshrc')
+
+  Dir[".sublime/Packages/*"].each do |package|
+    symlink_this(package, "Library/Application Support/Sublime Text 2/Packages/#{package.split("/").last}")
+  end
 end
 
-def symlink_this(f)
-  home_path = File.join(ENV["HOME"], f)
-  remote_path = File.join(Dir.pwd, f)
+def symlink_this(source, target = nil)
+  target_path = File.join(ENV["HOME"], target || source)
+  source_path = File.join(Dir.pwd, source)
 
-  sh "rm -rf #{home_path}"
-  sh "ln -s #{remote_path} #{home_path}"
+  sh "rm -rf #{target_path}"
+  sh "ln -s #{source_path} #{target_path}"
 end
 
