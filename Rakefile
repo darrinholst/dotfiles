@@ -25,7 +25,7 @@ def symlink_this(source, target = nil)
   target_path = File.join(ENV["HOME"], target || source)
   source_path = File.join(Dir.pwd, source)
 
-  sh "rm -rf #{target_path}"
-  sh "ln -s #{source_path} #{target_path}"
+  sh "rm -rf \"#{target_path}\""
+  sh "ln -s \"#{source_path}\" \"#{target_path}\""
 end
 
