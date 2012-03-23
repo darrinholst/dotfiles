@@ -1,11 +1,15 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-	"font_face": "Meslo LG S",
-	"font_size": 15.5,
-	"indent_guide_options": false,
-	"save_on_focus_lost": true,
-	"translate_tabs_to_spaces": true,
-	"trim_automatic_white_space": true,
-	"trim_trailing_white_space_on_save": true,
-	"vintage_start_in_command_mode": true
+  "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+  "font_face": "Meslo LG S",
+  "font_size": 15.5,
+  "indent_guide_options": false,
+  "save_on_focus_lost": true,
+  "translate_tabs_to_spaces": true,
+  "tab_size": 2,
+  "trim_automatic_white_space": true,
+  "trim_trailing_white_space_on_save": true,
+  "vintage_start_in_command_mode": true,
+  "highlight_line": true,
+  "hot_exit": false,
+  "remember_open_files": false
 }
