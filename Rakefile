@@ -10,6 +10,7 @@ task 'link' do
   symlink_this('.irbrc')
   symlink_this('.js')
   symlink_this('.oh-my-zsh/custom')
+  symlink_this('.rvmrc')
   symlink_this('.synergy.conf')
   symlink_this('.vim')
   symlink_this('.vimrc')
