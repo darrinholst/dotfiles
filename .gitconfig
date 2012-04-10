@@ -23,3 +23,5 @@
   co = checkout
 
 
+[push]
+	default = tracking
