@@ -9,7 +9,7 @@ call pathogen#infect()
 
 
 " ================ General Config ====================
-color ir_black                  "default color scheme
+color Tomorrow-Night            "default color scheme
 let mapleader = ","             "override default map leader
 set guifont=Meslo\ LG\ M:h17    "sweet ass font
 set guioptions-=T               "no toolbar
