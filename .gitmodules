@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = https://github.com/tpope/vim-markdown
+[submodule ".sublime/Packages/SyncedSideBar"]
+	path = .sublime/Packages/SyncedSideBar
+	url = https://github.com/sobstel/SyncedSideBar.git
