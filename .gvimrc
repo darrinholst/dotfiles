@@ -3,8 +3,11 @@ if has("gui_macvim")
   let g:ctrlp_match_window_reversed = 0
   au FocusGained * :ClearCtrlPCache
   macmenu &File.New\ Tab key=<D-T>
+  macmenu &File.Print key=<D-P>
   map <D-t> :CtrlPCurWD<CR>
+  map <D-p> :CtrlPCurWD<CR>
   imap <D-t> <Esc>:CtrlPCurWD<CR>
+  imap <D-p> <Esc>:CtrlPCurWD<CR>
 
   " Command-Shift-F for Ack
   map <D-F> :Ack<space>
