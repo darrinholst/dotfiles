@@ -11,7 +11,7 @@ export CLICOLOR=1
 export ARCHFLAGS='-arch x86_64'
 
 export RUBYOPT="rubygems"
-export EDITOR=subl
+export EDITOR="mvim -f"
 export GEM_OPEN_EDITOR=mvim
 export MAVEN_OPTS="-d32 -client -Xmx1024m" # -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=4000"
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
