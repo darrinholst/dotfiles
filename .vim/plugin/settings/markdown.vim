@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.md set wrap
+autocmd BufNewFile,BufRead *.md,*.markdown set wrap tw=80 spell

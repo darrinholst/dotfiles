@@ -32,11 +32,11 @@ nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 
 function UnmapKeys()
   if has("gui_macvim")
-    nunmap ,lj
-    nunmap ,lg
-    nunmap ,lb
-    nunmap ,lr
-    nunmap ,lf
+    " nunmap ,lj
+    " nunmap ,lg
+    " nunmap ,lb
+    " nunmap ,lr
+    " nunmap ,lf
     nunmap ,cl
     vunmap ,cl
     noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
