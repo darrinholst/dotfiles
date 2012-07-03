@@ -17,6 +17,7 @@ export MAVEN_OPTS="-d32 -client -Xmx1024m" # -Xdebug -Xnoagent -Xrunjdwp:transpo
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 export JAVA_OPTS="-d32 -client -Xms64m -Xmx256m -XX:MaxPermSize=128m"
 export JRUBY_OPTS="--1.9"
+export NODE_PATH=/usr/local/lib/node_modules
 
 export PATH=/opt/PalmSDK/Current/bin:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
