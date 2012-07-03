@@ -1,3 +1,11 @@
+desc 'bootstrap'
+task 'bootstrap' do
+  sh "/usr/bin/ruby -e \"$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)\""
+  sh "brew install ack git tig wget"
+  sh "curl -L https://get.rvm.io | bash -s stable --ruby"
+  sh "curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh"
+end
+
 desc 'link em up'
 task 'link' do
   symlink_this('.ackrc')
@@ -17,9 +25,9 @@ task 'link' do
   symlink_this('.zshenv')
   symlink_this('.zshrc')
 
-  Dir[".sublime/Packages/*"].each do |package|
-    symlink_this(package, "Library/Application Support/Sublime Text 2/Packages/#{package.split("/").last}")
-  end
+  # Dir[".sublime/Packages/*"].each do |package|
+  #   symlink_this(package, "Library/Application Support/Sublime Text 2/Packages/#{package.split("/").last}")
+  # end
 end
 
 def symlink_this(source, target = nil)
