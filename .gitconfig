@@ -1,6 +1,6 @@
 [core]
   ignorecase = false
-  excludesfile = /Users/dholst/.gitignore-global
+  excludesfile = ~/.gitignore-global
   editor = "vim"
 
 [user]
