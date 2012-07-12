@@ -1,5 +1,6 @@
 [ui]
 username = Darrin Holst <darrinholst@gmail.com>
+ignore = ~/.hgignore-global
 
 [extensions]
 color=
