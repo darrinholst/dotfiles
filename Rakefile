@@ -15,6 +15,7 @@ task 'link' do
   symlink_this('.gitconfig')
   symlink_this('.gitignore-global')
   symlink_this('.gvimrc')
+  symlink_this('.hgrc')
   symlink_this('.irbrc')
   symlink_this('.js')
   symlink_this('.oh-my-zsh/custom')
