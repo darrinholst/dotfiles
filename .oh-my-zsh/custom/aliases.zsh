@@ -1,2 +1,1 @@
-alias rr='touch tmp/restart.txt'
-alias r='rails'
+alias listening='lsof -i -P | grep -i listen'
