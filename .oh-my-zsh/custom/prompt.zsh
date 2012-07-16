@@ -28,7 +28,15 @@ function git_status() {
   fi
 }
 
-PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)${fg_bold[red]}$(rvm_version)${fg_bold[blue]}
+function hg_prompt_info() {
+  branch=$(hg id -b 2> /dev/null) || return
+  tag=$(hg id -t 2> /dev/null) || return
+  rev_number=$(hg id -n 2> /dev/null) || return
+  rev_id=$(hg id -i 2> /dev/null) || return
+  echo "%{$fg[yellow]%}(${rev_number/\+/}:${rev_id/\+/}@${branch}(${tag})) "
+}
+
+PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)$(hg_prompt_info)${fg_bold[red]}$(rvm_version)${fg_bold[blue]}
 $%{${reset_color}%} '
 
 RPROMPT='[%*]'
