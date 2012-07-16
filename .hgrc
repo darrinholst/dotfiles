@@ -6,7 +6,8 @@ ignore = ~/.hgignore-global
 color=
 hgext.color=
 hgext.churn=
-pager =
+pager=
+fetch=
 
 [defaults]
 diff = --color=always
@@ -20,4 +21,5 @@ lg = log --color=always -M --template "\x1B[33m{rev}\x1B[0m\t{date|age} \x1B[33m
 
 [pager]
 pager=LESS='FSRX' less
+attend = annotate, cat, diff, export, glog, log, qdiff, lg
 
