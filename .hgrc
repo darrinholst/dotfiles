@@ -1,5 +1,6 @@
 [ui]
-username = Darrin Holst <darrinholst@gmail.com>
+#username = Darrin Holst <darrinholst@gmail.com>
+username = Darrin Holst <holstdarrin@johndeere.com>
 ignore = ~/.hgignore-global
 
 [extensions]

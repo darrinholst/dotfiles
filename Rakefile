@@ -26,10 +26,6 @@ task 'link' do
   symlink_this('.vimrc')
   symlink_this('.zshenv')
   symlink_this('.zshrc')
-
-  # Dir[".sublime/Packages/*"].each do |package|
-  #   symlink_this(package, "Library/Application Support/Sublime Text 2/Packages/#{package.split("/").last}")
-  # end
 end
 
 def symlink_this(source, target = nil)
