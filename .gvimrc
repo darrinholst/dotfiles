@@ -3,9 +3,6 @@ if has('gui_running')
   let g:ctrlp_match_window_reversed = 0
   au FocusGained * :ClearCtrlPCache
 
-  " File Browser
-  map <F7> :NERDTreeToggle<CR>
-  imap <F7> <Esc>:NERDTreeToggle<CR>
 endif
 
 if has("gui_macvim")
