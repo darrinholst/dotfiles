@@ -21,9 +21,6 @@ noremap <silent> <S-Right> 5<C-W>>
 nnoremap j gj
 nnoremap k gk
 
-" Ctrl Shift F for ack
-nmap <C-S-F> :Ack<space>
-
 " File Browser
 map <F7> :NERDTreeToggle<CR>
 imap <F7> <Esc>:NERDTreeToggle<CR>

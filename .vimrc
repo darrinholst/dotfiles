@@ -27,8 +27,8 @@ set hidden                      "buffers can exist in the background without bei
 set ruler                       "show row and column
 set cursorline                  "highlight current line
 set vb                          "no beeping
-set scrolloff=8                 "Start scrolling when we're 8 lines away from margins
-set sidescrolloff=15            "Start scrolling when we're 15 columns away from margins
+set scrolloff=3                 "Start scrolling when we're 3 lines away from margins
+set sidescrolloff=10            "Start scrolling when we're 10 columns away from margins
 set sidescroll=1
 syntax on                       "syntax highlighting
 
