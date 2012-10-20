@@ -22,6 +22,8 @@ nnoremap j gj
 nnoremap k gk
 
 " File Browser
+map <F6> :NERDTreeFind<CR>
+imap <F6> <Esc>:NERDTreeFind<CR>
 map <F7> :NERDTreeToggle<CR>
 imap <F7> <Esc>:NERDTreeToggle<CR>
 

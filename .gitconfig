@@ -25,3 +25,5 @@
 
 [push]
 	default = tracking
+[init]
+	templatedir = ~/.git_template

@@ -30,7 +30,9 @@ set vb                          "no beeping
 set scrolloff=3                 "Start scrolling when we're 3 lines away from margins
 set sidescrolloff=10            "Start scrolling when we're 10 columns away from margins
 set sidescroll=1
+set nrformats=                  "treat all numbers as decimal
 syntax on                       "syntax highlighting
+runtime macros/matchit.vim
 
 
 " ================ Search Settings ==================

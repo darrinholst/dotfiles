@@ -12,7 +12,7 @@ if has("gui_macvim")
   imap <D-p> <Esc>:CtrlPCurWD<CR>
 
   " Command-Shift-F for Ack
-  map <D-F> :Ack<space>
+  map <D-F> :Ack!<space>
 
   " Command-/ to toggle comments
   map <D-/> <plug>NERDCommenterToggle<CR>

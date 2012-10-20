@@ -12,6 +12,7 @@ task 'link' do
   symlink_this('.autotest')
   symlink_this('.bin')
   symlink_this('.gemrc')
+  symlink_this('.git_template')
   symlink_this('.gitconfig')
   symlink_this('.gitignore-global')
   symlink_this('.gvimrc')
