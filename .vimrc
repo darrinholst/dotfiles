@@ -34,6 +34,9 @@ set nrformats=                  "treat all numbers as decimal
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
+" ================ Highlighting ==================
+hi CursorLine cterm=NONE ctermbg=darkgray
+hi Visual cterm=NONE ctermbg=darkgray
 
 " ================ Search Settings ==================
 set incsearch        "Find the next match as we type the search
