@@ -9,7 +9,7 @@ call pathogen#infect()
 
 
 " ================ General Config ====================
-color Tomorrow-Night            "default color scheme
+color base16-tomorrow           "default color scheme
 let mapleader = ","             "override default map leader
 set guifont=Meslo\ LG\ M:h17    "sweet ass font
 set guioptions-=T               "no toolbar
@@ -34,10 +34,15 @@ set nrformats=                  "treat all numbers as decimal
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
+
 " ================ Highlighting ==================
 hi CursorLine cterm=NONE ctermbg=darkgray
-hi Visual cterm=NONE ctermbg=darkgray
+hi Visual cterm=NONE ctermbg=grey ctermfg=black
 hi Comment cterm=NONE ctermfg=darkgray
+hi StatusLine cterm=NONE ctermbg=green ctermfg=black
+hi NonText ctermfg=black
+hi VertSplit ctermbg=black ctermfg=green
+
 
 " ================ Search Settings ==================
 set incsearch        "Find the next match as we type the search
