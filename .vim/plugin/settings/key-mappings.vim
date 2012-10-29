@@ -1,6 +1,10 @@
 nmap <silent> <leader>n :set invhls<CR>
 nmap <silent> <leader>w :bd<CR>
 
+" Commenter
+map <leader>/ <plug>NERDCommenterToggle<CR>
+" imap <leader>/ <Esc><plug>NERDCommenterToggle<CR>i
+
 " Window Commands
 noremap <silent> <leader>h :wincmd h<CR>
 noremap <silent> <leader>j :wincmd j<CR>
@@ -37,7 +41,7 @@ nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
 
 function UnmapKeys()
-  if has("gui_macvim")
+"  if has("gui_macvim")
     nunmap ,lj
     nunmap ,lg
     nunmap ,lb
@@ -46,7 +50,7 @@ function UnmapKeys()
     nunmap ,cl
     vunmap ,cl
     noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
-  endif
+"  endif
 endfunction
 
 autocmd VimEnter * call UnmapKeys()
