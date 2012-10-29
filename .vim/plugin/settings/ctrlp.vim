@@ -1,3 +1,4 @@
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_reversed = 0
 au FocusGained * :ClearCtrlPCache
 

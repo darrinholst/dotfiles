@@ -44,16 +44,9 @@ nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
 
 function UnmapKeys()
-"  if has("gui_macvim")
-    nunmap ,lj
-    nunmap ,lg
-    nunmap ,lb
-    nunmap ,lr
-    nunmap ,lf
-    nunmap ,cl
-    vunmap ,cl
-    noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
-"  endif
+  nunmap ,cl
+  vunmap ,cl
+  noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
 endfunction
 
 autocmd VimEnter * call UnmapKeys()
