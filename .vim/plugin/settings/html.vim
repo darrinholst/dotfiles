@@ -1,2 +1,2 @@
-au BufNewFile,BufRead *.html,*.html.erb let g:html_indent_tags = g:html_indent_tags.'\|p\|li'
+let g:html_indent_tags = ['p', 'li']
 

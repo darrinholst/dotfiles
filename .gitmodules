@@ -79,3 +79,6 @@
 [submodule ".vim/bundle/base16"]
 	path = .vim/bundle/base16
 	url = https://github.com/chriskempson/base16-vim.git
+[submodule ".vim/bundle/html5"]
+	path = .vim/bundle/html5
+	url = https://github.com/othree/html5.vim.git
