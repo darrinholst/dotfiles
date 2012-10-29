@@ -10,6 +10,7 @@ call pathogen#infect()
 
 " ================ General Config ====================
 color base16-tomorrow           "default color scheme
+set background=dark
 let mapleader = ","             "override default map leader
 set guifont=Meslo\ LG\ M:h17    "sweet ass font
 set guioptions-=T               "no toolbar
@@ -36,12 +37,11 @@ runtime macros/matchit.vim
 
 
 " ================ Highlighting ==================
-hi CursorLine cterm=NONE ctermbg=darkgray
 hi Visual cterm=NONE ctermbg=grey ctermfg=black
-hi Comment cterm=NONE ctermfg=darkgray
-hi StatusLine cterm=NONE ctermbg=green ctermfg=black
+hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
+hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
+hi VertSplit ctermbg=grey ctermfg=grey
 hi NonText ctermfg=black
-hi VertSplit ctermbg=black ctermfg=green
 
 
 " ================ Search Settings ==================
