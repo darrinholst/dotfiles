@@ -2,3 +2,4 @@
 .vim/backup/*
 .vim/.netrwhist
 *.cache
+s3.zsh
