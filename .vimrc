@@ -18,7 +18,6 @@ set guioptions-=r               "no right scrollbar
 set guioptions-=L               "no left scrollbar
 set encoding=utf-8              "utf-8
 set number                      "show line numbers
-set relativenumber              "show relative line numbers
 set backspace=indent,eol,start  "allow backspace in insert mode
 set history=1000                "store lots of :cmdline history
 set laststatus=2                "always show the status bar
