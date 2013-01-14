@@ -4,3 +4,7 @@
 *.cache
 s3.zsh
 cm.netteller.com.js
+*.o
+*.pyc
+*.so
+
