@@ -9,6 +9,7 @@ hgext.color=
 hgext.churn=
 pager=
 fetch=
+rebase=
 
 [defaults]
 diff = --color=always

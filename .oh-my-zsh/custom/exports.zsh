@@ -20,7 +20,10 @@ export MAVEN_OPTS="-d32 -client -Xms64m -Xmx1024m -XX:MaxPermSize=256m"
 export JRUBY_OPTS="--1.9"
 export GROOVY_HOME=/usr/local/Cellar/groovy/2.0.0/libexec
 export NODE_PATH=/usr/local/lib/node_modules
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Applications/Oracle
+export TNS_ADMIN=/Applications/Oracle/network/admin
 
+export PATH=/Applications/Oracle:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=/opt/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
