@@ -85,6 +85,3 @@
 [submodule ".vim/bundle/vim-easymotion"]
 	path = .vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule ".vim/bundle/filepirate"]
-	path = .vim/bundle/filepirate
-	url = https://github.com/nfd/filepirate.git
