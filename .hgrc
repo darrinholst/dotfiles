@@ -10,6 +10,7 @@ hgext.churn=
 pager=
 fetch=
 rebase=
+mercurial_keyring=
 
 [defaults]
 diff = --color=always

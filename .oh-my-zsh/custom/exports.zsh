@@ -28,6 +28,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 export PATH=/opt/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=~/.bin:$PATH
 export PATH=./bin:$PATH
 export PATH=./script:$PATH
