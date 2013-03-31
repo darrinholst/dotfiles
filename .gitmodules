@@ -88,3 +88,6 @@
 [submodule ".vim/bundle/filepirate"]
 	path = .vim/bundle/filepirate
 	url = https://github.com/nfd/filepirate.git
+[submodule ".vim/bundle/vim-git-log"]
+	path = .vim/bundle/vim-git-log
+	url = https://github.com/kablamo/vim-git-log.git

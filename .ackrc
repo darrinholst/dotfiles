@@ -4,3 +4,4 @@
 --type-add=js=.json,.coffee
 --type-add=html=.tmpl
 --type-add=ruby=.prawn,.ru
+--type-add=java=.properties
