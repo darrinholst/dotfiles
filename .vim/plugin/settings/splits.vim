@@ -1,1 +1,1 @@
-let &winwidth = &columns * 85/100 
+"let &winwidth = &columns * 85/100 

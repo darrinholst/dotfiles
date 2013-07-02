@@ -91,3 +91,6 @@
 [submodule ".vim/bundle/vim-git-log"]
 	path = .vim/bundle/vim-git-log
 	url = https://github.com/kablamo/vim-git-log.git
+[submodule ".vim/bundle/gitgutter"]
+	path = .vim/bundle/gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
