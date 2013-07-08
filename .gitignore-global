@@ -4,3 +4,7 @@ NERD_tree*
 .idea
 *.iml
 tags
+*.o
+*.pyc
+*.so
+
