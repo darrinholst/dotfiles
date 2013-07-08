@@ -91,6 +91,6 @@
 [submodule ".vim/bundle/vim-git-log"]
 	path = .vim/bundle/vim-git-log
 	url = https://github.com/kablamo/vim-git-log.git
-[submodule ".vim/bundle/gitgutter"]
-	path = .vim/bundle/gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
+[submodule ".vim/bundle/vim-airline"]
+	path = .vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
