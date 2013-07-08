@@ -1,3 +1,8 @@
+desc 'update all submodules'
+task 'update' do
+  sh "git submodule foreach git pull origin master"
+end
+
 desc 'bootstrap'
 task 'bootstrap' do
   sh "/usr/bin/ruby -e \"$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)\""
