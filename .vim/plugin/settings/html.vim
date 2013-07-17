@@ -1,2 +1,2 @@
-let g:html_indent_tags = ['p', 'li']
+"let g:html_indent_tags = ['p', 'li']
 
