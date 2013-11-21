@@ -10,6 +10,6 @@ function! Ruby_eval() range
   execute ":!mvim " . dst
 endfunction
 
-au BufRead,BufNewFile Capfile,Gemfile,Rakefile,Guardfile,config.ru,*.pdf.prawn setfiletype ruby
+au BufRead,BufNewFile Capfile,Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
 au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby

@@ -7,4 +7,6 @@ tags
 *.o
 *.pyc
 *.so
+.agignore
+.env
 
