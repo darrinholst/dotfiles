@@ -20,7 +20,7 @@ incoming = --color=always
 outgoing = --color=always
 
 [alias]
-lg = log --color=always -M --template "\x1B[33m{rev}\x1B[0m\t{date|age} \x1B[33m{author|person}\n\t\x1B[32m{desc|firstline}\n\n"
+lg = log --color=always -M --template "\x1B[31m{rev}\x1B[0m - {desc|fill76|tabindent}\x1B[33m ({date|age} by {author|person})\n"
 
 [pager]
 pager=LESS='FSRX' less
