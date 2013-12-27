@@ -97,3 +97,6 @@
 [submodule ".vim/bundle/vim-rspec-thoughtbot"]
 	path = .vim/bundle/vim-rspec-thoughtbot
 	url = https://github.com/thoughtbot/vim-rspec.git
+[submodule ".vim/bundle/vim-signify"]
+	path = .vim/bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify.git
