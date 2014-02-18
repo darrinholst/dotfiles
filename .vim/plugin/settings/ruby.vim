@@ -13,3 +13,10 @@ endfunction
 au BufRead,BufNewFile Capfile,Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
 au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
+
+command! HashRocket :call HashRocket()
+
+function! HashRocket()
+  execute ':%s/:\([^ ]*\)\(\s*\)=>/\1:/g'
+endfunction
+
