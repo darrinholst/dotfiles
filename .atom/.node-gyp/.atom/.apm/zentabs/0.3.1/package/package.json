@@ -1,0 +1,14 @@
+{
+  "name": "zentabs",
+  "version": "0.3.1",
+  "main": "./lib/zentabs",
+  "description": "Keep the opened tabs amount below specified limit",
+  "license": "MIT",
+  "repository": "https://github.com/ArnaudRinquin/atom-zentabs",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {
+    "underscore-plus": "1.x"
+  }
+}
