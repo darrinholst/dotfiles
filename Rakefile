@@ -6,7 +6,7 @@ end
 desc 'bootstrap'
 task 'bootstrap' do
   sh "/usr/bin/ruby -e \"$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)\""
-  sh "brew install ack git tig wget"
+  sh "brew install ag autoenv ctags git libxml2 node openssl phantomjs postgresql python redis sqlite tig tree wget"
   sh "curl -L https://get.rvm.io | bash -s stable --ruby"
   sh "curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh"
 end
