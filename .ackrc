@@ -5,3 +5,6 @@
 --type-add=html=.tmpl
 --type-add=ruby=.prawn,.ru
 --type-add=java=.properties
+
+--ignore-dir=tmp/
+
