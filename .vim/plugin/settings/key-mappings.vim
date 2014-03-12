@@ -1,9 +1,6 @@
 nmap <silent> <leader>n :set invhls<CR>
 nmap <silent> <leader>w :bd<CR>
 
-" Ack
-map <leader>f :Ack!<space>
-
 " Commenter
 map <leader>/ <plug>NERDCommenterToggle<CR>
 " imap <leader>/ <Esc><plug>NERDCommenterToggle<CR>i
@@ -50,3 +47,4 @@ function UnmapKeys()
 endfunction
 
 autocmd VimEnter * call UnmapKeys()
+
