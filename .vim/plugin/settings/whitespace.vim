@@ -14,3 +14,4 @@ augroup cleanup_files
   au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
   au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature retab!
 augroup END
+

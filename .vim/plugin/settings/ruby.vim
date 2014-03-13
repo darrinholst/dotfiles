@@ -19,3 +19,4 @@ command! HashRocket :call HashRocket()
 function! HashRocket()
   execute ':%s/:\([^ ]*\)\(\s*\)=>/\1:/g'
 endfunction
+

@@ -97,3 +97,6 @@
 [submodule ".vim/bundle/vim-ag"]
 	path = .vim/bundle/vim-ag
 	url = https://github.com/rking/ag.vim.git
+[submodule ".vim/bundle/vim-rspec"]
+	path = .vim/bundle/vim-rspec
+	url = https://github.com/thoughtbot/vim-rspec.git

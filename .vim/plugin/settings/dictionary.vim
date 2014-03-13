@@ -8,3 +8,4 @@ function! SearchDictionary()
 endfunction
 
 map <leader>s :call SearchDictionary()<CR>
+
