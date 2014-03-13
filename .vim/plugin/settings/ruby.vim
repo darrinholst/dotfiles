@@ -1,6 +1,6 @@
-vmap <silent> <F8> :call Ruby_eval()<CR>
-nmap <silent> <F8> mzggVG<F8>`z
-imap <silent> <F8> <Esc><F8>a
+"vmap <silent> <F8> :call Ruby_eval()<CR>
+"nmap <silent> <F8> mzggVG<F8>`z
+"imap <silent> <F8> <Esc><F8>a
 
 function! Ruby_eval() range
   let src = tempname()
@@ -19,4 +19,3 @@ command! HashRocket :call HashRocket()
 function! HashRocket()
   execute ':%s/:\([^ ]*\)\(\s*\)=>/\1:/g'
 endfunction
-
