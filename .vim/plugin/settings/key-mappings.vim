@@ -3,7 +3,6 @@ nmap <silent> <leader>w :bd<CR>
 
 " Commenter
 map <leader>/ <plug>NERDCommenterToggle<CR>
-" imap <leader>/ <Esc><plug>NERDCommenterToggle<CR>i
 
 " Window Commands
 noremap <silent> <leader>h :wincmd h<CR>
