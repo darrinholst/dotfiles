@@ -13,3 +13,4 @@ function! DoPrettyXML()
   1
   exe "set ft=" . l:origft
 endfunction
+
