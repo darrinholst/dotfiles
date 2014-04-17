@@ -2,7 +2,7 @@ let ft_stdout_mappings = {
       \'bash': 'bash',
       \'javascript': 'node',
       \'nodejs': 'node',
-      \'python': 'python',
+      \'python': 'python3',
       \'ruby': 'ruby',
       \'sh': 'sh'
       \}
