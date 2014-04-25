@@ -5,10 +5,11 @@ end
 
 desc 'bootstrap'
 task 'bootstrap' do
-  sh "/usr/bin/ruby -e \"$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)\""
-  sh "brew install ag autoenv ctags git libxml2 node openssl phantomjs postgresql python redis sqlite tig tree wget"
-  sh "curl -L https://get.rvm.io | bash -s stable --ruby"
-  sh "curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh"
+  sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)\""
+  sh "brew doctor"
+  sh "brew bundle"
+  sh "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.1"
+  sh "curl -L http://install.ohmyz.sh | sh"
 end
 
 desc 'link em up'
