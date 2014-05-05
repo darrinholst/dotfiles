@@ -1,1 +1,1 @@
-source /usr/local/opt/autoenv/activate.sh
+source ~/.autoenv/activate.sh
