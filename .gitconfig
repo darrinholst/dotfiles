@@ -11,7 +11,7 @@
   user = darrinholst
 
 [color]
-  ui = auto
+	ui = true
 
 [alias]
   ad = add -A
