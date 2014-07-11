@@ -6,3 +6,4 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
 
+DISABLE_UPDATE_PROMPT=true
