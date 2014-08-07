@@ -12,17 +12,13 @@ export ARCHFLAGS='-arch x86_64'
 
 export RUBYOPT="rubygems"
 export EDITOR=mvim
+export GIT_EDITOR="mvim -f"
 export GEM_OPEN_EDITOR=mvim
-export MAVEN_OPTS="-d32 -client -Xmx1024m" # -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=4000"
 export JAVA_HOME=$(/usr/libexec/java_home)
-export JAVA_OPTS="-client -Xms64m -Xmx1024m -XX:MaxPermSize=256m"
-export MAVEN_OPTS="-client -Xms64m -Xmx1024m -XX:MaxPermSize=256m"
+export JAVA_OPTS="-client -Xms64m -Xmx1024m"
+export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 export JRUBY_OPTS="--1.9"
-export GROOVY_HOME=/usr/local/Cellar/groovy/2.0.0/libexec
-export NODE_PATH=/usr/local/lib/node_modules
-export NODE_PATH=$NODE_PATH:/usr/local/share/npm/lib/node_modules
-export TNS_ADMIN=/Applications/Oracle/network/admin
-export MAVEN_HOME=/usr/share/maven
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 
 export PATH=/Applications/Oracle:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
