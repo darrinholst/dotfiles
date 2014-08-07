@@ -18,13 +18,14 @@
   ci = commit
   st = status
   lg = log -20 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
-  up = pull --rebase
-  fu = !git reset --hard && git clean -fd
+  up = pull --rebase --prune
+  fu = !git add -A && git commit -qm 'FU SAVEPOINT' && git reset --hard HEAD~
   co = checkout
-
+  ec = config --global -e
 
 [push]
 	default = tracking
+
 [init]
 	templatedir = ~/.git_template
 
