@@ -14,7 +14,7 @@
 	ui = true
 
 [alias]
-  ad = add -A
+  ad = !git add -A && git st
   ci = commit
   st = status
   lg = log -20 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
