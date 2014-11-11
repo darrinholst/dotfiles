@@ -15,10 +15,10 @@ noremap <silent> <leader>ch :wincmd h<CR>:close<CR>
 noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
 noremap <silent> <leader>cc :close<CR>
 noremap <silent> <leader>cw :cclose<CR>
-noremap <silent> <S-Up> 5<C-W>+
-noremap <silent> <S-Down> 5<C-W>-
-noremap <silent> <S-Left> 5<C-W><
-noremap <silent> <S-Right> 5<C-W>>
+"noremap <silent> <S-Up> 5<C-W>+
+"noremap <silent> <S-Down> 5<C-W>-
+"noremap <silent> <S-Left> 5<C-W><
+"noremap <silent> <S-Right> 5<C-W>>
 
 " wrapped lines support
 nnoremap j gj
