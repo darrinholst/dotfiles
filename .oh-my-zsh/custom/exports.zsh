@@ -20,7 +20,6 @@ export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 export JRUBY_OPTS="--1.9"
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 
-export PATH=/Applications/Oracle:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=/opt/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH

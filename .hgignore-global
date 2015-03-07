@@ -1,4 +1,0 @@
-.DS_Store
-glob:FitNesse/FitNesseRoot/RecentChanges/*
-glob:out/*
-.env
