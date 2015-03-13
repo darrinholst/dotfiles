@@ -6,8 +6,8 @@ end
 desc 'bootstrap'
 task 'bootstrap' do
   # Install xcode from App Store
-  sh "xcode-select --install"
-  sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)\""
+  # sh "xcode-select --install"
+  sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
   sh "brew doctor"
   sh "brew tap Homebrew/brewdler"
   sh "brew brewdle"
