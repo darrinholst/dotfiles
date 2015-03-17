@@ -106,3 +106,6 @@
 [submodule ".vim/bundle/vim-test"]
 	path = .vim/bundle/vim-test
 	url = https://github.com/janko-m/vim-test.git
+[submodule ".vim/bundle/vim-ags"]
+	path = .vim/bundle/vim-ags
+	url = https://github.com/gabesoft/vim-ags
