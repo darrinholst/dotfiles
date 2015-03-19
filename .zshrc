@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 #export DISABLE_AUTO_UPDATE="true"
-plugins=(brew bundler gem git github osx rails rvm)
+plugins=(brew bundler gem git github osx rails rvm docker)
 
 source $ZSH/oh-my-zsh.sh
 
