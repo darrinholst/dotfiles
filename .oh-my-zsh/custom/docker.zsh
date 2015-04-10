@@ -1,3 +1,2 @@
-export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_TLS_VERIFY=1
+#$(docker-machine env docker)
+$(boot2docker shellinit 2>/dev/null)
