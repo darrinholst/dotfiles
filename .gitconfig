@@ -11,24 +11,27 @@
   user = darrinholst
 
 [color]
-	ui = true
+  ui = true
 
 [alias]
   ad = !git add -A && git st
   ci = commit
   st = status
-  lg = log -20 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   up = pull --rebase --prune
   fu = !git add -A && git commit -qm 'FU SAVEPOINT' && git reset --hard HEAD~
   co = checkout
   ec = config --global -e
+  branch-name = !git rev-parse --abbrev-ref HEAD
+  cleanup = !git co master && git branch --merged | egrep -v '^\\*' | xargs -n 1 git branch -d
+  publish = !git push -u origin $(git branch-name)
 
 [push]
-	default = tracking
+  default = simple
 
 [init]
-	templatedir = ~/.git_template
+  templatedir = ~/.git_template
 
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
