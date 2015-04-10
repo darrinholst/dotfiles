@@ -109,3 +109,9 @@
 [submodule ".vim/bundle/vim-ags"]
 	path = .vim/bundle/vim-ags
 	url = https://github.com/gabesoft/vim-ags
+[submodule ".vim/bundle/vim-dispatch"]
+	path = .vim/bundle/vim-dispatch
+	url = git@github.com:tpope/vim-dispatch.git
+[submodule ".vim/bundle/dockerfile"]
+	path = .vim/bundle/dockerfile
+	url = https://github.com/honza/dockerfile.vim
