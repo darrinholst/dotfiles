@@ -1,2 +1,2 @@
-map <leader>f :Ags<space>
+map <leader>f :Ag<space>
 
