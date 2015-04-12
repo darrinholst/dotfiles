@@ -8,3 +8,4 @@ cm.netteller.com.js
 *.pyc
 *.so
 
+.vim/bundle
