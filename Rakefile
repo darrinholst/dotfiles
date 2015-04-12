@@ -1,8 +1,3 @@
-desc 'update all submodules'
-task 'update' do
-  sh "git submodule foreach git pull origin master"
-end
-
 desc 'bootstrap'
 task 'bootstrap' do
   # Install xcode from App Store

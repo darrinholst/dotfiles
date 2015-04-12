@@ -1,4 +1,0 @@
-#!/bin/sh
-
-/Applications/Marked.app/Contents/MacOS/Marked $@ &
-
