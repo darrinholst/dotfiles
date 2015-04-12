@@ -11,15 +11,14 @@ export CLICOLOR=1
 export ARCHFLAGS='-arch x86_64'
 
 export RUBYOPT="rubygems"
-export EDITOR=mvim
-export GIT_EDITOR="mvim -f"
-export GEM_OPEN_EDITOR=mvim
+export EDITOR=vim
+export GIT_EDITOR="vim"
+export GEM_OPEN_EDITOR=vim
 export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
 export JAVA_OPTS="-client -Xms64m -Xmx1024m"
 export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 export JRUBY_OPTS="--1.9"
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
-
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=/opt/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
