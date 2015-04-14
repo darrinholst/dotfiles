@@ -106,6 +106,7 @@ hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
 hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
 hi VertSplit ctermbg=grey ctermfg=grey
 hi NonText ctermfg=black
+hi Normal ctermbg=NONE
 
 " ------ "
 " search "
@@ -116,6 +117,7 @@ set ignorecase       "ignore case
 set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 map <leader>f :Ag<space>
+nmap <silent> <leader>n :noh<CR> "Turn highlighting off until the next search
 
 " ---------- "
 " whitespace "
@@ -212,7 +214,6 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " random key mappings "
 " ------------------- "
 map <Leader><Leader> :ZoomWin<CR>
-nmap <silent> <leader>n :set invhls<CR>
 nmap <silent> <leader>w :bd<CR>
 
 " Commenter
