@@ -17,11 +17,14 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
+"NeoBundle 'benmills/vimux'
+NeoBundle 'yunake/vimux'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'ecomba/vim-ruby-refactoring'
 NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'gabesoft/vim-ags'
@@ -75,7 +78,7 @@ set t_Co=256                    "256 colors please
 set background=dark             "mmmm, dark
 color Tomorrow-Night            "default color scheme
 let mapleader = ","             "override default map leader
-set guifont=Meslo\ LG\ M:h17    "sweet ass font
+"set guifont=Meslo\ LG\ M:h17    "sweet ass font
 set guioptions-=T               "no toolbar
 set guioptions-=r               "no right scrollbar
 set guioptions-=L               "no left scrollbar
@@ -117,7 +120,7 @@ set ignorecase       "ignore case
 set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 map <leader>f :Ag<space>
-nmap <silent> <leader>n :noh<CR> "Turn highlighting off until the next search
+nmap <silent> <leader>n :noh<CR>
 
 " ---------- "
 " whitespace "
@@ -194,9 +197,9 @@ endfunction
 
 map <leader>s :call SearchDictionary()<CR>
 
-" --------------------------- "
-" gherking auto table aligner "
-" --------------------------- "
+" -------------------------- "
+" gherkin auto table aligner "
+" -------------------------- "
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
@@ -217,7 +220,7 @@ map <Leader><Leader> :ZoomWin<CR>
 nmap <silent> <leader>w :bd<CR>
 
 " Commenter
-map <leader>/ <plug>NERDCommenterToggle<CR>
+map <leader>/ <plug>NERDCommenterToggle
 
 " Window Commands
 noremap <silent> <leader>h :wincmd h<CR>
@@ -250,7 +253,7 @@ map <Leader>r :Move <C-R>=expand("%:p") <CR>
 nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
 nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
 
-function UnmapKeys()
+function! UnmapKeys()
   nunmap ,cl
   vunmap ,cl
   noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
@@ -261,7 +264,7 @@ autocmd VimEnter * call UnmapKeys()
 " --------------------------- "
 " directory handling on enter "
 " --------------------------- "
-function <SID>CdIfDirectory(directory)
+function! <SID>CdIfDirectory(directory)
   if isdirectory(a:directory)
     exe "cd " . fnameescape(a:directory)
     bd
@@ -319,35 +322,28 @@ let g:syntastic_javascript_checkers = ['eslint']
 " ------- "
 " testing "
 " ------- "
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>t :Wall \| TestNearest<CR>
+nmap <silent> <leader>T :Wall \| TestLast<CR>
+let test#strategy = "vimux"
 
 " ---- "
 " tidy "
 " ---- "
-:command Thtml :%!tidy -q -i --show-errors 0
-:command Txml  :%!tidy -q -i --show-errors 0 -xml
+:command! Thtml :%!tidy -q -i --show-errors 0
+:command! Txml  :%!tidy -q -i --show-errors 0 -xml
 
 " ---------- "
 " unimparied "
 " ---------- "
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-nmap <C-k> [e
-nmap <C-j> ]e
-
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-vmap <C-k> [egv
-vmap <C-j> ]egv
+nmap <C-k> <Plug>unimpairedMoveUp
+nmap <C-j> <Plug>unimpairedMoveDown
+xmap <C-k> <Plug>unimpairedMoveSelectionUp
+xmap <C-j> <Plug>unimpairedMoveSelectionDown
 
 " ------ "
 " smalls "
 " ------ "
-function MapVimSmallsKeys()
+function! MapVimSmallsKeys()
   unmap s
   nmap s <Plug>(smalls)
 endfunction
@@ -397,4 +393,9 @@ function! DoPrettyXML()
 endfunction
 
 map ,xt :call DoPrettyXML()<CR>
+
+" ------- "
+" airline "
+" ------- "
+let g:airline_powerline_fonts=1
 
