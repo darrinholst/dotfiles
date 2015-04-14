@@ -27,6 +27,7 @@ task 'link' do
   symlink_this('.oh-my-zsh/custom/prompt.zsh')
   symlink_this('.oh-my-zsh/custom/source.zsh')
   symlink_this('.oh-my-zsh/custom/docker.zsh')
+  symlink_this('.tmux.conf')
   symlink_this('.vim')
   symlink_this('.vimrc')
   symlink_this('.zshenv')
