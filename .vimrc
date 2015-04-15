@@ -22,6 +22,7 @@ NeoBundle 'yunake/vimux'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'ecomba/vim-ruby-refactoring'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'edkolev/tmuxline.vim'
@@ -75,10 +76,11 @@ NeoBundleCheck
 " General Config "
 " -------------- "
 set t_Co=256                    "256 colors please
+let base16colorspace=256        " Access colors present in 256 colorspace
 set background=dark             "mmmm, dark
-color Tomorrow-Night            "default color scheme
+color base16-tomorrow           "default color scheme
 let mapleader = ","             "override default map leader
-"set guifont=Meslo\ LG\ M:h17    "sweet ass font
+set guifont=Meslo\ LG\ M\ for\ Powerline:h17    "sweet ass font
 set guioptions-=T               "no toolbar
 set guioptions-=r               "no right scrollbar
 set guioptions-=L               "no left scrollbar
@@ -398,4 +400,5 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
+let g:airline_theme='base16'
 

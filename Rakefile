@@ -21,6 +21,7 @@ task 'link' do
   symlink_this('.gvimrc')
   symlink_this('.irbrc')
   symlink_this('.oh-my-zsh/custom/aliases.zsh')
+  symlink_this('.oh-my-zsh/custom/base16.zsh')
   symlink_this('.oh-my-zsh/custom/exports.zsh')
   symlink_this('.oh-my-zsh/custom/functions.zsh')
   symlink_this('.oh-my-zsh/custom/keys.zsh')
