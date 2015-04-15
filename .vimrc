@@ -219,7 +219,7 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " random key mappings "
 " ------------------- "
 map <Leader><Leader> :ZoomWin<CR>
-nmap <silent> <leader>w :bd<CR>
+nmap <silent> <leader>w :wa<CR>
 
 " Commenter
 map <leader>/ <plug>NERDCommenterToggle
@@ -324,9 +324,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 " ------- "
 " testing "
 " ------- "
-nmap <silent> <leader>t :Wall \| TestNearest<CR>
-nmap <silent> <leader>T :Wall \| TestLast<CR>
-let test#strategy = "vimux"
+nmap <silent> <leader>t :wa \| TestNearest<CR>
+nmap <silent> <leader>T :wa \| TestLast<CR>
+let test#strategy = "dispatch"
 
 " ---- "
 " tidy "
@@ -401,4 +401,25 @@ map ,xt :call DoPrettyXML()<CR>
 " ------- "
 let g:airline_powerline_fonts=1
 let g:airline_theme='base16'
+
+" -------- "
+" dispatch "
+" -------- "
+nnoremap <F9> :wa \| :Dispatch<CR>
+
+" ----- "
+" vimux "
+" ----- "
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+" Interrupt any command running in the runner pane
+map <Leader>vx :VimuxInterruptRunner<CR>
+" Zoom the runner pane (use <bind-key> z to restore runner pane)
+map <Leader>vz :call VimuxZoomRunner()<CR>
 
