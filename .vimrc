@@ -101,7 +101,7 @@ set sidescrolloff=10            "Start scrolling when we're 10 columns away from
 set sidescroll=1
 set nrformats=                  "treat all numbers as decimal
 set timeoutlen=1000
-set ttimeoutlen=0
+set ttimeoutlen=100
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
