@@ -39,5 +39,5 @@ function hg_prompt_info() {
 PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)$(hg_prompt_info)${fg_bold[red]}$(rvm_version)${fg_bold[blue]}
 $%{${reset_color}%} '
 
-RPROMPT='[%*]'
+#RPROMPT='[%*]'
 
