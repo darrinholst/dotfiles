@@ -21,17 +21,14 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'yunake/vimux'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'ecomba/vim-ruby-refactoring'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'gabesoft/vim-ags'
-NeoBundle 'gcmt/wildfire.vim'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'janko-m/vim-test'
@@ -43,7 +40,6 @@ NeoBundle 'maxbrunsfeld/vim-yankstack'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'nelstrom/vim-textobj-rubyblock'
-NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'rking/ag.vim'
@@ -339,7 +335,7 @@ let g:syntastic_less_checkers = []
 " ------- "
 nmap <silent> <leader>t :wa \| TestNearest<CR>
 nmap <silent> <leader>T :wa \| TestLast<CR>
-let test#strategy = "dispatch"
+let test#strategy = "vimux"
 
 " ---- "
 " tidy "
@@ -384,11 +380,6 @@ augroup cleanup_files
   au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
   au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature retab!
 augroup END
-
-" --------- "
-" wildefire "
-" --------- "
-let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "it", "ir", "ii"]
 
 " --- "
 " xml "
