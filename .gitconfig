@@ -17,7 +17,7 @@
   ad = !git add -A && git st
   ci = commit
   st = status
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
+  lg = log --no-merges --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   up = pull --rebase --prune
   fu = !git add -A && git commit -qm 'FU SAVEPOINT' && git reset --hard HEAD~
   co = checkout

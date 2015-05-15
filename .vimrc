@@ -28,6 +28,7 @@ NeoBundle 'ecomba/vim-ruby-refactoring'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'ekalinin/Dockerfile.vim'
+NeoBundle 'elzr/vim-json'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'gabesoft/vim-ags'
 NeoBundle 'gcmt/wildfire.vim'
@@ -115,6 +116,7 @@ hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
 hi VertSplit ctermbg=grey ctermfg=grey
 hi NonText ctermfg=black
 hi Normal ctermbg=NONE
+hi MatchParen cterm=NONE ctermbg=grey ctermfg=black
 
 " ------ "
 " search "
@@ -317,12 +319,20 @@ endfor
 
 imap <silent> <F8> <Esc><F8>
 
+" -------- "
+" save all "
+" -------- "
+imap <silent> <F3> <Esc><F3>
+nnoremap <silent> <F3> :wa<cr>
+
 " --------- "
 " syntastic "
 " --------- "
 let g:syntastic_enable_signs=1
 "let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_cucumber_checkers = []
+let g:syntastic_less_checkers = []
 
 " ------- "
 " testing "
