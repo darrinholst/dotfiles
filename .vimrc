@@ -42,6 +42,7 @@ NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
@@ -100,6 +101,7 @@ set sidescroll=1
 set nrformats=                  "treat all numbers as decimal
 set timeoutlen=1000
 set ttimeoutlen=100
+set pastetoggle=,p
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
@@ -165,7 +167,7 @@ au FileType gitcommit set tw=68 spell
 " ----- "
 " ctrlp "
 " ----- "
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|build\|target\|vendor\/bundle\|vendor\/cache'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git$\|build\|target\|vendor\/bundle\|vendor\/cache'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_reversed = 0
 au FocusGained * :ClearCtrlPCache
