@@ -40,4 +40,3 @@ PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)$(hg_prompt_in
 $%{${reset_color}%} '
 
 #RPROMPT='[%*]'
-

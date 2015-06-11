@@ -28,4 +28,3 @@ export PATH=./node_modules/.bin:$PATH
 export PATH=~/.bin:$PATH
 export PATH=./bin:$PATH
 export PATH=./script:$PATH
-

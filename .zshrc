@@ -6,8 +6,5 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
 
-DISABLE_UPDATE_PROMPT=true
-
 export PATH="$HOME/.rvm/bin:$PATH"
-export PATH="$HOME/.nvm:$PATH"
 
