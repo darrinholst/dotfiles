@@ -17,8 +17,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
-"NeoBundle 'benmills/vimux'
-NeoBundle 'yunake/vimux'
+NeoBundle 'diepm/vim-rest-console'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'chriskempson/base16-vim'
@@ -36,11 +35,14 @@ NeoBundle 'juvenn/mustache.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'MarcWeber/vim-addon-local-vimrc'
+NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'maxbrunsfeld/vim-yankstack'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'othree/html5.vim'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle 'rking/ag.vim'
@@ -64,6 +66,7 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'vim-scripts/matchit.zip'
+NeoBundle 'yunake/vimux'
 
 call neobundle#end()
 
@@ -167,7 +170,7 @@ au FileType gitcommit set tw=68 spell
 " ----- "
 " ctrlp "
 " ----- "
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git$\|build\|target\|vendor\/bundle\|vendor\/cache'
+let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|\.git$\|build\|target\|vendor\/bundle\|vendor\/cache'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_reversed = 0
 au FocusGained * :ClearCtrlPCache
@@ -331,6 +334,14 @@ let g:syntastic_enable_signs=1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_cucumber_checkers = []
 let g:syntastic_less_checkers = []
+let g:syntastic_html_checkers = ['tidy']
+
+let g:syntastic_html_tidy_ignore_errors = [
+  \   '> proprietary attribute "',
+  \   '> is not recognized!',
+  \   'discarding unexpected <',
+  \   'trimming empty <'
+  \ ]
 
 " ------- "
 " testing "
@@ -429,3 +440,7 @@ map <Leader>vx :VimuxInterruptRunner<CR>
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
 map <Leader>vz :call VimuxZoomRunner()<CR>
 
+" --- "
+" vrc "
+" --- "
+let g:vrc_trigger = '<C-r>'
