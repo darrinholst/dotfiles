@@ -17,10 +17,10 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
-NeoBundle 'diepm/vim-rest-console'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'diepm/vim-rest-console'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'edkolev/tmuxline.vim'
@@ -35,7 +35,7 @@ NeoBundle 'juvenn/mustache.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'MarcWeber/vim-addon-local-vimrc'
+NeoBundle 'marcweber/vim-addon-local-vimrc'
 NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'maxbrunsfeld/vim-yankstack'
 NeoBundle 'mhinz/vim-signify'
@@ -119,6 +119,7 @@ hi VertSplit ctermbg=grey ctermfg=grey
 hi NonText ctermfg=black
 hi Normal ctermbg=NONE
 hi MatchParen cterm=NONE ctermbg=grey ctermfg=black
+hi Search term=reverse ctermfg=18 ctermbg=16
 
 " ------ "
 " search "
