@@ -66,6 +66,7 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'vim-scripts/matchit.zip'
+NeoBundle 'wincent/ferret'
 NeoBundle 'yunake/vimux'
 
 call neobundle#end()
