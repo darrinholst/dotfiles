@@ -17,21 +17,21 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'tomtom/tlib_vim'
+NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'honza/vim-snippets'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'diepm/vim-rest-console'
-NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'gabesoft/vim-ags'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'groenewege/vim-less'
-NeoBundle 'janko-m/vim-test'
-NeoBundle 'juvenn/mustache.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
@@ -52,7 +52,6 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'sjl/vitality.vim'
 NeoBundle 't9md/vim-smalls'
-NeoBundle 'thoughtbot/vim-rspec'
 NeoBundle 'tpope/vim-cucumber'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-eunuch'
@@ -205,7 +204,7 @@ function! SearchDictionary()
   redraw!
 endfunction
 
-map <leader>s :call SearchDictionary()<CR>
+"map <leader>s :call SearchDictionary()<CR>
 
 " -------------------------- "
 " gherkin auto table aligner "
