@@ -1,12 +1,3 @@
-function rvm_version {
-  if [ -f ~/.rvm/bin/rvm-prompt ]; then
-      rvm=$(~/.rvm/bin/rvm-prompt i v p g)
-      if [ "$rvm" -a "$rvm" != system ]; then
-        echo "{$rvm} "
-      fi
-  fi
-}
-
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "%{$fg[yellow]%}(${ref#refs/heads/})$(git_status)"
@@ -28,15 +19,8 @@ function git_status() {
   fi
 }
 
-function hg_prompt_info() {
-  branch=$(hg id -b 2> /dev/null) || return
-  tag=$(hg id -t 2> /dev/null) || return
-  rev_number=$(hg id -n 2> /dev/null) || return
-  rev_id=$(hg id -i 2> /dev/null) || return
-  echo "%{$fg[yellow]%}(${rev_number/\+/}:${rev_id/\+/}@${branch}(${tag})) "
-}
+local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 
-PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)$(hg_prompt_info)${fg_bold[red]}$(rvm_version)${fg_bold[blue]}
-$%{${reset_color}%} '
+PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)
+${ret_status}%{${reset_color}%}'
 
-#RPROMPT='[%*]'
