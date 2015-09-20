@@ -19,7 +19,7 @@ function git_status() {
   fi
 }
 
-local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
+local ret_status="%(?:%{$fg_bold[green]%}✓ :%{$fg_bold[red]%}✗ %s)"
 
 PROMPT='${fg_bold[blue]}%${PR_PWDLEN}<...<%~%<< $(git_prompt_info)
 ${ret_status}%{${reset_color}%}'
