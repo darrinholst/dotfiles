@@ -78,8 +78,8 @@ NeoBundleCheck
 " General Config "
 " -------------- "
 set t_Co=256                    "256 colors please
-let base16colorspace=256        " Access colors present in 256 colorspace
-set background=dark             "mmmm, dark
+let base16colorspace=256        "Access colors present in 256 colorspace
+set background=dark             "dark
 color base16-tomorrow           "default color scheme
 let mapleader = ","             "override default map leader
 set guifont=Meslo\ LG\ M\ for\ Powerline:h17    "sweet ass font
