@@ -13,6 +13,7 @@ end
 desc 'link em up'
 task 'link' do
   symlink_this('.ackrc')
+  symlink_this('.bash_profile')
   symlink_this('.bin')
   symlink_this('.gemrc')
   symlink_this('.git_template')
