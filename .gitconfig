@@ -2,6 +2,7 @@
   ignorecase = false
   excludesfile = ~/.gitignore-global
   editor = "vim"
+  pager = bash -lc 'diff-highlight | strip_diff_leading_symbols | less -r' -
 
 [user]
   email = darrinholst@gmail.com
@@ -12,6 +13,12 @@
 
 [color]
   ui = true
+
+[color "diff-highlight"]
+  oldNormal = "red bold"
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "githubreen bold 22"
 
 [alias]
   ad = !git add -A && git st
