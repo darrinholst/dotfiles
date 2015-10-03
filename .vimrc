@@ -105,6 +105,7 @@ set nrformats=                  "treat all numbers as decimal
 set timeoutlen=1000
 set ttimeoutlen=100
 set pastetoggle=,p
+set mouse=a
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
@@ -445,3 +446,4 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 " vrc "
 " --- "
 let g:vrc_trigger = '<C-r>'
+
