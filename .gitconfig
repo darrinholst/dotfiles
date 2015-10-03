@@ -14,11 +14,17 @@
 [color]
   ui = true
 
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
 [color "diff-highlight"]
   oldNormal = "red bold"
   oldHighlight = "red bold 52"
   newNormal = "green bold"
-  newHighlight = "githubreen bold 22"
+  newHighlight = "green bold 22"
 
 [alias]
   ad = !git add -A && git st
