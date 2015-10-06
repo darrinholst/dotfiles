@@ -52,6 +52,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'sjl/vitality.vim'
 NeoBundle 't9md/vim-smalls'
+NeoBundle 'tmux-plugins/vim-tmux-focus-events'
 NeoBundle 'tpope/vim-cucumber'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-eunuch'
@@ -129,8 +130,10 @@ set hlsearch         "Hilight searches by default
 set ignorecase       "ignore case
 set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
-map <leader>f :Ag<space>
+map <leader>f :Ags<space>
 nmap <silent> <leader>n :noh<CR>
+let g:ags_agcontext = 0
+let g:ags_edit_show_line_numbers = 0
 
 " ---------- "
 " whitespace "
