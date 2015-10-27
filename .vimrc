@@ -452,3 +452,8 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 let g:vrc_trigger = '<C-r>'
 let g:vrc_debug = 1
 
+" --------- "
+" vim-pasta "
+" --------- "
+let g:pasta_disabled_filetypes = ['agsv', 'python', 'coffee', 'markdown', 'yaml', 'slim']
+
