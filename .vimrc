@@ -134,6 +134,7 @@ map <leader>f :Ags<space>
 nmap <silent> <leader>n :noh<CR>
 let g:ags_agcontext = 0
 let g:ags_edit_show_line_numbers = 0
+let g:ags_winheight = 15
 
 " ---------- "
 " whitespace "
@@ -449,4 +450,5 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 " vrc "
 " --- "
 let g:vrc_trigger = '<C-r>'
+let g:vrc_debug = 1
 
