@@ -301,6 +301,7 @@ au FocusLost * call feedkeys("\<C-\>\<C-n>") " Return to normal mode on FocustLo
 au BufRead,BufNewFile Capfile,Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
 au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
+au BufNewFile,BufRead *.eslintrc set filetype=json
 
 command! HashRocket :call HashRocket()
 
