@@ -1,3 +1,6 @@
 alias listening='lsof -i -P | grep -i listen'
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 alias tmux='tmux -2'
+alias d='docker'
+alias dc='docker-compose'
+alias dm='docker-machine'
