@@ -458,3 +458,7 @@ let g:vrc_debug = 1
 " --------- "
 let g:pasta_disabled_filetypes = ['agsv', 'python', 'coffee', 'markdown', 'yaml', 'slim']
 
+" ------------ "
+" tern_for_vim "
+" ------------ "
+nnoremap <leader>R :TernRename<CR>
