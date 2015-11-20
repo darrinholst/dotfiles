@@ -1,3 +1,7 @@
+clean-vim() {
+  rm -rf ~/.vim/backup/*.sw*
+}
+
 any() {
   emulate -L zsh
   unsetopt KSH_ARRAYS

@@ -39,7 +39,8 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'marcweber/vim-addon-local-vimrc'
 NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'maxbrunsfeld/vim-yankstack'
-NeoBundle 'mhinz/vim-signify'
+"NeoBundle 'mhinz/vim-signify'
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'othree/html5.vim'
@@ -269,6 +270,9 @@ nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
 
 function! UnmapKeys()
+  nunmap ,hp
+  nunmap ,hr
+  nunmap ,hs
   nunmap ,cl
   vunmap ,cl
   noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
@@ -435,17 +439,14 @@ nnoremap <F9> :wa \| :Dispatch<CR>
 " ----- "
 " vimux "
 " ----- "
-" Prompt for a command to run
+let g:VimuxOrientation='h'
+let g:VimuxHeight='30'
+
 map <Leader>vp :VimuxPromptCommand<CR>
-" Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
-" Inspect runner pane
+map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
-" Close vim tmux runner opened by VimuxRunCommand
 map <Leader>vq :VimuxCloseRunner<CR>
-" Interrupt any command running in the runner pane
 map <Leader>vx :VimuxInterruptRunner<CR>
-" Zoom the runner pane (use <bind-key> z to restore runner pane)
 map <Leader>vz :call VimuxZoomRunner()<CR>
 
 " --- "
