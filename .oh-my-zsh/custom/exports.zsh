@@ -18,6 +18,7 @@ export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
 export JAVA_OPTS="-client -Xms64m -Xmx1024m"
 export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 export JRUBY_OPTS="--1.9"
+export NVM_DIR=~/.nvm
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=/opt/local/bin:$PATH
