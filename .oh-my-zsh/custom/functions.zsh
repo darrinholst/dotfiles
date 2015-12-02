@@ -13,11 +13,11 @@ any() {
   fi
 }
 
-fp () { #find and list processes matching a case-insensitive partial-match string
+fp() { # find and list processes matching a case-insensitive partial-match string
   ps Ao pid,comm|awk '{match($0,/[^\/]+$/); print substr($0,RSTART,RLENGTH)": "$1}'|grep -i $1|grep -v grep
 }
 
-fk () { # build menu to kill process
+fk() { # build menu to kill process
   IFS=$'\n'
   PS3='Kill which process? '
   select OPT in $(fp $1) "Cancel"; do
