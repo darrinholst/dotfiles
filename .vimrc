@@ -17,6 +17,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
+NeoBundle 'Chiel92/vim-autoformat'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'bling/vim-airline'
@@ -187,30 +188,35 @@ imap <C-e> <ESC>:<C-U>CtrlPBuffer<CR>
 " ---------------- "
 " dash integration "
 " ---------------- "
-function! SearchDash()
-  let s:browser = "/usr/bin/open"
-  let s:wordUnderCursor = expand("<cword>")
-  let s:url = "dash://".s:wordUnderCursor
-  let s:cmd ="silent ! " . s:browser . " " . s:url
-  execute s:cmd
+function! <SID>Dash()
+  execute "silent ! /usr/bin/open dash://" . expand("<cword>")
   redraw!
 endfunction
 
-map <leader>d :call SearchDash()<CR>
+command! Dash :call <SID>Dash()
+map <leader>d :call <SID>Dash()<CR>
+
+" --------------------- "
+" lookup an eslint rule "
+" --------------------- "
+function! <SID>Eslint()
+  execute "normal \"ayi\""
+  execute "silent ! /usr/bin/open http://eslint.org/docs/rules/" . @a
+  redraw!
+endfunction
+
+command! Eslint :call <SID>Eslint()
 
 " ------------------------------ "
 " lookup stuff at dictionary.com "
 " ------------------------------ "
-function! SearchDictionary()
-  let s:browser = "/usr/bin/open"
-  let s:wordUnderCursor = expand("<cword>")
-  let s:url = "http://dictionary.reference.com/browse/".s:wordUnderCursor
-  let s:cmd ="silent ! " . s:browser . " " . s:url
-  execute s:cmd
+function! <SID>Dictionary()
+  execute "silent ! /usr/bin/open http://dictionary.reference.com/browse/" . expand("<cword>")
   redraw!
 endfunction
 
-"map <leader>s :call SearchDictionary()<CR>
+command! Dictionary :call <SID>Dictionary()
+"map <leader>s :call <SID>Dictionary()<CR>
 
 " -------------------------- "
 " gherkin auto table aligner "
@@ -341,7 +347,6 @@ nnoremap <silent> <F3> :wa<cr>
 " syntastic "
 " --------- "
 let g:syntastic_enable_signs=1
-"let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_cucumber_checkers = []
 let g:syntastic_less_checkers = []
@@ -364,7 +369,7 @@ let test#strategy = "vimux"
 " ---- "
 " tidy "
 " ---- "
-:command! Thtml :%!tidy -q -i --show-errors 0
+:command! Thtml :%!/usr/local/bin/tidy -q -i -e
 :command! Txml  :%!tidy -q -i --show-errors 0 -xml
 
 " ---------- "
@@ -463,3 +468,8 @@ let g:pasta_disabled_filetypes = ['agsv', 'python', 'coffee', 'markdown', 'yaml'
 " tern_for_vim "
 " ------------ "
 nnoremap <leader>R :TernRename<CR>
+
+" ---------------- "
+" vim-autformatter "
+" ---------------- "
+noremap <F5> :Autoformat<CR>
