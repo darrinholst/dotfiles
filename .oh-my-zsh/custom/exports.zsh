@@ -12,6 +12,7 @@ export ARCHFLAGS='-arch x86_64'
 
 export RUBYOPT="rubygems"
 export EDITOR=vim
+export GOPATH=~/Projects/go
 export GIT_EDITOR="vim"
 export GEM_OPEN_EDITOR=vim
 export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
@@ -26,6 +27,7 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=./node_modules/.bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 export PATH=~/.bin:$PATH
 export PATH=./bin:$PATH
 export PATH=./script:$PATH
