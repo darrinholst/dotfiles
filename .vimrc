@@ -435,6 +435,7 @@ map ,xt :call DoPrettyXML()<CR>
 " ------- "
 let g:airline_powerline_fonts=1
 let g:airline_theme='base16'
+let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 
 " -------- "
 " tmuxline "
@@ -485,4 +486,5 @@ nnoremap <leader>R :TernRename<CR>
 " ---------------- "
 " vim-autformatter "
 " ---------------- "
+let g:autoformat_verbosemode = 1
 noremap <F5> :Autoformat<CR>
