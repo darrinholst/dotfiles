@@ -17,6 +17,9 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'triglav/vim-visual-increment'
+NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'Chiel92/vim-autoformat'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'airblade/vim-gitgutter'
