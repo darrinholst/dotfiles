@@ -75,6 +75,7 @@ NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'wincent/ferret'
 NeoBundle 'yunake/vimux'
+NeoBundle 'Valloric/YouCompleteMe'
 
 call neobundle#end()
 
