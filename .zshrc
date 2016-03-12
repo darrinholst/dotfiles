@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export DISABLE_UPDATE_PROMPT=true
-plugins=(brew bundler gem git git-extras github gradle heroku knife osx npm rails rvm docker docker-compose common-aliases vi-mode)
+plugins=(brew bundler common-aliases docker docker-compose gem git git-extras github golang gradle gulp heroku jsontools knife osx npm rails rvm vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 

@@ -17,11 +17,9 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'triglav/vim-visual-increment'
-NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'Chiel92/vim-autoformat'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'cakebaker/scss-syntax.vim'
@@ -30,7 +28,6 @@ NeoBundle 'diepm/vim-rest-console'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'elzr/vim-json'
-NeoBundle 'ervandew/supertab'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'gabesoft/vim-ags'
 NeoBundle 'garbas/vim-snipmate'
@@ -41,16 +38,17 @@ NeoBundle 'janko-m/vim-test'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'marcweber/vim-addon-local-vimrc'
 NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'maxbrunsfeld/vim-yankstack'
 NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'qpkorr/vim-bufkill'
-NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
@@ -69,13 +67,13 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'triglav/vim-visual-increment'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'wincent/ferret'
 NeoBundle 'yunake/vimux'
-NeoBundle 'Valloric/YouCompleteMe'
 
 call neobundle#end()
 
@@ -372,12 +370,6 @@ nmap <silent> <leader>t :wa \| TestNearest<CR>
 nmap <silent> <leader>T :wa \| TestLast<CR>
 let test#strategy = "vimux"
 
-" ---- "
-" tidy "
-" ---- "
-:command! Thtml :%!/usr/local/bin/tidy -q -i -e
-:command! Txml  :%!tidy -q -i --show-errors 0 -xml
-
 " ---------- "
 " unimparied "
 " ---------- "
@@ -464,13 +456,8 @@ nnoremap <F9> :wa \| :Dispatch<CR>
 " ----- "
 let g:VimuxOrientation='h'
 let g:VimuxHeight='30'
-
-map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vp :wa \| :VimuxPromptCommand<CR>
 map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
-map <Leader>vi :VimuxInspectRunner<CR>
-map <Leader>vq :VimuxCloseRunner<CR>
-map <Leader>vx :VimuxInterruptRunner<CR>
-map <Leader>vz :call VimuxZoomRunner()<CR>
 
 " --- "
 " vrc "
@@ -493,3 +480,9 @@ nnoremap <leader>R :TernRename<CR>
 " ---------------- "
 let g:autoformat_verbosemode = 1
 noremap <F5> :Autoformat<CR>
+
+" ------------- "
+" vim-yankstack "
+" ------------- "
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+
