@@ -486,3 +486,9 @@ noremap <F5> :Autoformat<CR>
 " ------------- "
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 
+" ------------ "
+" vim-snipmate "
+" ------------ "
+imap <C-L> <esc>a<Plug>snipMateNextOrTrigger
+smap <C-L> <Plug>snipMateNextOrTrigger
+
