@@ -39,6 +39,7 @@
   branch-name = !git rev-parse --abbrev-ref HEAD
   cleanup = !git co master && git branch --merged | egrep -v '^\\*' | xargs -n 1 git branch -d
   publish = !git push -u origin $(git branch-name)
+  push-force = !git push --force-with-lease
 
 [push]
   default = simple
