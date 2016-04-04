@@ -11,10 +11,10 @@ export CLICOLOR=1
 export ARCHFLAGS='-arch x86_64'
 
 export RUBYOPT="rubygems"
-export EDITOR=vim
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 export GOPATH=~/Projects/go
-export GIT_EDITOR="vim"
-export GEM_OPEN_EDITOR=vim
+export GIT_EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+export GEM_OPEN_EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
 export JAVA_OPTS="-client -Xms64m -Xmx1024m"
 export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
