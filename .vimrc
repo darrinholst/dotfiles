@@ -39,7 +39,7 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'marcweber/vim-addon-local-vimrc'
+"NeoBundle 'marcweber/vim-addon-local-vimrc'
 NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'maxbrunsfeld/vim-yankstack'
 NeoBundle 'michaeljsmith/vim-indent-object'
@@ -70,10 +70,11 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'triglav/vim-visual-increment'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'vim-scripts/ZoomWin'
+"NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'wincent/ferret'
 NeoBundle 'yunake/vimux'
+NeoBundle 'LeonB/vim-nginx'
 
 call neobundle#end()
 
@@ -279,9 +280,12 @@ nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
 
 function! UnmapKeys()
+  " git gutter commands slow down window navigation
   nunmap ,hp
   nunmap ,hr
   nunmap ,hs
+
+  " ,cl closes windows for me
   nunmap ,cl
   vunmap ,cl
   noremap <silent> <leader>cl :wincmd l<CR>:close<CR>

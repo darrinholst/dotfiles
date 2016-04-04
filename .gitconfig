@@ -1,7 +1,7 @@
 [core]
   ignorecase = false
   excludesfile = ~/.gitignore-global
-  editor = "vim"
+  editor = /Applications/MacVim.app/Contents/MacOS/Vim
   pager = bash -lc 'diff-highlight | strip_diff_leading_symbols | less -r' -
 
 [user]
