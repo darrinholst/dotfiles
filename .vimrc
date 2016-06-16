@@ -479,9 +479,9 @@ let g:pasta_disabled_filetypes = ['agsv', 'python', 'coffee', 'markdown', 'yaml'
 " ------------ "
 nnoremap <leader>R :TernRename<CR>
 
-" ---------------- "
-" vim-autformatter "
-" ---------------- "
+" ----------------- "
+" vim-autoformatter "
+" ----------------- "
 let g:autoformat_verbosemode = 1
 noremap <F5> :Autoformat<CR>
 
@@ -495,4 +495,9 @@ nmap <leader>p <Plug>yankstack_substitute_older_paste
 " ------------ "
 imap <C-L> <esc>a<Plug>snipMateNextOrTrigger
 smap <C-L> <Plug>snipMateNextOrTrigger
+
+" -------- "
+" markdown "
+" -------- "
+let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 
