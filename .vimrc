@@ -62,7 +62,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'wincent/ferret'
-Plugin 'yunake/vimux'
+Plugin 'benmills/vimux'
 Plugin 'LeonB/vim-nginx'
 
 call vundle#end()            " required
@@ -124,6 +124,8 @@ set ignorecase       "ignore case
 set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 map <leader>f :Ags<space>
+"map <leader>f <plug>(FerretAck)
+"map <leader>F <plug>(FerretAckWord)
 nmap <silent> <leader>n :noh<CR>
 let g:ags_agcontext = 0
 let g:ags_edit_show_line_numbers = 0
@@ -344,6 +346,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_cucumber_checkers = []
 let g:syntastic_less_checkers = []
+let g:syntastic_scss_checkers = ['stylelint']
 let g:syntastic_html_checkers = ['tidy']
 
 let g:syntastic_html_tidy_ignore_errors = [
@@ -469,6 +472,7 @@ nnoremap <leader>R :TernRename<CR>
 " vim-autoformatter "
 " ----------------- "
 let g:autoformat_verbosemode = 1
+imap <silent> <F5> <Esc><F5>
 noremap <F5> :Autoformat<CR>
 
 " ------------- "
