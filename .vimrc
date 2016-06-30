@@ -1,84 +1,72 @@
-" ------ "
-" NeoVim "
-" ------ "
-if !1 | finish | endif " Skip initialization for vim-tiny or vim-small.
+" ------- "
+" Plugins "
+" ------- "
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
+Plugin 'VundleVim/Vundle.vim'
 
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'diepm/vim-rest-console'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
+Plugin 'gabesoft/vim-ags'
+Plugin 'garbas/vim-snipmate'
+Plugin 'godlygeek/tabular'
+Plugin 'groenewege/vim-less'
+Plugin 'honza/vim-snippets'
+Plugin 'janko-m/vim-test'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'othree/html5.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'sickill/vim-pasta'
+Plugin 'sjl/vitality.vim'
+Plugin 't9md/vim-smalls'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'tomtom/tlib_vim'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-jdaddy'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'triglav/vim-visual-increment'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'wincent/ferret'
+Plugin 'yunake/vimux'
+Plugin 'LeonB/vim-nginx'
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" My Bundles here:
-NeoBundle 'Chiel92/vim-autoformat'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'diepm/vim-rest-console'
-NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'gabesoft/vim-ags'
-NeoBundle 'garbas/vim-snipmate'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'janko-m/vim-test'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'marijnh/tern_for_vim'
-NeoBundle 'maxbrunsfeld/vim-yankstack'
-NeoBundle 'michaeljsmith/vim-indent-object'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'nelstrom/vim-textobj-rubyblock'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'othree/javascript-libraries-syntax.vim'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'qpkorr/vim-bufkill'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'sickill/vim-pasta'
-NeoBundle 'sjl/vitality.vim'
-NeoBundle 't9md/vim-smalls'
-NeoBundle 'tmux-plugins/vim-tmux-focus-events'
-NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'tpope/vim-cucumber'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-eunuch'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-jdaddy'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'triglav/vim-visual-increment'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'vim-scripts/matchit.zip'
-NeoBundle 'wincent/ferret'
-NeoBundle 'yunake/vimux'
-NeoBundle 'LeonB/vim-nginx'
-
-call neobundle#end()
-
-filetype plugin indent on
-
-NeoBundleCheck
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " -------------- "
 " General Config "
