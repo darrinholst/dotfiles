@@ -493,3 +493,7 @@ smap <C-L> <Plug>snipMateNextOrTrigger
 " -------- "
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 
+" --- "
+" gtm "
+" --- "
+let g:gtm_plugin_status_enabled = 1

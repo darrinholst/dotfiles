@@ -2,6 +2,10 @@ clean-vim() {
   rm -rf ~/.vim/backup/*.sw*
 }
 
+clean-docker() {
+  docker images -q --filter "dangling=true" | xargs docker rmi
+}
+
 any() {
   emulate -L zsh
   unsetopt KSH_ARRAYS
