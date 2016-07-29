@@ -40,7 +40,7 @@
   cleanup = !git co master && git branch --merged | egrep -v '^\\*' | xargs -n 1 git branch -d
   publish = !git push -u origin $(git branch-name)
   push-force = !git push --force-with-lease
-  this-month = !git log --author=$(whoami) --after='$(date +"%Y-%m-01T00:00:00")' --before='$(date +"%Y-%m-%dT23:59:59")' --date=short --reverse --pretty=format:'%ad %s'
+  wtfdid = !git log --author=$(whoami) --after=$(date -v1d +"%Y-%m-%d") --before=$(date -v1d -v+1m +"%Y-%m-%d") --date=short --reverse --pretty=format:'%ad %s'
 
 [push]
   default = simple
