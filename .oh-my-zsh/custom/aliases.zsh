@@ -6,4 +6,4 @@ alias dc='docker-compose'
 alias dm='docker-machine'
 alias git=hub
 alias gpf='git push --force-with-lease'
-alias run='npm run'
+alias run='npm run -s'
