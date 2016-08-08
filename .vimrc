@@ -428,6 +428,8 @@ map ,xt :call DoPrettyXML()<CR>
 let g:airline_powerline_fonts=1
 let g:airline_theme='base16'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
+let g:airline_skip_empty_sections=1
+
 
 " -------- "
 " tmuxline "
