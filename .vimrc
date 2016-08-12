@@ -426,14 +426,9 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
-let g:airline_theme='base16'
+let g:airline_theme='wombat'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
-
-"\'y'           : ['#(pmset -g batt | grep -o -e "\\\\\\\\d\\\\\\\\{1,\\\\\\\\}%%")', '%H:%M'],
-"\'y'           : ['#(if [[ `pmset -g batt | grep -c "AC Power"` > 0 ]]; then; echo "fumullins"; fi)', '%H:%M'],
-\'cwin'        : ['#I', '#W#F'],
-\'y'           : ['#(pmset -g batt | grep -c "AC Power")', '%H:%M'],
 
 " -------- "
 " tmuxline "
