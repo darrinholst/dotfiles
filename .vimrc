@@ -8,6 +8,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'isRuslan/vim-es6'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'LeonB/vim-nginx'
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -493,6 +494,7 @@ smap <C-L> <Plug>snipMateNextOrTrigger
 " markdown "
 " -------- "
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
+au FileType markdown set tw=100 spell
 
 " --- "
 " gtm "
