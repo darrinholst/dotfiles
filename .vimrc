@@ -133,6 +133,7 @@ nmap <silent> <leader>n :noh<CR>
 let g:ags_agcontext = 0
 let g:ags_edit_show_line_numbers = 0
 let g:ags_winheight = 15
+let g:FerretHlsearch=0
 
 " ---------- "
 " whitespace "
