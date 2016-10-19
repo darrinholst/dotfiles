@@ -9,6 +9,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'isRuslan/vim-es6'
+Plugin 'vim-scripts/ZoomWin'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'LeonB/vim-nginx'
 Plugin 'MarcWeber/vim-addon-mw-utils'
