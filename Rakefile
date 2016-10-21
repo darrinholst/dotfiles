@@ -15,6 +15,7 @@ task 'link' do
   symlink_this('.ackrc')
   symlink_this('.bash_profile')
   symlink_this('.bin')
+  symlink_this('.curlrc')
   symlink_this('.gemrc')
   symlink_this('.git_template')
   symlink_this('.gitconfig')
