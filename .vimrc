@@ -8,7 +8,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'wincent/ferret'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Valloric/YouCompleteMe'
@@ -19,11 +18,11 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'diepm/vim-rest-console'
-Plugin 'maman/tmuxline.vim'
 Plugin 'gabesoft/vim-ags'
 Plugin 'garbas/vim-snipmate'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
+Plugin 'maman/tmuxline.vim'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'othree/html5.vim'
@@ -50,6 +49,7 @@ Plugin 'triglav/vim-visual-increment'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/ZoomWin'
+Plugin 'wincent/ferret'
 
 "Plugin 'editorconfig/editorconfig-vim'
 "Plugin 'elzr/vim-json'
@@ -123,9 +123,9 @@ set hlsearch         "Hilight searches by default
 set ignorecase       "ignore case
 set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
-map <leader>f :Ags<space>
-"map <leader>f <plug>(FerretAck)
-"map <leader>F <plug>(FerretAckWord)
+"map <leader>f :Ags<space>
+map <leader>f <plug>(FerretAck)
+map <leader>F <plug>(FerretAckWord)
 nmap <silent> <leader>n :noh<CR>
 let g:ags_agcontext = 0
 let g:ags_edit_show_line_numbers = 0
@@ -428,6 +428,14 @@ let g:airline_powerline_fonts=1
 let g:airline_theme='wombat'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
+  let g:airline#extensions#default#section_truncate_width = {
+      \ 'b': 90,
+      \ 'x': 90,
+      \ 'y': 90,
+      \ 'z': 50,
+      \ 'warning': 80,
+      \ 'error': 80,
+      \ }
 
 " -------- "
 " tmuxline "
