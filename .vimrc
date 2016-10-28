@@ -432,7 +432,7 @@ let g:airline_skip_empty_sections=1
       \ 'b': 90,
       \ 'x': 90,
       \ 'y': 90,
-      \ 'z': 50,
+      \ 'z': 80,
       \ 'warning': 80,
       \ 'error': 80,
       \ }
