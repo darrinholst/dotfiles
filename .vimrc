@@ -398,8 +398,8 @@ endfunction
 
 augroup cleanup_files
   au!
-  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
-  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.js,*.rb,*.feature retab!
+  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.rb,*.feature retab!
 augroup END
 
 " --- "
@@ -428,14 +428,15 @@ let g:airline_powerline_fonts=1
 let g:airline_theme='wombat'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
-  let g:airline#extensions#default#section_truncate_width = {
-      \ 'b': 90,
-      \ 'x': 90,
-      \ 'y': 90,
-      \ 'z': 80,
-      \ 'warning': 80,
-      \ 'error': 80,
-      \ }
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#default#section_truncate_width = {
+    \ 'b': 90,
+    \ 'x': 90,
+    \ 'y': 90,
+    \ 'z': 50,
+    \ 'warning': 80,
+    \ 'error': 80,
+    \ }
 
 " -------- "
 " tmuxline "
