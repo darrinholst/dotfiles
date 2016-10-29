@@ -431,8 +431,8 @@ let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#default#section_truncate_width = {
     \ 'b': 90,
-    \ 'x': 90,
-    \ 'y': 90,
+    \ 'x': 50,
+    \ 'y': 50,
     \ 'z': 50,
     \ 'warning': 80,
     \ 'error': 80,
