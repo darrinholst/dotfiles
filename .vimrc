@@ -425,7 +425,7 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
-let g:airline_theme='wombat'
+let g:airline_theme='base16_chalk'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
@@ -445,7 +445,8 @@ let g:tmuxline_preset = {
       \'a'           : '#S',
       \'win'         : ['#I', '#W'],
       \'cwin'        : ['#I', '#W#F'],
-      \'y'           : ['#(if [[ `pmset -g batt | grep -c "AC Power"` > 0 ]]; then echo "🔌 "; else pmset -g batt | grep -o -e "\\\\\\\\d\\\\\\\\{1,\\\\\\\\}%%"; fi)', '%H:%M'],
+      \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _battery)',
+      \'y'           : '%H:%M',
       \'z'           : '#h',
       \'options'     : {'status-justify' : 'left'},
       \'win_options' : {'window-status-activity-attr' : 'none'}}
