@@ -446,8 +446,8 @@ let g:tmuxline_preset = {
       \'win'         : ['#I', '#W'],
       \'cwin'        : ['#I', '#W#F'],
       \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _battery)',
-      \'y'           : '%H:%M',
-      \'z'           : '#h',
+      \'y'           : '%l:%M',
+      \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
       \'options'     : {'status-justify' : 'left'},
       \'win_options' : {'window-status-activity-attr' : 'none'}}
 
