@@ -17,7 +17,6 @@ Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chriskempson/base16-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'diepm/vim-rest-console'
 Plugin 'gabesoft/vim-ags'
 Plugin 'garbas/vim-snipmate'
@@ -52,7 +51,9 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'wincent/ferret'
 
+" order dependent
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 "Plugin 'editorconfig/editorconfig-vim'
 "Plugin 'elzr/vim-json'
@@ -274,6 +275,7 @@ nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 
 function! UnmapKeys()
   " git gutter commands slow down window navigation
+  nunmap ,hu
   nunmap ,hp
   nunmap ,hr
   nunmap ,hs
@@ -512,8 +514,3 @@ au FileType markdown set tw=100 spell
 " gtm "
 " --- "
 let g:gtm_plugin_status_enabled = 1
-
-" ------------ "
-" vim-devicons "
-" ------------ "
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
