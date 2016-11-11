@@ -51,6 +51,8 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'wincent/ferret'
 
+Plugin 'ryanoasis/vim-devicons'
+
 "Plugin 'editorconfig/editorconfig-vim'
 "Plugin 'elzr/vim-json'
 "Plugin 'fatih/vim-go'
@@ -76,7 +78,8 @@ let base16colorspace=256        "Access colors present in 256 colorspace
 set background=dark             "dark
 color base16-tomorrow           "default color scheme
 let mapleader = ","             "override default map leader
-set guifont=Meslo\ LG\ M\ for\ Powerline:h17    "sweet ass font
+" cd ~/Library/Fonts && curl -fLo 'Meslo LG M Regular for Powerline Nerd Font Complete.otf' https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/Meslo/M/complete/Meslo%20LG%20M%20Regular%20for%20Powerline%20Nerd%20Font%20Complete.otf
+set guifont=Meslo\ LG\ M\ for\ Powerline\ Nerd\ Font\ Complete:h17    "sweet ass font
 set guioptions-=T               "no toolbar
 set guioptions-=r               "no right scrollbar
 set guioptions-=L               "no left scrollbar
@@ -398,8 +401,8 @@ endfunction
 
 augroup cleanup_files
   au!
-  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
-  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.json,*.rb,*.feature retab!
+  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.js,*.json,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.js,*.json,*.rb,*.feature retab!
 augroup END
 
 " --- "
@@ -508,3 +511,8 @@ au FileType markdown set tw=100 spell
 " gtm "
 " --- "
 let g:gtm_plugin_status_enabled = 1
+
+" ------------ "
+" vim-devicons "
+" ------------ "
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
