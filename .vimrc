@@ -11,7 +11,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
@@ -55,19 +57,6 @@ Plugin 'wincent/ferret'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'ctrlpvim/ctrlp.vim'
 
-"Plugin 'editorconfig/editorconfig-vim'
-"Plugin 'elzr/vim-json'
-"Plugin 'fatih/vim-go'
-"Plugin 'isRuslan/vim-es6'
-"Plugin 'janko-m/vim-test'
-"Plugin 'kana/vim-textobj-user'
-"Plugin 'kchmck/vim-coffee-script'
-"Plugin 'leafgarland/typescript-vim'
-"Plugin 'michaeljsmith/vim-indent-object'
-"Plugin 'nelstrom/vim-textobj-rubyblock'
-"Plugin 'othree/javascript-libraries-syntax.vim'
-"Plugin 'tpope/vim-rails'
-"Plugin 'vim-scripts/matchit.zip'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -344,7 +333,7 @@ imap <silent> <F8> <Esc><F8>
 " save all "
 " -------- "
 imap <silent> <F3> <Esc><F3>
-nnoremap <silent> <F3> :wa<cr>
+nnoremap <silent> <F3> :wall!<cr>
 
 " --------- "
 " syntastic "
