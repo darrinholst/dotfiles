@@ -11,9 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Valloric/YouCompleteMe'
-
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
-
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
@@ -52,11 +50,10 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'wincent/ferret'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " order dependent
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'ctrlpvim/ctrlp.vim'
-
 
 call vundle#end()            " required
 filetype plugin indent on    " required
