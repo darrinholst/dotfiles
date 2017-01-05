@@ -8,6 +8,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'janko-m/vim-test'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Valloric/YouCompleteMe'
@@ -17,6 +18,7 @@ Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chriskempson/base16-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'diepm/vim-rest-console'
 Plugin 'gabesoft/vim-ags'
 Plugin 'garbas/vim-snipmate'
