@@ -26,8 +26,12 @@ Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
 Plugin 'janko-m/vim-test'
 Plugin 'maman/tmuxline.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Quramy/tsuquyomi'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'qpkorr/vim-bufkill'
@@ -54,6 +58,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'wincent/ferret'
+Plugin 'vim-coffee-script'
 
 " order dependent
 Plugin 'ryanoasis/vim-devicons'
@@ -297,13 +302,14 @@ augroup END
 au FocusLost * :silent! wall!                " Save on FocusLost
 au FocusLost * call feedkeys("\<C-\>\<C-n>") " Return to normal mode on FocustLost
 
-" ---- "
-" ruby "
-" ---- "
-au BufRead,BufNewFile Capfile,Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
+" ------------- "
+" file mappings "
+" ------------- "
+au BufNewFile,BufRead Capfile,Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
 au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
 au BufNewFile,BufRead *.eslintrc set filetype=json
+au BufNewFile,BufRead *.rng set filetype=json
 
 command! HashRocket :call HashRocket()
 
@@ -470,11 +476,6 @@ let g:vrc_debug = 1
 " --------- "
 let g:pasta_disabled_filetypes = ['agsv', 'python', 'coffee', 'markdown', 'yaml', 'slim']
 
-" ------------ "
-" tern_for_vim "
-" ------------ "
-nnoremap <leader>R :TernRename<CR>
-
 " ----------------- "
 " vim-autoformatter "
 " ----------------- "
@@ -499,7 +500,19 @@ smap <C-L> <Plug>snipMateNextOrTrigger
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 au FileType markdown set tw=100 spell
 
-" --- "
-" gtm "
-" --- "
-let g:gtm_plugin_status_enabled = 1
+" ---------- "
+" TypeScript "
+" ---------- "
+autocmd Filetype typescript call SetTypeScriptOptions()
+function! SetTypeScriptOptions()
+  nmap <buffer> <leader>R :TsuRenameSymbol<CR>
+  nmap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
+endfunction
+
+" ---------- "
+" JavaScript "
+" ---------- "
+autocmd Filetype javascript call SetJavaScriptOptions()
+function! SetJavaScriptOptions()
+  nnoremap <leader>R :TernRename<CR>
+endfunction
