@@ -280,7 +280,7 @@ function! UnmapKeys()
   noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
 endfunction
 
-autocmd VimEnter * call UnmapKeys()
+au VimEnter * call UnmapKeys()
 
 " --------------------------- "
 " directory handling on enter "
@@ -330,7 +330,7 @@ let ft_stdout_mappings = {
       \}
 
 for ft_name in keys(ft_stdout_mappings)
-  execute 'autocmd Filetype ' . ft_name . ' nnoremap <buffer> <F8> :write !' . ft_stdout_mappings[ft_name] . '<CR>'
+  execute 'au Filetype ' . ft_name . ' nnoremap <buffer> <F8> :write !' . ft_stdout_mappings[ft_name] . '<CR>'
 endfor
 
 imap <silent> <F8> <Esc><F8>
@@ -346,6 +346,7 @@ nnoremap <silent> <F3> :wall!<cr>
 " --------- "
 let g:syntastic_enable_signs=1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_typescript_checkers = ['tslint']
 let g:syntastic_cucumber_checkers = []
 let g:syntastic_less_checkers = []
 let g:syntastic_scss_checkers = ['stylelint']
@@ -381,7 +382,7 @@ function! MapVimSmallsKeys()
   nmap s <Plug>(smalls)
 endfunction
 
-autocmd VimEnter * call MapVimSmallsKeys()
+au VimEnter * call MapVimSmallsKeys()
 
 " ------------------ "
 " cleanup whitespace "
@@ -498,12 +499,12 @@ smap <C-L> <Plug>snipMateNextOrTrigger
 " markdown "
 " -------- "
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
-au FileType markdown set tw=100 spell
+au FileType markdown setlocal tw=100 spell
 
 " ---------- "
 " TypeScript "
 " ---------- "
-autocmd Filetype typescript call SetTypeScriptOptions()
+au Filetype typescript call SetTypeScriptOptions()
 function! SetTypeScriptOptions()
   nmap <buffer> <leader>R :TsuRenameSymbol<CR>
   nmap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
@@ -512,7 +513,7 @@ endfunction
 " ---------- "
 " JavaScript "
 " ---------- "
-autocmd Filetype javascript call SetJavaScriptOptions()
+au Filetype javascript call SetJavaScriptOptions()
 function! SetJavaScriptOptions()
   nnoremap <leader>R :TernRename<CR>
 endfunction
