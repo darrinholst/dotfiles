@@ -3,4 +3,4 @@ alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 alias tmux='tmux -2'
 alias git=hub
 alias gpf='git push --force-with-lease'
-alias run='npm run -s'
+alias run='yarn run -s'
