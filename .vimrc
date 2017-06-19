@@ -25,8 +25,9 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
 Plugin 'janko-m/vim-test'
-Plugin 'maman/tmuxline.vim'
+Plugin 'darrinholst/tmuxline.vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'sbdchd/neoformat'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'marijnh/tern_for_vim'
@@ -400,8 +401,8 @@ endfunction
 
 augroup cleanup_files
   au!
-  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.js,*.json,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
-  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.js,*.json,*.rb,*.feature retab!
+  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.ts,*.js,*.json,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
+  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.ts,*.js,*.json,*.rb,*.feature retab!
 augroup END
 
 " --- "
