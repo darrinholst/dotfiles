@@ -1,14 +1,20 @@
-snippet be
-	beforeEach(function() {
+snippet ae
+	afterEach(() => {
 		${0}
 	});
+
+snippet be
+	beforeEach(() => {
+		${0}
+	});
+
 snippet desc
-	describe('${1}', function() {
+	describe('${1}', () => {
 		${0}
 	});
 	
 snippet it
-	it('${1}', function() {
+	it('${1}', () => {
 		${0}
 	});
 	

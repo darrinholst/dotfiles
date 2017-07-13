@@ -30,3 +30,4 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=~/.bin:$PATH
 export PATH=./bin:$PATH
 export PATH=./script:$PATH
+export PATH=/usr/bin:$PATH
