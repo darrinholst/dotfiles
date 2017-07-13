@@ -10,6 +10,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
@@ -18,6 +20,7 @@ Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'darrinholst/tmuxline.vim'
 Plugin 'diepm/vim-rest-console'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'gabesoft/vim-ags'
@@ -25,17 +28,14 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
 Plugin 'janko-m/vim-test'
-Plugin 'darrinholst/tmuxline.vim'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'sbdchd/neoformat'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Quramy/tsuquyomi'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'qpkorr/vim-bufkill'
+Plugin 'sbdchd/neoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -56,10 +56,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'triglav/vim-visual-increment'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-coffee-script'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'wincent/ferret'
-Plugin 'vim-coffee-script'
 
 " order dependent
 Plugin 'ryanoasis/vim-devicons'
@@ -114,6 +114,7 @@ hi NonText ctermfg=black
 hi Normal ctermbg=NONE
 hi MatchParen cterm=NONE ctermbg=grey ctermfg=black
 hi Search term=reverse ctermfg=18 ctermbg=16
+"hi cursorline ctermbg=19
 
 " ------ "
 " search "
@@ -172,6 +173,7 @@ au FileType gitcommit set tw=68 spell
 " ----- "
 " ctrlp "
 " ----- "
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|\.git$\|target\|vendor\/bundle\|vendor\/cache'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_reversed = 0
@@ -502,6 +504,18 @@ smap <C-L> <Plug>snipMateNextOrTrigger
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 au FileType markdown setlocal tw=100 spell
 
+" --------- "
+" Neoformat "
+" --------- "
+let g:neoformat_only_msg_on_error = 1
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_javascript_prettier = {'exe': 'prettier', 'stdin': 1, 'args': ['--stdin', '--print-width', '80', '--no-bracket-spacing', '--single-quote']}
+let g:neoformat_enabled_typescript = ['prettier']
+let g:neoformat_typescript_prettier = {'exe': 'prettier', 'stdin': 1, 'args': ['--stdin', '--print-width', '80', '--no-bracket-spacing', '--parser', 'typescript', '--single-quote']}
+let g:neoformat_enabled_scss = ['prettier']
+let g:neoformat_enabled_json = ['prettier']
+au BufWritePre *.js,*.ts,*.scss,*.json Neoformat
+
 " ---------- "
 " TypeScript "
 " ---------- "
@@ -509,6 +523,7 @@ au Filetype typescript call SetTypeScriptOptions()
 function! SetTypeScriptOptions()
   nmap <buffer> <leader>R :TsuRenameSymbol<CR>
   nmap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
+  nmap <buffer> <Leader>ti :TsuImport<CR>
 endfunction
 
 " ---------- "
