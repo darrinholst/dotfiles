@@ -168,7 +168,6 @@ endif
 " -------------------------- "
 " proper git commit messages "
 " -------------------------- "
-au FileType gitcommit set tw=68 spell
 
 " ----- "
 " ctrlp "
@@ -517,6 +516,17 @@ let g:neoformat_enabled_json = ['prettier']
 au BufWritePre *.js,*.ts,*.scss,*.json Neoformat
 
 " ---------- "
+" Git Commit "
+" ---------- "
+au FileType gitcommit call SetGitCommitOptions()
+
+function! SetGitCommitOptions()
+  setlocal textwidth=72
+  setlocal colorcolumn=73
+  setlocal spell
+endfunction
+
+" ---------- "
 " TypeScript "
 " ---------- "
 au Filetype typescript call SetTypeScriptOptions()
@@ -524,6 +534,7 @@ function! SetTypeScriptOptions()
   nmap <buffer> <leader>R :TsuRenameSymbol<CR>
   nmap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
   nmap <buffer> <Leader>ti :TsuImport<CR>
+  setlocal colorcolumn=81
 endfunction
 
 " ---------- "
@@ -532,4 +543,5 @@ endfunction
 au Filetype javascript call SetJavaScriptOptions()
 function! SetJavaScriptOptions()
   nnoremap <leader>R :TernRename<CR>
+  setlocal colorcolumn=81
 endfunction
