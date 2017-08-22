@@ -56,3 +56,5 @@
 [tig]
   line-graphics = utf-8
   mouse = true
+[credential]
+	helper = osxkeychain
