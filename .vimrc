@@ -73,10 +73,10 @@ filetype plugin indent on    " required
 set t_Co=256                    "256 colors please
 let base16colorspace=256        "Access colors present in 256 colorspace
 set background=dark             "dark
-color base16-tomorrow           "default color scheme
+color base16-tomorrow-night     "default color scheme
 let mapleader = ","             "override default map leader
 " cd ~/Library/Fonts && curl -fLo 'Meslo LG M Regular for Powerline Nerd Font Complete.otf' https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/Meslo/M/complete/Meslo%20LG%20M%20Regular%20for%20Powerline%20Nerd%20Font%20Complete.otf
-set guifont=Meslo\ LG\ M\ for\ Powerline\ Nerd\ Font\ Complete:h17    "sweet ass font
+set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h14    "sweet ass font
 set guioptions-=T               "no toolbar
 set guioptions-=r               "no right scrollbar
 set guioptions-=L               "no left scrollbar
