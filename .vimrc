@@ -8,7 +8,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'Chiel92/vim-autoformat'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'Shougo/vimproc.vim'
@@ -27,11 +26,10 @@ Plugin 'gabesoft/vim-ags'
 Plugin 'garbas/vim-snipmate'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
-Plugin 'janko-m/vim-test'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'marijnh/tern_for_vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'qpkorr/vim-bufkill'
@@ -48,7 +46,6 @@ Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-jdaddy'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
@@ -56,7 +53,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'triglav/vim-visual-increment'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-coffee-script'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'wincent/ferret'
@@ -340,8 +336,8 @@ imap <silent> <F8> <Esc><F8>
 " -------- "
 " save all "
 " -------- "
-imap <silent> <F3> <Esc><F3>
-nnoremap <silent> <F3> :wall!<cr>
+imap <F3> <Esc><F3>
+nnoremap <F3> :silent! wall!<cr>
 
 " --------- "
 " syntastic "
@@ -484,7 +480,7 @@ let g:pasta_disabled_filetypes = ['agsv', 'python', 'coffee', 'markdown', 'yaml'
 " ----------------- "
 let g:autoformat_verbosemode = 1
 imap <silent> <F5> <Esc><F5>
-noremap <F5> :Autoformat<CR>
+noremap <F5> :Neoformat<CR>
 
 " ------------- "
 " vim-yankstack "
@@ -508,12 +504,15 @@ au FileType markdown setlocal tw=100 spell
 " --------- "
 let g:neoformat_only_msg_on_error = 1
 let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_javascript_prettier = {'exe': 'prettier', 'stdin': 1, 'args': ['--stdin', '--print-width', '80', '--no-bracket-spacing', '--single-quote']}
 let g:neoformat_enabled_typescript = ['prettier']
-let g:neoformat_typescript_prettier = {'exe': 'prettier', 'stdin': 1, 'args': ['--stdin', '--print-width', '80', '--no-bracket-spacing', '--parser', 'typescript', '--single-quote']}
 let g:neoformat_enabled_scss = ['prettier']
 let g:neoformat_enabled_json = ['prettier']
 au BufWritePre *.js,*.ts,*.scss,*.json Neoformat
+
+" --- "
+" JSX "
+" --- "
+let g:jsx_ext_required = 0
 
 " ---------- "
 " Git Commit "
