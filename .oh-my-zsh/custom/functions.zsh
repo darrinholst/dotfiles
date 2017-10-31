@@ -32,3 +32,15 @@ fk() { # build menu to kill process
   done
   unset IFS
 }
+
+lips() {
+  local ip=`ifconfig en0 | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}'`
+  local locip extip
+
+  [ "$ip" != "" ] && locip=$ip || locip="inactive"
+
+  ip=`dig +short myip.opendns.com @resolver1.opendns.com`
+  [ "$ip" != "" ] && extip=$ip || extip="inactive"
+
+  printf '%11s: %s\n%11s: %s\n' "Local IP" $locip "External IP" $extip
+}
