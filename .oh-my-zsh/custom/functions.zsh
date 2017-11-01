@@ -6,6 +6,10 @@ clean-docker() {
   docker images -q --filter "dangling=true" | xargs docker rmi
 }
 
+clean-node() {
+  killall node
+}
+
 any() {
   emulate -L zsh
   unsetopt KSH_ARRAYS
