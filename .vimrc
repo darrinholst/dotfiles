@@ -17,7 +17,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'chriskempson/base16-vim'
+"Plugin 'chriskempson/base16-vim'
+Plugin 'marconett/base16-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'darrinholst/tmuxline.vim'
 Plugin 'diepm/vim-rest-console'
@@ -507,7 +508,8 @@ let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_typescript = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
 let g:neoformat_enabled_json = ['prettier']
-au BufWritePre *.js,*.ts,*.scss,*.json Neoformat
+let g:neoformat_enabled_ruby = ['rufo']
+au BufWritePre *.js,*.ts,*.scss,*.json,*.rb Neoformat
 
 " --- "
 " JSX "
