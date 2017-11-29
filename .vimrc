@@ -20,13 +20,14 @@ Plugin 'cakebaker/scss-syntax.vim'
 "Plugin 'chriskempson/base16-vim'
 Plugin 'marconett/base16-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'darrinholst/tmuxline.vim'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'diepm/vim-rest-console'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'gabesoft/vim-ags'
 Plugin 'garbas/vim-snipmate'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
+Plugin 'janko-m/vim-test'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'mustache/vim-mustache-handlebars'
@@ -427,7 +428,7 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
-let g:airline_theme='base16_chalk'
+let g:airline_theme='base16_grayscale'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
