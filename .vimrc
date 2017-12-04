@@ -8,6 +8,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'mattn/emmet-vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'Shougo/vimproc.vim'
