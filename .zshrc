@@ -7,3 +7,5 @@ plugins=(bundler common-aliases docker docker-compose osx vi-mode npm git yarn)
 source $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
+
+eval "$(rbenv init -)"
