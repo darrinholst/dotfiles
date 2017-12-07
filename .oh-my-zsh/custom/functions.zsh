@@ -48,3 +48,11 @@ lips() {
 
   printf '%11s: %s\n%11s: %s\n' "Local IP" $locip "External IP" $extip
 }
+
+detach() {
+  tmux detach
+}
+
+attach() {
+  tmux attach -t $1 || tmux new -s $1
+}
