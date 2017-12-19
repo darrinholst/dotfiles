@@ -1,6 +1,10 @@
 export ZSH=$HOME/.oh-my-zsh
 export DISABLE_UPDATE_PROMPT=true
-ZSH_THEME=""
+
+ZSH_THEME="spaceship"
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_RUBY_SYMBOL="💎  "
 
 plugins=(bundler common-aliases docker docker-compose osx vi-mode npm git yarn)
 
