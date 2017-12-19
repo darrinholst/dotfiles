@@ -57,12 +57,16 @@ attach() {
   tmux attach -t $1 || tmux new -s $1
 }
 
-deere-proxy() {
+proxy-deere() {
   export HTTP_PROXY=http://proxyv.dpn.deere.com:81
   export HTTPS_PROXY=http://proxyv.dpn.deere.com:81
+  export http_proxy=http://proxyv.dpn.deere.com:81
+  export https_proxy=http://proxyv.dpn.deere.com:81
 }
 
-no-proxy() {
+proxy-clear() {
   unset HTTP_PROXY
   unset HTTPS_PROXY
+  unset http_proxy
+  unset https_proxy
 }
