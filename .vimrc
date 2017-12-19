@@ -234,6 +234,7 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " ------------------- "
 map <Leader><Leader> :ZoomWin<CR>
 nmap <silent> <leader>w :wa<CR>
+vmap Y "+y
 
 " Commenter
 map <leader>/ <plug>NERDCommenterToggle
@@ -310,7 +311,7 @@ au FocusLost * call feedkeys("\<C-\>\<C-n>") " Return to normal mode on FocustLo
 au BufNewFile,BufRead Capfile,Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
 au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
-au BufNewFile,BufRead *.eslintrc set filetype=json
+au BufNewFile,BufRead *.eslintrc,*.stylelintrc set filetype=json
 au BufNewFile,BufRead *.rng set filetype=json
 
 command! HashRocket :call HashRocket()
@@ -507,12 +508,11 @@ au FileType markdown setlocal tw=100 spell
 " Neoformat "
 " --------- "
 let g:neoformat_only_msg_on_error = 1
-let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_javascript = ['prettier', 'eslint_d']
 let g:neoformat_enabled_typescript = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
-let g:neoformat_enabled_json = ['prettier']
 let g:neoformat_enabled_ruby = ['rufo']
-au BufWritePre *.js,*.ts,*.scss,*.json,*.rb Neoformat
+au BufWritePre *.js,*.ts,*.scss,*.rb Neoformat
 
 " --- "
 " JSX "
