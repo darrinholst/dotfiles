@@ -3,8 +3,6 @@ export DISABLE_UPDATE_PROMPT=true
 
 ZSH_THEME="spaceship"
 SPACESHIP_TIME_SHOW=false
-SPACESHIP_USER_SHOW=false
-SPACESHIP_HOST_SHOW=false
 SPACESHIP_GIT_PREFIX=" "
 SPACESHIP_HG_SHOW=false
 SPACESHIP_HG_BRANCH_SHOW=false
@@ -32,7 +30,6 @@ SPACESHIP_EMBER_SHOW=false
 SPACESHIP_KUBECONTEXT_SHOW=false
 SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_VI_MODE_SHOW=false
-SPACESHIP_JOBS_SHOW="false"
 SPACESHIP_EXIT_CODE_SHOW=false
 
 plugins=(bundler common-aliases docker docker-compose osx vi-mode npm git yarn)
@@ -43,6 +40,5 @@ unsetopt correct_all
 
 eval "$(rbenv init -)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"  # This loads nvm
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
