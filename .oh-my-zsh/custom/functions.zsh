@@ -49,24 +49,15 @@ lips() {
   printf '%11s: %s\n%11s: %s\n' "Local IP" $locip "External IP" $extip
 }
 
-detach() {
-  tmux detach
-}
-
 attach() {
   tmux attach -t $1 || tmux new -s $1
 }
 
-proxy-deere() {
-  export HTTP_PROXY=http://proxyv.dpn.deere.com:81
-  export HTTPS_PROXY=http://proxyv.dpn.deere.com:81
-  export http_proxy=http://proxyv.dpn.deere.com:81
-  export https_proxy=http://proxyv.dpn.deere.com:81
-}
-
-proxy-clear() {
+clear-proxy() {
   unset HTTP_PROXY
   unset HTTPS_PROXY
   unset http_proxy
   unset https_proxy
+  unset NPM_CONFIG_PROXY
+  unset NPM_CONFIG_HTTPS_PROXY
 }
