@@ -100,6 +100,7 @@ set timeoutlen=1000
 set ttimeoutlen=100
 set pastetoggle=,p
 set mouse=a
+set re=1                        "https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting#16920294
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
@@ -507,7 +508,7 @@ au FileType markdown setlocal tw=100 spell
 " Neoformat "
 " --------- "
 let g:neoformat_only_msg_on_error = 1
-let g:neoformat_enabled_javascript = ['prettier', 'eslint_d']
+let g:neoformat_enabled_javascript = ['eslint_d', 'prettier']
 let g:neoformat_enabled_typescript = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
 let g:neoformat_enabled_ruby = ['rufo']
