@@ -313,6 +313,8 @@ au BufNewFile,BufRead Capfile,Gemfile,Rakefile,Guardfile,config.ru,Procfile,Proc
 au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
 au BufNewFile,BufRead *.eslintrc,*.babelrc,*.stylelintrc,*.nycrc,*.rng set filetype=json
+au BufNewFile,BufRead *.jstd set filetype=javascript
+au BufNewFile,BufRead *.envrc,*.env,*.env.leave set filetype=sh
 
 command! HashRocket :call HashRocket()
 
@@ -507,6 +509,7 @@ au FileType markdown setlocal tw=100 spell
 " --------- "
 " Neoformat "
 " --------- "
+let g:neoformat_run_all_formatters = 1
 let g:neoformat_only_msg_on_error = 1
 let g:neoformat_enabled_javascript = ['eslint_d', 'prettier']
 let g:neoformat_enabled_typescript = ['prettier']
