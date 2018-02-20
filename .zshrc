@@ -40,3 +40,12 @@ eval "$(rbenv init -)"
 
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"  # This loads nvm
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
+
+if [ ! -d "~/.autoenv" ]; then
+  echo "installing autoenv"
+  git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+fi
+
+export AUTOENV_ASSUME_YES="true"
+export AUTOENV_ENABLE_LEAVE="true"
+source ~/.autoenv/activate.sh
