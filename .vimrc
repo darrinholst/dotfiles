@@ -511,7 +511,7 @@ au FileType markdown setlocal tw=100 spell
 " --------- "
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_only_msg_on_error = 1
-let g:neoformat_enabled_javascript = ['eslint_d', 'prettier']
+let g:neoformat_enabled_javascript = ['prettier', 'eslint_d']
 let g:neoformat_enabled_typescript = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
 let g:neoformat_enabled_ruby = ['rufo']
