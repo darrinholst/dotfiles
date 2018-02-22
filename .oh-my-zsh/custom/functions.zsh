@@ -52,12 +52,3 @@ lips() {
 attach() {
   tmux attach -t $1 || tmux new -s $1
 }
-
-clear-proxy() {
-  unset HTTP_PROXY
-  unset HTTPS_PROXY
-  unset http_proxy
-  unset https_proxy
-  unset NPM_CONFIG_PROXY
-  unset NPM_CONFIG_HTTPS_PROXY
-}

@@ -26,8 +26,6 @@ task 'link' do
   symlink_this('.oh-my-zsh/custom/exports.zsh')
   symlink_this('.oh-my-zsh/custom/functions.zsh')
   symlink_this('.oh-my-zsh/custom/keys.zsh')
-  symlink_this('.oh-my-zsh/custom/prompt.zsh')
-  symlink_this('.oh-my-zsh/custom/source.zsh')
   symlink_this('.ssh/config')
   symlink_this('.tmux.conf')
   symlink_this('.tmuxline.conf')
