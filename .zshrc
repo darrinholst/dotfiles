@@ -38,9 +38,6 @@ unsetopt correct_all
 
 eval "$(rbenv init -)"
 
-[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"  # This loads nvm
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
-
 if [ ! -d "$HOME/.autoenv" ]; then
   echo "installing autoenv"
   git clone git://github.com/kennethreitz/autoenv.git "$HOME/.autoenv"
