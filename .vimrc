@@ -12,20 +12,19 @@ Plugin 'mattn/emmet-vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
-"Plugin 'chriskempson/base16-vim'
-Plugin 'marconett/base16-vim'
+Plugin 'chriskempson/base16-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'diepm/vim-rest-console'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'gabesoft/vim-ags'
-Plugin 'garbas/vim-snipmate'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
 Plugin 'janko-m/vim-test'
@@ -275,7 +274,7 @@ function! UnmapKeys()
   " git gutter commands slow down window navigation
   nunmap ,hu
   nunmap ,hp
-  nunmap ,hr
+  "nunmap ,hr
   nunmap ,hs
 
   " ,cl closes windows for me
@@ -494,11 +493,13 @@ noremap <F5> :Neoformat<CR>
 " ------------- "
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 
-" ------------ "
-" vim-snipmate "
-" ------------ "
-imap <C-L> <esc>a<Plug>snipMateNextOrTrigger
-smap <C-L> <Plug>snipMateNextOrTrigger
+" --------- "
+" UtilSnips "
+" --------- "
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEnableSnipMate = 0
 
 " -------- "
 " markdown "
