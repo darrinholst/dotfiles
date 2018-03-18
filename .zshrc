@@ -47,7 +47,6 @@ export AUTOENV_ASSUME_YES="true"
 export AUTOENV_ENABLE_LEAVE="true"
 source ~/.autoenv/activate.sh
 
-
 # Do menu-driven completion.
 zstyle ':completion:*' menu select
 
