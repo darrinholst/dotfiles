@@ -103,6 +103,11 @@ set re=1                        "https://stackoverflow.com/questions/16902317/vi
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
 " ------------ "
 " highlighting "
 " ------------ "
@@ -516,6 +521,7 @@ au FileType markdown setlocal tw=100 spell
 " --------- "
 " Neoformat "
 " --------- "
+let g:neoformat_basic_format_align = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_only_msg_on_error = 1
 let g:neoformat_enabled_javascript = ['prettier', 'eslint_d']
