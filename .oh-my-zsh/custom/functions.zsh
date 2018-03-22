@@ -52,3 +52,7 @@ lips() {
 attach() {
   tmux attach -t $1 || tmux new -s $1
 }
+
+nvm-load() {
+  source "$HOME/.nvm/nvm.sh"
+}
