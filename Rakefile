@@ -12,7 +12,6 @@ end
 
 desc 'link em up'
 task 'link' do
-  symlink_this('.ackrc')
   symlink_this('.bash_profile')
   symlink_this('.bin')
   symlink_this('.env')
@@ -22,11 +21,6 @@ task 'link' do
   symlink_this('.gitignore-global')
   symlink_this('.gvimrc')
   symlink_this('.irbrc')
-  symlink_this('.oh-my-zsh/custom/aliases.zsh')
-  symlink_this('.oh-my-zsh/custom/base16.zsh')
-  symlink_this('.oh-my-zsh/custom/exports.zsh')
-  symlink_this('.oh-my-zsh/custom/functions.zsh')
-  symlink_this('.oh-my-zsh/custom/keys.zsh')
   symlink_this('.ssh/config')
   symlink_this('.tmux.conf')
   symlink_this('.tmuxline.conf')
