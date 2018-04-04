@@ -76,7 +76,7 @@ set background=dark             "dark
 color base16-tomorrow-night     "default color scheme
 let mapleader = ","             "override default map leader
 " cd ~/Library/Fonts && curl -fLo 'Meslo LG M Regular for Powerline Nerd Font Complete.otf' https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/Meslo/M/complete/Meslo%20LG%20M%20Regular%20for%20Powerline%20Nerd%20Font%20Complete.otf
-set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h14    "sweet ass font
+"set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h14    "sweet ass font
 set guioptions-=T               "no toolbar
 set guioptions-=r               "no right scrollbar
 set guioptions-=L               "no left scrollbar
@@ -437,7 +437,7 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
-let g:airline_theme='base16_grayscale'
+let g:airline_theme='term'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
