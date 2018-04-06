@@ -442,10 +442,11 @@ let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#default#section_truncate_width = {
+    \ 'a': 90,
     \ 'b': 90,
-    \ 'x': 50,
-    \ 'y': 50,
-    \ 'z': 50,
+    \ 'x': 90,
+    \ 'y': 90,
+    \ 'z': 60,
     \ 'warning': 80,
     \ 'error': 80,
     \ }
