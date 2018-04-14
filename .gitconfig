@@ -33,6 +33,7 @@
   lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   lgm = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   up = pull --rebase --prune
+  upall = !"find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin master --verbose --prune --rebase \\;"
   fu = !git add -A && git commit -qm 'FU SAVEPOINT' && git reset --hard HEAD~
   co = checkout
   branch-name = !git rev-parse --abbrev-ref HEAD
