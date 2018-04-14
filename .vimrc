@@ -34,6 +34,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'pedrohdz/vim-yaml-folds'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'sbdchd/neoformat'
 Plugin 'scrooloose/nerdcommenter'
@@ -519,6 +520,11 @@ let g:UltiSnipsEnableSnipMate = 0
 " -------- "
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 au FileType markdown setlocal tw=100 spell
+
+" ---- "
+" yaml "
+" ---- "
+au FileType yaml :normal zR
 
 " --------- "
 " Neoformat "
