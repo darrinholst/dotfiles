@@ -30,12 +30,13 @@ Plugin 'janko-m/vim-test'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'moll/vim-node'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'pedrohdz/vim-yaml-folds'
 Plugin 'qpkorr/vim-bufkill'
+Plugin 'regedarek/ZoomWin'
 Plugin 'sbdchd/neoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
@@ -59,7 +60,6 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'triglav/vim-visual-increment'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'regedarek/ZoomWin'
 Plugin 'wincent/ferret'
 
 " order dependent
@@ -171,14 +171,9 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
-" -------------------------- "
-" proper git commit messages "
-" -------------------------- "
-
 " ----- "
 " ctrlp "
 " ----- "
-
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|\.git$\|target\|vendor\/bundle\|vendor\/cache'
 let g:ctrlp_show_hidden = 1
@@ -520,11 +515,6 @@ let g:UltiSnipsEnableSnipMate = 0
 " -------- "
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 au FileType markdown setlocal tw=100 spell
-
-" ---- "
-" yaml "
-" ---- "
-au FileType yaml :normal zR
 
 " --------- "
 " Neoformat "
