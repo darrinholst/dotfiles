@@ -119,13 +119,13 @@ hi VertSplit ctermbg=black ctermfg=grey
 hi NonText ctermfg=black
 hi Normal ctermbg=NONE
 hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
-hi Search term=reverse ctermfg=black ctermbg=darkgreen
+hi Search term=reverse ctermbg=darkgreen ctermfg=black
 
 " ------ "
 " search "
 " ------ "
 set incsearch        "Find the next match as we type the search
-set hlsearch         "Hilight searches by default
+"set hlsearch         "Hilight searches by default
 set ignorecase       "ignore case
 set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
