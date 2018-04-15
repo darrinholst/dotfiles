@@ -170,3 +170,7 @@ attach() {
 nvm-load() {
   source "$HOME/.nvm/nvm.sh"
 }
+
+swagger-editor() {
+  docker run -ti --rm --volume="$(pwd)":/swagger -p 8080:8080 zixia/swagger-edit "$@"
+}
