@@ -59,7 +59,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'triglav/vim-visual-increment'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'vim-scripts/ZoomWin'
+Plugin 'regedarek/ZoomWin'
 Plugin 'wincent/ferret'
 
 " order dependent
@@ -68,16 +68,21 @@ Plugin 'ryanoasis/vim-devicons'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" --------------- "
+" Colors and Font "
+" --------------- "
+set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete:h17 " http://nerdfonts.com/
+
+if filereadable(expand("~/.vimrc_background"))
+  set t_Co=256
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
 " -------------- "
 " General Config "
 " -------------- "
-set t_Co=256                    "256 colors please
-let base16colorspace=256        "Access colors present in 256 colorspace
-set background=dark             "dark
-color base16-tomorrow-night     "default color scheme
 let mapleader = ","             "override default map leader
-" cd ~/Library/Fonts && curl -fLo 'Meslo LG M Regular for Powerline Nerd Font Complete.otf' https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/Meslo/M/complete/Meslo%20LG%20M%20Regular%20for%20Powerline%20Nerd%20Font%20Complete.otf
-"set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h14    "sweet ass font
 set guioptions-=T               "no toolbar
 set guioptions-=r               "no right scrollbar
 set guioptions-=L               "no left scrollbar
@@ -86,42 +91,36 @@ set number                      "show line numbers
 set backspace=indent,eol,start  "allow backspace in insert mode
 set history=1000                "store lots of :cmdline history
 set laststatus=2                "always show the status bar
-set showcmd                     "show incomplete cmds down the bottom
-set showmode                    "show current mode down the bottom
+set showcmd                     "show incomplete commands
+set showmode                    "show current mode
 set autoread                    "reload files changed outside vim
 set hidden                      "buffers can exist in the background without being in a window
 set ruler                       "show row and column
 set cursorline                  "highlight current line
 set vb                          "no beeping
-set scrolloff=5                 "Start scrolling when we're 3 lines away from margins
-set sidescrolloff=10            "Start scrolling when we're 10 columns away from margins
+set scrolloff=5                 "Start scrolling 3 lines away from margins
+set sidescrolloff=10            "Start scrolling 10 columns away from margins
 set sidescroll=1
 set nrformats=                  "treat all numbers as decimal
 set timeoutlen=1000
 set ttimeoutlen=100
-set pastetoggle=,p
 set mouse=a
 set re=1                        "https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting#16920294
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
-
 " ------------ "
 " highlighting "
 " ------------ "
-hi Visual cterm=NONE ctermbg=grey ctermfg=black
+hi Visual cterm=NONE ctermbg=lightblue ctermfg=black
 hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
 hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
-hi VertSplit ctermbg=grey ctermfg=grey
+hi VertSplit ctermbg=black ctermfg=grey
 hi NonText ctermfg=black
 hi Normal ctermbg=NONE
-hi MatchParen cterm=NONE ctermbg=grey ctermfg=black
-hi Search term=reverse ctermfg=18 ctermbg=16
-"hi cursorline ctermbg=19
+hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
+hi Search term=reverse ctermfg=black ctermbg=darkgreen
+hi cursorline ctermbg=19
 
 " ------ "
 " search "
@@ -179,6 +178,7 @@ endif
 " ----- "
 " ctrlp "
 " ----- "
+
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|\.git$\|target\|vendor\/bundle\|vendor\/cache'
 let g:ctrlp_show_hidden = 1
@@ -241,7 +241,6 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " ------------------- "
 map <Leader><Leader> :ZoomWin<CR>
 nmap <silent> <leader>w :wa<CR>
-vmap Y "+y
 
 " Commenter
 map <leader>/ <plug>NERDCommenterToggle
@@ -500,6 +499,7 @@ noremap <F5> :Neoformat<CR>
 " vim-yankstack "
 " ------------- "
 nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " ------------- "
 " YouCompleteMe "
