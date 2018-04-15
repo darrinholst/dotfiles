@@ -112,7 +112,7 @@ runtime macros/matchit.vim
 " ------------ "
 " highlighting "
 " ------------ "
-hi Visual cterm=NONE ctermbg=lightblue ctermfg=black
+hi Visual cterm=NONE ctermbg=darkgreen ctermfg=black
 hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
 hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
 hi VertSplit ctermbg=black ctermfg=grey
@@ -120,7 +120,6 @@ hi NonText ctermfg=black
 hi Normal ctermbg=NONE
 hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
 hi Search term=reverse ctermfg=black ctermbg=darkgreen
-hi cursorline ctermbg=19
 
 " ------ "
 " search "
