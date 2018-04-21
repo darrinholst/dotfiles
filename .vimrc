@@ -23,6 +23,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'diepm/vim-rest-console'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'elzr/vim-json'
 Plugin 'gabesoft/vim-ags'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
@@ -35,6 +36,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'pedrohdz/vim-yaml-folds'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'regedarek/ZoomWin'
 Plugin 'sbdchd/neoformat'
@@ -119,7 +121,9 @@ hi VertSplit ctermbg=black ctermfg=grey
 hi NonText ctermfg=black
 hi Normal ctermbg=NONE
 hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
-hi Search term=reverse ctermbg=darkgreen ctermfg=black
+hi Search term=reverse ctermfg=black ctermbg=darkgreen
+hi CursorLineNR ctermfg=white
+hi clear CursorLine
 
 " ------ "
 " search "
@@ -381,12 +385,12 @@ xmap <C-j> <Plug>unimpairedMoveSelectionDown
 " ------ "
 " smalls "
 " ------ "
+au VimEnter * call MapVimSmallsKeys()
+
 function! MapVimSmallsKeys()
   unmap s
   nmap s <Plug>(smalls)
 endfunction
-
-au VimEnter * call MapVimSmallsKeys()
 
 " ------------------ "
 " cleanup whitespace "
@@ -509,12 +513,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEnableSnipMate = 0
 
-" -------- "
-" markdown "
-" -------- "
-let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
-au FileType markdown setlocal tw=100 spell
-
 " --------- "
 " Neoformat "
 " --------- "
@@ -532,6 +530,18 @@ au BufWritePre *.js,*.ts,*.scss,*.rb Neoformat
 " --- "
 let g:jsx_ext_required = 0
 
+" -------- "
+" markdown "
+" -------- "
+let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
+au FileType markdown call SetMarkdownOptions()
+
+function! SetMarkdownOptions()
+  setlocal textwidth=120
+  setlocal colorcolumn=121
+  setlocal spell
+endfunction
+
 " ---------- "
 " Git Commit "
 " ---------- "
@@ -547,6 +557,7 @@ endfunction
 " TypeScript "
 " ---------- "
 au Filetype typescript call SetTypeScriptOptions()
+
 function! SetTypeScriptOptions()
   nmap <buffer> <leader>R :TsuRenameSymbol<CR>
   nmap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
@@ -558,7 +569,27 @@ endfunction
 " JavaScript "
 " ---------- "
 au Filetype javascript call SetJavaScriptOptions()
+
 function! SetJavaScriptOptions()
   nnoremap <leader>R :TernRename<CR>
   setlocal colorcolumn=81
+endfunction
+
+" ---- "
+" JSON "
+" ---- "
+au Filetype json call SetJsonOptions()
+
+function! SetJsonOptions()
+  "setlocal foldmethod=syntax
+  normal zR
+endfunction
+
+" ---- "
+" YAML "
+" ---- "
+au Filetype yaml call SetYamlOptions()
+
+function! SetYamlOptions()
+  normal zR
 endfunction
