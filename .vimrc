@@ -171,7 +171,7 @@ set directory=~/.vim/backup
 " ------------------------------- "
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
+        \| exe "normal g'\"" | endif
 endif
 
 " ----- "
@@ -361,11 +361,11 @@ let g:syntastic_scss_checkers = ['stylelint']
 let g:syntastic_html_checkers = ['tidy']
 
 let g:syntastic_html_tidy_ignore_errors = [
-  \   '> proprietary attribute "',
-  \   '> is not recognized!',
-  \   'discarding unexpected <',
-  \   'trimming empty <'
-  \ ]
+      \   '> proprietary attribute "',
+      \   '> is not recognized!',
+      \   'discarding unexpected <',
+      \   'trimming empty <'
+      \ ]
 
 " ------- "
 " testing "
@@ -440,14 +440,14 @@ let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#default#section_truncate_width = {
-    \ 'a': 90,
-    \ 'b': 90,
-    \ 'x': 90,
-    \ 'y': 90,
-    \ 'z': 60,
-    \ 'warning': 80,
-    \ 'error': 80,
-    \ }
+      \ 'a': 90,
+      \ 'b': 90,
+      \ 'x': 90,
+      \ 'y': 90,
+      \ 'z': 60,
+      \ 'warning': 80,
+      \ 'error': 80,
+      \ }
 
 " -------- "
 " tmuxline "
@@ -578,10 +578,11 @@ endfunction
 " ---- "
 " JSON "
 " ---- "
+let g:vim_json_syntax_conceal = 0
 au Filetype json call SetJsonOptions()
 
 function! SetJsonOptions()
-  "setlocal foldmethod=syntax
+  setlocal foldmethod=indent
   normal zR
 endfunction
 
