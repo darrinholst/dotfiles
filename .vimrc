@@ -8,61 +8,64 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'benmills/vimux'
-Plugin 'bling/vim-airline'
-Plugin 'cakebaker/scss-syntax.vim'
+":sort /\/[^']*/ri
+
+Plugin 'file:///Users/darrinholst/Projects/vim-vimrc'
 Plugin 'chriskempson/base16-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'diepm/vim-rest-console'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'elzr/vim-json'
-Plugin 'gabesoft/vim-ags'
-Plugin 'godlygeek/tabular'
-Plugin 'honza/vim-snippets'
-Plugin 'janko-m/vim-test'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'mattn/emmet-vim'
-Plugin 'maxbrunsfeld/vim-yankstack'
-Plugin 'moll/vim-node'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'mxw/vim-jsx'
+Plugin 'wincent/ferret'
 Plugin 'othree/html5.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'pedrohdz/vim-yaml-folds'
-Plugin 'qpkorr/vim-bufkill'
-Plugin 'regedarek/ZoomWin'
 Plugin 'sbdchd/neoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'sickill/vim-pasta'
-Plugin 'sjl/vitality.vim'
-Plugin 't9md/vim-smalls'
+Plugin 'godlygeek/tabular'
 Plugin 'ternjs/tern_for_vim'
-Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tomtom/tlib_vim'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'gabesoft/vim-ags'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'qpkorr/vim-bufkill'
 Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
+Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-markdown'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'moll/vim-node'
+Plugin 'sickill/vim-pasta'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
+Plugin 'diepm/vim-rest-console'
 Plugin 'tpope/vim-rhubarb'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 't9md/vim-smalls'
+Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
+Plugin 'janko-m/vim-test'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'triglav/vim-visual-increment'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'wincent/ferret'
+Plugin 'pedrohdz/vim-yaml-folds'
+Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'benmills/vimux'
+Plugin 'sjl/vitality.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'regedarek/ZoomWin'
 
 " order dependent
 Plugin 'ryanoasis/vim-devicons'
@@ -592,5 +595,14 @@ endfunction
 au Filetype yaml call SetYamlOptions()
 
 function! SetYamlOptions()
+  normal zR
+endfunction
+
+" --- "
+" Vim "
+" --- "
+au Filetype vim call SetVimOptions()
+
+function! SetVimOptions()
   normal zR
 endfunction
