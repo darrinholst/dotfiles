@@ -483,9 +483,13 @@ map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
 " --- "
 let g:vrc_trigger = '<C-r>'
 let g:vrc_curl_opts = {
+  \ '--connect-timeout' : 10,
+  \ '-L': '',
   \ '-i': '',
+  \ '--max-time': 10,
+  \ '--ipv4': '',
+  \ '-k': '',
 \}
-
 
 " --------- "
 " vim-pasta "
@@ -597,6 +601,15 @@ endfunction
 au BufNewFile,BufRead call OpenFolds()
 
 function! OpenFolds()
+  normal zR
+endfunction
+
+" --- "
+" Vim "
+" --- "
+au Filetype vim call SetVimOptions()
+
+function! SetVimOptions()
   normal zR
 endfunction
 
