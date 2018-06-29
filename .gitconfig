@@ -55,6 +55,10 @@
 [tig]
   line-graphics = utf-8
   mouse = true
+  main-view-date-display = relative-compact
+  main-view-author-display = abbreviated
+  main-view-id-display = yes
+  main-view-commit-title-graph = v1
 
 [credential]
 	helper = osxkeychain

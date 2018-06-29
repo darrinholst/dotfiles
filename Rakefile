@@ -22,7 +22,6 @@ task 'link' do
   symlink_this('.gvimrc')
   symlink_this('.irbrc')
   symlink_this('.ssh/config')
-  symlink_this('.tigrc')
   symlink_this('.tmux.conf')
   symlink_this('.tmuxline.conf')
   symlink_this('.vim')
