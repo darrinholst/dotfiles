@@ -482,7 +482,10 @@ map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
 " vrc "
 " --- "
 let g:vrc_trigger = '<C-r>'
-let g:vrc_debug = 1
+let g:vrc_curl_opts = {
+  \ '-i': '',
+\}
+
 
 " --------- "
 " vim-pasta "
@@ -522,6 +525,7 @@ let g:UltiSnipsEnableSnipMate = 0
 let g:neoformat_basic_format_align = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_only_msg_on_error = 1
+let g:neoformat_enabled_json = ['prettier', 'fixjson']
 let g:neoformat_enabled_javascript = ['prettier', 'eslint_d']
 let g:neoformat_enabled_typescript = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
@@ -576,6 +580,7 @@ au Filetype javascript call SetJavaScriptOptions()
 function! SetJavaScriptOptions()
   nnoremap <leader>R :TernRename<CR>
   setlocal colorcolumn=81
+  normal zR
 endfunction
 
 " ---- "
@@ -589,12 +594,9 @@ function! SetJsonOptions()
   normal zR
 endfunction
 
-" ---- "
-" YAML "
-" ---- "
-au Filetype yaml call SetYamlOptions()
+au BufNewFile,BufRead call OpenFolds()
 
-function! SetYamlOptions()
+function! OpenFolds()
   normal zR
 endfunction
 
