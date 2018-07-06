@@ -26,10 +26,10 @@ func! DownHorizontalAdjust()
   "If very bottom window, decrease window size, otherwise just increase current window size
   wincmd j 
   if winnr() == currentWin
-    resize -1
+    resize -3
   else
     exe currentWin . "wincmd w"
-    resize +1
+    resize +3
   endif
 endfun
 
@@ -56,9 +56,9 @@ func! UpHorizontalAdjust()
   "If very top window, decrease window size, otherwise just increase current window size
   wincmd k
   if winnr() == currentWin
-    resize -1
+    resize -3
   else
-    resize -1
+    resize -3
     exe currentWin . "wincmd w"
   endif
 endfun
@@ -68,10 +68,10 @@ func! RightVertical()
   " If very right window, decrease window size, otherwise just increase current window size
   wincmd l
   if winnr() == currentWin
-    vertical resize -1
+    vertical resize -3
   else
     exe currentWin . "wincmd w"
-    vertical resize +1
+    vertical resize +3
   endif
 endfun
 
@@ -80,9 +80,9 @@ func! LeftVertical()
   " If very left window, decrease window size, otherwise just increase current window size
   wincmd h
   if winnr() == currentWin
-    vertical resize -1
+    vertical resize -3
   else
-    vertical resize -1
+    vertical resize -3
     exe currentWin . "wincmd w"
   endif
 endfun

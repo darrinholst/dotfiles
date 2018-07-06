@@ -242,6 +242,12 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " ------------------- "
 map <Leader><Leader> :ZoomWin<CR>
 nmap <silent> <leader>w :wa<CR>
+nmap <silent> <leader>a :vertical resize 30<CR>
+nmap <silent> <leader><space> :wincmd =<CR>
+
+func! ResetVertical()
+  vertical resize 30
+endfun
 
 " Commenter
 map <leader>/ <plug>NERDCommenterToggle
