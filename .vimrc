@@ -528,6 +528,7 @@ let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEnableSnipMate = 0
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
 " --------- "
 " Neoformat "
