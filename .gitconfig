@@ -56,7 +56,7 @@
   line-graphics = utf-8
   mouse = true
   main-view-date-display = relative-compact
-  main-view-author-display = email-user
+  main-view-author-display = full
   main-view-id-display = yes
   main-view-commit-title-graph = v1
 
