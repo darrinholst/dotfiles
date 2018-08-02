@@ -97,6 +97,7 @@ alias vim="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
 alias tmux='tmux -2 -u'
 alias git=hub
 alias gpf='git push --force-with-lease'
+alias gbdf='git branch -D'
 alias run='npm run'
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 
