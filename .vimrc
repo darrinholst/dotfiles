@@ -11,7 +11,8 @@ Plugin 'VundleVim/Vundle.vim'
 ":sort /\/[^']*/ri
 
 Plugin 'file:///Users/darrinholst/Projects/vim-vimrc'
-Plugin 'chriskempson/base16-vim'
+"Plugin 'chriskempson/base16-vim'
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mattn/emmet-vim'
@@ -76,13 +77,15 @@ filetype plugin indent on    " required
 " --------------- "
 " Colors and Font "
 " --------------- "
+color Tomorrow-Night
 set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete:h17 " http://nerdfonts.com/
+set t_Co=256
 
-if filereadable(expand("~/.vimrc_background"))
-  set t_Co=256
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+"if filereadable(expand("~/.vimrc_background"))
+  "set t_Co=256
+  "let base16colorspace=256
+  "source ~/.vimrc_background
+"endif
 
 " -------------- "
 " General Config "
@@ -444,7 +447,7 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
-let g:airline_theme='base16_tomorrow'
+let g:airline_theme='minimalist'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
