@@ -99,6 +99,7 @@ alias git=hub
 alias gpf='git push --force-with-lease'
 alias gbdf='git branch -D'
 alias run='npm run'
+alias cr='code -r'
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
