@@ -41,6 +41,8 @@
   publish = !git push -u origin $(git branch-name)
   wtfdid = !git log --author=$(whoami) --after=$(date -v1d +"%Y-%m-%dT00:00:00") --before=$(date -v1d -v+1m +"%Y-%m-%dT00:00:00") --date=short --reverse --pretty=format:'%ad %s'
   wtfdidlast = !git log --author=$(whoami) --after=$(date -v-1m -v1d +"%Y-%m-%dT00:00:00") --before=$(date -v1d +"%Y-%m-%dT00:00:00") --date=short --reverse --pretty=format:'%ad %s'
+  wip = !git add -A && git commit -m 'wip'
+  unwip = !git reset HEAD~
 
 [push]
   default = simple
