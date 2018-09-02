@@ -35,7 +35,7 @@ SPACESHIP_EXIT_CODE_SHOW=false
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZSH=$HOME/.oh-my-zsh
 export DISABLE_UPDATE_PROMPT=true
-plugins=(bundler common-aliases docker docker-compose osx vi-mode npm git yarn)
+plugins=(bundler common-aliases docker docker-compose osx vi-mode npm git git-extras yarn)
 source $ZSH/oh-my-zsh.sh
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

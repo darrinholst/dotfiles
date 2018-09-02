@@ -1,12 +1,13 @@
-brew 'autoenv'
-brew 'brew-cask'
-brew 'ctags'
-brew 'git'
-brew 'hub'
-brew 'libxml2'
-brew 'macvim'
-brew 'openssl'
-brew 'the_silver_searcher'
-brew 'tig'
-
-tap 'caskroom/cask'
+brew "git"
+brew "git-extras"
+brew "hub"
+brew "libxml2"
+brew "postgresql"
+brew "rbenv"
+brew "reattach-to-user-namespace"
+brew "shellcheck"
+brew "syncthing", restart_service: true
+brew "the_silver_searcher"
+brew "tig"
+brew "tmux"
+brew "wget"
