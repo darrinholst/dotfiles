@@ -10,7 +10,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 ":sort /\/[^']*/ri
 
-Plugin 'file:///Users/darrinholst/Projects/vim-vimrc'
 "Plugin 'chriskempson/base16-vim'
 Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -67,6 +66,7 @@ Plugin 'benmills/vimux'
 Plugin 'sjl/vitality.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'regedarek/ZoomWin'
+Plugin 'wakatime/vim-wakatime'
 
 " order dependent
 Plugin 'ryanoasis/vim-devicons'
@@ -288,10 +288,10 @@ nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 
 function! UnmapKeys()
   " git gutter commands slow down window navigation
-  nunmap ,hu
-  nunmap ,hp
+  "nunmap ,hu
+  "nunmap ,hp
   "nunmap ,hr
-  nunmap ,hs
+  "nunmap ,hs
 
   " ,cl closes windows for me
   nunmap ,cl
@@ -503,7 +503,7 @@ let g:vrc_curl_opts = {
 " --------- "
 " vim-pasta "
 " --------- "
-let g:pasta_disabled_filetypes = ['agsv', 'python', 'coffee', 'markdown', 'yaml', 'slim']
+let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", "yaml", "slim", "nerdtree", "netrw", "startify", "ctrlp", "agsv"]
 
 " ----------------- "
 " vim-autoformatter "

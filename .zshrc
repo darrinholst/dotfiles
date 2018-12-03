@@ -44,7 +44,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^r' history-incremental-search-backward
 unsetopt correct_all
 set -o vi
-export CDPATH=.:~:~/Projects
+export CDPATH=.:~:~/Projects:~/Projects/lt:~/Projects/deere
 export TERM=xterm-color
 export CLICOLOR=1
 export EDITOR="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
@@ -102,13 +102,15 @@ alias run='npm run'
 alias cr='code -r'
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 
+eval "$(nodenv init -)"
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The colors
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#BASE16_SHELL="$HOME/.config/base16-shell/"
-#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 #base16_solarized-light
-#base16_tomorrow-night
+base16_tomorrow-night
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Enter the rest at your own risk
