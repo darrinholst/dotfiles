@@ -44,7 +44,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^r' history-incremental-search-backward
 unsetopt correct_all
 set -o vi
-export CDPATH=.:~:~/Projects:~/Projects/lt:~/Projects/deere
+export CDPATH=.:~:~/projects:~/projects/lt:~/projects/deere
 export TERM=xterm-color
 export CLICOLOR=1
 export EDITOR="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
