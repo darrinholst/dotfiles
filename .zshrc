@@ -66,6 +66,11 @@ export JAVA_OPTS="-client -Xms64m -Xmx1024m"
 export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# The javascripts
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+eval "$(nodenv init -)"
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # autoenv
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if [ ! -d "$HOME/.autoenv" ]; then
@@ -97,20 +102,16 @@ alias vim="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
 alias tmux='tmux -2 -u'
 alias git=hub
 alias gpf='git push --force-with-lease'
-alias gbdf='git branch -D'
 alias run='npm run'
 alias code='code-insiders'
 alias cr='code-insiders -r'
-alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
-
-eval "$(nodenv init -)"
+alias fp=any
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The colors
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-#base16_solarized-light
 base16_tomorrow-night
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -129,6 +130,7 @@ clean-node() {
   killall node
 }
 
+# find and list processes matching a case-insensitive partial-match string...I think
 any() {
   emulate -L zsh
   unsetopt KSH_ARRAYS
@@ -136,23 +138,30 @@ any() {
     echo "any - grep for process(es) by keyword" >&2
     echo "Usage: any " >&2 ; return 1
   else
-    ps xauwww | grep -i --color=auto "[${1[1]}]${1[2,-1]}"
+    ps ax -o pid,user,start,command | grep -i --color=auto "[${1[1]}]${1[2,-1]}"
   fi
-}
-
-fp() { # find and list processes matching a case-insensitive partial-match string
-  ps Ao pid,comm|awk '{match($0,/[^\/]+$/); print substr($0,RSTART,RLENGTH)": "$1}'|grep -i $1|grep -v grep
 }
 
 fk() { # build menu to kill process
   IFS=$'\n'
   PS3='Kill which process? '
-  select OPT in $(fp $1) "Cancel"; do
+
+  select OPT in $(fp $1) "Cancel" "All"; do
     if [ $OPT != "Cancel" ]; then
-      kill $(echo $OPT|awk '{print $NF}')
+      if [ $OPT != "All" ]; then
+        local PROCESSES=$OPT
+      else
+        local PROCESSES=$(fp $1)
+      fi
+
+      for PID in $(echo $PROCESSES|awk '{print $1}'); do
+        kill $PID
+      done
     fi
+
     break
   done
+
   unset IFS
 }
 
@@ -172,10 +181,3 @@ attach() {
   tmux attach -t $1 || tmux new -s $1
 }
 
-nvm-load() {
-  source "$HOME/.nvm/nvm.sh"
-}
-
-swagger-editor() {
-  docker run -ti --rm --volume="$(pwd)":/swagger -p 8080:8080 zixia/swagger-edit "$@"
-}
