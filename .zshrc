@@ -99,7 +99,8 @@ alias git=hub
 alias gpf='git push --force-with-lease'
 alias gbdf='git branch -D'
 alias run='npm run'
-alias cr='code -r'
+alias code='code-insiders'
+alias cr='code-insiders -r'
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 
 eval "$(nodenv init -)"
