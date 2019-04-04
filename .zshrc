@@ -55,9 +55,7 @@ export GEM_OPEN_EDITOR="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
 # The rubies
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 eval "$(rbenv init -)"
-export RUBYOPT="rubygems"
 export ARCHFLAGS='-arch x86_64' # This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
-export JRUBY_OPTS="--1.9"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The javas
