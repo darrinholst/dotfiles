@@ -9,4 +9,5 @@ cm.netteller.com.js
 *.so
 .vim/bundle
 .tmuxline.conf
+.vim/plugged
 

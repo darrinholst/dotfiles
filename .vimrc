@@ -1,79 +1,78 @@
-" ------- "
-" Plugins "
-" ------- "
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set nocompatible " be iMproved
 
-Plugin 'VundleVim/Vundle.vim'
+" -------- "
+" Vim-Plug "
+" -------- "
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-":sort /\/[^']*/ri
+call plug#begin('~/.vim/plugged')
 
-Plugin 'danielwe/base16-vim'
-"Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'wincent/ferret'
-Plugin 'othree/html5.vim'
-Plugin 'sbdchd/neoformat'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'godlygeek/tabular'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'tomtom/tlib_vim'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'gabesoft/vim-ags'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'qpkorr/vim-bufkill'
-Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-jdaddy'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'pangloss/vim-javascript'
-Plugin 'elzr/vim-json'
-Plugin 'mxw/vim-jsx'
-Plugin 'tpope/vim-markdown'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'moll/vim-node'
-Plugin 'sickill/vim-pasta'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'diepm/vim-rest-console'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 't9md/vim-smalls'
-Plugin 'honza/vim-snippets'
-Plugin 'tpope/vim-surround'
-Plugin 'janko-m/vim-test'
-Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'triglav/vim-visual-increment'
-Plugin 'pedrohdz/vim-yaml-folds'
-Plugin 'maxbrunsfeld/vim-yankstack'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'benmills/vimux'
-Plugin 'sjl/vitality.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'regedarek/ZoomWin'
-Plugin 'wakatime/vim-wakatime'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'danielwe/base16-vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mattn/emmet-vim'
+Plug 'wincent/ferret'
+Plug 'othree/html5.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'sbdchd/neoformat'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'scrooloose/syntastic'
+Plug 'godlygeek/tabular'
+Plug 'ternjs/tern_for_vim'
+Plug 'tomtom/tlib_vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
+Plug 'SirVer/ultisnips'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'gabesoft/vim-ags'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'qpkorr/vim-bufkill'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy'
+Plug 'airblade/vim-gitgutter'
+Plug 'elzr/vim-json'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-markdown'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'moll/vim-node'
+Plug 'sickill/vim-pasta'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'diepm/vim-rest-console'
+Plug 'tpope/vim-rhubarb'
+Plug 'vim-ruby/vim-ruby'
+Plug 't9md/vim-smalls'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'janko-m/vim-test'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-unimpaired'
+Plug 'triglav/vim-visual-increment'
+Plug 'pedrohdz/vim-yaml-folds'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'Shougo/vimproc.vim'
+Plug 'benmills/vimux'
+Plug 'sjl/vitality.vim'
+Plug 'regedarek/ZoomWin'
+Plug 'wakatime/vim-wakatime'
 
 " order dependent
-Plugin 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 " --------------- "
 " Colors and Font "
@@ -167,6 +166,11 @@ set list listchars=tab:\ \ ,trail:·
 filetype plugin on
 filetype indent on
 
+" --- "
+" ale "
+" --- "
+let g:ale_sign_column_always = 1
+
 " ---------- "
 " completion "
 " ---------- "
@@ -187,16 +191,11 @@ if has("autocmd")
         \| exe "normal g'\"" | endif
 endif
 
-" ----- "
-" ctrlp "
-" ----- "
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|\.git$\|target\|vendor\/bundle\|vendor\/cache'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_match_window_reversed = 0
-au FocusGained * :ClearCtrlPCache
-map <C-e> :<C-U>CtrlPBuffer<CR>
-imap <C-e> <ESC>:<C-U>CtrlPBuffer<CR>
+" ------------ "
+" fuzzy finder "
+" ------------ "
+nnoremap <C-p> :GFiles<CR>
+nnoremap <C-e> :History<CR>
 
 " ---------------- "
 " dash integration "
@@ -532,6 +531,26 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
+" --- "
+" coc "
+" --- "
+"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif<Paste>
+"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+noremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " --------- "
 " UtilSnips "
 " --------- "
@@ -639,3 +658,96 @@ au Filetype vim call SetVimOptions()
 function! SetVimOptions()
   normal zR
 endfunction
+
+" ------- "
+" resizer "
+" ------- "
+nnoremap <silent> <M-Down> :call DownHorizontal()<CR>
+nnoremap <silent> <M-Up> :call UpHorizontal()<CR>
+nnoremap <silent> <M-Right> :call RightVertical()<CR>
+nnoremap <silent> <M-Left> :call LeftVertical()<CR>
+
+func! DownHorizontal()
+  let currentWin = winnr()
+  "If no window below or above leave as is, otherwise call function
+  wincmd j
+  if winnr() == currentWin
+    wincmd k
+    if winnr() == currentWin
+      wincmd k
+    else
+      exe currentWin . "wincmd w"
+      call DownHorizontalAdjust()
+    endif
+  else
+    exe currentWin . "wincmd w"
+    call DownHorizontalAdjust()
+  endif
+endfun
+
+func! DownHorizontalAdjust()
+  let currentWin = winnr()
+  "If very bottom window, decrease window size, otherwise just increase current window size
+  wincmd j
+  if winnr() == currentWin
+    resize -3
+  else
+    exe currentWin . "wincmd w"
+    resize +3
+  endif
+endfun
+
+func! UpHorizontal ()
+  let currentWin = winnr()
+  "If no window below or above leave as is
+  wincmd j
+  if winnr() == currentWin
+    wincmd k
+    if winnr() == currentWin
+      wincmd k
+    else
+      exe currentWin . "wincmd w"
+      call UpHorizontalAdjust()
+    endif
+  else
+    exe currentWin . "wincmd w"
+    call UpHorizontalAdjust()
+  endif
+endfun
+
+func! UpHorizontalAdjust()
+  let currentWin = winnr()
+  "If very top window, decrease window size, otherwise just increase current window size
+  wincmd k
+  if winnr() == currentWin
+    resize -3
+  else
+    resize -3
+    exe currentWin . "wincmd w"
+  endif
+endfun
+
+func! RightVertical()
+  let currentWin = winnr()
+  " If very right window, decrease window size, otherwise just increase current window size
+  wincmd l
+  if winnr() == currentWin
+    vertical resize -3
+  else
+    exe currentWin . "wincmd w"
+    vertical resize +3
+  endif
+endfun
+
+func! LeftVertical()
+  let currentWin = winnr()
+  " If very left window, decrease window size, otherwise just increase current window size
+  wincmd h
+  if winnr() == currentWin
+    vertical resize -3
+  else
+    vertical resize -3
+    exe currentWin . "wincmd w"
+  endif
+endfun
+
