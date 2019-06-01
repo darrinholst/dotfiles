@@ -47,9 +47,10 @@ set -o vi
 export CDPATH=.:~:~/projects:~/projects/lt:~/projects/deere
 export TERM=xterm-color
 export CLICOLOR=1
-export EDITOR="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
-export GIT_EDITOR="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
-export GEM_OPEN_EDITOR="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
+export EDITOR="nvim"
+export GIT_EDITOR="nvim"
+export GEM_OPEN_EDITOR="nvim"
+export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The rubies
@@ -96,13 +97,13 @@ zstyle ':completion:*' group-name ''
 # aliases
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias listening='lsof -i -P | grep -i listen'
-alias vim="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
+alias vim="nvim"
 alias tmux='tmux -2 -u'
 alias git=hub
 alias gpf='git push --force-with-lease'
 alias run='npm run'
-alias code='code-insiders'
-alias cr='code-insiders -r'
+alias code='code'
+alias cr='code -r'
 alias fp=any
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
