@@ -24,7 +24,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'ternjs/tern_for_vim'
 Plug 'tomtom/tlib_vim'
@@ -44,7 +43,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-jdaddy'
 Plug 'airblade/vim-gitgutter'
 Plug 'elzr/vim-json'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-markdown'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'moll/vim-node'
@@ -165,11 +163,6 @@ set expandtab                   "spaces, not tabs
 set list listchars=tab:\ \ ,trail:·
 filetype plugin on
 filetype indent on
-
-" --- "
-" ale "
-" --- "
-let g:ale_sign_column_always = 1
 
 " ---------- "
 " completion "
@@ -293,12 +286,6 @@ nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
 
 function! UnmapKeys()
-  " git gutter commands slow down window navigation
-  "nunmap ,hu
-  "nunmap ,hp
-  "nunmap ,hr
-  "nunmap ,hs
-
   " ,cl closes windows for me
   nunmap ,cl
   vunmap ,cl
@@ -330,11 +317,10 @@ au FocusLost * call feedkeys("\<C-\>\<C-n>") " Return to normal mode on FocustLo
 " ------------- "
 " file mappings "
 " ------------- "
-au BufNewFile,BufRead Capfile,Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
+au BufNewFile,BufRead Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
 au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
 au BufNewFile,BufRead *.eslintrc,*.babelrc,*.stylelintrc,*.nycrc,*.rng set filetype=json
-au BufNewFile,BufRead *.jstd set filetype=javascript
 au BufNewFile,BufRead *.envrc,*.env,*.env.leave set filetype=sh
 
 command! HashRocket :call HashRocket()
@@ -366,24 +352,6 @@ imap <silent> <F8> <Esc><F8>
 " -------- "
 imap <F3> <Esc><F3>
 nnoremap <F3> :silent! wall!<cr>
-
-" --------- "
-" syntastic "
-" --------- "
-let g:syntastic_enable_signs=1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tslint']
-let g:syntastic_cucumber_checkers = []
-let g:syntastic_less_checkers = []
-let g:syntastic_scss_checkers = ['stylelint']
-let g:syntastic_html_checkers = ['tidy']
-
-let g:syntastic_html_tidy_ignore_errors = [
-      \   '> proprietary attribute "',
-      \   '> is not recognized!',
-      \   'discarding unexpected <',
-      \   'trimming empty <'
-      \ ]
 
 " ------- "
 " testing "
@@ -454,7 +422,6 @@ map ,xt :call DoPrettyXML()<CR>
 " ------- "
 let g:airline_powerline_fonts=1
 let g:airline_theme='base16_tomorrow'
-"let g:airline_theme='minimalist'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
@@ -479,7 +446,7 @@ let g:tmuxline_preset = {
       \'y'           : '%l:%M',
       \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
       \'options'     : {'status-justify' : 'left'},
-      \'win_options' : {'window-status-activity-attr' : 'none'}}
+      \}
 
 " -------- "
 " dispatch "
@@ -499,13 +466,13 @@ map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
 " --- "
 let g:vrc_trigger = '<C-r>'
 let g:vrc_curl_opts = {
-  \ '--connect-timeout' : 10,
-  \ '-L': '',
-  \ '-i': '',
-  \ '--max-time': 10,
-  \ '--ipv4': '',
-  \ '-k': '',
-\}
+      \ '--connect-timeout' : 10,
+      \ '-L': '',
+      \ '-i': '',
+      \ '--max-time': 10,
+      \ '--ipv4': '',
+      \ '-k': '',
+      \}
 
 " --------- "
 " vim-pasta "
@@ -525,31 +492,142 @@ noremap <F5> :Neoformat<CR>
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
-" ------------- "
-" YouCompleteMe "
-" ------------- "
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-
 " --- "
 " coc "
 " --- "
-"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif<Paste>
-"
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+let g:coc_global_extensions = [
+      \ "coc-css",
+      \ "coc-eslint",
+      \ "coc-html",
+      \ "coc-json",
+      \ "coc-snippets",
+      \ "coc-tsserver",
+      \ "coc-ultisnips",
+      \ "coc-yank",
+      \ "coc-emoji",
+      \ "coc-diagnostic",
+      \]
 
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-noremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+
+" Add diagnostic info for https://github.com/itchyny/lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " --------- "
 " UtilSnips "
