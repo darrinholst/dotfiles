@@ -360,6 +360,17 @@ nmap <silent> <leader>t :wa \| TestNearest<CR>
 nmap <silent> <leader>T :wa \| TestLast<CR>
 let test#strategy = "vimux"
 
+" ---------------- "
+" vim rest console "
+" ---------------- "
+let g:vrc_curl_opts = {
+  \ '-sS': '',
+  \ '--connect-timeout': 10,
+  \ '-i': '',
+  \ '--max-time': 60,
+  \ '-k': '',
+\}
+
 " ---------- "
 " unimparied "
 " ---------- "
