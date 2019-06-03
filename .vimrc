@@ -75,9 +75,7 @@ call plug#end()
 " --------------- "
 " Colors and Font "
 " --------------- "
-"color Tomorrow-Night
 set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete:h17 " http://nerdfonts.com/
-"set t_Co=256
 
 if filereadable(expand("~/.vimrc_background"))
   set t_Co=256
@@ -115,18 +113,30 @@ set re=1                        "https://stackoverflow.com/questions/16902317/vi
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
+" ------------- "
+" vim-gitgutter "
+" ------------- "
+let g:gitgutter_map_keys = 0
+
 " ------------ "
 " highlighting "
 " ------------ "
-hi Visual cterm=NONE ctermbg=darkgreen ctermfg=black
-hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
-hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
-hi VertSplit ctermbg=black ctermfg=grey
+hi CursorLineNR ctermfg=white
+hi GitGutterAdd ctermbg=black
+hi GitGutterChange ctermbg=black
+hi GitGutterChangeDelete ctermbg=black
+hi GitGutterDelete ctermbg=black
+hi CursorLineNr ctermbg=black ctermfg=yellow cterm=bold
+hi LineNr ctermbg=black cterm=NONE
+hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
 hi NonText ctermfg=black
 hi Normal ctermbg=NONE
-hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
 hi Search term=reverse ctermfg=black ctermbg=darkgreen
-hi CursorLineNR ctermfg=white
+hi SignColumn ctermbg=black
+hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
+hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
+hi VertSplit ctermbg=black ctermfg=darkgreen
+hi Visual cterm=NONE ctermbg=darkgreen ctermfg=black
 hi clear CursorLine
 
 " ------ "
@@ -292,7 +302,9 @@ function! UnmapKeys()
   noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
 endfunction
 
-au VimEnter * call UnmapKeys()
+function! TurnGitGutterOff()
+  :GitGutterDisable
+endfunction
 
 " --------------------------- "
 " directory handling on enter "
@@ -306,6 +318,8 @@ endfunction
 
 augroup vim_enter
   au VimEnter * call <SID>CdIfDirectory(expand("<amatch>"))
+  au VimEnter * call UnmapKeys()
+  au VimEnter * call TurnGitGutterOff()
 augroup END
 
 " ---------- "
