@@ -9,5 +9,7 @@ tags
 *.so
 .agignore
 .env
+.env.leave
 .vscode
+.node-version
 
