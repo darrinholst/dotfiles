@@ -1,0 +1,10 @@
+{
+  "coc.source.emoji.filetypes": null,
+  "coc.source.emoji.triggerCharacters": ["^"],
+  "diagnostic.errorSign": "🔥",
+  "diagnostic.warningSign": "💩",
+  "diagnostic.infoSign": "👉",
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  }
+}

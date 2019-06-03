@@ -14,6 +14,7 @@ desc 'link em up'
 task 'link' do
   symlink_this('.bash_profile')
   symlink_this('.bin')
+  symlink_this('.config/nvim')
   symlink_this('.env')
   symlink_this('.gemrc')
   symlink_this('.git_template')
