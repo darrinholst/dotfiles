@@ -197,8 +197,10 @@ endif
 " ------------ "
 " fuzzy finder "
 " ------------ "
+nnoremap <C-f> :Files<CR>
 nnoremap <C-p> :GFiles<CR>
-nnoremap <C-e> :History<CR>
+nnoremap <C-e> :Buffers<CR>
+nnoremap <C-h> :History<CR>
 
 " ---------------- "
 " dash integration "

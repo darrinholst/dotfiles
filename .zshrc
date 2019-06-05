@@ -50,7 +50,7 @@ export CLICOLOR=1
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export GEM_OPEN_EDITOR="nvim"
-export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The rubies
