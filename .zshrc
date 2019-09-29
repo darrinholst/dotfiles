@@ -183,3 +183,7 @@ attach() {
   tmux attach -t $1 || tmux new -s $1
 }
 
+untilfails() {
+  while $@; do :; done
+}
+
