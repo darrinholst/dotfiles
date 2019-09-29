@@ -35,13 +35,16 @@ SPACESHIP_EXIT_CODE_SHOW=false
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZSH=$HOME/.oh-my-zsh
 export DISABLE_UPDATE_PROMPT=true
-plugins=(bundler common-aliases docker docker-compose osx vi-mode npm git git-extras yarn)
+plugins=(bundler colored-man-pages common-aliases docker docker-compose encode64 osx vi-mode npm git git-auto-fetch git-extras history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Rando
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bindkey '^r' history-incremental-search-backward
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
 unsetopt correct_all
 set -o vi
 export CDPATH=.:~:~/projects:~/projects/lt:~/projects/deere
