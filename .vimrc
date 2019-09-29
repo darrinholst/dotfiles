@@ -448,7 +448,7 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
-let g:airline_theme='base16_tomorrow'
+let g:airline_theme='minimalist'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
