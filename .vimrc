@@ -25,7 +25,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'godlygeek/tabular'
-Plug 'ternjs/tern_for_vim'
 Plug 'tomtom/tlib_vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'Quramy/tsuquyomi'
@@ -201,6 +200,7 @@ nnoremap <C-f> :Files<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-e> :Buffers<CR>
 nnoremap <C-h> :History<CR>
+let g:fzf_layout = { 'up': '~40%' }
 
 " ---------------- "
 " dash integration "
