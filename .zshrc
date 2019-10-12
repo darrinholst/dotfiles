@@ -80,9 +80,9 @@ if [ ! -d "$HOME/.autoenv" ]; then
   git clone git://github.com/kennethreitz/autoenv.git "$HOME/.autoenv"
 fi
 
-export AUTOENV_ASSUME_YES="true"
-export AUTOENV_ENABLE_LEAVE="true"
-source ~/.autoenv/activate.sh
+#export AUTOENV_ASSUME_YES="true"
+#export AUTOENV_ENABLE_LEAVE="true"
+#source ~/.autoenv/activate.sh
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # autocomplete stuff I copied from the INTERNET
