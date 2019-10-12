@@ -75,14 +75,20 @@ eval "$(nodenv init -)"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # autoenv
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [ ! -d "$HOME/.autoenv" ]; then
-  echo "installing autoenv"
-  git clone git://github.com/kennethreitz/autoenv.git "$HOME/.autoenv"
-fi
+#if [ ! -d "$HOME/.autoenv" ]; then
+  #echo "installing autoenv"
+  #git clone git://github.com/kennethreitz/autoenv.git "$HOME/.autoenv"
+#fi
 
 #export AUTOENV_ASSUME_YES="true"
 #export AUTOENV_ENABLE_LEAVE="true"
 #source ~/.autoenv/activate.sh
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# direnv
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+eval "$(direnv hook zsh)"
+export DIRENV_LOG_FORMAT=
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # autocomplete stuff I copied from the INTERNET
