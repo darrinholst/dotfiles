@@ -8,7 +8,8 @@ task 'bootstrap' => 'link' do
   sh "git clone https://github.com/denysdovhan/spaceship-prompt.git \"$ZSH_CUSTOM/themes/spaceship-prompt\""
   sh "ln -s \"$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme\" \"$ZSH_CUSTOM/themes/spaceship.zsh-theme\""
   sh "git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell"
-  sh "pyenv install 2.7.16 && pyenv global 2.7.16"
+  sh "sudo python -m ensurepip --default-pip"
+  sh "python -m pip install --user --upgrade pynvim"
   sh "nodenv install 10.16.3 && nodenv global 10.16.3"
   echo "install snappy, xscope, soulver, pixelmator from mas"
 end
