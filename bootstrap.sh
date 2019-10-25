@@ -38,5 +38,5 @@ sudo python -m pip install --upgrade pynvim
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #~ back to more sane stuff like javascript ~#
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-nodenv install 10.16.3 
+nodenv install 10.16.3
 nodenv global 10.16.3
