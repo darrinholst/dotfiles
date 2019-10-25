@@ -19,6 +19,11 @@ curl -L http://install.ohmyz.sh | sh
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
+#~~~~~~~~~~~~~~~~~~~~~~~#
+#~ tmux plugin manager ~#
+#~~~~~~~~~~~~~~~~~~~~~~~#
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 #~~~~~~~~~~~~~~#
 #~ the colors ~#
 #~~~~~~~~~~~~~~#
