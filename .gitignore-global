@@ -13,3 +13,4 @@ tags
 .vscode
 .node-version
 
+.envrc
