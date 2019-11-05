@@ -3,7 +3,7 @@
 # xcode command line tools are installed the first time you try to clone this repo
 # xcode-select --install
 
-sh ./link.sh
+source ./link.sh
 
 defaults write -g ApplePressAndHoldEnabled -bool false
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
@@ -21,6 +21,8 @@ brew bundle install
 #~ install ohmyzsh ~#
 #~~~~~~~~~~~~~~~~~~~#
 curl -L http://install.ohmyz.sh | sh
+source ./link.sh
+source ~/.zshrc
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
