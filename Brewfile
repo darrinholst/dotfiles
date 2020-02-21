@@ -8,6 +8,7 @@ tap "homebrew/services"
 
 brew "aws-shell"
 brew "cmake"
+brew "ctags"
 brew "direnv"
 brew "drone-cli"
 brew "fzf"

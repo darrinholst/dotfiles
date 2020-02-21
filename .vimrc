@@ -109,6 +109,7 @@ set timeoutlen=1000
 set ttimeoutlen=100
 set mouse=a
 set re=1                        "https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting#16920294
+set tags^=./.git/tags
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
@@ -223,6 +224,12 @@ function! <SID>Eslint()
 endfunction
 
 command! Eslint :call <SID>Eslint()
+
+" -------- "
+" vim-test "
+" -------- "
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-l> :TestLast<CR>
 
 " ------------------------------ "
 " lookup stuff at dictionary.com "

@@ -126,6 +126,10 @@ base16_tomorrow-night
 # Enter the rest at your own risk
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+b64() {
+  echo -n "$1" | openssl base64
+}
+
 clean-vim() {
   rm -rf ~/.vim/backup/*.sw*
 }
@@ -136,6 +140,10 @@ clean-docker() {
 
 clean-node() {
   killall node
+}
+
+clean-cache() {
+  sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder
 }
 
 # find and list processes matching a case-insensitive partial-match string...I think
