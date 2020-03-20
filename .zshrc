@@ -201,3 +201,22 @@ untilfails() {
   while $@; do :; done
 }
 
+which-dns() {
+  networksetup -getdnsservers Wi-Fi
+}
+
+use-opendns() {
+  networksetup -setdnsservers Wi-Fi 208.67.222.222 208.67.220.220
+  which-dns
+}
+
+use-cloudflare() {
+  networksetup -setdnsservers Wi-Fi 1.1.1.1
+  which-dns
+}
+
+use-google() {
+  networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
+  which-dns
+}
+
