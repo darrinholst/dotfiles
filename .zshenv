@@ -11,3 +11,4 @@ export PATH=./node_modules/.bin:$PATH
 export PATH=~/.bin:$PATH
 export PATH=./bin:$PATH
 export PATH=./script:$PATH
+export PATH="/usr/local/opt/awscli@1/bin:$PATH"

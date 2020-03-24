@@ -201,7 +201,8 @@ nnoremap <C-f> :Files<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-e> :Buffers<CR>
 nnoremap <C-h> :History<CR>
-let g:fzf_layout = { 'up': '~40%' }
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_preview_window = 'right:40%'
 
 " ---------------- "
 " dash integration "
