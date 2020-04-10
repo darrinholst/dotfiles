@@ -1,3 +1,5 @@
+source ~/.zprofile
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Spaceship
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,7 +60,6 @@ export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The rubies
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-eval "$(rbenv init -)"
 export ARCHFLAGS='-arch x86_64' # This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,6 +115,8 @@ alias run='npm run'
 alias code='code'
 alias cr='code -r'
 alias fp=any
+alias npm='npm --registry https://registry.npmjs.org'
+alias dpm='npm --registry https://npm.deere.com'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The colors
