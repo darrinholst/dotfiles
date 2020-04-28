@@ -1,4 +1,31 @@
 #!/bin/sh
+
 case "$1" in
-  rebase) exec .git/hooks/post-merge ;;
+  rebase)
+    rebasing_file="$PWD"/.git/rebase_in_progress
+
+    if [[ -f $rebasing_file ]]; then
+      sha_pre_rebase=$(cat "$rebasing_file")
+
+      if [[ $(git --no-pager diff "$sha_pre_rebase") ]]; then
+        echo "Your rebase resulted in code changes"
+        git diff "$sha_pre_rebase"
+
+        read -p "Do you want to keep the changes? [Y/n] " -n 1 -r < /dev/tty
+        echo ""
+
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+          echo "All changes kept"
+        else
+          echo "Discarding changes"
+          echo ""
+          git reset --hard "$sha_pre_rebase"
+        fi
+      fi
+
+      rm "$rebasing_file"
+    fi
+
+    exec .git/hooks/post-merge
+    ;;
 esac
