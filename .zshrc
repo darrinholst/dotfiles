@@ -74,18 +74,6 @@ export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 eval "$(nodenv init -)"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# autoenv
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#if [ ! -d "$HOME/.autoenv" ]; then
-  #echo "installing autoenv"
-  #git clone git://github.com/kennethreitz/autoenv.git "$HOME/.autoenv"
-#fi
-
-#export AUTOENV_ASSUME_YES="true"
-#export AUTOENV_ENABLE_LEAVE="true"
-#source ~/.autoenv/activate.sh
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # direnv
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 eval "$(direnv hook zsh)"
