@@ -165,7 +165,7 @@ fk() { # build menu to kill process
       fi
 
       for PID in $(echo $PROCESSES|awk '{print $1}'); do
-        kill $PID
+        kill -9 $PID
       done
     fi
 
