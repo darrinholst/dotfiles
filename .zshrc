@@ -103,8 +103,6 @@ alias run='npm run'
 alias code='code'
 alias cr='code -r'
 alias fp=any
-alias npm='npm --registry https://registry.npmjs.org'
-alias dpm='npm --registry https://npm.deere.com'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The colors
@@ -115,6 +113,13 @@ base16_tomorrow-night
 
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 🤫 secret stuff goes in this file
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [[ -f .zshrc.local ]]; then
+  source .zshrc.local
+fi
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Enter the rest at your own risk
@@ -129,7 +134,7 @@ clean-vim() {
 }
 
 clean-docker() {
-  docker images -q --filter "dangling=true" | xargs docker rmi
+  docker system prune
 }
 
 clean-node() {
