@@ -56,6 +56,7 @@ export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export GEM_OPEN_EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
+export AWS_CLI_AUTO_PROMPT=on
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The rubies
