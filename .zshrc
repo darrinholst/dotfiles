@@ -100,10 +100,12 @@ alias vim="nvim"
 alias tmux='tmux -2 -u'
 alias git=hub
 alias gpf='git push --force-with-lease'
+alias gcm='git checkout $(git default-branch)'
 alias run='npm run'
 alias code='code'
 alias cr='code -r'
 alias fp=any
+alias tig='tig --no-merges'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The colors
