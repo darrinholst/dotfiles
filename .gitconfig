@@ -36,7 +36,7 @@
   fu = !git add -A && git commit --no-verify -qm 'FU SAVEPOINT' && git reset --hard HEAD~
   co = checkout
   branch-name = !git rev-parse --abbrev-ref HEAD
-  default-branch = !git rev-parse --abbrev-ref main || git rev-parse --abbrev-ref master
+  default-branch = !git rev-parse --abbrev-ref main > /dev/null 2>&1 && echo main || echo master
   cleanup = !git branch --merged $(git default-branch) | egrep -v '^\\*' | xargs -n 1 git branch -d
   publish = !git push -u origin $(git branch-name)
   wtfdid = !git log --author=$(whoami) --after=$(date -v1d +"%Y-%m-%dT00:00:00") --before=$(date -v1d -v+1m +"%Y-%m-%dT00:00:00") --date=short --reverse --pretty=format:'%ad %s'

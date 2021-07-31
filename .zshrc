@@ -101,11 +101,13 @@ alias tmux='tmux -2 -u'
 alias git=hub
 alias gpf='git push --force-with-lease'
 alias gcm='git checkout $(git default-branch)'
+alias gu='git up'
 alias run='npm run'
 alias code='code'
 alias cr='code -r'
 alias fp=any
 alias tig='tig --no-merges'
+alias py=python3
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The colors
