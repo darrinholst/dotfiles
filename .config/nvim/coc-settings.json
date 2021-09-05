@@ -3,7 +3,7 @@
   "coc.source.emoji.triggerCharacters": ["^"],
   "diagnostic.errorSign": "🔥",
   "diagnostic.warningSign": "🤔",
-  "diagnostic.infoSign": "💡",
+  "diagnostic.infoSign": "ℹ",
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   }

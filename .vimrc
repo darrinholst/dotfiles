@@ -10,61 +10,62 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug '/opt/homebrew/opt/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'benmills/vimux'
+Plug 'bling/vim-airline'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'danielwe/base16-vim'
+Plug 'diepm/vim-rest-console'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'elzr/vim-json'
+Plug 'gabesoft/vim-ags'
+Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf.vim'
+Plug 'kevinoid/vim-jsonc'
+Plug 'leafgarland/typescript-vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'mattn/emmet-vim'
-Plug 'wincent/ferret'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'moll/vim-node'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'othree/html5.vim'
-Plug 'sheerun/vim-polyglot'
+Plug 'pedrohdz/vim-yaml-folds'
+Plug 'qpkorr/vim-bufkill'
+Plug 'Quramy/tsuquyomi'
+Plug 'regedarek/ZoomWin'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'godlygeek/tabular'
-Plug 'tomtom/tlib_vim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'leafgarland/typescript-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'Shougo/vimproc.vim'
+Plug 'sickill/vim-pasta'
 Plug 'SirVer/ultisnips'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'gabesoft/vim-ags'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'qpkorr/vim-bufkill'
+Plug 'sjl/vitality.vim'
+Plug 't9md/vim-smalls'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-jdaddy'
-Plug 'airblade/vim-gitgutter'
-Plug 'elzr/vim-json'
 Plug 'tpope/vim-markdown'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'moll/vim-node'
-Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
-Plug 'diepm/vim-rest-console'
 Plug 'tpope/vim-rhubarb'
-Plug 'vim-ruby/vim-ruby'
-Plug 't9md/vim-smalls'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
-Plug 'janko-m/vim-test'
-Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-unimpaired'
 Plug 'triglav/vim-visual-increment'
-Plug 'pedrohdz/vim-yaml-folds'
-Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'Shougo/vimproc.vim'
-Plug 'benmills/vimux'
-Plug 'sjl/vitality.vim'
-Plug 'regedarek/ZoomWin'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ruby/vim-ruby'
 Plug 'wakatime/vim-wakatime'
+Plug 'wincent/ferret'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " order dependent
 Plug 'ryanoasis/vim-devicons'
@@ -116,7 +117,7 @@ runtime macros/matchit.vim
 " ------------- "
 " vim-gitgutter "
 " ------------- "
-let g:gitgutter_map_keys = 0
+"let g:gitgutter_map_keys = 0
 
 " ------------ "
 " highlighting "
@@ -214,6 +215,17 @@ endfunction
 
 command! Dash :call <SID>Dash()
 map <leader>d :call <SID>Dash()<CR>
+
+" --------------------- "
+" duckduckgo            "
+" --------------------- "
+function! <SID>Ddg()
+  execute "!/usr/bin/open https://duckduckgo.com/\\?q\\=" . expand("<cword>")
+  redraw!
+endfunction
+
+command! Ddg :call <SID>Ddg()
+map <leader>ddg :call <SID>Ddg()<CR>
 
 " --------------------- "
 " lookup an eslint rule "
@@ -329,7 +341,7 @@ endfunction
 augroup vim_enter
   au VimEnter * call <SID>CdIfDirectory(expand("<amatch>"))
   au VimEnter * call UnmapKeys()
-  au VimEnter * call TurnGitGutterOff()
+  "au VimEnter * call TurnGitGutterOff()
 augroup END
 
 " ---------- "
@@ -530,6 +542,9 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 " --- "
 " coc "
 " --- "
+
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
 let g:coc_global_extensions = [
       \ "coc-css",
       \ "coc-eslint",
