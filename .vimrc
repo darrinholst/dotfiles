@@ -11,7 +11,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug '/opt/homebrew/opt/fzf'
-Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'cakebaker/scss-syntax.vim'
@@ -32,7 +31,7 @@ Plug 'mattn/emmet-vim'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'moll/vim-node'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'pedrohdz/vim-yaml-folds'
 Plug 'qpkorr/vim-bufkill'
@@ -43,6 +42,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/vimproc.vim'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sickill/vim-pasta'
 Plug 'SirVer/ultisnips'
 Plug 'sjl/vitality.vim'
@@ -114,19 +114,14 @@ set tags^=./.git/tags
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 
-" ------------- "
-" vim-gitgutter "
-" ------------- "
-"let g:gitgutter_map_keys = 0
-
 " ------------ "
 " highlighting "
 " ------------ "
+hi CocGitRemovedSign ctermbg=black ctermfg=red
+hi CocGitAddedSign ctermbg=black ctermfg=green
+hi CocGitChangedSign ctermbg=black ctermfg=yellow
+hi CocCodeLens ctermfg=19
 hi CursorLineNR ctermfg=white
-hi GitGutterAdd ctermbg=black
-hi GitGutterChange ctermbg=black
-hi GitGutterChangeDelete ctermbg=black
-hi GitGutterDelete ctermbg=black
 hi CursorLineNr ctermbg=black ctermfg=yellow cterm=bold
 hi LineNr ctermbg=black cterm=NONE
 hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
@@ -138,7 +133,7 @@ hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
 hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
 hi VertSplit ctermbg=black ctermfg=darkgreen
 hi Visual cterm=NONE ctermbg=darkgreen ctermfg=black
-hi clear CursorLine
+"hi clear CursorLine
 
 " ------ "
 " search "
@@ -148,6 +143,7 @@ set hlsearch         "Hilight searches by default
 set ignorecase       "ignore case
 set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
+"map <leader>f :CocSearch<space>
 "map <leader>f :Ags<space>
 map <leader>f <plug>(FerretAck)
 map <leader>F <plug>(FerretAckWord)
@@ -159,7 +155,7 @@ map <S-C-F4> :cpf<CR>
 let g:ags_agcontext = 0
 let g:ags_edit_show_line_numbers = 0
 let g:ags_winheight = 15
-let g:FerretHlsearch=0
+"let g:FerretHlsearch=0
 
 set <S-F4>=\eO1;2S
 
@@ -324,10 +320,6 @@ function! UnmapKeys()
   noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
 endfunction
 
-function! TurnGitGutterOff()
-  :GitGutterDisable
-endfunction
-
 " --------------------------- "
 " directory handling on enter "
 " --------------------------- "
@@ -341,7 +333,6 @@ endfunction
 augroup vim_enter
   au VimEnter * call <SID>CdIfDirectory(expand("<amatch>"))
   au VimEnter * call UnmapKeys()
-  "au VimEnter * call TurnGitGutterOff()
 augroup END
 
 " ---------- "
@@ -400,12 +391,12 @@ let test#strategy = "vimux"
 " vim rest console "
 " ---------------- "
 let g:vrc_curl_opts = {
-  \ '-sS': '',
-  \ '--connect-timeout': 10,
-  \ '-i': '',
-  \ '--max-time': 60,
-  \ '-k': '',
-\}
+      \ '-sS': '',
+      \ '--connect-timeout': 10,
+      \ '-i': '',
+      \ '--max-time': 60,
+      \ '-k': '',
+      \}
 
 " ---------- "
 " unimparied "
@@ -545,8 +536,10 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
+let g:coc_disable_transparent_cursor=1
 let g:coc_global_extensions = [
       \ "coc-css",
+      \ "coc-git",
       \ "coc-eslint",
       \ "coc-html",
       \ "coc-json",
@@ -556,6 +549,7 @@ let g:coc_global_extensions = [
       \ "coc-yank",
       \ "coc-emoji",
       \ "coc-diagnostic",
+      \ "coc-spell-checker",
       \]
 
 " Some servers have issues with backup files, see #649
@@ -647,13 +641,13 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+        \ },
+        \ 'component_function': {
+          \   'cocstatus': 'coc#status'
+          \ },
+          \ }
 
 " Using CocList
 " Show all diagnostics
