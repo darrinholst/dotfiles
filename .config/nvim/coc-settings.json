@@ -6,5 +6,31 @@
   "diagnostic.infoSign": "ℹ",
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
-  }
+  },
+  "cSpell.userWords": [
+    "Retryable",
+    "presigner"
+  ],
+  "cSpell.enabled": false,
+  "cSpell.enabledLanguageIds": [
+    "git-commit",
+    "handlebars",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "markdown",
+    "plaintext",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+    "yml"
+  ],
+  "git.gitlab.hosts": [
+    "gitlab.com"
+  ],
+  "git.addGBlameToVirtualText": true
 }
+
