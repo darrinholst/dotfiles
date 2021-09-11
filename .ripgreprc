@@ -1,0 +1,7 @@
+--smart-case
+--hidden
+--iglob
+!.git/**/*
+--iglob
+!package-lock.json
+

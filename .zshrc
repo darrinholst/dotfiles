@@ -57,6 +57,8 @@ export GIT_EDITOR="nvim"
 export GEM_OPEN_EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
 export AWS_CLI_AUTO_PROMPT=on
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The rubies
@@ -73,6 +75,7 @@ export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 # The javascripts
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 eval "$(nodenv init -)"
+export PATH=./node_modules/.bin:$PATH
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # direnv
@@ -103,8 +106,7 @@ alias gpf='git push --force-with-lease'
 alias gcm='git checkout $(git default-branch)'
 alias gu='git up'
 alias run='npm run'
-alias code='code'
-alias cr='code -r'
+alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias fp=any
 alias tig='tig --no-merges'
 alias py=python3

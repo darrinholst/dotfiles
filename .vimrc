@@ -18,9 +18,11 @@ Plug 'danielwe/base16-vim'
 Plug 'diepm/vim-rest-console'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'eliba2/vim-node-inspect'
 Plug 'elzr/vim-json'
 Plug 'gabesoft/vim-ags'
 Plug 'godlygeek/tabular'
+Plug 'hashivim/vim-terraform'
 Plug 'honza/vim-snippets'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim'
@@ -143,10 +145,6 @@ set hlsearch         "Hilight searches by default
 set ignorecase       "ignore case
 set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
-"map <leader>f :CocSearch<space>
-"map <leader>f :Ags<space>
-map <leader>f <plug>(FerretAck)
-map <leader>F <plug>(FerretAckWord)
 nmap <silent> <leader>n :noh<CR>
 map <F4> :cn<CR>
 map <S-F4> :cp<CR>
@@ -155,9 +153,19 @@ map <S-C-F4> :cpf<CR>
 let g:ags_agcontext = 0
 let g:ags_edit_show_line_numbers = 0
 let g:ags_winheight = 15
-"let g:FerretHlsearch=0
 
 set <S-F4>=\eO1;2S
+
+" ------ "
+" search "
+" ------ "
+"map <leader>f :CocSearch<space>
+"map <leader>f :Ags<space>
+map <leader>f <plug>(FerretAck)
+map <leader>F <plug>(FerretAckWord)
+let g:FerretExecutableArguments = {
+  \   'rg': '--vimgrep --no-heading --max-columns 4096'
+  \ }
 
 " ---------- "
 " whitespace "
@@ -198,7 +206,7 @@ nnoremap <C-f> :Files<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-e> :Buffers<CR>
 nnoremap <C-h> :History<CR>
-let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'up': '~40%' }
 let g:fzf_preview_window = 'right:40%'
 
 " ---------------- "
@@ -512,6 +520,15 @@ let g:vrc_curl_opts = {
       \ '-k': '',
       \}
 
+" ---------------- "
+" vim-node-inspect "
+" ---------------- "
+nnoremap <silent><S-F6> :NodeInspectConnect("127.0.0.1:9229")<cr>
+nnoremap <silent><S-F7> :NodeInspectStepInto<cr>
+nnoremap <silent><S-F8> :NodeInspectStepOver<cr>
+nnoremap <silent><S-F9> :NodeInspectToggleBreakpoint<cr>
+nnoremap <silent><S-F10> :NodeInspectStop<cr>
+
 " --------- "
 " vim-pasta "
 " --------- "
@@ -682,7 +699,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 let g:neoformat_basic_format_align = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_only_msg_on_error = 1
-let g:neoformat_enabled_json = ['prettier', 'fixjson']
+let g:neoformat_enabled_json = ['jq', 'prettier', 'fixjson']
 let g:neoformat_enabled_javascript = ['prettier', 'eslint_d']
 let g:neoformat_enabled_typescript = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
@@ -717,16 +734,24 @@ function! SetGitCommitOptions()
   setlocal spell
 endfunction
 
+" ---- "
+" yaml "
+" ---- "
+au Filetype yaml call SetYamlOptions()
+
+function! SetYamlOptions()
+  normal zR
+endfunction
+
 " ---------- "
 " TypeScript "
 " ---------- "
 au Filetype typescript call SetTypeScriptOptions()
 
 function! SetTypeScriptOptions()
-  nmap <buffer> <leader>R :TsuRenameSymbol<CR>
-  nmap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
-  nmap <buffer> <Leader>ti :TsuImport<CR>
+  setlocal foldmethod=indent
   setlocal colorcolumn=81
+  normal zR
 endfunction
 
 " ---------- "
@@ -735,10 +760,15 @@ endfunction
 au Filetype javascript call SetJavaScriptOptions()
 
 function! SetJavaScriptOptions()
-  nnoremap <leader>R :TernRename<CR>
+  setlocal foldmethod=indent
   setlocal colorcolumn=81
   normal zR
 endfunction
+
+" --- "
+" CSV "
+" --- "
+let g:csv_no_conceal = 1
 
 " ---- "
 " JSON "
