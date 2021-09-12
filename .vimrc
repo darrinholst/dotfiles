@@ -10,6 +10,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug '/opt/homebrew/opt/fzf'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
@@ -207,7 +209,7 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <C-e> :Buffers<CR>
 nnoremap <C-h> :History<CR>
 let g:fzf_layout = { 'up': '~40%' }
-let g:fzf_preview_window = 'right:40%'
+let g:fzf_preview_window = ['right:40%:hidden', 'ctrl-/']
 
 " ---------------- "
 " dash integration "
@@ -721,6 +723,14 @@ function! SetMarkdownOptions()
   setlocal textwidth=120
   setlocal colorcolumn=121
   setlocal spell
+endfunction
+
+" --- "
+" FZF "
+" --- "
+au FileType fzf call SetFzfOptions()
+
+function! SetFzfOptions()
 endfunction
 
 " ---------- "
