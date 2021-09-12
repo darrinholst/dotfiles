@@ -1,0 +1,4 @@
+#!/bin/bash
+
+RESULTS="$(/opt/homebrew/bin/speedtest --json)"
+curl -H "Content-Type: application/json" -d "$RESULTS" "$1"

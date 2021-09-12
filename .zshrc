@@ -49,13 +49,14 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 unsetopt correct_all
 set -o vi
-export CDPATH=.:~:~/projects:~/projects/lt:~/projects/deere
+export CDPATH=.:~:~/projects:~/projects/aa
 export TERM=xterm-color
 export CLICOLOR=1
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export GEM_OPEN_EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
+export FZF_DEFAULT_OPTS='--bind ctrl-e:up'
 export AWS_CLI_AUTO_PROMPT=on
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
@@ -110,6 +111,14 @@ alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/co
 alias fp=any
 alias tig='tig --no-merges'
 alias py=python3
+alias ti="(cd terraform && ./setup-terraform-local.sh)"
+alias tf="terraform fmt terraform"
+alias tp="terraform -chdir=terraform plan --var-file terraform.tfvars"
+alias ta="terraform -chdir=terraform apply --var-file terraform.tfvars"
+alias tpt="terraform -chdir=terraform plan --var-file test.tfvars"
+alias tat="terraform -chdir=terraform apply --var-file test.tfvars"
+alias tpp="terraform -chdir=terraform plan --var-file prod.tfvars"
+alias tap="terraform -chdir=terraform apply --var-file prod.tfvars"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The colors
