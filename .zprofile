@@ -1,4 +1,3 @@
-export PATH=./node_modules/.bin:$PATH
 export LESS="-FXr"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"

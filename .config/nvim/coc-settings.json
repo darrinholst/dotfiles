@@ -1,15 +1,28 @@
 {
   "coc.source.emoji.filetypes": null,
   "coc.source.emoji.triggerCharacters": ["^"],
-  "diagnostic.errorSign": "🔥",
-  "diagnostic.warningSign": "🤔",
-  "diagnostic.infoSign": "ℹ",
+  "diagnostic.errorSign": ">",
+  "diagnostic.warningSign": ">",
+  "diagnostic.infoSign": ">",
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   },
   "cSpell.userWords": [
+    "Resizeable",
     "Retryable",
-    "presigner"
+    "aaid",
+    "agrilytics",
+    "cornrx",
+    "earlyseasonfungicide",
+    "fileupload",
+    "hexbin",
+    "nprotectant",
+    "presigner",
+    "protectant",
+    "sdacs",
+    "soyrx",
+    "ssurgo",
+    "terraframing"
   ],
   "cSpell.enabled": false,
   "cSpell.enabledLanguageIds": [
@@ -18,8 +31,6 @@
     "html",
     "javascript",
     "javascriptreact",
-    "json",
-    "jsonc",
     "markdown",
     "plaintext",
     "text",
