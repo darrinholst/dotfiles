@@ -75,8 +75,8 @@ export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The javascripts
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-eval "$(nodenv init -)"
 export PATH=./node_modules/.bin:$PATH
+eval "$(nodenv init -)"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # direnv
