@@ -107,22 +107,36 @@ runtime macros/matchit.vim
 " ------------ "
 " highlighting "
 " ------------ "
-hi CocGitRemovedSign ctermbg=black ctermfg=red
-hi CocGitAddedSign ctermbg=black ctermfg=green
-hi CocGitChangedSign ctermbg=black ctermfg=yellow
-hi CocCodeLens ctermfg=19
-hi CursorLineNR ctermfg=white
-hi CursorLineNr ctermbg=black ctermfg=yellow cterm=bold
-hi LineNr ctermbg=black cterm=NONE
-hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
-hi NonText ctermfg=black
-hi Normal ctermbg=NONE
-hi Search term=reverse ctermfg=black ctermbg=darkgreen
-hi SignColumn ctermbg=black
-hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
-hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
-hi VertSplit ctermbg=black ctermfg=darkgreen
-hi Visual cterm=NONE ctermbg=darkgreen ctermfg=black
+" hi CocCodeLens ctermfg=19
+" hi CursorLineNR ctermfg=white
+" hi CursorLineNr ctermbg=black ctermfg=yellow cterm=bold
+" hi LineNr ctermbg=black cterm=NONE
+" hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
+" hi NonText ctermfg=black
+" hi Normal ctermbg=NONE
+" hi Search term=reverse ctermfg=black ctermbg=darkgreen
+" hi SignColumn ctermbg=black
+" hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
+" hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
+" hi VertSplit ctermbg=black ctermfg=darkgreen
+" hi Visual cterm=NONE ctermbg=darkgreen ctermfg=black
+set termguicolors
+hi CocGitRemovedSign guibg=19 guifg=#bf6b68
+hi CocGitAddedSign guibg=19 guifg=#b7bc72
+hi CocGitChangedSign guibg=19 guifg=#e9c780
+hi CocCodeLens guifg=#444444
+hi CursorLineNR guibg=18 guifg=white
+hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
+hi LineNr guibg=19 gui=NONE
+hi MatchParen gui=NONE guibg=#b7bc72 guifg=19
+hi NonText guifg=19
+hi Normal guibg=NONE
+hi Search term=reverse guifg=black guibg=#b7bc72
+hi SignColumn guibg=18
+hi StatusLine guibg=grey guifg=19 gui=NONE
+hi StatusLineNC guibg=grey guifg=19 gui=bold
+hi VertSplit guibg=19 guifg=#b7bc72
+hi Visual gui=NONE guibg=#b7bc72 guifg=black
 
 " ------ "
 " search "
@@ -284,7 +298,33 @@ nnoremap k gk
 let g:nvim_tree_quit_on_open = 1
 let g:nvim_tree_ignore = [ '.git' ]
 let g:nvim_tree_icons = {
-    \ 'default': ''
+    \ 'default': '',
+    \ 'symlink': '',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "",
+    \   'renamed': "➜",
+    \   'untracked': "★",
+    \   'deleted': "",
+    \   'ignored': "◌"
+    \   },
+    \ 'folder': {
+    \   'arrow_open': "",
+    \   'arrow_closed': "",
+    \   'default': "",
+    \   'open': "",
+    \   'empty': "",
+    \   'empty_open': "",
+    \   'symlink': "",
+    \   'symlink_open': "",
+    \   },
+    \   'lsp': {
+    \     'hint': "",
+    \     'info': "",
+    \     'warning': "",
+    \     'error': "",
+    \   }
     \ }
 map <F6> :NvimTreeFindFile<CR>
 imap <F6> <Esc>:NvimTreeFindFile<CR>
@@ -582,22 +622,16 @@ let g:lightline = {
           \ }
 
 " Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr> " Show all diagnostics
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr> " Manage extensions
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr> " Show commands
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr> " Find symbol of current document
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr> " Search workspace symbols
+nnoremap <silent> <space>j  :<C-u>CocNext<CR> " Do default action for next item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR> " Do default action for previous item.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR> " Resume latest coc list
+
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 " --------- "
 " UtilSnips "
