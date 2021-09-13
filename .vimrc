@@ -10,40 +10,31 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug '/opt/homebrew/opt/fzf'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'danielwe/base16-vim'
-Plug 'diepm/vim-rest-console'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim'
-Plug 'eliba2/vim-node-inspect'
 Plug 'elzr/vim-json'
-Plug 'gabesoft/vim-ags'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'honza/vim-snippets'
-Plug 'janko-m/vim-test'
+Plug '/opt/homebrew/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'kevinoid/vim-jsonc'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'leafgarland/typescript-vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'mattn/emmet-vim'
-Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'moll/vim-node'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'othree/html5.vim'
 Plug 'pedrohdz/vim-yaml-folds'
 Plug 'qpkorr/vim-bufkill'
-Plug 'Quramy/tsuquyomi'
 Plug 'regedarek/ZoomWin'
 Plug 'sbdchd/neoformat'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/vimproc.vim'
 Plug 'shumphrey/fugitive-gitlab.vim'
@@ -51,25 +42,20 @@ Plug 'sickill/vim-pasta'
 Plug 'SirVer/ultisnips'
 Plug 'sjl/vitality.vim'
 Plug 't9md/vim-smalls'
-Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tomtom/tlib_vim'
-Plug 'tpope/vim-cucumber'
-Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'triglav/vim-visual-increment'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-ruby/vim-ruby'
 Plug 'wakatime/vim-wakatime'
 Plug 'wincent/ferret'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " order dependent
 Plug 'ryanoasis/vim-devicons'
@@ -137,7 +123,6 @@ hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
 hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
 hi VertSplit ctermbg=black ctermfg=darkgreen
 hi Visual cterm=NONE ctermbg=darkgreen ctermfg=black
-"hi clear CursorLine
 
 " ------ "
 " search "
@@ -152,17 +137,14 @@ map <F4> :cn<CR>
 map <S-F4> :cp<CR>
 map <C-F4> :cnf<CR>
 map <S-C-F4> :cpf<CR>
-let g:ags_agcontext = 0
-let g:ags_edit_show_line_numbers = 0
-let g:ags_winheight = 15
 
 set <S-F4>=\eO1;2S
 
 " ------ "
 " search "
 " ------ "
-"map <leader>f :CocSearch<space>
-"map <leader>f :Ags<space>
+nnoremap <leader>t :Telescope 
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
 map <leader>f <plug>(FerretAck)
 map <leader>F <plug>(FerretAckWord)
 let g:FerretExecutableArguments = {
@@ -244,12 +226,6 @@ endfunction
 
 command! Eslint :call <SID>Eslint()
 
-" -------- "
-" vim-test "
-" -------- "
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-
 " ------------------------------ "
 " lookup stuff at dictionary.com "
 " ------------------------------ "
@@ -289,9 +265,6 @@ func! ResetVertical()
   vertical resize 30
 endfun
 
-" Commenter
-map <leader>/ <plug>NERDCommenterToggle
-
 " Window Commands
 noremap <silent> <leader>h :wincmd h<CR>
 noremap <silent> <leader>j :wincmd j<CR>
@@ -308,17 +281,18 @@ noremap <silent> <leader>cw :cclose<CR>
 nnoremap j gj
 nnoremap k gk
 
-" File Browser
-map <F6> :NERDTreeFind<CR>
-imap <F6> <Esc>:NERDTreeFind<CR>
-map <F7> :NERDTreeToggle<CR>
-imap <F7> <Esc>:NERDTreeToggle<CR>
+let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_ignore = [ '.git' ]
+let g:nvim_tree_icons = {
+    \ 'default': ''
+    \ }
+map <F6> :NvimTreeFindFile<CR>
+imap <F6> <Esc>:NvimTreeFindFile<CR>
+map <F7> :NvimTreeToggle<CR>
+imap <F7> <Esc>:NvimTreeToggle<CR>
 
 " Opens an edit command with the path of the currently edited file filled in
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" Opens a rename command with the path of the currently edited file filled in
-map <Leader>r :Move <C-R>=expand("%:p") <CR>
 
 nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
 nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
@@ -390,24 +364,6 @@ imap <silent> <F8> <Esc><F8>
 imap <F3> <Esc><F3>
 nnoremap <F3> :silent! wall!<cr>
 
-" ------- "
-" testing "
-" ------- "
-nmap <silent> <leader>t :wa \| TestNearest<CR>
-nmap <silent> <leader>T :wa \| TestLast<CR>
-let test#strategy = "vimux"
-
-" ---------------- "
-" vim rest console "
-" ---------------- "
-let g:vrc_curl_opts = {
-      \ '-sS': '',
-      \ '--connect-timeout': 10,
-      \ '-i': '',
-      \ '--max-time': 60,
-      \ '-k': '',
-      \}
-
 " ---------- "
 " unimparied "
 " ---------- "
@@ -415,16 +371,6 @@ nmap <C-k> <Plug>unimpairedMoveUp
 nmap <C-j> <Plug>unimpairedMoveDown
 xmap <C-k> <Plug>unimpairedMoveSelectionUp
 xmap <C-j> <Plug>unimpairedMoveSelectionDown
-
-" ------ "
-" smalls "
-" ------ "
-au VimEnter * call MapVimSmallsKeys()
-
-function! MapVimSmallsKeys()
-  unmap s
-  nmap s <Plug>(smalls)
-endfunction
 
 " ------------------ "
 " cleanup whitespace "
@@ -496,11 +442,6 @@ let g:tmuxline_preset = {
       \'options'     : {'status-justify' : 'left'},
       \}
 
-" -------- "
-" dispatch "
-" -------- "
-nnoremap <F9> :wa \| :Dispatch<CR>
-
 " ----- "
 " vimux "
 " ----- "
@@ -508,28 +449,6 @@ let g:VimuxOrientation='h'
 let g:VimuxHeight='30'
 map <Leader>vp :wa \| :VimuxPromptCommand<CR>
 map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
-
-" --- "
-" vrc "
-" --- "
-let g:vrc_trigger = '<C-r>'
-let g:vrc_curl_opts = {
-      \ '--connect-timeout' : 10,
-      \ '-L': '',
-      \ '-i': '',
-      \ '--max-time': 10,
-      \ '--ipv4': '',
-      \ '-k': '',
-      \}
-
-" ---------------- "
-" vim-node-inspect "
-" ---------------- "
-nnoremap <silent><S-F6> :NodeInspectConnect("127.0.0.1:9229")<cr>
-nnoremap <silent><S-F7> :NodeInspectStepInto<cr>
-nnoremap <silent><S-F8> :NodeInspectStepOver<cr>
-nnoremap <silent><S-F9> :NodeInspectToggleBreakpoint<cr>
-nnoremap <silent><S-F10> :NodeInspectStop<cr>
 
 " --------- "
 " vim-pasta "
@@ -543,16 +462,10 @@ let g:autoformat_verbosemode = 1
 imap <silent> <F5> <Esc><F5>
 noremap <F5> :Neoformat<CR>
 
-" ------------- "
-" vim-yankstack "
-" ------------- "
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " --- "
 " coc "
 " --- "
-
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 let g:coc_disable_transparent_cursor=1
@@ -705,7 +618,6 @@ let g:neoformat_enabled_json = ['jq', 'prettier', 'fixjson']
 let g:neoformat_enabled_javascript = ['prettier', 'eslint_d']
 let g:neoformat_enabled_typescript = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
-let g:neoformat_enabled_ruby = ['rufo']
 au BufWritePre *.js,*.ts,*.scss,*.rb Neoformat
 
 " --- "
@@ -723,14 +635,6 @@ function! SetMarkdownOptions()
   setlocal textwidth=120
   setlocal colorcolumn=121
   setlocal spell
-endfunction
-
-" --- "
-" FZF "
-" --- "
-au FileType fzf call SetFzfOptions()
-
-function! SetFzfOptions()
 endfunction
 
 " ---------- "
@@ -794,15 +698,6 @@ endfunction
 au BufNewFile,BufRead call OpenFolds()
 
 function! OpenFolds()
-  normal zR
-endfunction
-
-" --- "
-" Vim "
-" --- "
-au Filetype vim call SetVimOptions()
-
-function! SetVimOptions()
   normal zR
 endfunction
 
