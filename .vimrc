@@ -140,7 +140,7 @@ runtime macros/matchit.vim
 " *CocUnusedHighlight* for unnecessary code range, links to |CocFadeOut| by default.
 " *CocErrorLine* line highlight of sign which contains error.
 " *CocWarningLine* line highlight of sign which contains warning.
-" *CocInfoLine* line highlight of sign which information. 
+" *CocInfoLine* line highlight of sign which information.
 " *CocHintLine* line highlight of sign which contains hint.
 
 set termguicolors
@@ -180,7 +180,7 @@ set <S-F4>=\eO1;2S
 " ------ "
 " search "
 " ------ "
-nnoremap <leader>t :Telescope 
+nnoremap <leader>t :Telescope
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
 map <leader>f <plug>(FerretAck)
 map <leader>F <plug>(FerretAckWord)
@@ -219,7 +219,6 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
         \| exe "normal g'\"" | endif
 endif
-
 
 " ------ "
 " smalls "
@@ -299,6 +298,7 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " ------------------- "
 " random key mappings "
 " ------------------- "
+vnoremap <M-c> "+y
 map <Leader><Leader> :ZoomWin<CR>
 nmap <silent> <leader>w :wa<CR>
 nmap <silent> <leader>a :vertical resize 30<CR>
