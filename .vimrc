@@ -11,7 +11,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'benmills/vimux'
-Plug 'bling/vim-airline'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'danielwe/base16-vim'
 Plug 'edkolev/tmuxline.vim'
@@ -53,6 +52,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'triglav/vim-visual-increment'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wakatime/vim-wakatime'
 Plug 'wincent/ferret'
@@ -148,12 +148,12 @@ hi CocGitRemovedSign guibg=19 guifg=#bf6b68
 hi CocGitAddedSign guibg=19 guifg=#b7bc72
 hi CocGitChangedSign guibg=19 guifg=#e9c780
 hi CocCodeLens guifg=#444444
-hi CursorLineNR guibg=18 guifg=white
-hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
-hi LineNr guibg=19 gui=NONE
+" hi CursorLineNR guibg=18 guifg=white
+" hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
+" hi LineNr guibg=19 gui=NONE
 hi MatchParen gui=bold guibg=#b7bc72 guifg=black
 hi Normal guibg=NONE
-hi Search term=reverse guifg=black guibg=#b7bc72
+" hi Search term=reverse guifg=black guibg=#b7bc72
 hi SignColumn guibg=18
 hi StatusLine guibg=grey guifg=19 gui=NONE
 hi StatusLineNC guibg=grey guifg=19 gui=bold
@@ -484,7 +484,7 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
-let g:airline_theme='minimalist'
+let g:airline_theme='base16_tomorrow_night'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
