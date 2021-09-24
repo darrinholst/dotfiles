@@ -100,6 +100,7 @@ zstyle ':completion:*' group-name ''
 # aliases
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias listening='lsof -i -P | grep -i listen'
+alias vi="nvim -u NONE"
 alias vim="nvim"
 alias tmux='tmux -2 -u'
 alias git=hub
