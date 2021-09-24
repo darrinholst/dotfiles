@@ -103,6 +103,8 @@ set re=1                        "https://stackoverflow.com/questions/16902317/vi
 set tags^=./.git/tags
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
+let g:python_host_prog  = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " ------------ "
 " highlighting "
@@ -147,10 +149,11 @@ set termguicolors
 hi CocGitRemovedSign guibg=19 guifg=#bf6b68
 hi CocGitAddedSign guibg=19 guifg=#b7bc72
 hi CocGitChangedSign guibg=19 guifg=#e9c780
+hi CocGitChangeRemovedSign guibg=19 guifg=#e9c780
 hi CocCodeLens guifg=#444444
-" hi CursorLineNR guibg=18 guifg=white
-" hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
-" hi LineNr guibg=19 gui=NONE
+hi CursorLineNR guibg=18 guifg=white
+hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
+hi LineNr guibg=19 gui=NONE
 hi MatchParen gui=bold guibg=#b7bc72 guifg=black
 hi Normal guibg=NONE
 " hi Search term=reverse guifg=black guibg=#b7bc72
