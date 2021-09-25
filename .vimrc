@@ -487,7 +487,7 @@ map ,xt :call DoPrettyXML()<CR>
 " airline "
 " ------- "
 let g:airline_powerline_fonts=1
-let g:airline_theme='base16_tomorrow_night'
+let g:airline_theme='jet'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
@@ -697,8 +697,8 @@ let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', '
 au FileType markdown call SetMarkdownOptions()
 
 function! SetMarkdownOptions()
-  setlocal textwidth=120
-  setlocal colorcolumn=121
+  setlocal textwidth=80
+  setlocal colorcolumn=81
   setlocal spell
 endfunction
 
