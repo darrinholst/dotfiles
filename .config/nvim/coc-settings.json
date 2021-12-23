@@ -1,21 +1,27 @@
 {
   "coc.source.emoji.filetypes": null,
   "coc.source.emoji.triggerCharacters": ["^"],
+  "diagnostic.hintSign": ">>",
   "diagnostic.errorSign": ">",
   "diagnostic.warningSign": ">",
-  "diagnostic.infoSign": ">",
+  "diagnostic.infoSign": " ",
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   },
   "cSpell.userWords": [
     "Resizeable",
     "Retryable",
+    "Rollbar",
     "aaid",
     "agrilytics",
+    "arcgis",
     "cornrx",
+    "cybersource",
     "earlyseasonfungicide",
+    "farmgate",
     "fileupload",
     "hexbin",
+    "hexbins",
     "nprotectant",
     "presigner",
     "protectant",
@@ -24,7 +30,7 @@
     "ssurgo",
     "terraframing"
   ],
-  "cSpell.enabled": false,
+  "cSpell.enabled": true,
   "cSpell.enabledLanguageIds": [
     "git-commit",
     "handlebars",
@@ -42,6 +48,9 @@
   "git.gitlab.hosts": [
     "gitlab.com"
   ],
-  "git.addGBlameToVirtualText": true
+  "git.addGBlameToVirtualText": true,
+  "eslint.autoFixOnSave": true,
+  "prettier.onlyUseLocalVersion": true,
+  "prettier.requireConfig": true
 }
 
