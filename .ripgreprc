@@ -1,7 +1,9 @@
 --smart-case
 --hidden
 --iglob
-!.git/**/*
+!**/.npm/**/*
+--iglob
+!**/.git/**/*
 --iglob
 !package-lock.json
 

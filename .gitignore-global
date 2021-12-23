@@ -1,3 +1,4 @@
+NvimTree
 NERD_tree*
 .rake_tasks
 .DS_Store
@@ -11,4 +12,6 @@ tags
 .vscode
 .env
 .envrc
+.yalc
+yalc.lock
 

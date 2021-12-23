@@ -32,7 +32,7 @@
   lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   lgm = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   up = !git pull --rebase --prune && git cleanup
-  upall = !"find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin $(git default-branch) --verbose --prune --rebase \\;"
+  upall = !"find . -type d -depth 1 -exec printf '\\n\\n%s\\n' {} \\; -exec git --git-dir={}/.git --work-tree={} co main \\; -exec git --git-dir={}/.git --work-tree={} pull origin $(cd {} && git default-branch) --prune --rebase \\;"
   fu = !git add -A && git commit --no-verify -qm 'FU SAVEPOINT' && git reset --hard HEAD~
   co = checkout
   branch-name = !git rev-parse --abbrev-ref HEAD

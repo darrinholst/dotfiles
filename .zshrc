@@ -22,6 +22,8 @@ SPACESHIP_RUST_SHOW=false
 SPACESHIP_JULIA_SHOW=false
 SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_AWS_SHOW=true
+SPACESHIP_AWS_PREFIX=""
+SPACESHIP_AWS_SYMBOL="☁ "
 SPACESHIP_VENV_SHOW=false
 SPACESHIP_CONDA_SHOW=false
 SPACESHIP_PYENV_SHOW=false
@@ -38,7 +40,7 @@ SPACESHIP_EXIT_CODE_SHOW=false
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZSH=$HOME/.oh-my-zsh
 export DISABLE_UPDATE_PROMPT=true
-plugins=(bundler colored-man-pages common-aliases docker docker-compose encode64 osx vi-mode npm git git-auto-fetch git-extras history-substring-search)
+plugins=(autojump bundler colored-man-pages common-aliases docker docker-compose encode64 macos vi-mode npm git git-auto-fetch git-extras history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,7 +52,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 unsetopt correct_all
 set -o vi
-export CDPATH=.:~:~/projects:~/projects/aa
+export CDPATH=.:~:~/projects:~/projects/aa:~/projects/aa/yield:~/projects/aa/planting:~/projects/aa/modules:~/projects/aa/inf:~/projects/aa/apps
 export TERM=xterm-color
 export CLICOLOR=1
 export EDITOR="nvim"
@@ -58,9 +60,7 @@ export GIT_EDITOR="nvim"
 export GEM_OPEN_EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
 export FZF_DEFAULT_OPTS='--bind ctrl-e:up'
-export AWS_CLI_AUTO_PROMPT=on
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The rubies
@@ -76,8 +76,8 @@ export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The javascripts
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export PATH=./node_modules/.bin:$PATH
 eval "$(nodenv init -)"
+export PATH=./node_modules/.bin:$PATH
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # direnv
@@ -108,6 +108,7 @@ alias git=hub
 alias gpf='git push --force-with-lease'
 alias gcm='git checkout $(git default-branch)'
 alias gu='git up'
+alias npm='~/.nodenv/shims/npm'
 alias run='npm run'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias fp=any

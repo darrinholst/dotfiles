@@ -24,6 +24,7 @@ Plug 'kevinoid/vim-jsonc'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'leafgarland/typescript-vim'
+Plug 'posva/vim-vue'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'moll/vim-node'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -146,6 +147,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 " *CocHintLine* line highlight of sign which contains hint.
 
 set termguicolors
+hi CocInfoSign guifg=#87ad9c
 hi CocGitRemovedSign guibg=19 guifg=#bf6b68
 hi CocGitAddedSign guibg=19 guifg=#b7bc72
 hi CocGitChangedSign guibg=19 guifg=#e9c780
@@ -327,8 +329,8 @@ noremap <silent> <leader>cw :cclose<CR>
 nnoremap j gj
 nnoremap k gk
 
-let g:nvim_tree_quit_on_open = 1
-let g:nvim_tree_ignore = [ '.git' ]
+let g:nvim_tree_quit_on_open = 0
+" let g:nvim_tree_ignore = [ '.git' ]
 let g:nvim_tree_icons = {
     \ 'default': '',
     \ 'symlink': '',
@@ -362,6 +364,17 @@ map <F6> :NvimTreeFindFile<CR>
 imap <F6> <Esc>:NvimTreeFindFile<CR>
 map <F7> :NvimTreeToggle<CR>
 imap <F7> <Esc>:NvimTreeToggle<CR>
+lua << EOF
+require'nvim-tree'.setup {
+  git = {
+    enable = true,
+    ignore = false,
+  },
+  filters = {
+    custom = { '.git' },
+  },
+}
+EOF
 
 " Opens an edit command with the path of the currently edited file filled in
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -547,6 +560,7 @@ let g:coc_global_extensions = [
       \ "coc-eslint",
       \ "coc-html",
       \ "coc-json",
+      \ "coc-prettier",
       \ "coc-snippets",
       \ "coc-tsserver",
       \ "coc-ultisnips",
@@ -680,8 +694,8 @@ let g:neoformat_basic_format_align = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_only_msg_on_error = 1
 let g:neoformat_enabled_json = ['jq', 'prettier', 'fixjson']
-let g:neoformat_enabled_javascript = ['prettier', 'eslint_d']
-let g:neoformat_enabled_typescript = ['prettier']
+let g:neoformat_enabled_javascript = []
+let g:neoformat_enabled_typescript = []
 let g:neoformat_enabled_scss = ['prettier']
 au BufWritePre *.js,*.ts,*.scss,*.rb Neoformat
 
