@@ -107,6 +107,7 @@ alias tmux='tmux -2 -u'
 alias git=hub
 alias gpf='git push --force-with-lease'
 alias gcm='git checkout $(git default-branch)'
+alias gba='git branch --all --color="always" --sort=authordate --format="%(color:blue)%(authordate:relative);%(color:red)%(authorname);%(color:white)%(color:bold)%(refname:short)" "$@" | column -s ";" -t'
 alias gu='git up'
 alias npm='~/.nodenv/shims/npm'
 alias run='npm run'

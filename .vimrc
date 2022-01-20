@@ -19,6 +19,7 @@ Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'honza/vim-snippets'
 Plug '/opt/homebrew/opt/fzf'
+Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf.vim'
 Plug 'kevinoid/vim-jsonc'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
@@ -55,6 +56,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'triglav/vim-visual-increment'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-rmarkdown'
 Plug 'wakatime/vim-wakatime'
 Plug 'wincent/ferret'
 
@@ -547,7 +551,6 @@ let g:autoformat_verbosemode = 1
 imap <silent> <F5> <Esc><F5>
 noremap <F5> :Neoformat<CR>
 
-
 " --- "
 " coc "
 " --- "
@@ -569,6 +572,8 @@ let g:coc_global_extensions = [
       \ "coc-diagnostic",
       \ "coc-spell-checker",
       \]
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -731,6 +736,7 @@ endfunction
 " yaml "
 " ---- "
 au Filetype yaml call SetYamlOptions()
+au Filetype yaml.docker-compose call SetYamlOptions()
 
 function! SetYamlOptions()
   normal zR

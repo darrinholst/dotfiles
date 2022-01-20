@@ -12,6 +12,7 @@
     "Resizeable",
     "Retryable",
     "Rollbar",
+    "Vuex",
     "aaid",
     "agrilytics",
     "arcgis",
@@ -50,7 +51,7 @@
   ],
   "git.addGBlameToVirtualText": true,
   "eslint.autoFixOnSave": true,
-  "prettier.onlyUseLocalVersion": true,
+  "prettier.onlyUseLocalVersion": false,
   "prettier.requireConfig": true
 }
 
