@@ -9,6 +9,7 @@
     "sh": "shellcheck"
   },
   "cSpell.userWords": [
+    "PDFS",
     "Resizeable",
     "Retryable",
     "Rollbar",
@@ -19,6 +20,7 @@
     "cornrx",
     "cybersource",
     "earlyseasonfungicide",
+    "entrypoint",
     "farmgate",
     "fileupload",
     "hexbin",

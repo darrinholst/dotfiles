@@ -25,7 +25,8 @@ Plug 'kevinoid/vim-jsonc'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'leafgarland/typescript-vim'
-Plug 'posva/vim-vue'
+Plug 'vim-denops/denops.vim'
+Plug 'skanehira/denops-docker.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'moll/vim-node'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -345,7 +346,7 @@ let g:nvim_tree_icons = {
     \   'renamed': "➜",
     \   'untracked': "★",
     \   'deleted': "",
-    \   'ignored': "◌"
+    \   'ignored': "👻"
     \   },
     \ 'folder': {
     \   'arrow_open': "",
@@ -714,8 +715,10 @@ let g:jsx_ext_required = 0
 " -------- "
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 au FileType markdown call SetMarkdownOptions()
+au FileType pandoc call SetMarkdownOptions()
 
 function! SetMarkdownOptions()
+  setlocal ft=markdown
   setlocal textwidth=80
   setlocal colorcolumn=81
   setlocal spell
@@ -752,6 +755,11 @@ function! SetTypeScriptOptions()
   setlocal colorcolumn=81
   normal zR
 endfunction
+
+" --- "
+" Vue "
+" --- "
+autocmd FileType vue let b:coc_root_patterns = ['vue.config.js']
 
 " ---------- "
 " JavaScript "

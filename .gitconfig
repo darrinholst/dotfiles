@@ -87,3 +87,6 @@
 
 [log]
   merges = false
+
+[merge]
+  ; conflictStyle = diff3
