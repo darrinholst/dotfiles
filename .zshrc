@@ -228,18 +228,18 @@ which-dns() {
   networksetup -getdnsservers Wi-Fi
 }
 
-use-opendns() {
-  networksetup -setdnsservers Wi-Fi 208.67.222.222 208.67.220.220
-  which-dns
-}
-
 use-cloudflare() {
-  networksetup -setdnsservers Wi-Fi 1.1.1.1
+  networksetup -setdnsservers Wi-Fi 1.1.1.1 208.67.222.222 208.67.220.220
   which-dns
 }
 
-use-google() {
-  networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
+use-test() {
+  networksetup -setdnsservers Wi-Fi 10.2.0.2 1.1.1.1 208.67.222.222 208.67.220.220
+  which-dns
+}
+
+use-prod() {
+  networksetup -setdnsservers Wi-Fi 172.31.0.2 1.1.1.1 208.67.222.222 208.67.220.220
   which-dns
 }
 

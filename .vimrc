@@ -14,7 +14,6 @@ Plug 'benmills/vimux'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'danielwe/base16-vim'
 Plug 'edkolev/tmuxline.vim'
-Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'honza/vim-snippets'
@@ -23,8 +22,8 @@ Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf.vim'
 Plug 'kevinoid/vim-jsonc'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'suy/vim-context-commentstring'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'leafgarland/typescript-vim'
 Plug 'vim-denops/denops.vim'
 Plug 'skanehira/denops-docker.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -35,7 +34,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'othree/html5.vim'
 Plug 'pedrohdz/vim-yaml-folds'
 Plug 'qpkorr/vim-bufkill'
-Plug 'regedarek/ZoomWin'
+Plug 'markstory/vim-zoomwin'
 Plug 'sbdchd/neoformat'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/vimproc.vim'
@@ -115,42 +114,6 @@ let g:python3_host_prog = '/usr/bin/python3'
 " ------------ "
 " highlighting "
 " ------------ "
-" hi CocCodeLens ctermfg=19
-" hi CursorLineNR ctermfg=white
-" hi CursorLineNr ctermbg=black ctermfg=yellow cterm=bold
-" hi LineNr ctermbg=black cterm=NONE
-" hi MatchParen cterm=NONE ctermbg=darkgreen ctermfg=black
-" hi NonText ctermfg=black
-" hi Normal ctermbg=NONE
-" hi Search term=reverse ctermfg=black ctermbg=darkgreen
-" hi SignColumn ctermbg=black
-" hi StatusLine ctermbg=grey ctermfg=black cterm=NONE
-" hi StatusLineNC ctermbg=grey ctermfg=black cterm=bold
-" hi VertSplit ctermbg=black ctermfg=darkgreen
-" hi Visual cterm=NONE ctermbg=darkgreen ctermfg=black
-
-
-" *CocFadeOut* for faded out text, such as for highlighting unnecessary code.
-" *CocErrorSign* for error signs.
-" *CocWarningSign* for warning signs.
-" *CocInfoSign* for information signs.
-" *CocHintSign* for hint signs.
-" *CocErrorVirtualText* for error virtual text.
-" *CocWarningVirtualText* for warning virtual text.
-" *CocInfoVirtualText* for information virtual text.
-" *CocHintVirtualText* for hint virtual text.
-" *CocErrorHighlight* for error code range.
-" *CocWarningHighlight* for warning code range.
-" *CocInfoHighlight* for information code range.
-" *CocHintHighlight* for hint code range.
-" *CocDeprecatedHighlight* for deprecated code range, links to
-" |CocStrikeThrough| by default.
-" *CocUnusedHighlight* for unnecessary code range, links to |CocFadeOut| by default.
-" *CocErrorLine* line highlight of sign which contains error.
-" *CocWarningLine* line highlight of sign which contains warning.
-" *CocInfoLine* line highlight of sign which information.
-" *CocHintLine* line highlight of sign which contains hint.
-
 set termguicolors
 hi CocInfoSign guifg=#87ad9c
 hi CocGitRemovedSign guibg=19 guifg=#bf6b68
@@ -163,7 +126,6 @@ hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
 hi LineNr guibg=19 gui=NONE
 hi MatchParen gui=bold guibg=#b7bc72 guifg=black
 hi Normal guibg=NONE
-" hi Search term=reverse guifg=black guibg=#b7bc72
 hi SignColumn guibg=18
 hi StatusLine guibg=grey guifg=19 gui=NONE
 hi StatusLineNC guibg=grey guifg=19 gui=bold
@@ -184,12 +146,7 @@ map <F4> :cn<CR>
 map <S-F4> :cp<CR>
 map <C-F4> :cnf<CR>
 map <S-C-F4> :cpf<CR>
-
 set <S-F4>=\eO1;2S
-
-" ------ "
-" search "
-" ------ "
 nnoremap <leader>t :Telescope
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
 map <leader>f <plug>(FerretAck)
@@ -309,14 +266,8 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " random key mappings "
 " ------------------- "
 vnoremap <M-c> "+y
-map <Leader><Leader> :ZoomWin<CR>
 nmap <silent> <leader>w :wa<CR>
-nmap <silent> <leader>a :vertical resize 30<CR>
 nmap <silent> <leader><space> :wincmd =<CR>
-
-func! ResetVertical()
-  vertical resize 30
-endfun
 
 " Window Commands
 noremap <silent> <leader>h :wincmd h<CR>
@@ -335,7 +286,6 @@ nnoremap j gj
 nnoremap k gk
 
 let g:nvim_tree_quit_on_open = 0
-" let g:nvim_tree_ignore = [ '.git' ]
 let g:nvim_tree_icons = {
     \ 'default': '',
     \ 'symlink': '',
@@ -423,12 +373,6 @@ au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
 au BufNewFile,BufRead *.pdf.erb set filetype=eruby
 au BufNewFile,BufRead *.eslintrc,*.babelrc,*.stylelintrc,*.nycrc,*.rng set filetype=json
 au BufNewFile,BufRead *.envrc,*.env,*.env.leave set filetype=sh
-
-command! HashRocket :call HashRocket()
-
-function! HashRocket()
-  execute ':%s/:\([^ ]*\)\(\s*\)=>/\1:/g'
-endfunction
 
 " -------- "
 " run with "
@@ -659,7 +603,6 @@ command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
 
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
 let g:lightline = {
