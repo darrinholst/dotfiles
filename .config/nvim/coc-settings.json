@@ -54,6 +54,18 @@
   "git.addGBlameToVirtualText": true,
   "eslint.autoFixOnSave": true,
   "prettier.onlyUseLocalVersion": false,
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }
 

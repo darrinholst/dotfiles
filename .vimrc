@@ -11,11 +11,9 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'benmills/vimux'
-Plug 'cakebaker/scss-syntax.vim'
 Plug 'danielwe/base16-vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'godlygeek/tabular'
-Plug 'hashivim/vim-terraform'
 Plug 'honza/vim-snippets'
 Plug '/opt/homebrew/opt/fzf'
 Plug 'jalvesaq/Nvim-R'
@@ -285,7 +283,6 @@ noremap <silent> <leader>cw :cclose<CR>
 nnoremap j gj
 nnoremap k gk
 
-let g:nvim_tree_quit_on_open = 0
 let g:nvim_tree_icons = {
     \ 'default': '',
     \ 'symlink': '',
@@ -504,18 +501,21 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 let g:coc_disable_transparent_cursor=1
 let g:coc_global_extensions = [
       \ "coc-css",
-      \ "coc-git",
+      \ "coc-diagnostic",
+      \ "coc-docker",
+      \ "coc-emoji",
       \ "coc-eslint",
+      \ "coc-git",
+      \ "coc-go",
       \ "coc-html",
       \ "coc-json",
       \ "coc-prettier",
       \ "coc-snippets",
+      \ "coc-spell-checker",
       \ "coc-tsserver",
       \ "coc-ultisnips",
+      \ "coc-vetur",
       \ "coc-yank",
-      \ "coc-emoji",
-      \ "coc-diagnostic",
-      \ "coc-spell-checker",
       \]
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
