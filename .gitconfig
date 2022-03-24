@@ -21,20 +21,20 @@
 
 [alias]
   ad = !git add -A && git st
-  st = status
+  branch-name = !git rev-parse --abbrev-ref HEAD
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+  cleanup = !git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+  co = checkout
+  default-branch = !git rev-parse --abbrev-ref main > /dev/null 2>&1 && echo main || echo master
+  fu = !git add -A && git commit --no-verify -qm 'FU SAVEPOINT' && git reset --hard HEAD~
   lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
+  publish = !git push -u origin $(git branch-name)
+  squashemall = !git reset $(git merge-base $(git default-branch) $(git rev-parse --abbrev-ref HEAD))
+  st = status
+  unwip = !git reset HEAD~
   up = !git pull --rebase --prune && git cleanup
   upall = !"find . -type d -depth 1 -exec printf '\\n\\n%s\\n' {} \\; -exec git --git-dir={}/.git --work-tree={} co main \\; -exec git --git-dir={}/.git --work-tree={} pull origin $(cd {} && git default-branch) --prune --rebase \\;"
-  fu = !git add -A && git commit --no-verify -qm 'FU SAVEPOINT' && git reset --hard HEAD~
-  co = checkout
-  branch-name = !git rev-parse --abbrev-ref HEAD
-  default-branch = !git rev-parse --abbrev-ref main > /dev/null 2>&1 && echo main || echo master
-  cleanup = !git branch --merged $(git default-branch) | egrep -v '^\\*' | xargs -n 1 git branch -d
-  publish = !git push -u origin $(git branch-name)
   wip = !git add -A && git commit -m 'wip'
-  unwip = !git reset HEAD~
-  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
-  squashemall = !git reset $(git merge-base $(git default-branch) $(git rev-parse --abbrev-ref HEAD))
 
 [push]
   default = simple
