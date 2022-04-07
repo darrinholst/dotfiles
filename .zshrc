@@ -154,7 +154,7 @@ clean-vim() {
 }
 
 clean-docker() {
-  docker system prune
+  docker system prune --all --force --volumes
 }
 
 clean-node() {
