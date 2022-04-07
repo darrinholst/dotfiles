@@ -165,7 +165,7 @@ clean-npm() {
   find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
 }
 
-clean-cache() {
+clean-dns() {
   sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder
 }
 
