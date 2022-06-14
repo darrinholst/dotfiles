@@ -283,35 +283,35 @@ noremap <silent> <leader>cw :cclose<CR>
 nnoremap j gj
 nnoremap k gk
 
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "",
-    \   'ignored': "👻"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "",
-    \   'arrow_closed': "",
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
-    \   },
-    \   'lsp': {
-    \     'hint': "",
-    \     'info': "",
-    \     'warning': "",
-    \     'error': "",
-    \   }
-    \ }
+" let g:nvim_tree_icons = {
+"     \ 'default': '',
+"     \ 'symlink': '',
+"     \ 'git': {
+"     \   'unstaged': "✗",
+"     \   'staged': "✓",
+"     \   'unmerged': "",
+"     \   'renamed': "➜",
+"     \   'untracked': "★",
+"     \   'deleted': "",
+"     \   'ignored': "👻"
+"     \   },
+"     \ 'folder': {
+"     \   'arrow_open': "",
+"     \   'arrow_closed': "",
+"     \   'default': "",
+"     \   'open': "",
+"     \   'empty': "",
+"     \   'empty_open': "",
+"     \   'symlink': "",
+"     \   'symlink_open': "",
+"     \   },
+"     \   'lsp': {
+"     \     'hint': "",
+"     \     'info': "",
+"     \     'warning': "",
+"     \     'error': "",
+"     \   }
+"     \ }
 map <F6> :NvimTreeFindFile<CR>
 imap <F6> <Esc>:NvimTreeFindFile<CR>
 map <F7> :NvimTreeToggle<CR>
