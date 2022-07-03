@@ -1,0 +1,115 @@
+[
+  {
+    "title": "~:$",
+    "children": [
+      {
+        "title": "dns",
+        "mode": "JobStatus",
+        "autostartJob": true,
+        "jobScript": {
+          "bin": "/bin/bash",
+          "args": [
+            "-c",
+            "(pkill -f \"sleep 61\" || true) && cd /Users/darrinholst/.vpn && while ./dns.sh; do sleep 61; done"
+          ],
+          "env": {
+            "PATH": "/usr/bin:/usr/local/bin:/sbin:/bin"
+          }
+        }
+      },
+      {
+        "title": "docker",
+        "mode": "JobStatus",
+        "autostartJob": true,
+        "jobScript": {
+          "bin": "/bin/bash",
+          "args": [
+            "-c",
+            "(pkill -f \"sleep 62\" || true) && cd /Users/darrinholst/.vpn && while ./docker.sh; do sleep 62; done"
+          ],
+          "env": {
+            "PATH": "/opt/homebrew/sbin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:"
+          }
+        }
+      },
+      {
+        "title": "saml",
+        "mode": "JobStatus",
+        "autostartJob": true,
+        "jobScript": {
+          "bin": "/bin/bash",
+          "args": [
+            "-c",
+            "(pkill saml-server || true) && cd /Users/darrinholst/.vpn && ./saml-server"
+          ],
+          "env": {
+            "PATH": "/usr/bin:/usr/local/bin:/sbin:/bin"
+          }
+        }
+      },
+      {
+        "title": "test vpn",
+        "mode": "JobStatus",
+        "reloadJob": true,
+        "jobScript": {
+          "bin": "/bin/bash",
+          "args": [
+            "-c",
+            "(pkill -f test-vpn.sh || true) && cd /Users/darrinholst/.vpn && ./test-vpn.sh"
+          ],
+          "env": {
+            "PATH": "/usr/bin:/usr/local/bin:/sbin:/bin"
+          }
+        }
+      },
+      {
+        "title": "test aws",
+        "mode": "JobStatus",
+        "jobScript": {
+          "bin": "/bin/bash",
+          "args": [
+            "-c",
+            "(pkill -f \"sleep 28801\" || true) && while aws sso login --profile test && aws s3 ls; do sleep 28801; done"
+          ],
+          "env": {
+            "AWS_PROFILE": "test",
+            "PATH": "/usr/bin:/usr/local/bin:/sbin:/bin"
+          }
+        }
+      },
+      {
+        "title": "prod vpn",
+        "mode": "JobStatus",
+        "jobScript": {
+          "bin": "/bin/bash",
+          "args": [
+            "-c",
+            "(pkill -f prod-vpn.sh || true) && cd /Users/darrinholst/.vpn && ./prod-vpn.sh"
+          ],
+          "env": {
+            "PATH": "/usr/bin:/usr/local/bin:/sbin:/bin"
+          }
+        }
+      },
+      {
+        "title": "prod aws",
+        "mode": "JobStatus",
+        "jobScript": {
+          "bin": "/bin/bash",
+          "args": [
+            "-c",
+            "(pkill -f \"sleep 28802\" || true) && while aws sso login --profile prod && aws s3 ls; do sleep 28802; done"
+          ],
+          "env": {
+            "AWS_PROFILE": "prod",
+            "PATH": "/usr/bin:/usr/local/bin:/sbin:/bin"
+          }
+        }
+      },
+      {
+        "title": "Quit",
+        "mode": "ApplicationQuit"
+      }
+    ]
+  }
+]
