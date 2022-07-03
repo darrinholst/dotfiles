@@ -12,6 +12,7 @@ link_it () {
 
 link_it ".bash_profile"
 link_it ".config/nvim"
+link_it ".config/shbar"
 link_it ".gemrc"
 link_it ".git_template"
 link_it ".gitconfig"
@@ -26,3 +27,4 @@ link_it ".zprofile"
 link_it ".zshrc"
 link_it ".ripgreprc"
 link_it ".speedtest"
+link_it ".vpn"
