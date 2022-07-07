@@ -25,7 +25,7 @@ SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_DOCKER_CONTEXT_SHOW=false
 SPACESHIP_DOCKER_CONTEXT_PREFIX=""
 SPACESHIP_DOCKER_CONTEXT_SUFFIX=""
-SPACESHIP_AWS_SHOW=true
+SPACESHIP_AWS_SHOW=false
 SPACESHIP_AWS_PREFIX=""
 SPACESHIP_AWS_SYMBOL="☁ "
 SPACESHIP_VENV_SHOW=false
@@ -153,16 +153,8 @@ b64() {
   echo -n "$1" | openssl base64
 }
 
-clean-vim() {
-  rm -rf ~/.vim/backup/*.sw*
-}
-
 clean-docker() {
   docker system prune --all --force --volumes
-}
-
-clean-node() {
-  killall node
 }
 
 clean-npm() {
@@ -185,7 +177,8 @@ any() {
   fi
 }
 
-fk() { # build menu to kill process
+# build menu to kill process
+fk() {
   IFS=$'\n'
   PS3='Kill which process? '
 
@@ -208,7 +201,7 @@ fk() { # build menu to kill process
   unset IFS
 }
 
-lips() {
+ips() {
   local ip=`ifconfig en0 | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}'`
   local locip extip
 
@@ -246,4 +239,19 @@ use-prod() {
   networksetup -setdnsservers Wi-Fi 172.31.0.2 1.1.1.1 208.67.222.222 208.67.220.220
   which-dns
 }
+
+spaceship_docker_context() {
+  local context=$(docker context ls | grep -m1 ' \*' | awk '{print $1}')
+  spaceship::section "blue" "🐳 ${context} "
+}
+
+idx=${SPACESHIP_PROMPT_ORDER[(i)exec_time]}
+
+SPACESHIP_PROMPT_ORDER=(
+  ${SPACESHIP_PROMPT_ORDER[0,$((idx-1))]}
+docker_context
+  ${SPACESHIP_PROMPT_ORDER[${idx},$]}
+)
+
+unset idx
 
