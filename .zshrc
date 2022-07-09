@@ -245,13 +245,11 @@ spaceship_docker_context() {
   spaceship::section "blue" "🐳 ${context} "
 }
 
-idx=${SPACESHIP_PROMPT_ORDER[(i)exec_time]}
-
-SPACESHIP_PROMPT_ORDER=(
-  ${SPACESHIP_PROMPT_ORDER[0,$((idx-1))]}
-docker_context
-  ${SPACESHIP_PROMPT_ORDER[${idx},$]}
-)
-
-unset idx
+# idx=${SPACESHIP_PROMPT_ORDER[(i)exec_time]}
+# SPACESHIP_PROMPT_ORDER=(
+#   ${SPACESHIP_PROMPT_ORDER[0,$((idx-1))]}
+# docker_context
+#   ${SPACESHIP_PROMPT_ORDER[${idx},$]}
+# )
+# unset idx
 

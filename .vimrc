@@ -465,10 +465,10 @@ let g:airline#extensions#default#section_truncate_width = {
 " -------  "
 let g:tmuxline_preset = {
       \'a'           : '#S',
-      \'win'         : ['#I', '#W'],
       \'cwin'        : ['#I', '#W#F'],
-      \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _battery)',
-      \'y'           : '%l:%M',
+      \'win'         : ['#I', '#W'],
+      \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _battery) %l:%M',
+      \'y'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn) | #(cut -c3- ~/.tmux.conf | sh -s _docker)',
       \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
       \'options'     : {'status-justify' : 'left'},
       \}

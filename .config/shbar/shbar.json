@@ -69,7 +69,7 @@
           "bin": "/bin/bash",
           "args": [
             "-c",
-            "(pkill -f \"sleep 28801\" || true) && while aws sso login --profile test && aws s3 ls; do sleep 28801; done"
+            "aws sso login --profile test && aws s3 ls"
           ],
           "env": {
             "AWS_PROFILE": "test",
@@ -98,7 +98,7 @@
           "bin": "/bin/bash",
           "args": [
             "-c",
-            "(pkill -f \"sleep 28802\" || true) && while aws sso login --profile prod && aws s3 ls; do sleep 28802; done"
+            "aws sso login --profile prod && aws s3 ls"
           ],
           "env": {
             "AWS_PROFILE": "prod",
