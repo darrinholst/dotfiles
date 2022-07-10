@@ -455,7 +455,7 @@ let g:airline#extensions#default#section_truncate_width = {
       \ 'b': 90,
       \ 'x': 90,
       \ 'y': 90,
-      \ 'z': 60,
+      \ 'z': 30,
       \ 'warning': 80,
       \ 'error': 80,
       \ }
@@ -467,9 +467,9 @@ let g:tmuxline_preset = {
       \'a'           : '#S',
       \'cwin'        : ['#I', '#W#F'],
       \'win'         : ['#I', '#W'],
-      \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _battery) %l:%M',
-      \'y'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn) | #(cut -c3- ~/.tmux.conf | sh -s _docker)',
-      \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
+      \'z'           : '%l:%M',
+      \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn) | #(cut -c3- ~/.tmux.conf | sh -s _docker)',
+      \'y'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
       \'options'     : {'status-justify' : 'left'},
       \}
 

@@ -1,4 +1,10 @@
 #!/bin/bash
 
-RESULTS="$(/opt/homebrew/bin/speedtest --json)"
-curl -H "Content-Type: application/json" -d "$RESULTS" "$1"
+AWS_PROFILE=dlh
+
+read download upload ping < <(echo $(/opt/homebrew/bin/speedtest --json | jq -r '.download, .upload, .ping'))
+
+aws cloudwatch put-metric-data --namespace Speedtest --metric-name download --value $(echo "$download/1000000" | bc)
+aws cloudwatch put-metric-data --namespace Speedtest --metric-name upload --value $(echo "$upload/1000000" | bc)
+aws cloudwatch put-metric-data --namespace Speedtest --metric-name ping --value $ping
+
