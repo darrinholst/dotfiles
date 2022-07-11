@@ -1,10 +1,12 @@
 #!/bin/bash
 
-AWS_PROFILE=dlh
+PATH=/usr/local/bin:/usr/local/opt/awscli@1/bin:$PATH
 
-read download upload ping < <(echo $(/opt/homebrew/bin/speedtest --json | jq -r '.download, .upload, .ping'))
+read download upload ping isp < <(echo $(speedtest --json | jq -r '.download, .upload, .ping, .client.isp'))
 
-aws cloudwatch put-metric-data --namespace Speedtest --metric-name download --value $(echo "$download/1000000" | bc)
-aws cloudwatch put-metric-data --namespace Speedtest --metric-name upload --value $(echo "$upload/1000000" | bc)
-aws cloudwatch put-metric-data --namespace Speedtest --metric-name ping --value $ping
+echo "Speedtest results - download: $download, upload: $upload, ping: $ping, isp: $isp, user: $(whoami)"
+
+aws cloudwatch put-metric-data --namespace Speedtest --dimensions isp="$isp" --metric-name download --value $(echo "$download/1000000" | bc)
+aws cloudwatch put-metric-data --namespace Speedtest --dimensions isp="$isp" --metric-name upload --value $(echo "$upload/1000000" | bc)
+aws cloudwatch put-metric-data --namespace Speedtest --dimensions isp="$isp" --metric-name ping --value $ping
 
