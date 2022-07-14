@@ -467,9 +467,9 @@ let g:tmuxline_preset = {
       \'a'           : '#S',
       \'cwin'        : ['#I', '#W#F'],
       \'win'         : ['#I', '#W'],
-      \'z'           : '%l:%M',
       \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn) | #(cut -c3- ~/.tmux.conf | sh -s _docker)',
-      \'y'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
+      \'y'           : '%l:%M',
+      \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
       \'options'     : {'status-justify' : 'left'},
       \}
 
