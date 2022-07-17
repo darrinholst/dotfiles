@@ -5,15 +5,15 @@
 
 source ./link.sh
 
-defaults write -g ApplePressAndHoldEnabled -bool false
-defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
-sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-sudo defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write -g ApplePressAndHoldEnabled -bool false || true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true || true
+sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true || true
+sudo defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 || true
 
 #~~~~~~~~~~~~~~~~~~~~#
 #~ install homebrew ~#
 #~~~~~~~~~~~~~~~~~~~~#
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew doctor
 brew bundle install
 
