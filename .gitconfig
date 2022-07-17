@@ -57,20 +57,11 @@
   vertical-split = false
   diff-context = 3
 
-[credential]
-	helper = osxkeychain
-
 [pull]
 	rebase = true
 
 [pager]
 	branch = false
-
-[url "https://github.com/"]
-	insteadOf = git@github.com:
-
-[url "https://"]
-	insteadOf = git://
 
 [rerere]
 	enabled = 1
