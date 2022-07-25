@@ -3,8 +3,6 @@
 # xcode command line tools are installed the first time you try to clone this repo
 # xcode-select --install
 
-source ./link.sh
-
 defaults write -g ApplePressAndHoldEnabled -bool false || true
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true || true
 sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true || true
@@ -40,7 +38,7 @@ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shel
 #~ python some crap for ultisnips in neovim ~#
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 sudo python -m ensurepip --default-pip
-sudo python -m pip install --upgrade pynvim
+sudo python -m pip install --upgrade pynvim neovim
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #~ back to more sane stuff like javascript ~#
