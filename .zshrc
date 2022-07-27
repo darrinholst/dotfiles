@@ -157,7 +157,11 @@ clean-docker() {
   docker system prune --all --force --volumes
 }
 
-clean-npm() {
+wtf-node-modules() {
+  find . -type d -name node_modules -prune | tr '\n' '\0' |  xargs -0 du -sch
+}
+
+clean-node-modules() {
   find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
 }
 
@@ -239,17 +243,4 @@ use-prod() {
   networksetup -setdnsservers Wi-Fi 172.31.0.2 1.1.1.1 208.67.222.222 208.67.220.220
   which-dns
 }
-
-spaceship_docker_context() {
-  local context=$(docker context ls | grep -m1 ' \*' | awk '{print $1}')
-  spaceship::section "blue" "🐳 ${context} "
-}
-
-# idx=${SPACESHIP_PROMPT_ORDER[(i)exec_time]}
-# SPACESHIP_PROMPT_ORDER=(
-#   ${SPACESHIP_PROMPT_ORDER[0,$((idx-1))]}
-# docker_context
-#   ${SPACESHIP_PROMPT_ORDER[${idx},$]}
-# )
-# unset idx
 
