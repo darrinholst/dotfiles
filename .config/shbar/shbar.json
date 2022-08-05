@@ -50,6 +50,7 @@
       {
         "title": "test vpn",
         "mode": "JobStatus",
+        "autostartJob": true,
         "reloadJob": true,
         "jobScript": {
           "bin": "/bin/bash",
@@ -65,11 +66,12 @@
       {
         "title": "test aws",
         "mode": "JobStatus",
+        "autostartJob": true,
         "jobScript": {
           "bin": "/bin/bash",
           "args": [
             "-c",
-            "aws sso login --profile test && aws s3 ls"
+            "(pkill -f \"sleep 59\" || true) && aws sso login --profile test && while aws s3 ls > /dev/null && sleep 59; do :; done && false"
           ],
           "env": {
             "AWS_PROFILE": "test",
@@ -80,6 +82,7 @@
       {
         "title": "prod vpn",
         "mode": "JobStatus",
+        "reloadJob": true,
         "jobScript": {
           "bin": "/bin/bash",
           "args": [
@@ -98,7 +101,7 @@
           "bin": "/bin/bash",
           "args": [
             "-c",
-            "aws sso login --profile prod && aws s3 ls"
+            "(pkill -f \"sleep 58\" || true) && aws sso login --profile prod && while aws s3 ls > /dev/null && sleep 58; do :; done && false"
           ],
           "env": {
             "AWS_PROFILE": "prod",
