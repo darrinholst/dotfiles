@@ -50,8 +50,6 @@
       {
         "title": "test vpn",
         "mode": "JobStatus",
-        "autostartJob": true,
-        "reloadJob": true,
         "jobScript": {
           "bin": "/bin/bash",
           "args": [
@@ -66,7 +64,6 @@
       {
         "title": "test aws",
         "mode": "JobStatus",
-        "autostartJob": true,
         "jobScript": {
           "bin": "/bin/bash",
           "args": [
@@ -82,7 +79,6 @@
       {
         "title": "prod vpn",
         "mode": "JobStatus",
-        "reloadJob": true,
         "jobScript": {
           "bin": "/bin/bash",
           "args": [
