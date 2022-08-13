@@ -145,8 +145,6 @@ map <S-F4> :cp<CR>
 map <C-F4> :cnf<CR>
 map <S-C-F4> :cpf<CR>
 set <S-F4>=\eO1;2S
-nnoremap <leader>t :Telescope
-nnoremap <leader>g <cmd>Telescope live_grep<cr>
 map <leader>f <plug>(FerretAck)
 map <leader>F <plug>(FerretAckWord)
 let g:FerretExecutableArguments = {
@@ -492,6 +490,25 @@ let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", "yaml", "slim"
 let g:autoformat_verbosemode = 1
 imap <silent> <F5> <Esc><F5>
 noremap <F5> :Neoformat<CR>
+
+" --------- "
+" telescope "
+" --------- "
+nnoremap <leader>t :Telescope
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-j>"] = "move_selection_next",
+        ["<C-k>"] = "move_selection_previous"
+      }
+    }
+  }
+}
+EOF
 
 " --- "
 " coc "
