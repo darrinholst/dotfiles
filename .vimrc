@@ -28,7 +28,10 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'moll/vim-node'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'fannheyward/telescope-coc.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'othree/html5.vim'
 Plug 'pedrohdz/vim-yaml-folds'
 Plug 'qpkorr/vim-bufkill'
@@ -49,7 +52,7 @@ Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
+Plug 'kylechui/nvim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'triglav/vim-visual-increment'
 Plug 'vim-airline/vim-airline'
@@ -113,6 +116,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 " highlighting "
 " ------------ "
 set termguicolors
+hi TelescopeSelection guibg=#555555
 hi CocInfoSign guifg=#87ad9c
 hi CocGitRemovedSign guibg=19 guifg=#bf6b68
 hi CocGitAddedSign guibg=19 guifg=#b7bc72
@@ -188,16 +192,6 @@ endif
 " ------ "
 nmap s <Plug>(smalls)
 
-" ------------ "
-" fuzzy finder "
-" ------------ "
-nnoremap <C-f> :Files<CR>
-nnoremap <C-p> :GFiles<CR>
-nnoremap <C-e> :Buffers<CR>
-nnoremap <C-h> :History<CR>
-let g:fzf_layout = { 'up': '~40%' }
-let g:fzf_preview_window = ['right:40%:hidden', 'ctrl-/']
-
 " ---------------- "
 " dash integration "
 " ---------------- "
@@ -208,39 +202,6 @@ endfunction
 
 command! Dash :call <SID>Dash()
 map <leader>d :call <SID>Dash()<CR>
-
-" --------------------- "
-" duckduckgo            "
-" --------------------- "
-function! <SID>Ddg()
-  execute "!/usr/bin/open https://duckduckgo.com/\\?q\\=" . expand("<cword>")
-  redraw!
-endfunction
-
-command! Ddg :call <SID>Ddg()
-map <leader>ddg :call <SID>Ddg()<CR>
-
-" --------------------- "
-" lookup an eslint rule "
-" --------------------- "
-function! <SID>Eslint()
-  execute "normal \"ayi\""
-  execute "silent ! /usr/bin/open http://eslint.org/docs/rules/" . @a
-  redraw!
-endfunction
-
-command! Eslint :call <SID>Eslint()
-
-" ------------------------------ "
-" lookup stuff at dictionary.com "
-" ------------------------------ "
-function! <SID>Dictionary()
-  execute "silent ! /usr/bin/open http://dictionary.reference.com/browse/" . expand("<cword>")
-  redraw!
-endfunction
-
-command! Dictionary :call <SID>Dictionary()
-"map <leader>s :call <SID>Dictionary()<CR>
 
 " -------------------------- "
 " gherkin auto table aligner "
@@ -281,50 +242,10 @@ noremap <silent> <leader>cw :cclose<CR>
 nnoremap j gj
 nnoremap k gk
 
-" let g:nvim_tree_icons = {
-"     \ 'default': '',
-"     \ 'symlink': '',
-"     \ 'git': {
-"     \   'unstaged': "✗",
-"     \   'staged': "✓",
-"     \   'unmerged': "",
-"     \   'renamed': "➜",
-"     \   'untracked': "★",
-"     \   'deleted': "",
-"     \   'ignored': "👻"
-"     \   },
-"     \ 'folder': {
-"     \   'arrow_open': "",
-"     \   'arrow_closed': "",
-"     \   'default': "",
-"     \   'open': "",
-"     \   'empty': "",
-"     \   'empty_open': "",
-"     \   'symlink': "",
-"     \   'symlink_open': "",
-"     \   },
-"     \   'lsp': {
-"     \     'hint': "",
-"     \     'info': "",
-"     \     'warning': "",
-"     \     'error': "",
-"     \   }
-"     \ }
 map <F6> :NvimTreeFindFile<CR>
 imap <F6> <Esc>:NvimTreeFindFile<CR>
 map <F7> :NvimTreeToggle<CR>
 imap <F7> <Esc>:NvimTreeToggle<CR>
-lua << EOF
-require'nvim-tree'.setup {
-  git = {
-    enable = true,
-    ignore = false,
-  },
-  filters = {
-    custom = { '.git' },
-  },
-}
-EOF
 
 " Opens an edit command with the path of the currently edited file filled in
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -465,7 +386,7 @@ let g:tmuxline_preset = {
       \'a'           : '#S',
       \'cwin'        : ['#I', '#W#F'],
       \'win'         : ['#I', '#W'],
-      \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn) | #(cut -c3- ~/.tmux.conf | sh -s _docker)',
+      \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn)',
       \'y'           : '%l:%M',
       \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
       \'options'     : {'status-justify' : 'left'},
@@ -496,18 +417,38 @@ noremap <F5> :Neoformat<CR>
 " --------- "
 nnoremap <leader>t :Telescope
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <C-f> <cmd>Telescope find_files<cr>
+nnoremap <C-p> <cmd>Telescope git_files<cr>
+nnoremap <C-e> <cmd>Telescope buffers<cr>
+nnoremap <leader>o <cmd>Telescope coc document_symbols<cr>
 
 lua << EOF
-require('telescope').setup{
+require("nvim-surround").setup({
+})
+
+require'nvim-tree'.setup({
+  git = {
+    enable = true,
+    ignore = false,
+  },
+  filters = {
+    custom = { '.git' },
+  },
+})
+
+require('telescope').setup({
   defaults = {
     mappings = {
       i = {
         ["<C-j>"] = "move_selection_next",
         ["<C-k>"] = "move_selection_previous"
       }
-    }
-  }
-}
+    },
+  },
+})
+
+require('telescope').load_extension('coc')
+require('telescope').load_extension('fzf')
 EOF
 
 " --- "
@@ -517,23 +458,23 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 
 let g:coc_disable_transparent_cursor=1
 let g:coc_global_extensions = [
-      \ "coc-css",
-      \ "coc-diagnostic",
-      \ "coc-docker",
-      \ "coc-emoji",
-      \ "coc-eslint",
-      \ "coc-git",
-      \ "coc-go",
-      \ "coc-html",
-      \ "coc-json",
-      \ "coc-prettier",
-      \ "coc-snippets",
-      \ "coc-spell-checker",
-      \ "coc-tsserver",
-      \ "coc-ultisnips",
-      \ "coc-vetur",
-      \ "coc-yank",
-      \]
+  \ "coc-css",
+  \ "coc-diagnostic",
+  \ "coc-docker",
+  \ "coc-emoji",
+  \ "coc-eslint",
+  \ "coc-git",
+  \ "coc-go",
+  \ "coc-html",
+  \ "coc-json",
+  \ "coc-prettier",
+  \ "coc-snippets",
+  \ "coc-spell-checker",
+  \ "coc-tsserver",
+  \ "coc-ultisnips",
+  \ "coc-vetur",
+  \ "coc-yank",
+\]
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
