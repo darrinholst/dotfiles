@@ -10,28 +10,25 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'benmills/vimux'
-Plug 'danielwe/base16-vim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'godlygeek/tabular'
-Plug 'honza/vim-snippets'
-Plug '/opt/homebrew/opt/fzf'
-Plug 'jalvesaq/Nvim-R'
-Plug 'junegunn/fzf.vim'
-Plug 'kevinoid/vim-jsonc'
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'suy/vim-context-commentstring'
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'vim-denops/denops.vim'
-Plug 'skanehira/denops-docker.vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'moll/vim-node'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'benmills/vimux'
+Plug 'chriskempson/base16-vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
+Plug 'jalvesaq/Nvim-R'
+Plug 'kevinoid/vim-jsonc'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'suy/vim-context-commentstring'
+Plug 'vim-denops/denops.vim'
+Plug 'skanehira/denops-docker.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'pedrohdz/vim-yaml-folds'
 Plug 'qpkorr/vim-bufkill'
@@ -242,10 +239,6 @@ noremap <silent> <leader>cw :cclose<CR>
 nnoremap j gj
 nnoremap k gk
 
-map <F6> :NvimTreeFindFile<CR>
-imap <F6> <Esc>:NvimTreeFindFile<CR>
-map <F7> :NvimTreeToggle<CR>
-imap <F7> <Esc>:NvimTreeToggle<CR>
 
 " Opens an edit command with the path of the currently edited file filled in
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -421,35 +414,6 @@ nnoremap <C-f> <cmd>Telescope find_files<cr>
 nnoremap <C-p> <cmd>Telescope git_files<cr>
 nnoremap <C-e> <cmd>Telescope buffers<cr>
 nnoremap <leader>o <cmd>Telescope coc document_symbols<cr>
-
-lua << EOF
-require("nvim-surround").setup({
-})
-
-require'nvim-tree'.setup({
-  git = {
-    enable = true,
-    ignore = false,
-  },
-  filters = {
-    custom = { '.git' },
-  },
-})
-
-require('telescope').setup({
-  defaults = {
-    mappings = {
-      i = {
-        ["<C-j>"] = "move_selection_next",
-        ["<C-k>"] = "move_selection_previous"
-      }
-    },
-  },
-})
-
-require('telescope').load_extension('coc')
-require('telescope').load_extension('fzf')
-EOF
 
 " --- "
 " coc "
