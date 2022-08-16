@@ -1,13 +1,10 @@
 {
   "coc.source.emoji.filetypes": null,
   "coc.source.emoji.triggerCharacters": ["^"],
-  "diagnostic.hintSign": ">>",
-  "diagnostic.errorSign": ">",
-  "diagnostic.warningSign": ">",
-  "diagnostic.infoSign": " ",
-  "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
-  },
+  "diagnostic.hintSign": "",
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
   "cSpell.userWords": [
     "PDFS",
     "Resizeable",
@@ -48,24 +45,8 @@
     "yaml",
     "yml"
   ],
-  "git.gitlab.hosts": [
-    "gitlab.com"
-  ],
+  "git.gitlab.hosts": [ "gitlab.com" ],
   "git.addGBlameToVirtualText": true,
-  "eslint.autoFixOnSave": true,
-  "prettier.onlyUseLocalVersion": false,
-  "prettier.requireConfig": true,
-  "languageserver": {
-    "terraform": {
-      "command": "terraform-ls",
-      "args": ["serve"],
-      "filetypes": [
-        "terraform",
-        "tf"
-      ],
-      "initializationOptions": {},
-      "settings": {}
-    }
-  }
+  "eslint.autoFixOnSave": true
 }
 

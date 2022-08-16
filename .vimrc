@@ -10,60 +10,68 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'fannheyward/telescope-coc.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'Shougo/vimproc.vim'
+Plug 'SirVer/ultisnips'
 Plug 'benmills/vimux'
 Plug 'chriskempson/base16-vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'fgheng/winbar.nvim'
+Plug 'folke/trouble.nvim'
+Plug 'tanvirtin/vgit.nvim',
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'jalvesaq/Nvim-R'
 Plug 'kevinoid/vim-jsonc'
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'suy/vim-context-commentstring'
-Plug 'vim-denops/denops.vim'
-Plug 'skanehira/denops-docker.vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kylechui/nvim-surround'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'othree/html5.vim'
 Plug 'pedrohdz/vim-yaml-folds'
-Plug 'qpkorr/vim-bufkill'
-Plug 'markstory/vim-zoomwin'
-Plug 'sbdchd/neoformat'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'sheerun/vim-polyglot'
-Plug 'Shougo/vimproc.vim'
-Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sickill/vim-pasta'
-Plug 'SirVer/ultisnips'
 Plug 'sjl/vitality.vim'
+Plug 'skanehira/denops-docker.vim'
+Plug 'suy/vim-context-commentstring'
 Plug 't9md/vim-smalls'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-jdaddy'
-Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-Plug 'kylechui/nvim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'triglav/vim-visual-increment'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-denops/denops.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-rmarkdown'
 Plug 'wakatime/vim-wakatime'
 Plug 'wincent/ferret'
-
-" order dependent
-Plug 'ryanoasis/vim-devicons'
+Plug 'mhartington/formatter.nvim'
+Plug 'dense-analysis/ale'
 
 call plug#end()
+
+" ----- "
+" Folds "
+" ----- "
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+autocmd BufReadPost,FileReadPost * normal zR
 
 " --------------- "
 " Colors and Font "
@@ -96,8 +104,9 @@ set ruler                       "show row and column
 set cursorline                  "highlight current line
 set vb                          "no beeping
 set scrolloff=5                 "Start scrolling 3 lines away from margins
-set sidescrolloff=10            "Start scrolling 10 columns away from margins
 set sidescroll=1
+set sidescrolloff=10            "Start scrolling 10 columns away from margins
+set signcolumn=yes
 set nrformats=                  "treat all numbers as decimal
 set timeoutlen=1000
 set ttimeoutlen=100
@@ -113,14 +122,8 @@ let g:python3_host_prog = '/usr/bin/python3'
 " highlighting "
 " ------------ "
 set termguicolors
-hi TelescopeSelection guibg=#555555
-hi CocInfoSign guifg=#87ad9c
-hi CocGitRemovedSign guibg=19 guifg=#bf6b68
-hi CocGitAddedSign guibg=19 guifg=#b7bc72
-hi CocGitChangedSign guibg=19 guifg=#e9c780
-hi CocGitChangeRemovedSign guibg=19 guifg=#e9c780
-hi CocCodeLens guifg=#444444
 hi CursorLineNR guibg=18 guifg=white
+hi TelescopeSelection guibg=#555555
 hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
 hi LineNr guibg=19 gui=NONE
 hi MatchParen gui=bold guibg=#b7bc72 guifg=black
@@ -131,6 +134,14 @@ hi StatusLineNC guibg=grey guifg=19 gui=bold
 hi VertSplit guibg=19 guifg=#b7bc72
 hi Visual gui=NONE guibg=#b7bc72 guifg=black
 hi EndOfBuffer guifg=#1d1f21
+
+" ----- "
+" signs "
+" ----- "
+sign define DiagnosticSignError text= linehl= texthl=DiagnosticSignError numhl=
+sign define DiagnosticSignWarn text= linehl= texthl=DiagnosticSignWarn numhl=
+sign define DiagnosticSignInfo text= linehl= texthl=DiagnosticSignInfo numhl=
+sign define DiagnosticSignHint text= linehl= texthl=DiagnosticSignHint numhl=
 
 " ------ "
 " search "
@@ -189,17 +200,6 @@ endif
 " ------ "
 nmap s <Plug>(smalls)
 
-" ---------------- "
-" dash integration "
-" ---------------- "
-function! <SID>Dash()
-  execute "silent ! /usr/bin/open dash://" . expand("<cword>")
-  redraw!
-endfunction
-
-command! Dash :call <SID>Dash()
-map <leader>d :call <SID>Dash()<CR>
-
 " -------------------------- "
 " gherkin auto table aligner "
 " -------------------------- "
@@ -220,8 +220,8 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " random key mappings "
 " ------------------- "
 vnoremap <M-c> "+y
-nmap <silent> <leader>w :wa<CR>
 nmap <silent> <leader><space> :wincmd =<CR>
+nmap <leader><leader>r :source ~/.config/nvim/init.vim<CR>
 
 " Window Commands
 noremap <silent> <leader>h :wincmd h<CR>
@@ -234,17 +234,16 @@ noremap <silent> <leader>ch :wincmd h<CR>:close<CR>
 noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
 noremap <silent> <leader>cc :close<CR>
 noremap <silent> <leader>cw :cclose<CR>
+" Opens an edit command with the path of the currently edited file filled in
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
+nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
 
 " wrapped lines support
 nnoremap j gj
 nnoremap k gk
 
-
-" Opens an edit command with the path of the currently edited file filled in
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
-nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 function! UnmapKeys()
   " ,cl closes windows for me
@@ -277,23 +276,30 @@ au FocusLost * call feedkeys("\<C-\>\<C-n>") " Return to normal mode on FocustLo
 " ------------- "
 " file mappings "
 " ------------- "
-au BufNewFile,BufRead Gemfile,Rakefile,Guardfile,config.ru,Procfile,Procfile.*,*.csv.csvbuilder setfiletype ruby
-au BufNewFile,BufRead *.pdf.erb,*.html.erb let b:eruby_subtype='html'
-au BufNewFile,BufRead *.pdf.erb set filetype=eruby
-au BufNewFile,BufRead *.eslintrc,*.babelrc,*.stylelintrc,*.nycrc,*.rng set filetype=json
+au BufNewFile,BufRead *.eslintrc,*.babelrc,*.stylelintrc,*.nycrc set filetype=json
 au BufNewFile,BufRead *.envrc,*.env,*.env.leave set filetype=sh
+
+" --- "
+" ale "
+" --- "
+let g:ale_linters = {
+\ 'javascript': ['eslint'],
+\}
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_fix_on_save = 1
+hi ALEErrorSign guibg=18 guifg=red
 
 " -------- "
 " run with "
 " -------- "
 let ft_stdout_mappings = {
-      \'bash': 'bash',
-      \'javascript': 'node',
-      \'nodejs': 'node',
-      \'python': 'python3',
-      \'ruby': 'ruby',
-      \'sh': 'sh'
-      \}
+  \'bash': 'bash',
+  \'javascript': 'node',
+  \'python': 'python3',
+  \'ruby': 'ruby',
+  \'sh': 'sh'
+\}
 
 for ft_name in keys(ft_stdout_mappings)
   execute 'au Filetype ' . ft_name . ' nnoremap <buffer> <F8> :write !' . ft_stdout_mappings[ft_name] . '<CR>'
@@ -363,27 +369,27 @@ let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#default#section_truncate_width = {
-      \ 'a': 90,
-      \ 'b': 90,
-      \ 'x': 90,
-      \ 'y': 90,
-      \ 'z': 30,
-      \ 'warning': 80,
-      \ 'error': 80,
-      \ }
+  \'a': 90,
+  \'b': 90,
+  \'x': 90,
+  \'y': 90,
+  \'z': 30,
+  \'warning': 80,
+  \'error': 80,
+\}
 
 " -------- "
 " tmuxline "
 " -------  "
 let g:tmuxline_preset = {
-      \'a'           : '#S',
-      \'cwin'        : ['#I', '#W#F'],
-      \'win'         : ['#I', '#W'],
-      \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn)',
-      \'y'           : '%l:%M',
-      \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
-      \'options'     : {'status-justify' : 'left'},
-      \}
+  \'a'           : '#S',
+  \'cwin'        : ['#I', '#W#F'],
+  \'win'         : ['#I', '#W'],
+  \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn)',
+  \'y'           : '%l:%M',
+  \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
+  \'options'     : {'status-justify' : 'left'},
+\}
 
 " ----- "
 " vimux "
@@ -397,184 +403,6 @@ map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
 " vim-pasta "
 " --------- "
 let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", "yaml", "slim", "nerdtree", "netrw", "startify", "ctrlp", "agsv"]
-
-" ----------------- "
-" vim-autoformatter "
-" ----------------- "
-let g:autoformat_verbosemode = 1
-imap <silent> <F5> <Esc><F5>
-noremap <F5> :Neoformat<CR>
-
-" --------- "
-" telescope "
-" --------- "
-nnoremap <leader>t :Telescope
-nnoremap <leader>g <cmd>Telescope live_grep<cr>
-nnoremap <C-f> <cmd>Telescope find_files<cr>
-nnoremap <C-p> <cmd>Telescope git_files<cr>
-nnoremap <C-e> <cmd>Telescope buffers<cr>
-nnoremap <leader>o <cmd>Telescope coc document_symbols<cr>
-
-" --- "
-" coc "
-" --- "
-autocmd FileType json syntax match Comment +\/\/.\+$+
-
-let g:coc_disable_transparent_cursor=1
-let g:coc_global_extensions = [
-  \ "coc-css",
-  \ "coc-diagnostic",
-  \ "coc-docker",
-  \ "coc-emoji",
-  \ "coc-eslint",
-  \ "coc-git",
-  \ "coc-go",
-  \ "coc-html",
-  \ "coc-json",
-  \ "coc-prettier",
-  \ "coc-snippets",
-  \ "coc-spell-checker",
-  \ "coc-tsserver",
-  \ "coc-ultisnips",
-  \ "coc-vetur",
-  \ "coc-yank",
-\]
-
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
-inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-augroup mygroup
-  autocmd!
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add diagnostic info for https://github.com/itchyny/lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-        \ },
-        \ 'component_function': {
-          \   'cocstatus': 'coc#status'
-          \ },
-          \ }
-
-" Using CocList
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr> " Show all diagnostics
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr> " Manage extensions
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr> " Show commands
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr> " Find symbol of current document
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr> " Search workspace symbols
-nnoremap <silent> <space>j  :<C-u>CocNext<CR> " Do default action for next item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR> " Do default action for previous item.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR> " Resume latest coc list
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
-
-" --------- "
-" UtilSnips "
-" --------- "
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEnableSnipMate = 0
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
-
-" --------- "
-" Neoformat "
-" --------- "
-let g:neoformat_basic_format_align = 1
-let g:neoformat_run_all_formatters = 1
-let g:neoformat_only_msg_on_error = 1
-let g:neoformat_enabled_json = ['jq', 'prettier', 'fixjson']
-let g:neoformat_enabled_javascript = []
-let g:neoformat_enabled_typescript = []
-let g:neoformat_enabled_scss = ['prettier']
-au BufWritePre *.js,*.ts,*.scss,*.rb Neoformat
 
 " --- "
 " JSX "
@@ -606,41 +434,13 @@ function! SetGitCommitOptions()
   setlocal spell
 endfunction
 
-" ---- "
-" yaml "
-" ---- "
-au Filetype yaml call SetYamlOptions()
-au Filetype yaml.docker-compose call SetYamlOptions()
-
-function! SetYamlOptions()
-  normal zR
-endfunction
-
-" ---------- "
-" TypeScript "
-" ---------- "
-au Filetype typescript call SetTypeScriptOptions()
-
-function! SetTypeScriptOptions()
-  setlocal foldmethod=indent
-  setlocal colorcolumn=81
-  normal zR
-endfunction
-
-" --- "
-" Vue "
-" --- "
-autocmd FileType vue let b:coc_root_patterns = ['vue.config.js']
-
 " ---------- "
 " JavaScript "
 " ---------- "
-au Filetype javascript call SetJavaScriptOptions()
+au Filetype typescript,javascript call SetJavaScriptOptions()
 
 function! SetJavaScriptOptions()
-  setlocal foldmethod=indent
   setlocal colorcolumn=81
-  normal zR
 endfunction
 
 " --- "
@@ -652,27 +452,6 @@ let g:csv_no_conceal = 1
 " JSON "
 " ---- "
 let g:vim_json_syntax_conceal = 0
-au Filetype json call SetJsonOptions()
-
-function! SetJsonOptions()
-  setlocal foldmethod=indent
-  normal zR
-endfunction
-
-au BufNewFile,BufRead call OpenFolds()
-
-function! OpenFolds()
-  normal zR
-endfunction
-
-" --- "
-" Vim "
-" --- "
-au Filetype vim call SetVimOptions()
-
-function! SetVimOptions()
-  normal zR
-endfunction
 
 " ------- "
 " resizer "

@@ -53,9 +53,8 @@ set -o vi
 export CDPATH=.:~:~/projects:~/projects/aa:~/projects/aa/yield:~/projects/aa/planting:~/projects/aa/modules:~/projects/aa/inf:~/projects/aa/apps
 export TERM=xterm-color
 export CLICOLOR=1
-export EDITOR="nvim"
-export GIT_EDITOR="nvim"
-export GEM_OPEN_EDITOR="nvim"
+export EDITOR="~/.nvim-nightly/bin/nvim"
+export GIT_EDITOR="~/.nvim-nightly/bin/nvim"
 export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
 export FZF_DEFAULT_OPTS='--bind ctrl-e:up'
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
@@ -99,8 +98,8 @@ zstyle ':completion:*' group-name ''
 # aliases
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias listening='lsof -i -P | grep -i listen'
-alias vi="nvim -u NONE"
-alias vim="nvim"
+alias vi="~/.nvim-nightly/bin/nvim -u NONE"
+alias vim="~/.nvim-nightly/bin/nvim"
 alias tmux='tmux -2 -u'
 alias git=hub
 alias gpf='git push --force-with-lease'
