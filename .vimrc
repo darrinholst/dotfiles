@@ -15,10 +15,10 @@ Plug 'Shougo/vimproc.vim'
 Plug 'SirVer/ultisnips'
 Plug 'benmills/vimux'
 Plug 'chriskempson/base16-vim'
+Plug 'dense-analysis/ale'
 Plug 'edkolev/tmuxline.vim'
 Plug 'fgheng/winbar.nvim'
 Plug 'folke/trouble.nvim'
-Plug 'tanvirtin/vgit.nvim',
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'hrsh7th/cmp-buffer'
@@ -32,11 +32,13 @@ Plug 'kevinoid/vim-jsonc'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kylechui/nvim-surround'
+Plug 'mhartington/formatter.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'onsails/lspkind.nvim'
 Plug 'othree/html5.vim'
 Plug 'pedrohdz/vim-yaml-folds'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
@@ -46,6 +48,7 @@ Plug 'sjl/vitality.vim'
 Plug 'skanehira/denops-docker.vim'
 Plug 'suy/vim-context-commentstring'
 Plug 't9md/vim-smalls'
+Plug 'tanvirtin/vgit.nvim',
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -60,9 +63,8 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-rmarkdown'
 Plug 'wakatime/vim-wakatime'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'wincent/ferret'
-Plug 'mhartington/formatter.nvim'
-Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -117,6 +119,7 @@ syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 let g:python_host_prog  = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
+let g:node_host_prog = '~/.nodenv/shims/node'
 
 " ------------ "
 " highlighting "
@@ -282,8 +285,13 @@ au BufNewFile,BufRead *.envrc,*.env,*.env.leave set filetype=sh
 " --- "
 " ale "
 " --- "
+let g:ale_fixers = {
+\ 'javascript': ['eslint'],
+\ 'typescript': ['eslint'],
+\}
 let g:ale_linters = {
 \ 'javascript': ['eslint'],
+\ 'typescript': ['eslint'],
 \}
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''

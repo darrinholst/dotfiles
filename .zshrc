@@ -38,8 +38,17 @@ SPACESHIP_PROMPT_PREFIXES_SHOW=false
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZSH=$HOME/.oh-my-zsh
 export DISABLE_UPDATE_PROMPT=true
-plugins=(autojump bundler colored-man-pages common-aliases docker docker-compose encode64 macos vi-mode npm git git-auto-fetch git-extras history-substring-search)
+export FZF_CTRL_T_COMMAND="fd --hidden --follow --exclude \".git\" . ~/projects"
+plugins=(autojump bundler colored-man-pages common-aliases docker docker-compose encode64 macos vi-mode npm git git-auto-fetch git-extras history-substring-search fzf)
 source $ZSH/oh-my-zsh.sh
+
+j() {
+    if [[ "$#" -ne 0 ]]; then
+        cd $(autojump $@)
+        return
+    fi
+    cd "$(autojump -s | sort -k1gr | awk '$1 ~ /[0-9]:/ && $2 ~ /^\// { for (i=2; i<=NF; i++) { print $(i) } }' |  fzf --height 40% --reverse --inline-info)" 
+}
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Rando
@@ -236,4 +245,5 @@ use-prod() {
   networksetup -setdnsservers Wi-Fi 172.31.0.2 1.1.1.1 208.67.222.222 208.67.220.220
   which-dns
 }
+
 
