@@ -4,14 +4,15 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 lua << EOF
-  require('dh.cmp')
-  require('dh.formatter')
-  require('dh.lsp')
-  require('dh.surround')
-  require('dh.telescope')
-  require('dh.tree')
-  require('dh.trouble')
-  require('dh.vgit')
-  require('dh.winbar')
+  require('my.icons')
+  require('my.cmp')
+  require('my.formatter')
+  require('my.lsp')
+  require('my.surround')
+  require('my.telescope')
+  require('my.tree')
+  require('my.trouble')
+  require('my.vgit')
+  require('my.winbar')
 EOF
 

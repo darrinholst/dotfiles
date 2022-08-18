@@ -5,6 +5,8 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local on_attach = function(client, bufnr)
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 		virtual_text = false,
@@ -33,13 +35,26 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<space>f", vim.lsp.buf.format, bufopts)
 end
 
+-- require("lspconfig").eslint.setup({
+-- 	on_attach = on_attach,
+-- 	settings = {
+-- 		format = true,
+-- 	},
+-- })
+
+require("lspconfig").jsonls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 require("lspconfig").tsserver.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 require("lspconfig").yamlls.setup({
 	on_attach = on_attach,
-	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	capabilities = capabilities,
 	settings = {
 		yaml = {
 			schemas = {
@@ -48,3 +63,4 @@ require("lspconfig").yamlls.setup({
 		},
 	},
 })
+

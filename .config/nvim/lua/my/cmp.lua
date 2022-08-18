@@ -1,8 +1,10 @@
-vim.cmd([[
-  set completeopt=menu,menuone
-]])
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.shortmess:append("c")
 
 local cmp = require("cmp")
+local lspkind = require("lspkind")
+
+lspkind.init()
 
 cmp.setup({
 	snippet = {
@@ -14,6 +16,19 @@ cmp.setup({
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
+	},
+
+	formatting = {
+		format = lspkind.cmp_format({
+			with_text = true,
+			menu = {
+				buffer = "[buf]",
+				nvim_lsp = "[lsp]",
+				nvim_lua = "[api]",
+				path = "[path]",
+				ultisnips = "[snip]",
+			},
+		}),
 	},
 
 	mapping = cmp.mapping.preset.insert({
@@ -28,40 +43,15 @@ cmp.setup({
 	}),
 
 	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
 		{ name = "ultisnips" },
 		{ name = "nvim_lua" },
-		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "buffer", keyword_length = 5 },
 	}),
 
 	experimental = {
 		ghost_text = true,
+		native_menu = false,
 	},
 })
-
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline("/", {
--- 	mapping = cmp.mapping.preset.cmdline(),
--- 	sources = {
--- 		{ name = "buffer" },
--- 	},
--- })
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{ name = "cmdline" },
-	}),
-})
-
--- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---   capabilities = capabilities
--- }
