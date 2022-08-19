@@ -67,6 +67,7 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 export FZF_CTRL_T_COMMAND="fd --hidden --follow --exclude \".git\" . ~/projects"
 export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
 export FZF_DEFAULT_OPTS='--bind ctrl-e:up'
+bindkey '^r' fzf-history-widget
 
 j() {
   if [[ "$#" -ne 0 ]]; then
