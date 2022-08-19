@@ -34,7 +34,6 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
@@ -43,8 +42,8 @@ cmp.setup({
 	}),
 
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
 		{ name = "ultisnips" },
+		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "buffer", keyword_length = 5 },
@@ -54,4 +53,9 @@ cmp.setup({
 		ghost_text = true,
 		native_menu = false,
 	},
+})
+
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
