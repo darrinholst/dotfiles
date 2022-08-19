@@ -34,8 +34,11 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-path'
+
+" snippets
 Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'honza/vim-snippets'
 
 " colors/theme
 Plug 'chriskempson/base16-vim'

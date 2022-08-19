@@ -31,6 +31,7 @@ $(get_ip mssql.advancedagtest.com) mssql.advancedagtest.com
 $(get_ip farmgate-mysql.advancedagtest.com) farmgate-mysql.advancedagtest.com
 $(get_ip grafana.advancedagrilytics.com) grafana.advancedagrilytics.com
 $(get_ip sonar.advancedagrilytics.com) sonar.advancedagrilytics.com
+$(get_ip ds.bayes.advancedagtest.com) ds.bayes.advancedagtest.com
 
 172.31.148.55 redis.advancedag.com
 172.31.146.228 postgres.advancedag.com
