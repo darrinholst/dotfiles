@@ -1,7 +1,7 @@
-nnoremap <silent> <Esc><Down> :call DownHorizontal()<CR>
-nnoremap <silent> <Esc><Up> :call UpHorizontal()<CR>
-nnoremap <silent> <Esc><Right> :call RightVertical()<CR>
-nnoremap <silent> <Esc><Left> :call LeftVertical()<CR>
+nnoremap <silent> <M-Down> :call DownHorizontal()<CR>
+nnoremap <silent> <M-Up> :call UpHorizontal()<CR>
+nnoremap <silent> <M-Right> :call RightVertical()<CR>
+nnoremap <silent> <M-Left> :call LeftVertical()<CR>
 
 func! DownHorizontal()
   let currentWin = winnr()
@@ -10,8 +10,8 @@ func! DownHorizontal()
   if winnr() == currentWin
     wincmd k
     if winnr() == currentWin
-      wincmd k 
-    else 
+      wincmd k
+    else
       exe currentWin . "wincmd w"
       call DownHorizontalAdjust()
     endif
@@ -24,7 +24,7 @@ endfun
 func! DownHorizontalAdjust()
   let currentWin = winnr()
   "If very bottom window, decrease window size, otherwise just increase current window size
-  wincmd j 
+  wincmd j
   if winnr() == currentWin
     resize -3
   else
@@ -40,8 +40,8 @@ func! UpHorizontal ()
   if winnr() == currentWin
     wincmd k
     if winnr() == currentWin
-      wincmd k 
-    else 
+      wincmd k
+    else
       exe currentWin . "wincmd w"
       call UpHorizontalAdjust()
     endif

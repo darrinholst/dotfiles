@@ -6,6 +6,7 @@ source ~/.vimrc
 lua << EOF
   require('my.icons')
   require('my.cmp')
+  require('my.diagnostics')
   require('my.formatter')
   require('my.lsp')
   require('my.surround')

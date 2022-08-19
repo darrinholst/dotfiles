@@ -10,61 +10,65 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'Shougo/vimproc.vim'
-Plug 'SirVer/ultisnips'
-Plug 'benmills/vimux'
-Plug 'chriskempson/base16-vim'
-Plug 'dense-analysis/ale'
-Plug 'edkolev/tmuxline.vim'
+" nvim
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'fgheng/winbar.nvim'
-Plug 'folke/trouble.nvim'
-Plug 'godlygeek/tabular'
-Plug 'honza/vim-snippets'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
+
+" fuzzy finder
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+
+" tmux integrations
+Plug 'benmills/vimux'
+Plug 'edkolev/tmuxline.vim'
+Plug 'sjl/vitality.vim'
+
+" completion
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'jalvesaq/Nvim-R'
-Plug 'kevinoid/vim-jsonc'
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kylechui/nvim-surround'
-Plug 'mhartington/formatter.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'onsails/lspkind.nvim'
-Plug 'othree/html5.vim'
-Plug 'pedrohdz/vim-yaml-folds'
+Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-Plug 'sheerun/vim-polyglot'
-Plug 'sickill/vim-pasta'
-Plug 'sjl/vitality.vim'
-Plug 'skanehira/denops-docker.vim'
-Plug 'suy/vim-context-commentstring'
-Plug 't9md/vim-smalls'
-Plug 'tanvirtin/vgit.nvim',
-Plug 'tomtom/tlib_vim'
+
+" colors/theme
+Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" tpope
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-unimpaired'
-Plug 'triglav/vim-visual-increment'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-denops/denops.vim'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-rmarkdown'
-Plug 'wakatime/vim-wakatime'
-Plug 'williamboman/nvim-lsp-installer'
+
+" search
 Plug 'wincent/ferret'
+
+" git
+Plug 'tanvirtin/vgit.nvim',
+
+" lsp/diagnostics
+Plug 'dense-analysis/ale'
+Plug 'folke/trouble.nvim'
+Plug 'onsails/lspkind.nvim'
+Plug 'williamboman/nvim-lsp-installer'
+
+" random
+Plug 'godlygeek/tabular'
+Plug 'kylechui/nvim-surround'
+Plug 'mhartington/formatter.nvim'
+Plug 'sickill/vim-pasta'
+Plug 'suy/vim-context-commentstring'
+Plug 't9md/vim-smalls'
+Plug 'triglav/vim-visual-increment'
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
@@ -246,8 +250,6 @@ nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 nnoremap j gj
 nnoremap k gk
 
-autocmd FileType json syntax match Comment +\/\/.\+$+
-
 function! UnmapKeys()
   " ,cl closes windows for me
   nunmap ,cl
@@ -326,8 +328,8 @@ nnoremap <F3> :silent! wall!<cr>
 " ---------- "
 nmap <C-k> <Plug>unimpairedMoveUp
 nmap <C-j> <Plug>unimpairedMoveDown
-xmap <C-k> <Plug>unimpairedMoveSelectionUp
-xmap <C-j> <Plug>unimpairedMoveSelectionDown
+xmap <C-k> <Plug>unimpairedMoveSelectionUpgv
+xmap <C-j> <Plug>unimpairedMoveSelectionDowngv
 
 " ------------------ "
 " cleanup whitespace "
@@ -455,101 +457,4 @@ endfunction
 " CSV "
 " --- "
 let g:csv_no_conceal = 1
-
-" ---- "
-" JSON "
-" ---- "
-let g:vim_json_syntax_conceal = 0
-
-" ------- "
-" resizer "
-" ------- "
-nnoremap <silent> <M-Down> :call DownHorizontal()<CR>
-nnoremap <silent> <M-Up> :call UpHorizontal()<CR>
-nnoremap <silent> <M-Right> :call RightVertical()<CR>
-nnoremap <silent> <M-Left> :call LeftVertical()<CR>
-
-func! DownHorizontal()
-  let currentWin = winnr()
-  "If no window below or above leave as is, otherwise call function
-  wincmd j
-  if winnr() == currentWin
-    wincmd k
-    if winnr() == currentWin
-      wincmd k
-    else
-      exe currentWin . "wincmd w"
-      call DownHorizontalAdjust()
-    endif
-  else
-    exe currentWin . "wincmd w"
-    call DownHorizontalAdjust()
-  endif
-endfun
-
-func! DownHorizontalAdjust()
-  let currentWin = winnr()
-  "If very bottom window, decrease window size, otherwise just increase current window size
-  wincmd j
-  if winnr() == currentWin
-    resize -3
-  else
-    exe currentWin . "wincmd w"
-    resize +3
-  endif
-endfun
-
-func! UpHorizontal ()
-  let currentWin = winnr()
-  "If no window below or above leave as is
-  wincmd j
-  if winnr() == currentWin
-    wincmd k
-    if winnr() == currentWin
-      wincmd k
-    else
-      exe currentWin . "wincmd w"
-      call UpHorizontalAdjust()
-    endif
-  else
-    exe currentWin . "wincmd w"
-    call UpHorizontalAdjust()
-  endif
-endfun
-
-func! UpHorizontalAdjust()
-  let currentWin = winnr()
-  "If very top window, decrease window size, otherwise just increase current window size
-  wincmd k
-  if winnr() == currentWin
-    resize -3
-  else
-    resize -3
-    exe currentWin . "wincmd w"
-  endif
-endfun
-
-func! RightVertical()
-  let currentWin = winnr()
-  " If very right window, decrease window size, otherwise just increase current window size
-  wincmd l
-  if winnr() == currentWin
-    vertical resize -3
-  else
-    exe currentWin . "wincmd w"
-    vertical resize +3
-  endif
-endfun
-
-func! LeftVertical()
-  let currentWin = winnr()
-  " If very left window, decrease window size, otherwise just increase current window size
-  wincmd h
-  if winnr() == currentWin
-    vertical resize -3
-  else
-    vertical resize -3
-    exe currentWin . "wincmd w"
-  endif
-endfun
 

@@ -1,7 +1,10 @@
 source ~/.zprofile
+unsetopt correct_all
+set -o vi
+export CDPATH=.:~:~/projects:~/projects/aa:~/projects/aa/modules:~/projects/aa/inf:~/projects/aa/apps
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Spaceship
+# Spaceship (Prompt)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ZSH_THEME="spaceship"
 SPACESHIP_AWS_SHOW=false
@@ -38,58 +41,92 @@ SPACESHIP_PROMPT_PREFIXES_SHOW=false
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZSH=$HOME/.oh-my-zsh
 export DISABLE_UPDATE_PROMPT=true
-export FZF_CTRL_T_COMMAND="fd --hidden --follow --exclude \".git\" . ~/projects"
-plugins=(autojump bundler colored-man-pages common-aliases docker docker-compose encode64 macos vi-mode npm git git-auto-fetch git-extras history-substring-search fzf)
+plugins=(\
+  autojump \
+  bundler \
+  colored-man-pages \
+  common-aliases \
+  docker \
+  docker-compose \
+  encode64 \
+  fzf \
+  git \
+  git-auto-fetch \
+  git-extras \
+  history-substring-search \
+  macos \
+  npm \
+  vi-mode \
+)
 source $ZSH/oh-my-zsh.sh
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# fzf
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
+export FZF_CTRL_T_COMMAND="fd --hidden --follow --exclude \".git\" . ~/projects"
+export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
+export FZF_DEFAULT_OPTS='--bind ctrl-e:up'
+
 j() {
-    if [[ "$#" -ne 0 ]]; then
-        cd $(autojump $@)
-        return
-    fi
-    cd "$(autojump -s | sort -k1gr | awk '$1 ~ /[0-9]:/ && $2 ~ /^\// { for (i=2; i<=NF; i++) { print $(i) } }' |  fzf --height 40% --reverse --inline-info)" 
+  if [[ "$#" -ne 0 ]]; then
+    cd $(autojump $@)
+    return
+  fi
+  cd "$(autojump -s | sort -k1gr | awk '$1 ~ /[0-9]:/ && $2 ~ /^\// { for (i=2; i<=NF; i++) { print $(i) } }' |  fzf --height 40% --reverse --inline-info)"
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Rando
+# vim
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bindkey '^r' history-incremental-search-backward
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
-unsetopt correct_all
-set -o vi
-export CDPATH=.:~:~/projects:~/projects/aa:~/projects/aa/yield:~/projects/aa/planting:~/projects/aa/modules:~/projects/aa/inf:~/projects/aa/apps
-export TERM=xterm-color
-export CLICOLOR=1
+alias vi="~/.nvim-nightly/bin/nvim -u NONE"
+alias vim="~/.nvim-nightly/bin/nvim"
 export EDITOR="~/.nvim-nightly/bin/nvim"
 export GIT_EDITOR="~/.nvim-nightly/bin/nvim"
-export FZF_DEFAULT_COMMAND='rg --files --follow -uu --hidden'
-export FZF_DEFAULT_OPTS='--bind ctrl-e:up'
-export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# The rubies
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export ARCHFLAGS='-arch x86_64' # This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# The javas
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export JAVA_OPTS="-client -Xms64m -Xmx1024m"
-export MAVEN_OPTS="-client -Xms64m -Xmx1024m"
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# The javascripts
+# js
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 eval "$(nodenv init -)"
 export PATH=./node_modules/.bin:$PATH
+alias npm='~/.nodenv/shims/npm'
+alias run='npm run'
+
+wtf-node-modules() {
+  find . -type d -name node_modules -prune | tr '\n' '\0' |  xargs -0 du -sch
+}
+
+clean-node-modules() {
+  find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+}
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # direnv
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 eval "$(direnv hook zsh)"
 export DIRENV_LOG_FORMAT=
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# git
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias git=hub
+alias tig='tig --no-merges'
+alias gpf='git push --force-with-lease'
+alias gcm='git checkout $(git default-branch)'
+alias gba='git branch --all --color="always" --sort=authordate --format="%(color:blue)%(authordate:relative);%(color:red)%(authorname);%(color:white)%(color:bold)%(refname:short)" "$@" | column -s ";" -t'
+alias gu='git up'
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# terraform
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias ti="(cd terraform && ./setup-terraform-local.sh)"
+alias tf="terraform fmt terraform"
+alias tp="terraform -chdir=terraform plan --var-file terraform.tfvars"
+alias ta="terraform -chdir=terraform apply --var-file terraform.tfvars"
+alias tpt="terraform -chdir=terraform plan --var-file test.tfvars"
+alias tat="terraform -chdir=terraform apply --var-file test.tfvars"
+alias tpp="terraform -chdir=terraform plan --var-file prod.tfvars"
+alias tap="terraform -chdir=terraform apply --var-file prod.tfvars"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # autocomplete stuff I copied from the INTERNET
@@ -104,87 +141,95 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# aliases
+# tmux
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias listening='lsof -i -P | grep -i listen'
-alias vi="~/.nvim-nightly/bin/nvim -u NONE"
-alias vim="~/.nvim-nightly/bin/nvim"
 alias tmux='tmux -2 -u'
-alias git=hub
-alias gpf='git push --force-with-lease'
-alias gcm='git checkout $(git default-branch)'
-alias gba='git branch --all --color="always" --sort=authordate --format="%(color:blue)%(authordate:relative);%(color:red)%(authorname);%(color:white)%(color:bold)%(refname:short)" "$@" | column -s ";" -t'
-alias gu='git up'
-alias npm='~/.nodenv/shims/npm'
-alias run='npm run'
-alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
-alias fp=any
-alias tig='tig --no-merges'
-alias py=python3
-alias ti="(cd terraform && ./setup-terraform-local.sh)"
-alias tf="terraform fmt terraform"
-alias tp="terraform -chdir=terraform plan --var-file terraform.tfvars"
-alias ta="terraform -chdir=terraform apply --var-file terraform.tfvars"
-alias tpt="terraform -chdir=terraform plan --var-file test.tfvars"
-alias tat="terraform -chdir=terraform apply --var-file test.tfvars"
-alias tpp="terraform -chdir=terraform plan --var-file prod.tfvars"
-alias tap="terraform -chdir=terraform apply --var-file prod.tfvars"
+
+attach() {
+  tmux attach -t $1 || tmux new -s $1
+}
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# The colors
+# colors
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export TERM=xterm-color
+export CLICOLOR=1
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 base16_tomorrow-night
 
-autoload bashcompinit && bashcompinit
-complete -C '/usr/local/bin/aws_completer' aws
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 🤫 secret stuff goes in this file
+# docker
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ -f "$HOME/.zshrc.local" ]]; then
-  source "$HOME/.zshrc.local"
-fi
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Enter the rest at your own risk
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-b64() {
-  echo -n "$1" | openssl base64
-}
-
 clean-docker() {
   docker system prune --all --force --volumes
 }
 
-wtf-node-modules() {
-  find . -type d -name node_modules -prune | tr '\n' '\0' |  xargs -0 du -sch
-}
-
-clean-node-modules() {
-  find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
-}
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# dns
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 clean-dns() {
   sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder
 }
 
-# find and list processes matching a case-insensitive partial-match string...I think
-any() {
+which-dns() {
+  networksetup -getdnsservers Wi-Fi
+}
+
+use-cloudflare() {
+  networksetup -setdnsservers Wi-Fi 1.1.1.1 208.67.222.222 208.67.220.220
+  which-dns
+}
+
+use-test() {
+  networksetup -setdnsservers Wi-Fi 10.2.0.2 1.1.1.1 208.67.222.222 208.67.220.220
+  which-dns
+}
+
+use-prod() {
+  networksetup -setdnsservers Wi-Fi 172.31.0.2 1.1.1.1 208.67.222.222 208.67.220.220
+  which-dns
+}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# utils
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
+alias awsauto='aws --cli-auto-prompt'
+
+untilfails() {
+  while $@; do :; done
+}
+
+listening() {
+  lsof -i -P | grep -i listen
+}
+
+
+ip() {
+  local ip=`ifconfig en0 | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}'`
+  local locip extip
+
+  [ "$ip" != "" ] && locip=$ip || locip="inactive"
+
+  ip=`dig +short myip.opendns.com @resolver1.opendns.com`
+  [ "$ip" != "" ] && extip=$ip || extip="inactive"
+
+  printf '%11s: %s\n%11s: %s\n' "Local IP" $locip "External IP" $extip
+}
+
+fp() { # find and list processes matching a case-insensitive partial-match string...I think
   emulate -L zsh
   unsetopt KSH_ARRAYS
   if [[ -z "$1" ]] ; then
-    echo "any - grep for process(es) by keyword" >&2
-    echo "Usage: any " >&2 ; return 1
+    echo "fp - grep for process(es) by keyword" >&2
+    echo "Usage: fp " >&2 ; return 1
   else
     ps ax -o pid,user,start,command | grep -i --color=auto "[${1[1]}]${1[2,-1]}"
   fi
 }
 
-# build menu to kill process
-fk() {
+fk() { # build menu to kill process
   IFS=$'\n'
   PS3='Kill which process? '
 
@@ -207,43 +252,10 @@ fk() {
   unset IFS
 }
 
-ips() {
-  local ip=`ifconfig en0 | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}'`
-  local locip extip
-
-  [ "$ip" != "" ] && locip=$ip || locip="inactive"
-
-  ip=`dig +short myip.opendns.com @resolver1.opendns.com`
-  [ "$ip" != "" ] && extip=$ip || extip="inactive"
-
-  printf '%11s: %s\n%11s: %s\n' "Local IP" $locip "External IP" $extip
-}
-
-attach() {
-  tmux attach -t $1 || tmux new -s $1
-}
-
-untilfails() {
-  while $@; do :; done
-}
-
-which-dns() {
-  networksetup -getdnsservers Wi-Fi
-}
-
-use-cloudflare() {
-  networksetup -setdnsservers Wi-Fi 1.1.1.1 208.67.222.222 208.67.220.220
-  which-dns
-}
-
-use-test() {
-  networksetup -setdnsservers Wi-Fi 10.2.0.2 1.1.1.1 208.67.222.222 208.67.220.220
-  which-dns
-}
-
-use-prod() {
-  networksetup -setdnsservers Wi-Fi 172.31.0.2 1.1.1.1 208.67.222.222 208.67.220.220
-  which-dns
-}
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 🤫 secret stuff goes in this file
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [[ -f "$HOME/.zshrc.local" ]]; then
+  source "$HOME/.zshrc.local"
+fi
 

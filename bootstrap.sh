@@ -43,7 +43,6 @@ sudo python -m pip install --upgrade pynvim neovim
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #~ back to more sane stuff like javascript ~#
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-nodenv install 16.15.0
-nodenv install 16.15.1
 nodenv install 16.16.0
-nodenv global 16.16.0
+nodenv install 16.17.0
+nodenv global 16.17.0
