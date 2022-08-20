@@ -58,7 +58,6 @@ Plug 'wincent/ferret'
 Plug 'tanvirtin/vgit.nvim',
 
 " lsp/diagnostics
-Plug 'dense-analysis/ale'
 Plug 'folke/trouble.nvim'
 Plug 'onsails/lspkind.nvim'
 Plug 'williamboman/nvim-lsp-installer'
@@ -144,6 +143,10 @@ hi StatusLineNC guibg=grey guifg=19 gui=bold
 hi VertSplit guibg=19 guifg=#b7bc72
 hi Visual gui=NONE guibg=#b7bc72 guifg=black
 hi EndOfBuffer guifg=#1d1f21
+hi DiagnosticVirtualTextError guifg=#969896
+hi DiagnosticVirtualTextInfo guifg=#969896
+hi DiagnosticVirtualTextWarn guifg=#969896
+hi DiagnosticVirtualTextHint guifg=#969896
 
 " ----- "
 " signs "
@@ -169,9 +172,7 @@ map <S-C-F4> :cpf<CR>
 set <S-F4>=\eO1;2S
 map <leader>f <plug>(FerretAck)
 map <leader>F <plug>(FerretAckWord)
-let g:FerretExecutableArguments = {
-\  'rg': '--vimgrep --no-heading --max-columns 4096'
-\}
+let g:FerretExecutableArguments = { 'rg': '--vimgrep --no-heading --max-columns 4096' }
 
 " ---------- "
 " whitespace "
@@ -279,22 +280,6 @@ au FocusLost * call feedkeys("\<C-\>\<C-n>") " Return to normal mode on FocustLo
 au BufNewFile,BufRead *.eslintrc,*.babelrc,*.stylelintrc,*.nycrc set filetype=json
 au BufNewFile,BufRead *.envrc,*.env,*.env.leave set filetype=sh
 
-" --- "
-" ale "
-" --- "
-let g:ale_fixers = {
-\ 'javascript': ['eslint'],
-\ 'typescript': ['eslint'],
-\}
-let g:ale_linters = {
-\ 'javascript': ['eslint'],
-\ 'typescript': ['eslint'],
-\}
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_fix_on_save = 1
-hi ALEErrorSign guibg=18 guifg=red
-
 " -------- "
 " run with "
 " -------- "
@@ -315,8 +300,8 @@ imap <silent> <F8> <Esc><F8>
 " -------- "
 " save all "
 " -------- "
-imap <F3> <Esc><F3>
-nnoremap <F3> :silent! wall!<cr>
+inoremap <silent> <F3> <Esc>:wall!<cr>
+nnoremap <silent> <F3> :wall!<cr>
 
 " ---------- "
 " unimparied "
@@ -339,12 +324,6 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
-
-augroup cleanup_files
-  au!
-  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.ts,*.js,*.json,*.rb,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
-  au BufWritePre *.scss,*.less,*.css,*.coffee,*.html.*,*.ts,*.js,*.json,*.rb,*.feature retab!
-augroup END
 
 " --- "
 " xml "
