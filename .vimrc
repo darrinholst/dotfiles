@@ -121,7 +121,7 @@ set timeoutlen=1000
 set ttimeoutlen=100
 set mouse=a
 set re=1                        "https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting#16920294
-set tags^=./.git/tags
+set updatetime=300              " Smaller updatetime for CursorHold & CursorHoldI
 syntax on                       "syntax highlighting
 runtime macros/matchit.vim
 let g:python_host_prog  = '/usr/bin/python'
