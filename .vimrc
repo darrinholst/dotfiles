@@ -104,7 +104,7 @@ set encoding=utf-8              "utf-8
 set number                      "show line numbers
 set backspace=indent,eol,start  "allow backspace in insert mode
 set history=1000                "store lots of :cmdline history
-set laststatus=2                "always show the status bar
+set laststatus=3                "show the nvim global status line
 set showcmd                     "show incomplete commands
 set showmode                    "show current mode
 set autoread                    "reload files changed outside vim
@@ -170,8 +170,8 @@ set <S-F4>=\eO1;2S
 map <leader>f <plug>(FerretAck)
 map <leader>F <plug>(FerretAckWord)
 let g:FerretExecutableArguments = {
-  \   'rg': '--vimgrep --no-heading --max-columns 4096'
-  \ }
+\  'rg': '--vimgrep --no-heading --max-columns 4096'
+\}
 
 " ---------- "
 " whitespace "
@@ -253,13 +253,6 @@ nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 nnoremap j gj
 nnoremap k gk
 
-function! UnmapKeys()
-  " ,cl closes windows for me
-  nunmap ,cl
-  vunmap ,cl
-  noremap <silent> <leader>cl :wincmd l<CR>:close<CR>
-endfunction
-
 " --------------------------- "
 " directory handling on enter "
 " --------------------------- "
@@ -272,7 +265,6 @@ endfunction
 
 augroup vim_enter
   au VimEnter * call <SID>CdIfDirectory(expand("<amatch>"))
-  au VimEnter * call UnmapKeys()
 augroup END
 
 " ---------- "
