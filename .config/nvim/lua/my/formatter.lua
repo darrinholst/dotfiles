@@ -1,22 +1,18 @@
-local util = require("formatter.util")
+require("formatter").setup {
+  logging = true,
+  log_level = vim.log.levels.WARN,
 
--- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-require("formatter").setup({
-	logging = true,
-	log_level = vim.log.levels.WARN,
+  filetype = {
+    json = {
+      function()
+        return nil
+      end
+    },
 
-	filetype = {
-		lua = {
-			require("formatter.filetypes.lua").stylua,
-		},
-
-		["*"] = {
-			function()
-				return { exe = "sed", args = { "-i", "''", "'s/[	 ]*$//'" } }
-			end,
-		},
-	},
-})
-
-vim.api.nvim_set_keymap("", "<F5>", ":FormatWrite<CR>", { silent = true })
-vim.api.nvim_set_keymap("i", "<F5>", "<Esc>:FormatWrite<CR>", { silent = true })
+    ["*"] = {
+      function()
+        return { exe = "sed", args = { "-i", "''", "'s/[	 ]*$//'" } }
+      end,
+    }
+  }
+}
