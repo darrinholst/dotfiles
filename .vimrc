@@ -61,6 +61,7 @@ Plug 'tanvirtin/vgit.nvim',
 Plug 'folke/trouble.nvim'
 Plug 'onsails/lspkind.nvim'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " random
 Plug 'godlygeek/tabular'
@@ -232,7 +233,7 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " ------------------- "
 vnoremap <M-c> "+y
 nmap <silent> <leader><space> :wincmd =<CR>
-nmap <leader><leader>r :source ~/.config/nvim/init.vim<CR>
+nmap <leader><leader>r :source ~/.config/nvim/init.lua<CR>
 
 " Window Commands
 noremap <silent> <leader>h :wincmd h<CR>
