@@ -26,9 +26,12 @@ end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require("null-ls").setup({
+local nullLs = require("null-ls")
+
+nullLs.setup({
   sources = {
-    require("null-ls").builtins.diagnostics.cspell.with({
+    nullLs.builtins.formatting.terraform_fmt,
+    nullLs.builtins.diagnostics.cspell.with({
       diagnostics_postprocess = function(diagnostic)
         diagnostic.severity = vim.diagnostic.severity["HINT"]
       end,
@@ -36,7 +39,9 @@ require("null-ls").setup({
   },
 })
 
-require("nvim-lsp-installer").on_server_ready(function(server)
+local lspInstaller = require("nvim-lsp-installer")
+
+lspInstaller.on_server_ready(function(server)
   local opts = {
     on_attach = on_attach,
     capabilities = capabilities,
