@@ -1,14 +1,3 @@
-require("filetype").setup({
-  overrides = {
-    extensions = {
-      eslintrc = "json",
-      babelrc = "json",
-      envrc = "sh",
-      env = "sh",
-    },
-  },
-})
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
 

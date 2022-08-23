@@ -16,7 +16,6 @@ Plug 'nvim-treesitter/playground'
 Plug 'fgheng/winbar.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nathom/filetype.nvim'
 
 " fuzzy finder
 Plug 'nvim-telescope/telescope.nvim'
@@ -67,7 +66,6 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'godlygeek/tabular'
 Plug 'kylechui/nvim-surround'
 Plug 'mhartington/formatter.nvim'
-Plug 'sickill/vim-pasta'
 Plug 'suy/vim-context-commentstring'
 Plug 't9md/vim-smalls'
 Plug 'triglav/vim-visual-increment'
@@ -125,12 +123,6 @@ set <S-F4>=\eO1;2S
 map <leader>f <plug>(FerretAck)
 map <leader>F <plug>(FerretAckWord)
 let g:FerretExecutableArguments = { 'rg': '--vimgrep --no-heading --max-columns 4096' }
-
-" ---------- "
-" whitespace "
-" ---------- "
-filetype plugin on
-filetype indent on
 
 " ---------- "
 " completion "
