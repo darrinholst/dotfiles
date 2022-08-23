@@ -16,6 +16,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'fgheng/winbar.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nathom/filetype.nvim'
 
 " fuzzy finder
 Plug 'nvim-telescope/telescope.nvim'
@@ -213,12 +214,6 @@ augroup END
 au FocusLost * :silent! wall!                " Save on FocusLost
 au FocusLost * call feedkeys("\<C-\>\<C-n>") " Return to normal mode on FocustLost
 
-" ------------- "
-" file mappings "
-" ------------- "
-au BufNewFile,BufRead *.eslintrc,*.babelrc,*.stylelintrc,*.nycrc set filetype=json
-au BufNewFile,BufRead *.envrc,*.env,*.env.leave set filetype=sh
-
 " -------- "
 " run with "
 " -------- "
@@ -249,25 +244,6 @@ nmap <C-k> <Plug>unimpairedMoveUp
 nmap <C-j> <Plug>unimpairedMoveDown
 xmap <C-k> <Plug>unimpairedMoveSelectionUpgv
 xmap <C-j> <Plug>unimpairedMoveSelectionDowngv
-
-" --- "
-" xml "
-" --- "
-function! DoPrettyXML()
-  let l:origft = &ft
-  set ft=
-  1s/<?xml .*?>//e
-  0put ='<PrettyXML>'
-  $put ='</PrettyXML>'
-  silent %!xmllint --format -
-  2d
-  $d
-  silent %<
-  1
-  exe "set ft=" . l:origft
-endfunction
-
-map ,xt :call DoPrettyXML()<CR>
 
 " ------- "
 " airline "
@@ -300,38 +276,6 @@ let g:VimuxHeight='30'
 map <Leader>vp :wa \| :VimuxPromptCommand<CR>
 map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
 
-" -------- "
-" markdown "
-" -------- "
-let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
-au FileType markdown call SetMarkdownOptions()
-
-function! SetMarkdownOptions()
-  setlocal ft=markdown
-  setlocal textwidth=80
-  setlocal colorcolumn=81
-  setlocal spell
-endfunction
-
-" ---------- "
-" Git Commit "
-" ---------- "
-au FileType gitcommit call SetGitCommitOptions()
-
-function! SetGitCommitOptions()
-  setlocal textwidth=72
-  setlocal colorcolumn=73
-  setlocal spell
-endfunction
-
-" ---------- "
-" JavaScript "
-" ---------- "
-au Filetype typescript,javascript call SetJavaScriptOptions()
-
-function! SetJavaScriptOptions()
-  setlocal colorcolumn=81
-endfunction
 
 " --- "
 " CSV "

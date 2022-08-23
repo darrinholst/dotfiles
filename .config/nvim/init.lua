@@ -31,6 +31,7 @@ vim.cmd("source ~/.vimrc")
 
 require("my.cmp")
 require("my.diagnostics")
+require("my.filetypes")
 require("my.folding")
 require("my.formatter")
 require("my.icons")
