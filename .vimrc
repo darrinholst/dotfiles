@@ -1,5 +1,3 @@
-set nocompatible " be iMproved
-
 " -------- "
 " Vim-Plug "
 " -------- "
@@ -14,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 Plug 'fgheng/winbar.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -75,63 +74,18 @@ Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
-" ----- "
-" Folds "
-" ----- "
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-autocmd BufReadPost,FileReadPost * normal zR
-
 " --------------- "
 " Colors and Font "
 " --------------- "
-set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete:h17 " http://nerdfonts.com/
-
 if filereadable(expand("~/.vimrc_background"))
   set t_Co=256
   let base16colorspace=256
   source ~/.vimrc_background
 endif
 
-" -------------- "
-" General Config "
-" -------------- "
-let mapleader = ","             "override default map leader
-set guioptions-=T               "no toolbar
-set guioptions-=r               "no right scrollbar
-set guioptions-=L               "no left scrollbar
-set encoding=utf-8              "utf-8
-set number                      "show line numbers
-set backspace=indent,eol,start  "allow backspace in insert mode
-set history=1000                "store lots of :cmdline history
-set laststatus=3                "show the nvim global status line
-set showcmd                     "show incomplete commands
-set showmode                    "show current mode
-set autoread                    "reload files changed outside vim
-set hidden                      "buffers can exist in the background without being in a window
-set ruler                       "show row and column
-set cursorline                  "highlight current line
-set vb                          "no beeping
-set scrolloff=5                 "Start scrolling 3 lines away from margins
-set sidescroll=1
-set sidescrolloff=10            "Start scrolling 10 columns away from margins
-set signcolumn=yes
-set nrformats=                  "treat all numbers as decimal
-set timeoutlen=1000
-set ttimeoutlen=100
-set mouse=a
-set re=1                        "https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting#16920294
-set updatetime=300              " Smaller updatetime for CursorHold & CursorHoldI
-syntax on                       "syntax highlighting
-runtime macros/matchit.vim
-let g:python_host_prog  = '/usr/bin/python'
-let g:python3_host_prog = '/usr/bin/python3'
-let g:node_host_prog = '~/.nodenv/shims/node'
-
 " ------------ "
 " highlighting "
 " ------------ "
-set termguicolors
 hi CursorLineNR guibg=18 guifg=white
 hi TelescopeSelection guibg=#555555
 hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
@@ -160,10 +114,6 @@ sign define DiagnosticSignHint text= linehl= texthl=DiagnosticSignHint numhl=
 " ------ "
 " search "
 " ------ "
-set incsearch        "Find the next match as we type the search
-set hlsearch         "Hilight searches by default
-set ignorecase       "ignore case
-set smartcase        "don't ignore case if there's an uppercase character
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 nmap <silent> <leader>n :noh<CR>
 map <F4> :cn<CR>
@@ -178,12 +128,6 @@ let g:FerretExecutableArguments = { 'rg': '--vimgrep --no-heading --max-columns 
 " ---------- "
 " whitespace "
 " ---------- "
-set nowrap                      "no line wrapping by default
-set tabstop=2                   "tab == 2 spaces
-set shiftwidth=2                "(auto)indent == 2 spaces
-set softtabstop=2               "please don't use <Tab>s
-set expandtab                   "spaces, not tabs
-set list listchars=tab:\ \ ,trail:·
 filetype plugin on
 filetype indent on
 
@@ -192,12 +136,6 @@ filetype indent on
 " ---------- "
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*/tmp/*
-
-" ---------- "
-" swap files "
-" ---------- "
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
 
 " ------------------------------- "
 " remember last location in files "
@@ -312,20 +250,6 @@ nmap <C-j> <Plug>unimpairedMoveDown
 xmap <C-k> <Plug>unimpairedMoveSelectionUpgv
 xmap <C-j> <Plug>unimpairedMoveSelectionDowngv
 
-" ------------------ "
-" cleanup whitespace "
-" ------------------ "
-command! StripTrailingWhitespaces :call <SID>StripTrailingWhitespaces()
-
-function! <SID>StripTrailingWhitespaces()
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  let @/=_s
-  call cursor(l, c)
-endfunction
-
 " --- "
 " xml "
 " --- "
@@ -353,15 +277,7 @@ let g:airline_theme='jet'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#default#section_truncate_width = {
-  \'a': 90,
-  \'b': 90,
-  \'x': 90,
-  \'y': 90,
-  \'z': 30,
-  \'warning': 80,
-  \'error': 80,
-\}
+let g:airline#extensions#default#section_truncate_width = {'a': 90, 'b': 90, 'x': 90, 'y': 90, 'z': 30, 'warning': 80, 'error': 80 }
 
 " -------- "
 " tmuxline "
@@ -384,22 +300,11 @@ let g:VimuxHeight='30'
 map <Leader>vp :wa \| :VimuxPromptCommand<CR>
 map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
 
-" --------- "
-" vim-pasta "
-" --------- "
-let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", "yaml", "slim", "nerdtree", "netrw", "startify", "ctrlp", "agsv"]
-
-" --- "
-" JSX "
-" --- "
-let g:jsx_ext_required = 0
-
 " -------- "
 " markdown "
 " -------- "
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 au FileType markdown call SetMarkdownOptions()
-au FileType pandoc call SetMarkdownOptions()
 
 function! SetMarkdownOptions()
   setlocal ft=markdown
