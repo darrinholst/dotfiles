@@ -11,6 +11,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+  vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 
@@ -26,12 +27,13 @@ end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local nullLs = require("null-ls")
+local null_ls = require("null-ls")
 
-nullLs.setup({
+null_ls.setup({
   sources = {
-    nullLs.builtins.formatting.terraform_fmt,
-    nullLs.builtins.diagnostics.cspell.with({
+    null_ls.builtins.formatting.terraform_fmt,
+    null_ls.builtins.diagnostics.cspell.with({
+      filetypes = {"javascript"},
       diagnostics_postprocess = function(diagnostic)
         diagnostic.severity = vim.diagnostic.severity["HINT"]
       end,
