@@ -21,10 +21,11 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
-" tmux integrations
+" tmux/terminal integrations
 Plug 'benmills/vimux'
 Plug 'edkolev/tmuxline.vim'
 Plug 'sjl/vitality.vim'
+Plug 'numToStr/FTerm.nvim'
 
 " completion
 Plug 'hrsh7th/nvim-cmp'
@@ -254,7 +255,7 @@ let g:tmuxline_preset = {
   \'a'           : '#S',
   \'cwin'        : ['#I', '#W#F'],
   \'win'         : ['#I', '#W'],
-  \'x'           : '#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn)',
+  \'x'           : '#(tmux-spotify-info)#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn)',
   \'y'           : '%l:%M',
   \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
   \'options'     : {'status-justify' : 'left'},

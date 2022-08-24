@@ -89,7 +89,7 @@ export GIT_EDITOR="~/.nvim-nightly/bin/nvim"
 # js
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 eval "$(nodenv init -)"
-export PATH=./node_modules/.bin:$PATH
+export PATH=~/.bin:./node_modules/.bin:$PATH
 alias npm='~/.nodenv/shims/npm'
 alias run='npm run'
 
