@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "javascript",
+  pattern = { "javascript", "javascriptreact" },
 
   callback = function()
     vim.opt_local.colorcolumn = "81"
