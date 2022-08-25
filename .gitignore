@@ -1,13 +1,8 @@
+plug.vim
 *.local.zsh
-.vim/backup/*
-.vim/.netrwhist
 *.cache
-s3.zsh
-cm.netteller.com.js
 *.o
 *.pyc
 *.so
-.vim/bundle
 .tmuxline.conf
-.vim/plugged
 

@@ -1,12 +1,12 @@
 " -------- "
 " Vim-Plug "
 " -------- "
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " nvim
 Plug 'neovim/nvim-lspconfig'
@@ -135,8 +135,7 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*/tmp/*
 " remember last location in files "
 " ------------------------------- "
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-        \| exe "normal g'\"" | endif
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 endif
 
 " ------ "
@@ -268,7 +267,6 @@ let g:VimuxOrientation='h'
 let g:VimuxHeight='30'
 map <Leader>vp :wa \| :VimuxPromptCommand<CR>
 map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
-
 
 " --- "
 " CSV "
