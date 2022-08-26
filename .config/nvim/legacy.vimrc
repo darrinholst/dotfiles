@@ -16,6 +16,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'fgheng/winbar.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'tanvirtin/vgit.nvim'
 
 " fuzzy finder
 Plug 'nvim-telescope/telescope.nvim'
@@ -242,6 +243,9 @@ xmap <C-j> <Plug>unimpairedMoveSelectionDowngv
 let g:airline_powerline_fonts=1
 let g:airline_theme='jet'
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
+let g:airline#extensions#nvimlsp#enabled = 1
+let g:airline#extensions#nvimlsp#error_symbol = ' '
+let g:airline#extensions#nvimlsp#warning_symbol = ' '
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#default#section_truncate_width = {'a': 90, 'b': 90, 'x': 90, 'y': 90, 'z': 30, 'warning': 80, 'error': 80 }
