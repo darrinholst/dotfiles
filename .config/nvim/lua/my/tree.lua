@@ -1,11 +1,16 @@
 require("nvim-tree").setup({
-	git = {
-		enable = true,
-		ignore = false,
-	},
-	filters = {
-		custom = { ".git" },
-	},
+  create_in_closed_folder = true,
+  git = {
+    enable = true,
+    ignore = false,
+  },
+  filters = {
+    custom = { ".git" },
+  },
+  view = {
+    adaptive_size = true,
+    side = "right",
+  },
 })
 
 vim.api.nvim_set_keymap("", "<F6>", ":NvimTreeFindFile<CR>", { silent = true })

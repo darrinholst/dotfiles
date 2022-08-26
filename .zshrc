@@ -112,6 +112,7 @@ export DIRENV_LOG_FORMAT=
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias git=hub
 alias tig='tig --no-merges'
+alias gfu='git fu'
 alias gpf='git push --force-with-lease'
 alias gcm='git checkout $(git default-branch)'
 alias gba='git branch --all --color="always" --sort=authordate --format="%(color:blue)%(authordate:relative);%(color:red)%(authorname);%(color:white)%(color:bold)%(refname:short)" "$@" | column -s ";" -t'
