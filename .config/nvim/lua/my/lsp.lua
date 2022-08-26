@@ -26,14 +26,13 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 local null_ls = require("null-ls")
 
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.diagnostics.cspell.with({
-      filetypes = {"javascript"},
+      filetypes = { "javascript", "javascriptreact" },
       diagnostics_postprocess = function(diagnostic)
         diagnostic.severity = vim.diagnostic.severity["HINT"]
       end,

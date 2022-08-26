@@ -50,12 +50,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
 
 " search
 Plug 'wincent/ferret'
-
-" git
-Plug 'tanvirtin/vgit.nvim',
 
 " lsp/diagnostics
 Plug 'folke/trouble.nvim'
@@ -71,6 +69,7 @@ Plug 'suy/vim-context-commentstring'
 Plug 't9md/vim-smalls'
 Plug 'triglav/vim-visual-increment'
 Plug 'wakatime/vim-wakatime'
+Plug 'chrisbra/csv.vim'
 
 call plug#end()
 
