@@ -1,14 +1,4 @@
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "gitcommit",
-
-  callback = function()
-    vim.opt_local.textwidth = 72
-    vim.opt_local.colorcolumn = "73"
-    vim.opt_local.spell = true
-  end
-})
-
-vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
 
   callback = function()

@@ -5,4 +5,5 @@ plug.vim
 *.pyc
 *.so
 .tmuxline.conf
+*secret*
 

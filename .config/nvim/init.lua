@@ -25,6 +25,9 @@ vim.opt.updatetime    = 300 --   Smaller updatetime for CursorHold & CursorHoldI
 vim.opt.vb            = true --  no beeping
 vim.opt.wrap          = false -- no line wrapping by default
 vim.opt.hlsearch      = false
+vim.wo.foldlevel      = 99
+vim.wo.foldmethod     = "expr"
+vim.wo.foldexpr       = "nvim_treesitter#foldexpr()"
 
 vim.g.python_host_prog  = "/usr/bin/python"
 vim.g.python3_host_prog = "/usr/bin/python3"
@@ -35,15 +38,16 @@ vim.cmd("source ~/.config/nvim/legacy.vimrc")
 require("my.cmp")
 require("my.diagnostics")
 require("my.filetypes")
-require("my.folding")
 require("my.formatter")
+require("my.git")
 require("my.icons")
 require("my.lsp")
+require("my.secret")
+require("my.startpage")
 require("my.surround")
 require("my.telescope")
 require("my.terminal")
 require("my.tree")
 require("my.treesitter")
 require("my.trouble")
-require("my.git")
 require("my.winbar")
