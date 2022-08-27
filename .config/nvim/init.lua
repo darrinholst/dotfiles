@@ -1,8 +1,4 @@
-vim.cmd('set runtimepath^=~/.vim runtimepath+=~/.vim/after')
-vim.cmd('let &packpath = &runtimepath')
-
-vim.g.mapleader = ","
-
+vim.g.mapleader       = ","
 vim.opt.cursorline    = true --  highlight current line
 vim.opt.expandtab     = true --  spaces, not tabs
 vim.opt.guifont       = "Fura Code Retina Nerd Font Complete:h17"
@@ -24,7 +20,7 @@ vim.opt.ttimeoutlen   = 100
 vim.opt.updatetime    = 300 --   Smaller updatetime for CursorHold & CursorHoldI
 vim.opt.vb            = true --  no beeping
 vim.opt.wrap          = false -- no line wrapping by default
-vim.opt.hlsearch      = false
+vim.opt.hlsearch      = false -- the only that is constant is change
 vim.wo.foldlevel      = 99
 vim.wo.foldmethod     = "expr"
 vim.wo.foldexpr       = "nvim_treesitter#foldexpr()"

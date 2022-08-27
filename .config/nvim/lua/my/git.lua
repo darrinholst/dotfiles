@@ -1,4 +1,6 @@
-vim.keymap.set('n', '<space>g', '<cmd>Git | resize 20<cr>')
+vim.keymap.set('n', '<space>gg', '<cmd>Git | resize 20<cr>')
+vim.keymap.set('n', '<space>gp', '<cmd>Git push<cr>')
+vim.keymap.set('n', '<space>gb', '<cmd>Git blame<cr>')
 
 require('vgit').setup({
   settings = {
@@ -17,5 +19,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.textwidth = 72
     vim.opt_local.colorcolumn = "73"
+    vim.opt_local.spell = true
   end
 })
