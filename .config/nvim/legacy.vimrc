@@ -17,6 +17,7 @@ Plug 'fgheng/winbar.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tanvirtin/vgit.nvim'
+Plug 'mhinz/vim-startify'
 
 " fuzzy finder
 Plug 'nvim-telescope/telescope.nvim'
@@ -263,3 +264,19 @@ map <Leader>vl :wa \| :VimuxRunLastCommand<CR>
 " --- "
 let g:csv_no_conceal = 1
 
+function! s:gitModified()
+  let files = systemlist('git ls-files -m 2>/dev/null')
+  return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+function! s:gitUntracked()
+  let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+  return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+  \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+  \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+  \ ]
