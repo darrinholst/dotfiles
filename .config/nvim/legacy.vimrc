@@ -186,20 +186,6 @@ nmap <D--> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatc
 nnoremap j gj
 nnoremap k gk
 
-" --------------------------- "
-" directory handling on enter "
-" --------------------------- "
-function! <SID>CdIfDirectory(directory)
-  if isdirectory(a:directory)
-    exe "cd " . fnameescape(a:directory)
-    bd
-  endif
-endfunction
-
-augroup vim_enter
-  au VimEnter * call <SID>CdIfDirectory(expand("<amatch>"))
-augroup END
-
 " ---------- "
 " focus lost "
 " ---------- "
@@ -226,8 +212,9 @@ imap <silent> <F8> <Esc><F8>
 " -------- "
 " save all "
 " -------- "
-inoremap <silent> <F3> <Esc>:wall!<cr>
-nnoremap <silent> <F3> :wall!<cr>
+inoremap <silent> <F3> <Esc>:wall!\|e<cr>
+nnoremap <silent> <F3> :wall!\|e<cr>
+nnoremap <silent> <leader>w :w\|e<cr>
 
 " ---------- "
 " unimparied "

@@ -24,6 +24,7 @@ vim.opt.ttimeoutlen   = 100
 vim.opt.updatetime    = 300 --   Smaller updatetime for CursorHold & CursorHoldI
 vim.opt.vb            = true --  no beeping
 vim.opt.wrap          = false -- no line wrapping by default
+vim.opt.hlsearch      = false
 
 vim.g.python_host_prog  = "/usr/bin/python"
 vim.g.python3_host_prog = "/usr/bin/python3"
@@ -44,5 +45,5 @@ require("my.terminal")
 require("my.tree")
 require("my.treesitter")
 require("my.trouble")
-require("my.vgit")
+require("my.git")
 require("my.winbar")

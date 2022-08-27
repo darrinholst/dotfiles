@@ -4,9 +4,6 @@ require("nvim-tree").setup({
     enable = true,
     ignore = false,
   },
-  filters = {
-    custom = { ".git" },
-  },
   view = {
     adaptive_size = true,
     side = "right",
