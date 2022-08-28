@@ -31,7 +31,8 @@ vim.g.python_host_prog  = "/usr/bin/python"
 vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.node_host_prog    = "~/.nodenv/shims/node"
 
-vim.cmd("source ~/.config/nvim/legacy.vimrc")
+vim.cmd("runtime vim/legacy.vim")
+vim.cmd("runtime vim/highlights.vim")
 
 require("my.cmp")
 require("my.diagnostics")
