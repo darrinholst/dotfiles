@@ -1,11 +1,6 @@
-" --------------- "
-" Colors and Font "
-" --------------- "
-if filereadable(expand("~/.vimrc_background"))
-  set t_Co=256
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+colorscheme base16-tomorrow-night
+set t_Co=256
+let base16colorspace=256
 
 " ------------ "
 " highlighting "

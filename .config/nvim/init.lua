@@ -1,3 +1,5 @@
+require("my.plugins")
+
 vim.g.mapleader       = ","
 vim.opt.cursorline    = true --  highlight current line
 vim.opt.expandtab     = true --  spaces, not tabs
@@ -29,8 +31,6 @@ vim.g.python_host_prog  = "/usr/bin/python"
 vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.node_host_prog    = "~/.nodenv/shims/node"
 
-require("my.plugins")
-
 vim.cmd("source ~/.config/nvim/legacy.vimrc")
 
 require("my.cmp")
@@ -40,7 +40,7 @@ require("my.formatter")
 require("my.git")
 require("my.icons")
 require("my.lsp")
-require("my.secret")
+require("my.secrets")
 require("my.startpage")
 require("my.surround")
 require("my.telescope")
