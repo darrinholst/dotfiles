@@ -1,1 +1,1 @@
-require("slack-status")
+slack_status = require("slack-status")

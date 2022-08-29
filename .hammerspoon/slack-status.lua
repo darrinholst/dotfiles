@@ -11,11 +11,12 @@
 --      require("slack-status")
 -- * If it's a fresh `brew install` of Hammerspoon, start it and make sure accessibility is enabled
 
--- Configuration
 local check_interval = 15 -- How often to check if you're in zoom, in seconds
+local logger = hs.logger.new('slack-status', 'debug')
 
 local function update_status(status)
-  hs.execute("slack-status " .. status, true)
+  logger.i("Updating status to " .. status)
+  local results hs.execute("slack-status " .. status, true)
 end
 
 local function is_zooming()
@@ -38,6 +39,7 @@ local spotify_status = ""
 
 local timer = hs.timer.doEvery(check_interval, function()
   if (hs.spotify.isPlaying()) then
+    logger.i("current: " .. spotify_status, "new: " .. buildSpotifyStatus(), spotify_status ~= buildSpotifyStatus())
     if (spotify_status ~= buildSpotifyStatus()) then
       spotify_status = buildSpotifyStatus()
       update_status("spotify " .. spotify_status)
