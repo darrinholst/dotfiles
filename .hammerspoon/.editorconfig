@@ -1,0 +1,6 @@
+# see https://github.com/CppCXY/EmmyLuaCodeStyle
+[*.lua]
+quote_style = double
+max_line_length = 120
+insert_final_newline = true
+
