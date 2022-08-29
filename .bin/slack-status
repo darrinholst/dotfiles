@@ -95,8 +95,8 @@ else
     echo "Updating status to: ${yellow}$EMOJI ${green}$TEXT${reset}"
 fi
 
-PROFILE="{\"status_emoji\":\"$EMOJI\",\"status_text\":\"$TEXT\"}"
-RESPONSE=$(curl -s --data token="$TOKEN" --data-urlencode profile="$PROFILE" https://slack.com/api/users.profile.set)
+PROFILE="{\"status_emoji\":\"$EMOJI\",\"status_text\":\"$TEXT\",\"status_expiration\":0}"
+RESPONSE=$(curl -v -s --data token="$TOKEN" --data-urlencode profile="$PROFILE" https://slack.com/api/users.profile.set)
 
 if echo "$RESPONSE" | grep -q '"ok":true,'; then
     echo "${green}Status updated ok${reset}"
