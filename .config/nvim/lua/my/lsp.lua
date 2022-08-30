@@ -104,7 +104,7 @@ lspInstaller.on_server_ready(function(server)
   if server.name == "sumneko_lua" then
     opts.settings = {
       Lua = {
-        diagnostics = { globals = { "vim" } },
+        diagnostics = { globals = { "vim", "hs" } },
         workspace = {
           library = {
             [vim.fn.expand("$VIMRUNTIME/lua")] = true,

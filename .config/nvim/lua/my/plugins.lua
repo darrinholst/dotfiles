@@ -47,6 +47,7 @@ Plug "tpope/vim-eunuch"
 Plug "tpope/vim-repeat"
 Plug "tpope/vim-unimpaired"
 Plug "tpope/vim-fugitive"
+Plug "shumphrey/fugitive-gitlab.vim"
 Plug "tpope/vim-rhubarb"
 
 -- search

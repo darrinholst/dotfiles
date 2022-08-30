@@ -37,7 +37,7 @@ end
 local we_set_zoom = false
 local spotify_status = ""
 
-local timer = hs.timer.doEvery(check_interval, function()
+timer = hs.timer.doEvery(check_interval, function()
   if (hs.spotify.isPlaying()) then
     logger.i("current: " .. spotify_status, "new: " .. buildSpotifyStatus(), spotify_status ~= buildSpotifyStatus())
     if (spotify_status ~= buildSpotifyStatus()) then
