@@ -16,7 +16,7 @@ local logger = hs.logger.new('slack-status', 'debug')
 
 local function update_status(status)
   logger.i("Updating status to " .. status)
-  local results hs.execute("slack-status " .. status, true)
+  hs.execute("slack-status " .. status, true)
 end
 
 local function is_zooming()
