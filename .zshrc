@@ -220,6 +220,8 @@ ip() {
   printf '%11s: %s\n%11s: %s\n' "Local IP" $locip "External IP" $extip
 }
 
+alias any=fp
+
 fp() { # find and list processes matching a case-insensitive partial-match string...I think
   emulate -L zsh
   unsetopt KSH_ARRAYS

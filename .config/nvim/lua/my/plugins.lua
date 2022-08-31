@@ -56,8 +56,9 @@ Plug "wincent/ferret"
 -- lsp/diagnostics
 Plug "folke/trouble.nvim"
 Plug "onsails/lspkind.nvim"
-Plug "williamboman/nvim-lsp-installer"
 Plug "jose-elias-alvarez/null-ls.nvim"
+Plug "williamboman/mason.nvim"
+Plug "williamboman/mason-lspconfig.nvim"
 
 -- random
 Plug "godlygeek/tabular"
