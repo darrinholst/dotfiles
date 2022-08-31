@@ -9,8 +9,8 @@ Plug "nvim-treesitter/playground"
 Plug "fgheng/winbar.nvim"
 Plug "kyazdani42/nvim-tree.lua"
 Plug "kyazdani42/nvim-web-devicons"
-Plug "tanvirtin/vgit.nvim"
 Plug "mhinz/vim-startify"
+Plug "lewis6991/gitsigns.nvim"
 
 -- fuzzy finder
 Plug "nvim-telescope/telescope.nvim"
