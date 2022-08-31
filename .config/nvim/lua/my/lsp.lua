@@ -1,13 +1,14 @@
 require("mason").setup {}
 
 require("mason-lspconfig").setup {
-  ensure_installed = { 
-    "eslint",
-    "jsonls",
-    "r_language_server",
-    "sumneko_lua",
-    "tsserver",
-    "yamlls",
+  ensure_installed = {
+    "cucumber-language-server",
+    "eslint-lsp",
+    "json-lsp",
+    "lua-language-server",
+    "r-languageserver",
+    "typescript-language-server",
+    "yaml-language-server",
   },
 }
 
@@ -115,6 +116,18 @@ lspconfig.jsonls.setup {
     },
   },
 }
+
+-- not working well for me at the moment
+-- lspconfig.cucumber_language_server.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   settings = {
+--     glue = {
+--       "features/**/*.js",
+--       "features/**/*.ts",
+--     }
+--   }
+-- }
 
 lspconfig.r_language_server.setup {
   capabilities = capabilities,
