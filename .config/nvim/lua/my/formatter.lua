@@ -9,6 +9,13 @@ require("formatter").setup {
       end
     },
 
+    cucumber = {
+      -- npm i -g source-map-support @cucumber/gherkin @cucumber/gherkin-utils
+      function()
+        return { exe = "gherkin-utils", args = { "format", }, stdin = true }
+      end
+    },
+
     ["*"] = {
       function()
         return { exe = "sed", args = { "-i", "''", "'s/[	 ]*$//'" } }
