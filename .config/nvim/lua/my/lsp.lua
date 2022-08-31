@@ -1,3 +1,18 @@
+require("mason").setup {}
+
+require("mason-lspconfig").setup {
+  ensure_installed = { 
+    "eslint",
+    "jsonls",
+    "r_language_server",
+    "sumneko_lua",
+    "tsserver",
+    "yamlls",
+  },
+}
+
+local lspconfig = require("lspconfig")
+
 local on_attach = function(client, bufnr)
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
@@ -16,13 +31,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 
   if client.supports_method("textDocument/formatting") then
-    vim.keymap.set("", "<F5>", vim.lsp.buf.format, { silent = true })
-    vim.keymap.set("i", "<F5>", vim.lsp.buf.format, { silent = true })
-  else
-    vim.keymap.set("", "<F5>", ":FormatWrite<CR>", { silent = true })
-    vim.keymap.set("i", "<F5>", "<Esc>:FormatWrite<CR>", { silent = true })
+    vim.keymap.set("", "<F5>", vim.lsp.buf.format, bufopts)
+    vim.keymap.set("i", "<F5>", vim.lsp.buf.format, bufopts)
   end
-
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -40,98 +51,98 @@ null_ls.setup({
   },
 })
 
-local lspInstaller = require("nvim-lsp-installer")
-
-lspInstaller.on_server_ready(function(server)
-  local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-
-  if server.name == "yamlls" then
-    opts.settings = {
-      yaml = {
-        schemas = {
-          ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = ".gitlab-ci.yml",
+lspconfig.sumneko_lua.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      diagnostics = { globals = { "vim", "hs" } },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
         },
       },
-    }
-  end
+    },
+  }
+}
 
-  if server.name == "tsserver" then
-    opts.settings = {
-      diagnostics = {
-        ignoredCodes = { 7016, 80001, 80006 },
+lspconfig.tsserver.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    diagnostics = {
+      ignoredCodes = { 7016, 80001, 80006 },
+    },
+  }
+}
+
+lspconfig.yamlls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = ".gitlab-ci.yml",
       },
-    }
-  end
+    },
+  }
+}
 
-  if server.name == "r_language_server" then
-    opts.settings = {
-      r = {
-        lsp = {
-          diagnostics = false
-        }
+lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    json = {
+      schemas = {
+        {
+          fileMatch = { "tsconfig.json", "tsconfig.*.json" },
+          url = "https://json.schemastore.org/tsconfig.json",
+        },
+        {
+          fileMatch = { ".eslintrc.json", ".eslintrc" },
+          url = "https://json.schemastore.org/eslintrc.json",
+        },
+        {
+          fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
+          url = "https://json.schemastore.org/prettierrc",
+        },
+        {
+          fileMatch = { "package.json" },
+          url = "https://json.schemastore.org/package.json",
+        },
+      },
+    },
+  },
+}
+
+lspconfig.r_language_server.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    r = {
+      lsp = {
+        diagnostics = false
       }
     }
-  end
+  }
+}
 
-  if server.name == "jsonls" then
-    opts.settings = {
-      json = {
-        schemas = {
-          {
-            fileMatch = { "tsconfig.json", "tsconfig.*.json" },
-            url = "https://json.schemastore.org/tsconfig.json",
-          },
-          {
-            fileMatch = { ".eslintrc.json", ".eslintrc" },
-            url = "https://json.schemastore.org/eslintrc.json",
-          },
-          {
-            fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
-            url = "https://json.schemastore.org/prettierrc",
-          },
-          {
-            fileMatch = { "package.json" },
-            url = "https://json.schemastore.org/package.json",
-          },
-        },
-      },
-    }
-  end
+lspconfig.eslint.setup {
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
 
-  if server.name == "sumneko_lua" then
-    opts.settings = {
-      Lua = {
-        diagnostics = { globals = { "vim", "hs" } },
-        workspace = {
-          library = {
-            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.stdpath("config") .. "/lua"] = true,
-          },
-        },
-      },
-    }
-  end
+    local group = vim.api.nvim_create_augroup("FixIt", { clear = true })
 
-  if server.name == "eslint" then
-    opts.on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-
-      local group = vim.api.nvim_create_augroup("FixIt", { clear = true })
-
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        group = group,
-        callback = function()
-          vim.schedule(function()
-            vim.cmd("EslintFixAll")
-          end)
-        end,
-      })
-    end
-  end
-
-  server:setup(opts)
-end)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      group = group,
+      callback = function()
+        vim.schedule(function()
+          vim.cmd("EslintFixAll")
+        end)
+      end,
+    })
+  end,
+}

@@ -16,3 +16,6 @@ require("formatter").setup {
     }
   }
 }
+
+vim.keymap.set("", "<F5>", "<cmd>FormatWrite<cr>")
+vim.keymap.set("i", "<F5>", "<esc><cmd>FormatWrite<cr>")
