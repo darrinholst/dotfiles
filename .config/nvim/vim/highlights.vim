@@ -14,3 +14,6 @@ hi DiagnosticVirtualTextError guifg=#969896
 hi DiagnosticVirtualTextInfo guifg=#969896
 hi DiagnosticVirtualTextWarn guifg=#969896
 hi DiagnosticVirtualTextHint guifg=#969896
+hi GitSignsAdd guibg=18 guifg=#b5bd68
+hi GitSignsChange guibg=18 guifg=#81a2be
+hi GitSignsDelete guibg=18 guifg=#cc6666
