@@ -12,10 +12,9 @@
 -- * If it's a fresh `brew install` of Hammerspoon, start it and make sure accessibility is enabled
 
 local check_interval = 15 -- How often to check if you're in zoom, in seconds
-local logger = hs.logger.new('slack-status', 'debug')
 
 local function update_status(status)
-  logger.i("Updating status to " .. status)
+  print("Updating status to " .. status)
   hs.execute("slack-status " .. status, true)
 end
 
@@ -34,12 +33,12 @@ local function buildSpotifyStatus()
   return hs.spotify.getCurrentArtist()
 end
 
+local we_set_afk = false
 local we_set_zoom = false
 local spotify_status = ""
 
 timer = hs.timer.doEvery(check_interval, function()
   if (hs.spotify.isPlaying()) then
-    logger.i("current: " .. spotify_status, "new: " .. buildSpotifyStatus(), spotify_status ~= buildSpotifyStatus())
     if (spotify_status ~= buildSpotifyStatus()) then
       spotify_status = buildSpotifyStatus()
       update_status("spotify " .. spotify_status)
@@ -50,13 +49,24 @@ timer = hs.timer.doEvery(check_interval, function()
   end
 
   if (is_zooming()) then
-    we_set_zoom = true
-    update_status("zoom")
+    if (not we_set_zoom) then
+      update_status("zoom")
+      we_set_zoom = true
+    end
   elseif (we_set_zoom) then
     we_set_zoom = false
     update_status("none")
   end
 
+  if (hs.caffeinate.sessionProperties().CGSSessionScreenIsLocked) then
+    if (not we_set_afk) then
+      update_status("afk")
+      we_set_afk = true
+    end
+  elseif (we_set_afk) then
+    we_set_afk = false
+    update_status("none")
+  end
 end)
 
 timer:start()
