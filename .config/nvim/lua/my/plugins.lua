@@ -11,6 +11,7 @@ Plug "kyazdani42/nvim-tree.lua"
 Plug "kyazdani42/nvim-web-devicons"
 Plug "mhinz/vim-startify"
 Plug "lewis6991/gitsigns.nvim"
+Plug "wesQ3/vim-windowswap"
 
 -- fuzzy finder
 Plug "nvim-telescope/telescope.nvim"

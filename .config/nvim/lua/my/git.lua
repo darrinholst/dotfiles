@@ -1,10 +1,3 @@
-vim.keymap.set("n", "ggg", "<cmd>Git | resize 20<cr>")
-vim.keymap.set("n", "ggp", "<cmd>Git push<cr>")
-vim.keymap.set("n", "ggb", "<cmd>Git blame<cr>")
-vim.keymap.set("n", "ggh", "<cmd>Gitsigns preview_hunk<cr>")
-vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<cr>")
-vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>")
-
 require("gitsigns").setup({
   signs = {
     add          = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },

@@ -25,7 +25,7 @@ local on_attach = function(client, bufnr)
     vim.diagnostic.disable(bufnr)
   end
 
-  vim.keymap.set("n", "xd", disableDiagnostics, bufopts)
+  vim.keymap.set("n", "<space>x", disableDiagnostics, bufopts)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)

@@ -1,8 +1,3 @@
-nnoremap <silent> <M-Down> :call DownHorizontal()<CR>
-nnoremap <silent> <M-Up> :call UpHorizontal()<CR>
-nnoremap <silent> <M-Right> :call RightVertical()<CR>
-nnoremap <silent> <M-Left> :call LeftVertical()<CR>
-
 func! DownHorizontal()
   let currentWin = winnr()
   "If no window below or above leave as is, otherwise call function
