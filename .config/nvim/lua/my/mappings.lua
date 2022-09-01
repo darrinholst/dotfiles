@@ -88,5 +88,23 @@ vim.keymap.set("", "<leader>cw", "<cmd>cclose<cr>", opts)
 vim.keymap.set("", "<leader>sw", "<cmd>call WindowSwap#EasyWindowSwap()<cr>", opts)
 
 -- vimux
-vim.keymap.set("", "<leader>vp", "<cmd>wa|VimuxPromptCommand<CR>", opts)
-vim.keymap.set("", "<leader>vl", "<cmd>wa|VimuxRunLastCommand<CR>", opts)
+vim.keymap.set("", "<leader>vp", "<cmd>wa|VimuxPromptCommand<cr>", opts)
+vim.keymap.set("", "<leader>vl", "<cmd>wa|VimuxRunLastCommand<cr>", opts)
+
+-- startify
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "startify",
+
+  callback = function()
+    vim.keymap.set("", "r", "<cmd>Startify<cr>", { buffer = 0 })
+  end
+})
+
+-- quickfix
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+
+  callback = function()
+    vim.keymap.set("", "o", "<cr>|<cmd>ccl<cr>", { buffer = 0 })
+  end
+})
