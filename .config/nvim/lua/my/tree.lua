@@ -9,8 +9,3 @@ require("nvim-tree").setup({
     side = "right",
   },
 })
-
-vim.api.nvim_set_keymap("", "<F6>", ":NvimTreeFindFile<CR>", { silent = true })
-vim.api.nvim_set_keymap("i", "<F6>", "<Esc>:NvimTreeFindFile<CR>", { silent = true })
-vim.api.nvim_set_keymap("", "<F7>", ":NvimTreeToggle<CR>", { silent = true })
-vim.api.nvim_set_keymap("i", "<F7>", "<Esc>:NvimTreeToggle<CR>", { silent = true })

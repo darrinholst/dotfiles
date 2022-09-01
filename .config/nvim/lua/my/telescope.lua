@@ -20,13 +20,4 @@ require("telescope").setup({
 	},
 })
 
--- require('telescope').load_extension('coc')
 require("telescope").load_extension("fzf")
-
-vim.api.nvim_set_keymap("", "<leader>t", "<cmd>Telescope<CR>", { noremap = true })
-vim.api.nvim_set_keymap("", "<leader>g", "<cmd>Telescope live_grep<CR>", { noremap = true })
-vim.api.nvim_set_keymap("", "<C-b>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { noremap = true })
-vim.api.nvim_set_keymap("", "<C-f>", "<cmd>Telescope find_files<CR>", { noremap = true })
-vim.api.nvim_set_keymap("", "<C-p>", "<cmd>Telescope git_files<CR>", { noremap = true })
-vim.api.nvim_set_keymap("", "<C-e>", "<cmd>Telescope buffers<CR>", { noremap = true })
-vim.api.nvim_set_keymap("", "<space>o", "<cmd>Telescope lsp_document_symbols<CR>", { noremap = true })
