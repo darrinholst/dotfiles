@@ -30,6 +30,7 @@ vim.keymap.set("n", "ggg", "<cmd>Git | resize 20<cr>", opts)
 vim.keymap.set("n", "ggp", "<cmd>Git push<cr>", opts)
 vim.keymap.set("n", "ggb", "<cmd>Git blame<cr>", opts)
 vim.keymap.set("n", "ggh", "<cmd>Gitsigns preview_hunk<cr>", opts)
+vim.keymap.set("n", "ggr", "<cmd>Gitsigns reset_hunk<cr>", opts)
 vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<cr>", opts)
 vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", opts)
 
