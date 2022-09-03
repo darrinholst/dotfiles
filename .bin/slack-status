@@ -67,6 +67,11 @@ if [[ -z $PRESET ]]; then
     exit 1
 fi
 
+if [[ $PRESET == "dnd" ]]; then
+  echo $(curl -s --data token="$TOKEN" https://slack.com/api/dnd.info | jq .dnd_enabled)
+  exit 0
+fi
+
 if [[ $PRESET == "current" ]]; then
   echo $(curl -s --data token="$TOKEN" https://slack.com/api/users.profile.get | jq .profile.status_emoji)
   exit 0

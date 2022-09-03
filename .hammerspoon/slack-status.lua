@@ -18,6 +18,12 @@ local function update_status(status)
   hs.execute("slack-status " .. status, true)
 end
 
+local function is_dnding()
+  local stringtoboolean = { ["true"] = true, ["false"] = false }
+  local _, amI = hs.execute("slack-status dnd", true)
+  return amI
+end
+
 local function is_zooming()
   local a = hs.application.find("zoom.us")
 
@@ -38,6 +44,12 @@ local we_set_zoom = false
 local spotify_status = ""
 
 timer = hs.timer.doEvery(check_interval, function()
+  if (is_dnding()) then
+    update_status("none")
+    timer:setNextTrigger(3600)
+    return
+  end
+
   if (hs.spotify.isPlaying()) then
     if (spotify_status ~= buildSpotifyStatus()) then
       spotify_status = buildSpotifyStatus()
