@@ -9,3 +9,11 @@ require("nvim-tree").setup({
     side = "right",
   },
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "NvimTree",
+
+  callback = function()
+    vim.diagnostic.disable(0)
+  end
+})

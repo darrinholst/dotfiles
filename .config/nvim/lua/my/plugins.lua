@@ -17,6 +17,7 @@ Plug "wesQ3/vim-windowswap"
 Plug "nvim-telescope/telescope.nvim"
 Plug("nvim-telescope/telescope-fzf-native.nvim",
   { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build" })
+Plug "xiyaowong/telescope-emoji.nvim"
 
 -- tmux/terminal integrations
 Plug "benmills/vimux"

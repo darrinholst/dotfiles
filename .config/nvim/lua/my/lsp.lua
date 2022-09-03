@@ -77,7 +77,7 @@ lspconfig.tsserver.setup {
   on_attach = on_attach,
   settings = {
     diagnostics = {
-      ignoredCodes = { 7016, 80001, 80006 },
+      ignoredCodes = { 7016, 80001, 80006, 80007 },
     },
   }
 }

@@ -1,5 +1,8 @@
 local opts = { noremap = true, silent = true }
 
+-- ⌘C for copy (I'm not an animal)
+vim.keymap.set("", "<M-c>", '"*y', opts)
+
 -- j/k with wrapped lines
 vim.keymap.set("", "j", "gj", opts)
 vim.keymap.set("", "k", "gk", opts)
@@ -11,9 +14,9 @@ vim.keymap.set("x", "<C-k>", "<Plug>unimpairedMoveSelectionUpgv", opts)
 vim.keymap.set("x", "<C-j>", "<Plug>unimpairedMoveSelectionDowngv", opts)
 
 -- saving
-vim.keymap.set("i",  "<F3>", "<esc><cmd>wall!|e<cr>", opts)
-vim.keymap.set("",  "<F3>", "<cmd>wall!|e<cr>", opts)
-vim.keymap.set("",  "<leader>w", "<cmd>w!|e<cr>", opts)
+vim.keymap.set("i", "<F3>", "<esc><cmd>wall!|e<cr>", opts)
+vim.keymap.set("", "<F3>", "<cmd>wall!|e<cr>", opts)
+vim.keymap.set("", "<leader>w", "<cmd>w!|e<cr>", opts)
 
 -- floating terminal
 vim.keymap.set("n", "<leader><leader>t", '<CMD>lua require("FTerm").toggle()<CR>', opts)
@@ -26,11 +29,11 @@ vim.keymap.set("", "<F7>", "<cmd>NvimTreeToggle<cr>", opts)
 vim.keymap.set("i", "<F7>", "<esc><cmd>NvimTreeToggle<cr>", opts)
 
 -- git
-vim.keymap.set("n", "ggg", "<cmd>Git | resize 20<cr>", opts)
-vim.keymap.set("n", "ggp", "<cmd>Git push<cr>", opts)
-vim.keymap.set("n", "ggb", "<cmd>Git blame<cr>", opts)
-vim.keymap.set("n", "ggh", "<cmd>Gitsigns preview_hunk<cr>", opts)
-vim.keymap.set("n", "ggr", "<cmd>Gitsigns reset_hunk<cr>", opts)
+vim.keymap.set("n", "<leader>gg", "<cmd>Git | resize 20<cr>", opts)
+vim.keymap.set("n", "<leader>gp", "<cmd>Git push<cr>", opts)
+vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>", opts)
+vim.keymap.set("n", "<leader>gh", "<cmd>Gitsigns preview_hunk<cr>", opts)
+vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", opts)
 vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<cr>", opts)
 vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", opts)
 
@@ -47,14 +50,14 @@ vim.keymap.set("i", "<F5>", "<esc><cmd>FormatWrite<cr>")
 
 -- telescope
 vim.keymap.set("", "<leader>t", "<cmd>Telescope<cr>", opts)
-vim.keymap.set("", "<leader>g", "<cmd>Telescope live_grep<cr>", opts)
+vim.keymap.set("", "<C-p>", "<cmd>lua require('my/telescope-recipes').project_files()<cr>", opts)
+vim.keymap.set("", "<C-g>", "<cmd>Telescope live_grep<cr>", opts)
 vim.keymap.set("", "<C-b>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
-vim.keymap.set("", "<C-f>", "<cmd>Telescope find_files<cr>", opts)
-vim.keymap.set("", "<C-p>", "<cmd>Telescope git_files<cr>", opts)
 vim.keymap.set("", "<C-e>", "<cmd>Telescope buffers<cr>", opts)
 vim.keymap.set("", "<space>o", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+vim.keymap.set("i", "^", "<cmd>Telescope emoji<cr>", opts)
 
--- project search
+-- search
 vim.keymap.set("", "<leader>n", "<cmd>noh<cr>", opts)
 vim.keymap.set("", "<F4>", "<cmd>cn<cr>", opts)
 vim.keymap.set("", "<S-F4>", "<cmd>cp<cr>", opts)
