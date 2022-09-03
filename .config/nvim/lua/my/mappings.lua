@@ -96,6 +96,7 @@ vim.keymap.set("", "<leader>vl", "<cmd>wa|VimuxRunLastCommand<cr>", opts)
 
 -- startify
 vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("Startify", { clear = true }),
   pattern = "startify",
 
   callback = function()
