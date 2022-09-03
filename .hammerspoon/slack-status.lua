@@ -1,84 +1,102 @@
--- Hammerspoon script to automatically update your slack status when in zoom
---
--- To use:
---
--- * Install and set up the slack-status script (make sure it's in your path)
--- * Run slack-status setup
--- * Ensure there is a 'zoom' preset (one is created by default during setup)
--- * Install hammerspoon (brew install hammerspoon) if you don't have it already.
--- * Copy this file to ~/.hammerspoon
--- * Add the following line to ~/.hammerspoon/init.lua
---      require("slack-status")
--- * If it's a fresh `brew install` of Hammerspoon, start it and make sure accessibility is enabled
+SLACK_TIMER = nil -- keep global so it's not garbage collected
 
-local check_interval = 15 -- How often to check if you're in zoom, in seconds
+local active_interval = 15 -- How often to check when not in do not disturb
+local dnd_interval = 3600 -- How often to check when in do not disturb
+local state = {}
+local main = nil
 
-local function update_status(status)
-  print("Updating status to " .. status)
-  hs.execute("slack-status " .. status, true)
-end
-
-local function is_dnding()
-  local stringtoboolean = { ["true"] = true, ["false"] = false }
-  local _, amI = hs.execute("slack-status dnd", true)
-  return amI
-end
-
-local function is_zooming()
-  local a = hs.application.find("zoom.us")
-
-  if a ~= nil then
-    local m = a:findMenuItem("Join Meeting...")
-    return m ~= nil and not m["enabled"] -- Start meeting menu item exists and is disabled
-  else
-    return false -- Zoom isn't running
-  end
+local function update_status(emoji, text)
+  emoji = emoji or ""
+  text = text or ""
+  local profile = hs.json.encode({status_emoji = emoji, status_text = text, status_expiration = 0})
+  print("Updating slack profile to " .. hs.inspect(profile))
+  hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN --data-urlencode profile=\"" .. profile .. "\" https://slack.com/api/users.profile.set")
 end
 
 local function buildSpotifyStatus()
   return hs.spotify.getCurrentArtist()
 end
 
-local we_set_afk = false
-local we_set_zoom = false
-local spotify_status = ""
-
-timer = hs.timer.doEvery(check_interval, function()
-  if (is_dnding()) then
-    update_status("none")
-    timer:setNextTrigger(3600)
-    return
-  end
-
+local function set_spotify_status()
   if (hs.spotify.isPlaying()) then
-    if (spotify_status ~= buildSpotifyStatus()) then
-      spotify_status = buildSpotifyStatus()
-      update_status("spotify " .. spotify_status)
+    if (state.spotifying ~= buildSpotifyStatus()) then
+      state.spotifying = buildSpotifyStatus()
+      update_status(":spotify:",  state.spotifying)
     end
-  elseif (spotify_status ~= "") then
-    spotify_status = ""
-    update_status("none")
+  elseif (state.spotifying ~= "") then
+    state.spotifying = ""
+    update_status()
   end
+end
 
+local function is_zooming()
+  local app = hs.application.find("zoom.us")
+
+  if app ~= nil then
+    local m = app:findMenuItem("Join Meeting...")
+    return m ~= nil and not m["enabled"] -- Start meeting menu item exists and is disabled
+  else
+    return false -- Zoom isn't running
+  end
+end
+
+local function set_zoom_status()
   if (is_zooming()) then
-    if (not we_set_zoom) then
-      update_status("zoom")
-      we_set_zoom = true
+    if (not state.zooming) then
+      update_status(":zoom:", "Zooming")
+      state.zooming = true
     end
-  elseif (we_set_zoom) then
-    we_set_zoom = false
-    update_status("none")
+  elseif (state.zooming) then
+    state.zooming = false
+    update_status()
   end
+end
 
+local function set_afk_status()
   if (hs.caffeinate.sessionProperties().CGSSessionScreenIsLocked) then
-    if (not we_set_afk) then
-      update_status("afk")
-      we_set_afk = true
+    if (not state.afking) then
+      update_status(":sleeping:", "afk")
+      state.afking = true
     end
-  elseif (we_set_afk) then
-    we_set_afk = false
-    update_status("none")
+  elseif (state.afking) then
+    state.afking = false
+    update_status()
   end
-end)
+end
 
-timer:start()
+local function is_dnding()
+  local profile = hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN https://slack.com/api/dnd.info")
+  return hs.json.decode(profile).dnd_enabled
+end
+
+local function set_dnd_status()
+  if (is_dnding()) then
+    if (not state.dnding) then
+      update_status()
+      state.dnding = true
+      SLACK_TIMER:stop()
+      SLACK_TIMER = hs.timer.new(dnd_interval, main):start()
+    end
+
+    return true
+  elseif (state.dnding) then
+    SLACK_TIMER:stop()
+    SLACK_TIMER = hs.timer.new(active_interval, main):start()
+    state.dnding = false
+  end
+end
+
+main = function()
+  -- If we're in do not disturb nothing else matters
+  if (set_dnd_status()) then return end
+
+  -- Ordered by priority, i.e. if we're afk then that will override
+  -- zoom and spotify. If we're zooming hopefully we're not listening
+  -- to music. Or we're at least going to make people think that.
+  set_spotify_status()
+  set_zoom_status()
+  set_afk_status()
+end
+
+SLACK_TIMER = hs.timer.new(active_interval, main)
+SLACK_TIMER:start()
