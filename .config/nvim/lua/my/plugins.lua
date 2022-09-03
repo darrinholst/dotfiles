@@ -2,22 +2,26 @@ local Plug = vim.fn["plug#"]
 
 vim.call("plug#begin")
 
-Plug "neovim/nvim-lspconfig"
-Plug "nvim-lua/plenary.nvim"
-Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
-Plug "nvim-treesitter/playground"
-Plug "fgheng/winbar.nvim"
+-- file explorer
 Plug "kyazdani42/nvim-tree.lua"
 Plug "kyazdani42/nvim-web-devicons"
-Plug "mhinz/vim-startify"
-Plug "lewis6991/gitsigns.nvim"
-Plug "wesQ3/vim-windowswap"
 
--- fuzzy finder
+-- windowing
+Plug "wesQ3/vim-windowswap"
+Plug "troydm/zoomwintab.vim"
+Plug "fgheng/winbar.nvim"
+
+-- 🌳
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug "nvim-treesitter/playground"
+Plug "nvim-treesitter/nvim-treesitter-textobjects"
+
+-- 🔭
 Plug "nvim-telescope/telescope.nvim"
 Plug("nvim-telescope/telescope-fzf-native.nvim",
   { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build" })
 Plug "xiyaowong/telescope-emoji.nvim"
+Plug "nvim-lua/plenary.nvim"
 
 -- tmux/terminal integrations
 Plug "benmills/vimux"
@@ -43,19 +47,17 @@ Plug "chriskempson/base16-vim"
 Plug "vim-airline/vim-airline"
 Plug "vim-airline/vim-airline-themes"
 
--- tpope
-Plug "tpope/vim-commentary"
-Plug "tpope/vim-eunuch"
-Plug "tpope/vim-repeat"
-Plug "tpope/vim-unimpaired"
-Plug "tpope/vim-fugitive"
+-- git
+Plug "lewis6991/gitsigns.nvim"
 Plug "shumphrey/fugitive-gitlab.vim"
+Plug "tpope/vim-fugitive"
 Plug "tpope/vim-rhubarb"
 
 -- search
 Plug "wincent/ferret"
 
 -- lsp/diagnostics
+Plug "neovim/nvim-lspconfig"
 Plug "folke/trouble.nvim"
 Plug "onsails/lspkind.nvim"
 Plug "jose-elias-alvarez/null-ls.nvim"
@@ -63,13 +65,18 @@ Plug "williamboman/mason.nvim"
 Plug "williamboman/mason-lspconfig.nvim"
 
 -- random
+Plug "chrisbra/csv.vim"
 Plug "godlygeek/tabular"
 Plug "kylechui/nvim-surround"
 Plug "mhartington/formatter.nvim"
+Plug "mhinz/vim-startify"
 Plug "suy/vim-context-commentstring"
 Plug "t9md/vim-smalls"
+Plug "tpope/vim-commentary"
+Plug "tpope/vim-eunuch"
+Plug "tpope/vim-repeat"
+Plug "tpope/vim-unimpaired"
 Plug "triglav/vim-visual-increment"
 Plug "wakatime/vim-wakatime"
-Plug "chrisbra/csv.vim"
 
 vim.call("plug#end")

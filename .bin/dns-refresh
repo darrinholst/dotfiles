@@ -41,4 +41,4 @@ $(get_ip ds.bayes.advancedagtest.com) ds.bayes.advancedagtest.com
 EOF
 
 cat hosts
-cat ./password | sudo -S mv -f hosts /etc/hosts
+cat ~/.pw | sudo -S mv -f hosts /etc/hosts

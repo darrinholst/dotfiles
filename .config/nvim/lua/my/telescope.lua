@@ -8,7 +8,7 @@ telescope.setup({
         vim.fn.setreg("*", emoji.value)
         print([[Press p or "*p to paste this emoji]] .. emoji.value)
         -- insert emoji when picked 
-        vim.api.nvim_put({ emoji.value }, 'c', true, true)
+        vim.api.nvim_put({ emoji.value }, 'c', false, true)
       end,
     }
   },

@@ -73,6 +73,7 @@ vim.keymap.set("n", "s", "<plug>(smalls)", opts)
 vim.keymap.set("i", "<Bar>", "<Bar><Esc><cmd>call FormatGherkinTable()<cr>a", opts)
 
 -- window management
+vim.keymap.set("", "<leader>z", "<cmd>ZoomWinTabToggle<cr>", { noremap = true })
 vim.keymap.set("", "<M-Down>", "<cmd>call DownHorizontal()<cr>", opts)
 vim.keymap.set("", "<M-Up>", "<cmd>call UpHorizontal()<cr>", opts)
 vim.keymap.set("", "<M-Right>", "<cmd>call RightVertical()<cr>", opts)

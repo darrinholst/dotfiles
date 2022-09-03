@@ -3,21 +3,6 @@
     "title": "~:$",
     "children": [
       {
-        "title": "dns",
-        "mode": "JobStatus",
-        "autostartJob": true,
-        "jobScript": {
-          "bin": "/bin/bash",
-          "args": [
-            "-c",
-            "(pkill -f \"sleep 61\" || true) && cd /Users/darrinholst/.vpn && while ./dns.sh; do sleep 61; done"
-          ],
-          "env": {
-            "PATH": "/usr/bin:/usr/local/bin:/sbin:/bin"
-          }
-        }
-      },
-      {
         "title": "saml",
         "mode": "JobStatus",
         "autostartJob": true,
