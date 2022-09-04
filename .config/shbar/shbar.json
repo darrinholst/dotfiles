@@ -3,21 +3,6 @@
     "title": "~:$",
     "children": [
       {
-        "title": "saml",
-        "mode": "JobStatus",
-        "autostartJob": true,
-        "jobScript": {
-          "bin": "/bin/bash",
-          "args": [
-            "-c",
-            "(pkill saml-server || true) && cd /Users/darrinholst/.vpn && ./saml-server"
-          ],
-          "env": {
-            "PATH": "/usr/bin:/usr/local/bin:/sbin:/bin"
-          }
-        }
-      },
-      {
         "title": "test vpn",
         "mode": "JobStatus",
         "jobScript": {
