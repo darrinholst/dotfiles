@@ -5,6 +5,7 @@ require("mason-lspconfig").setup {
     "cucumber-language-server",
     "eslint-lsp",
     "json-lsp",
+    "lemminx",
     "lua-language-server",
     "r-languageserver",
     "typescript-language-server",
@@ -143,6 +144,11 @@ lspconfig.r_language_server.setup {
       }
     }
   }
+}
+
+lspconfig.lemminx.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 lspconfig.eslint.setup {
