@@ -10,6 +10,8 @@ local function update_status(emoji, text)
   text = text or ""
   local profile = hs.json.encode({status_emoji = emoji, status_text = text, status_expiration = 0})
   print("Updating slack profile to " .. hs.inspect(profile))
+
+  -- TODO: convert to hs.http.asyncPost
   hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN --data-urlencode profile=\"" .. profile .. "\" https://slack.com/api/users.profile.set")
 end
 
@@ -65,6 +67,7 @@ local function set_afk_status()
 end
 
 local function is_dnding()
+  -- TODO: convert to hs.http.asyncGet
   local profile = hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN https://slack.com/api/dnd.info")
   return hs.json.decode(profile).dnd_enabled
 end
