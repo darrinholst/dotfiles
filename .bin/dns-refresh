@@ -2,43 +2,40 @@
 
 set -e
 
-test_dns_server=10.2.0.2
 
-if host -W3 -t A redis.advancedagtest.com ${test_dns_server} > /dev/null
-then
-  echo "Connected to ${test_dns_server}"
-else
-  echo "No connection to ${test_dns_server}"
-  exit 0
-fi
-
-function get_ip {
-  hostname="${1}"
-  query_type="A"
-  echo "$(host -t A ${1} ${test_dns_server} | awk '/has.*address/ {print $NF; exit}')"
+function get_hosts_entry {
+  echo $(host -t A ${2} ${1} | awk '/has.*address/ {print $NF; exit}') ${2}
 }
 
-cat >hosts <<EOF
-127.0.0.1 localhost
-127.0.0.1 terraframing-local.advancedagrilytics.com
-127.0.0.1 local.farmgate.ag
-127.0.0.1 qa-portal.farmgate.localhost
-10.2.9.45 cloud.dev
-
-$(get_ip redis.advancedagtest.com) redis.advancedagtest.com
-$(get_ip postgres.advancedagtest.com) postgres.advancedagtest.com
-$(get_ip mssql.advancedagtest.com) mssql.advancedagtest.com
-$(get_ip farmgate-mysql.advancedagtest.com) farmgate-mysql.advancedagtest.com
-$(get_ip grafana.advancedagrilytics.com) grafana.advancedagrilytics.com
-$(get_ip sonar.advancedagrilytics.com) sonar.advancedagrilytics.com
-$(get_ip ds.bayes.advancedagtest.com) ds.bayes.advancedagtest.com
-
-172.31.148.55 redis.advancedag.com
-172.31.146.228 postgres.advancedag.com
-172.31.153.19 mssql.advancedag.com
-172.31.17.158 farmgate-mysql.advancedag.com
-172.31.137.82 ds.bayes.advancedag.com
+test_dns_server=10.2.0.2
+if nc -G1 -w1 -z ${test_dns_server} 53 2>/dev/null; then
+  cat > /tmp/autohosts <<EOF
+# AUTO TEST START
+$(get_hosts_entry $test_dns_server redis.advancedagtest.com)
+$(get_hosts_entry $test_dns_server postgres.advancedagtest.com)
+$(get_hosts_entry $test_dns_server mssql.advancedagtest.com)
+$(get_hosts_entry $test_dns_server farmgate-mysql.advancedagtest.com)
+$(get_hosts_entry $test_dns_server ds.bayes.advancedagtest.com)
+# AUTO TEST END
 EOF
 
-cat hosts
-cat ~/.pw | sudo -S mv -f hosts /etc/hosts
+  cat ~/.pw | sudo -S -p "" sed -i.backup '/# AUTO TEST START/,/# AUTO TEST END/d' /etc/hosts
+  cat ~/.pw | sudo -S -p "" cat /tmp/autohosts >> /etc/hosts
+fi
+
+prod_dns_server=172.31.0.2
+if nc -G1 -w1 -z ${prod_dns_server} 53; then
+  cat > /tmp/autohosts <<EOF
+# AUTO PROD START
+$(get_hosts_entry $prod_dns_server redis.advancedag.com)
+$(get_hosts_entry $prod_dns_server postgres.advancedag.com)
+$(get_hosts_entry $prod_dns_server mssql.advancedag.com)
+$(get_hosts_entry $prod_dns_server farmgate-mysql.advancedag.com)
+$(get_hosts_entry $prod_dns_server ds.bayes.advancedag.com)
+# AUTO PROD END
+EOF
+
+  cat ~/.pw | sudo -S -p "" sed -i.backup '/# AUTO PROD START/,/# AUTO PROD END/d' /etc/hosts
+  cat ~/.pw | sudo -S -p "" cat /tmp/autohosts >> /etc/hosts
+fi
+
