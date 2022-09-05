@@ -2,6 +2,7 @@ local home = os.getenv("HOME")
 
 local test_ip = "10.2.0.2"
 local prod_ip = "172.31.0.2"
+local ip_names = { [test_ip] = "test" }
 
 local test_job_id = "com.darrinholst.test-vpn"
 local prod_job_id = "com.darrinholst.prod-vpn"
@@ -80,11 +81,12 @@ local function toggle_vpn(job_id)
   os.execute("launchctl " .. toggle .. " " .. test_job_id)
 end
 
-TEST_VPN_MENU = hs.menubar.new()
-TEST_VPN_MENU:setClickCallback(function() toggle_vpn(test_job_id) end)
-
 local function update_vpn_status(menubar, ip)
-  menubar:setTitle(is_connected(ip) and "🟢" or "🔴")
+  menubar:setTitle(is_connected(ip) and "⚪" or "💀")
+  menubar:setTooltip(is_connected(ip) and "Connected" or "Not connected" .. " to " .. ip_names[ip])
 end
 
-TEST_VPN_TIMER = hs.timer.doEvery(15, function() update_vpn_status(TEST_VPN_MENU, test_ip) end)
+TEST_VPN_MENU = hs.menubar.new()
+TEST_VPN_MENU:setClickCallback(function() toggle_vpn(test_job_id) end)
+TEST_VPN_TIMER = hs.timer.doEvery(10, function() update_vpn_status(TEST_VPN_MENU, test_ip) end)
+update_vpn_status(TEST_VPN_MENU, test_ip)
