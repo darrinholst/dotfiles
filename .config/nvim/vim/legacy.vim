@@ -70,7 +70,7 @@ let g:tmuxline_preset = {
   \'a'           : '#S',
   \'cwin'        : ['#I', '#W#F'],
   \'win'         : ['#I', '#W'],
-  \'x'           : '#(tmux-spotify-info)#(cut -c3- ~/.tmux.conf | sh -s _testvpn) | #(cut -c3- ~/.tmux.conf | sh -s _prodvpn)',
+  \'x'           : '#(tmux-spotify-info)#(cut -c3- ~/.tmux.conf | sh -s _testvpn)',
   \'y'           : '%l:%M',
   \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
   \'options'     : {'status-justify' : 'left'},

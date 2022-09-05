@@ -1,24 +1,24 @@
-local function getStatusOf(ip)
-  local _, isConnected = hs.execute("nc -G1 -w1 -z " .. ip .. " 53")
-  if isConnected then return "✅" else return "❌" end
-end
+local home = os.getenv("HOME")
 
-local function showStatus()
-  hs.alert(getStatusOf("10.2.0.2") .. " - test vpn", nil, nil, 3)
-  hs.alert(getStatusOf("172.31.0.2") .. " - prod vpn", nil, nil, 3)
-end
+local test_ip = "10.2.0.2"
+local prod_ip = "172.31.0.2"
 
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "V", showStatus)
-local home = hs.fs.pathToAbsolute("~")
+local test_job_id = "com.darrinholst.test-vpn"
+local prod_job_id = "com.darrinholst.prod-vpn"
+
+local function is_running(job_id)
+  return os.execute("launchctl list | grep -e '^\\d\\+.*" .. job_id .. "'")
+end
 
 local function add_job(job_id, job_plist)
   local job_plist_location = home .. "/Library/LaunchAgents/" .. job_id .. ".plist"
   job_plist.Label = job_id
   hs.plist.write(job_plist_location, job_plist)
-  hs.execute("launchctl unload " .. job_plist_location)
-  hs.execute("launchctl load " .. job_plist_location)
-  local uid = hs.execute("id -u")
-  print(hs.execute("launchctl print gui/" .. string.gsub(uid, "\n", "") .. "/" .. job_id))
+
+  if (not is_running(job_id)) then
+    os.execute("launchctl unload " .. job_plist_location)
+    os.execute("launchctl load " .. job_plist_location)
+  end
 end
 
 --
@@ -47,7 +47,7 @@ add_job("com.darrinholst.dns-resolver", {
   StandardOutPath = home .. "/.bin/dns-refresh.log"
 })
 
-add_job("com.darrinholst.test-vpn", {
+add_job(test_job_id, {
   WorkingDirectory = home .. "/.bin",
   EnvironmentVariables = {
     VPN_CONF = home .. "/.config/test.ovpn",
@@ -59,7 +59,7 @@ add_job("com.darrinholst.test-vpn", {
   StandardOutPath = home .. "/.bin/test-vpn.log"
 })
 
-add_job("com.darrinholst.prod-vpn", {
+add_job(prod_job_id, {
   WorkingDirectory = home .. "/.bin",
   EnvironmentVariables = {
     VPN_CONF = home .. "/.config/prod.ovpn",
@@ -71,22 +71,20 @@ add_job("com.darrinholst.prod-vpn", {
   StandardOutPath = home .. "/.bin/prod-vpn.log"
 })
 
+local function is_connected(ip)
+  return os.execute("nc -G1 -w1 -z " .. ip .. " 53")
+end
 
--- caffeine = hs.menubar.new()
+local function toggle_vpn(job_id)
+  local toggle = is_running(job_id) and "stop" or "start"
+  os.execute("launchctl " .. toggle .. " " .. test_job_id)
+end
 
--- function setCaffeineDisplay(state)
---   if state then
---     caffeine:setTitle("🔴")
---   else
---     caffeine:setTitle("🎾")
---   end
--- end
+TEST_VPN_MENU = hs.menubar.new()
+TEST_VPN_MENU:setClickCallback(function() toggle_vpn(test_job_id) end)
 
--- function caffeineClicked()
---   setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
--- end
+local function update_vpn_status(menubar, ip)
+  menubar:setTitle(is_connected(ip) and "🟢" or "🔴")
+end
 
--- if caffeine then
---   caffeine:setClickCallback(caffeineClicked)
---   setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
--- end
+TEST_VPN_TIMER = hs.timer.doEvery(15, function() update_vpn_status(TEST_VPN_MENU, test_ip) end)
