@@ -47,6 +47,30 @@ add_job("com.darrinholst.dns-resolver", {
   StandardOutPath = home .. "/.bin/dns-refresh.log"
 })
 
+add_job("com.darrinholst.test-vpn", {
+  WorkingDirectory = home .. "/.bin",
+  EnvironmentVariables = {
+    VPN_CONF = home .. "/.config/test.ovpn",
+    VPN_HOST = "cvpn-endpoint-01353e4930b3f0ca1.prod.clientvpn.us-east-1.amazonaws.com",
+    PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
+  },
+  ProgramArguments = { home .. "/.bin/vpn" },
+  StandardErrorPath = home .. "/.bin/test-vpn.log",
+  StandardOutPath = home .. "/.bin/test-vpn.log"
+})
+
+add_job("com.darrinholst.prod-vpn", {
+  WorkingDirectory = home .. "/.bin",
+  EnvironmentVariables = {
+    VPN_CONF = home .. "/.config/prod.ovpn",
+    VPN_HOST = "cvpn-endpoint-022d7eb676972a623.prod.clientvpn.us-east-1.amazonaws.com",
+    PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
+  },
+  ProgramArguments = { home .. "/.bin/vpn" },
+  StandardErrorPath = home .. "/.bin/prod-vpn.log",
+  StandardOutPath = home .. "/.bin/prod-vpn.log"
+})
+
 
 -- caffeine = hs.menubar.new()
 
