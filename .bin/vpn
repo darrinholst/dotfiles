@@ -2,7 +2,7 @@
 
 set -e
 
-VPN_BIN="./acvc-openvpn"
+VPN_BIN="acvc-openvpn"
 VPN_PORT=443
 VPN_PROTO=udp
 
@@ -23,6 +23,15 @@ rm -f saml-response.txt
 host=$(dig a +short "${prefix}.${VPN_HOST}"|head -n1)
 
 echo "Getting SAML redirect URL from $host"
+
+# echo $VPC_CONF
+# ${VPN_BIN} \
+#   --config "${VPN_CONF}" \
+#   --verb 3 \
+#   --proto "$VPN_PROTO" \
+#   --remote "${host}" "$VPN_PORT" \
+#   --auth-retry none \
+#   --auth-user-pass <( printf "%s\n%s\n" "N/A" "ACS::35001" ) 
 
 # Have openvpn connect with user N/A and Password ACS:35001. This will fail,
 # And the error payload will contain the SAML redirect URL
@@ -48,7 +57,7 @@ wait_file "saml-response.txt" 30 || {
 
 echo "Got the SAML token, connecting to the VPN..."
 
-cat ./password | sudo -S bash -c "$VPN_BIN \
+cat ${HOME}/.pw | sudo -S bash -c "$VPN_BIN \
     --config "${VPN_CONF}" \
     --verb 3 \
     --proto \"$VPN_PROTO\" \
@@ -59,5 +68,5 @@ cat ./password | sudo -S bash -c "$VPN_BIN \
     --auth-user-pass <( printf \"%s\n%s\n\" \"N/A\" \"CRV1::${vpn_sid}::$(cat saml-response.txt)\" )"
     "$@"
 
-# Need the 🔨 since we needed to start it with sudo
-cat ./password | sudo -S kill $BASHPID
+# # Need the 🔨 since we needed to start it with sudo
+# cat ./password | sudo -S kill $BASHPID

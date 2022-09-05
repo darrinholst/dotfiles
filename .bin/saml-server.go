@@ -8,10 +8,12 @@ import (
 	"net/url"
 )
 
+// go build -o saml-server saml-server.go
 func main() {
 	http.HandleFunc("/", SAMLServer)
 	log.Printf("Starting HTTP server at 127.0.0.1:35001")
 	http.ListenAndServe("127.0.0.1:35001", nil)
+	log.Printf("Done")
 }
 
 func SAMLServer(w http.ResponseWriter, r *http.Request) {
