@@ -78,12 +78,13 @@ end
 
 local function toggle_vpn(job_id)
   local toggle = is_running(job_id) and "stop" or "start"
-  os.execute("launchctl " .. toggle .. " " .. test_job_id)
+  local status = os.execute("launchctl " .. toggle .. " " .. test_job_id)
+  hs.alert(status and "👍" or "👎")
 end
 
 local function update_vpn_status(menubar, ip)
   menubar:setTitle(is_connected(ip) and "⚪" or "💀")
-  menubar:setTooltip(is_connected(ip) and "Connected" or "Not connected" .. " to " .. ip_names[ip])
+  menubar:setTooltip((is_connected(ip) and "Connected" or "Not connected") .. " to " .. ip_names[ip])
 end
 
 TEST_VPN_MENU = hs.menubar.new()
