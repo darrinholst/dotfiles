@@ -68,8 +68,9 @@ end
 
 local function is_dnding()
   -- TODO: convert to hs.http.asyncGet
-  local profile = hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN https://slack.com/api/dnd.info")
-  return hs.json.decode(profile).dnd_enabled
+  local raw = hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN https://slack.com/api/dnd.info")
+  local profile = hs.json.decode(raw)
+  return os.time() > profile.next_dnd_start_ts and os.time() < profile.next_dnd_end_ts
 end
 
 local function set_dnd_status()
@@ -103,3 +104,4 @@ end
 
 SLACK_TIMER = hs.timer.new(active_interval, main)
 SLACK_TIMER:start()
+main()
