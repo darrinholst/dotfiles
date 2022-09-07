@@ -32,8 +32,8 @@ add_job("com.darrinholst.saml-server", {
   KeepAlive = { SuccessfulExit = false },
   WorkingDirectory = home .. "/.bin",
   ProgramArguments = { home .. "/.bin/saml-server" },
-  StandardErrorPath = home .. "/.bin/saml-server.log",
-  StandardOutPath = home .. "/.bin/saml-server.log"
+  StandardErrorPath = home .. "/.bin/log/saml-server.log",
+  StandardOutPath = home .. "/.bin/log/saml-server.log"
 })
 
 --
@@ -45,38 +45,41 @@ add_job("com.darrinholst.dns-resolver", {
   StartInterval = 60,
   WorkingDirectory = home .. "/.bin",
   ProgramArguments = { home .. "/.bin/dns-refresh" },
-  StandardErrorPath = home .. "/.bin/dns-refresh.log",
-  StandardOutPath = home .. "/.bin/dns-refresh.log"
+  StandardErrorPath = home .. "/.bin/log/dns-refresh.log",
+  StandardOutPath = home .. "/.bin/log/dns-refresh.log"
 })
 
 add_job(test_job_id, {
   WorkingDirectory = home .. "/.bin",
   EnvironmentVariables = {
+    VPN_ENV = "test",
     VPN_CONF = home .. "/.config/test.ovpn",
     VPN_HOST = "cvpn-endpoint-01353e4930b3f0ca1.prod.clientvpn.us-east-1.amazonaws.com",
     PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
   },
   ProgramArguments = { home .. "/.bin/vpn" },
-  StandardErrorPath = home .. "/.bin/test-vpn.log",
-  StandardOutPath = home .. "/.bin/test-vpn.log"
+  StandardErrorPath = home .. "/.bin/log/test-vpn.log",
+  StandardOutPath = home .. "/.bin/log/test-vpn.log"
 })
 
 add_job(prod_job_id, {
   WorkingDirectory = home .. "/.bin",
   EnvironmentVariables = {
+    VPN_ENV = "prod",
     VPN_CONF = home .. "/.config/prod.ovpn",
     VPN_HOST = "cvpn-endpoint-022d7eb676972a623.prod.clientvpn.us-east-1.amazonaws.com",
     PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
   },
   ProgramArguments = { home .. "/.bin/vpn" },
-  StandardErrorPath = home .. "/.bin/prod-vpn.log",
-  StandardOutPath = home .. "/.bin/prod-vpn.log"
+  StandardErrorPath = home .. "/.bin/log/prod-vpn.log",
+  StandardOutPath = home .. "/.bin/log/prod-vpn.log"
 })
 
 local function toggle_vpn(job_id)
   local toggle = is_running(job_id) and "stop" or "start"
-  local status = os.execute("launchctl " .. toggle .. " " .. job_id)
-  hs.alert(status and "👍" or "👎")
+  local command = "launchctl " .. toggle .. " " .. job_id
+  hs.alert(command)
+  os.execute(command)
 end
 
 local function update_vpn_status(menubar, ip)
@@ -88,10 +91,17 @@ end
 
 TEST_VPN_MENU = hs.menubar.new()
 TEST_VPN_MENU:setClickCallback(function() toggle_vpn(test_job_id) end)
-TEST_VPN_TIMER = hs.timer.doEvery(15, function() update_vpn_status(TEST_VPN_MENU, test_ip) end)
 update_vpn_status(TEST_VPN_MENU, test_ip)
 
 PROD_VPN_MENU = hs.menubar.new()
 PROD_VPN_MENU:setClickCallback(function() toggle_vpn(prod_job_id) end)
-PROD_VPN_TIMER = hs.timer.doEvery(15, function() update_vpn_status(PROD_VPN_MENU, prod_ip) end)
 update_vpn_status(PROD_VPN_MENU, prod_ip)
+
+local function maybe_update_vpn_status(files)
+  for _, file in pairs(files) do
+     if (file:match("test.connected")) then update_vpn_status(TEST_VPN_MENU, test_ip) end
+     if (file:match("prod.connected")) then update_vpn_status(PROD_VPN_MENU, prod_ip) end
+  end
+end
+
+LOG_PATH_WATCHER = hs.pathwatcher.new(home .. "/.bin/log", maybe_update_vpn_status):start()
