@@ -16,6 +16,7 @@ $(get_hosts_entry $test_dns_server postgres.advancedagtest.com)
 $(get_hosts_entry $test_dns_server mssql.advancedagtest.com)
 $(get_hosts_entry $test_dns_server farmgate-mysql.advancedagtest.com)
 $(get_hosts_entry $test_dns_server ds.bayes.advancedagtest.com)
+$(get_hosts_entry $test_dns_server sonar.advancedagrilytics.com)
 # AUTO TEST END
 EOF
 
