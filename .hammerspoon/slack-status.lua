@@ -12,8 +12,8 @@ local function update_status(emoji, text)
   print("Updating slack profile to " .. hs.inspect(profile))
 
   -- TODO: convert to hs.http.asyncPost
-  hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN --data-urlencode profile=\"" ..
-    profile .. "\" https://slack.com/api/users.profile.set")
+  hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN --data-urlencode profile='" ..
+    profile .. "' https://slack.com/api/users.profile.set")
 end
 
 local function buildSpotifyStatus()
@@ -24,7 +24,7 @@ local function set_spotify_status()
   if (hs.spotify.isPlaying()) then
     if (state.spotifying ~= buildSpotifyStatus()) then
       state.spotifying = buildSpotifyStatus()
-      update_status(":spotify:", state.spotifying)
+      update_status(":headphones:", state.spotifying)
     end
   elseif (state.spotifying ~= "") then
     state.spotifying = ""
