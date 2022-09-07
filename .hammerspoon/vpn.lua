@@ -84,8 +84,7 @@ end
 
 local function update_vpn_status(menubar, ip)
   local is_connected = os.execute("nc -G2 -w1 -z " .. ip .. " 53")
-  local t_or_p = string.sub(ip_names[ip], 1, 1)
-  menubar:setTitle(is_connected and t_or_p .. "⚪" or t_or_p .. "💀")
+  menubar:setTitle(is_connected and "⚪" or "💀")
   menubar:setTooltip((is_connected and "Connected" or "Not connected") .. " to " .. ip_names[ip])
 end
 

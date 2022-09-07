@@ -8,11 +8,12 @@ local main = nil
 local function update_status(emoji, text)
   emoji = emoji or ""
   text = text or ""
-  local profile = hs.json.encode({status_emoji = emoji, status_text = text, status_expiration = 0})
+  local profile = hs.json.encode({ status_emoji = emoji, status_text = text, status_expiration = 0 })
   print("Updating slack profile to " .. hs.inspect(profile))
 
   -- TODO: convert to hs.http.asyncPost
-  hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN --data-urlencode profile=\"" .. profile .. "\" https://slack.com/api/users.profile.set")
+  hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN --data-urlencode profile=\"" ..
+    profile .. "\" https://slack.com/api/users.profile.set")
 end
 
 local function buildSpotifyStatus()
@@ -23,7 +24,7 @@ local function set_spotify_status()
   if (hs.spotify.isPlaying()) then
     if (state.spotifying ~= buildSpotifyStatus()) then
       state.spotifying = buildSpotifyStatus()
-      update_status(":spotify:",  state.spotifying)
+      update_status(":spotify:", state.spotifying)
     end
   elseif (state.spotifying ~= "") then
     state.spotifying = ""
@@ -68,9 +69,12 @@ end
 
 local function is_dnding()
   -- TODO: convert to hs.http.asyncGet
-  local raw = hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN https://slack.com/api/dnd.info")
-  local profile = hs.json.decode(raw)
-  return os.time() > profile.next_dnd_start_ts and os.time() < profile.next_dnd_end_ts
+  local raw, status = hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN https://slack.com/api/dnd.info")
+
+  if (status) then
+    local profile = hs.json.decode(raw)
+    return os.time() > profile.next_dnd_start_ts and os.time() < profile.next_dnd_end_ts
+  end
 end
 
 local function set_dnd_status()
