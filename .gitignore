@@ -6,5 +6,5 @@ plug.vim
 *.so
 .tmuxline.conf
 *secret*
-*.log
+log
 
