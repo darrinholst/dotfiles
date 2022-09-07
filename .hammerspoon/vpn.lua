@@ -75,10 +75,10 @@ add_job(prod_job_id, {
   StandardOutPath = home .. "/.bin/log/prod-vpn.log"
 })
 
-local function toggle_vpn(job_id)
+local function toggle_vpn(job_id, env)
   local toggle = is_running(job_id) and "stop" or "start"
+  hs.notify.show(toggle .. (toggle == "stop" and "ping " or "ing ") .. env, "", "")
   local command = "launchctl " .. toggle .. " " .. job_id
-  hs.alert(command)
   os.execute(command)
 end
 
@@ -89,11 +89,11 @@ local function update_vpn_status(menubar, ip)
 end
 
 TEST_VPN_MENU = hs.menubar.new()
-TEST_VPN_MENU:setClickCallback(function() toggle_vpn(test_job_id) end)
+TEST_VPN_MENU:setClickCallback(function() toggle_vpn(test_job_id, "test") end)
 update_vpn_status(TEST_VPN_MENU, test_ip)
 
 PROD_VPN_MENU = hs.menubar.new()
-PROD_VPN_MENU:setClickCallback(function() toggle_vpn(prod_job_id) end)
+PROD_VPN_MENU:setClickCallback(function() toggle_vpn(prod_job_id, "prod") end)
 update_vpn_status(PROD_VPN_MENU, prod_ip)
 
 local function maybe_update_vpn_status(files)
