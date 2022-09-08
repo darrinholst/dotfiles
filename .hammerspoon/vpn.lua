@@ -84,7 +84,7 @@ end
 
 local function update_vpn_status(menubar, ip)
   local is_connected = os.execute("nc -G2 -w1 -z " .. ip .. " 53")
-  menubar:setTitle(is_connected and "⚪" or "💀")
+  menubar:setIcon(home .. "/.hammerspoon/images/vpn-" .. (is_connected and "on" or "off") .. ".pdf")
   menubar:setTooltip((is_connected and "Connected" or "Not connected") .. " to " .. ip_names[ip])
 end
 
