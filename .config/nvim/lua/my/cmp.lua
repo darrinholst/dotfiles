@@ -38,11 +38,11 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ["<Tab>"] = cmp.mapping(
+    ["<C-j>"] = cmp.mapping(
       function(fallback) cmp_ultisnips_mappings.expand_or_jump_forwards(fallback) end,
       { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
     ),
-    ["<S-Tab>"] = cmp.mapping(
+    ["<C-k>"] = cmp.mapping(
       function(fallback) cmp_ultisnips_mappings.jump_backwards(fallback) end,
       { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
     ),

@@ -67,6 +67,7 @@ Plug "williamboman/mason-lspconfig.nvim"
 -- random
 Plug "chrisbra/csv.vim"
 Plug "godlygeek/tabular"
+Plug 'jiangmiao/auto-pairs'
 Plug "kylechui/nvim-surround"
 Plug "mhartington/formatter.nvim"
 Plug "mhinz/vim-startify"
