@@ -3,8 +3,6 @@ local home = os.getenv("HOME")
 local test_ip = "10.2.0.2"
 local prod_ip = "172.31.0.2"
 
-local ip_names = { [test_ip] = "test", [prod_ip] = "prod" }
-
 local test_job_id = "com.darrinholst.test-vpn"
 local prod_job_id = "com.darrinholst.prod-vpn"
 
@@ -82,24 +80,33 @@ local function toggle_vpn(job_id, env)
   os.execute(command)
 end
 
-local function update_vpn_status(menubar, ip)
-  local is_connected = os.execute("nc -G2 -w1 -z " .. ip .. " 53")
-  menubar:setIcon(home .. "/.hammerspoon/images/vpn-" .. (is_connected and "on" or "off") .. ".pdf")
-  menubar:setTooltip((is_connected and "Connected" or "Not connected") .. " to " .. ip_names[ip])
+MENU = hs.menubar.new()
+MENU:setIcon(home .. "/.hammerspoon/images/vpn-off.pdf")
+MENU:setMenu(function()
+  return {
+    {
+      title = "Test VPN",
+      checked = is_running(test_job_id),
+      fn = function() toggle_vpn(test_job_id, "test") end
+    },
+    {
+      title = "Prod VPN",
+      checked = is_running(prod_job_id),
+      fn = function() toggle_vpn(prod_job_id, "prod") end
+    },
+  }
+end)
+
+local function update_icon()
+  local is_connected = os.execute("nc -G2 -w1 -z " .. test_ip .. " 53")
+  MENU:setIcon(home .. "/.hammerspoon/images/vpn-" .. (is_connected and "on" or "off") .. ".pdf")
 end
 
-TEST_VPN_MENU = hs.menubar.new()
-TEST_VPN_MENU:setClickCallback(function() toggle_vpn(test_job_id, "test") end)
-update_vpn_status(TEST_VPN_MENU, test_ip)
-
-PROD_VPN_MENU = hs.menubar.new()
-PROD_VPN_MENU:setClickCallback(function() toggle_vpn(prod_job_id, "prod") end)
-update_vpn_status(PROD_VPN_MENU, prod_ip)
+update_icon()
 
 local function maybe_update_vpn_status(files)
   for _, file in pairs(files) do
-     if (file:match("test.connected")) then update_vpn_status(TEST_VPN_MENU, test_ip) end
-     if (file:match("prod.connected")) then update_vpn_status(PROD_VPN_MENU, prod_ip) end
+    if (file:match(".connected")) then update_icon() end
   end
 end
 
