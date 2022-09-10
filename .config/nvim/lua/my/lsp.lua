@@ -37,8 +37,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 
   if client.supports_method("textDocument/formatting") then
-    vim.keymap.set("", "<F5>", vim.lsp.buf.format, bufopts)
-    vim.keymap.set("i", "<F5>", vim.lsp.buf.format, bufopts)
+    vim.keymap.set("", "<C-f>", vim.lsp.buf.format, bufopts)
+    vim.keymap.set("i", "<C-f>", vim.lsp.buf.format, bufopts)
   end
 end
 

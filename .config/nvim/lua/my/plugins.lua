@@ -64,10 +64,14 @@ Plug "jose-elias-alvarez/null-ls.nvim"
 Plug "williamboman/mason.nvim"
 Plug "williamboman/mason-lspconfig.nvim"
 
+-- debugging
+Plug "mfussenegger/nvim-dap"
+Plug "rcarriga/nvim-dap-ui"
+
 -- random
 Plug "chrisbra/csv.vim"
 Plug "godlygeek/tabular"
-Plug 'jiangmiao/auto-pairs'
+Plug "jiangmiao/auto-pairs"
 Plug "kylechui/nvim-surround"
 Plug "mhartington/formatter.nvim"
 Plug "mhinz/vim-startify"
