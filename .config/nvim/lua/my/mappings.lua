@@ -90,6 +90,7 @@ vim.keymap.set("", "<leader>cl", "<cmd>wincmd l<cr><cmd>close<cr>", opts)
 vim.keymap.set("", "<leader>cc", "<cmd>close<cr>", opts)
 vim.keymap.set("", "<leader>cw", "<cmd>cclose<cr>", opts)
 vim.keymap.set("", "<leader>sw", "<cmd>call WindowSwap#EasyWindowSwap()<cr>", opts)
+vim.keymap.set("", "<leader>d", "<cmd>bd<cr>", opts)
 
 -- vimux
 vim.keymap.set("", "<leader>vp", "<cmd>wa|VimuxPromptCommand<cr>", opts)

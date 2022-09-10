@@ -117,6 +117,8 @@ alias gpf='git push --force-with-lease'
 alias gcm='git checkout $(git default-branch)'
 alias gba='git branch --all --color="always" --sort=authordate --format="%(color:blue)%(authordate:relative);%(color:red)%(authorname);%(color:white)%(color:bold)%(refname:short)" "$@" | column -s ";" -t'
 alias gu='git up'
+alias grm='git rebase origin/main'
+alias gs='git st'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # terraform
