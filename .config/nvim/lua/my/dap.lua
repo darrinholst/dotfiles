@@ -1,10 +1,40 @@
 local dap = require("dap")
 require("dapui").setup()
 
+vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpointRejected', { text = '❓', texthl = '', linehl = '', numhl = '' })
+
 dap.adapters.node = {
   type = "executable",
   command = "node",
   args = { os.getenv("HOME") .. "/.local/share/node-debug2/out/src/nodeDebug.js" },
+}
+
+dap.adapters.sh = {
+  type = "executable",
+  command = "bash-debug-adapter",
+}
+
+dap.configurations.sh = {
+  {
+    args = {},
+    argsString = '',
+    cwd = vim.fn.getcwd(),
+    env = {},
+    name = "Launch",
+    pathBash = "/opt/homebrew/bin/bash",
+    pathBashdb = "/opt/homebrew/bin/bashdb",
+    pathBashdbLib = "/opt/homebrew/share/bashdb/",
+    pathCat = "/bin/cat",
+    pathMkfifo = "/usr/bin/mkfifo",
+    pathPkill = "/usr/bin/pkill",
+    program = "${file}",
+    request = "launch",
+    showDebugOutput = false,
+    terminalKind = "integrated",
+    trace = true,
+    type = "sh",
+  }
 }
 
 dap.configurations.javascript = {
