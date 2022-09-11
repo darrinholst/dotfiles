@@ -21,10 +21,12 @@ vim.opt.ttimeoutlen    = 100
 vim.opt.updatetime     = 300 --   Smaller updatetime for CursorHold & CursorHoldI
 vim.opt.vb             = true --  no beeping
 vim.opt.wrap           = false -- no line wrapping by default
-vim.opt.hlsearch       = false -- the only that is constant is change
+vim.opt.hlsearch       = true
 vim.wo.foldlevel       = 99
 vim.wo.foldmethod      = "expr"
 vim.wo.foldexpr        = "nvim_treesitter#foldexpr()"
+
+vim.g.choosewin_overlay_enable = 1
 
 vim.g.python_host_prog  = "/usr/bin/python"
 vim.g.python3_host_prog = "/usr/bin/python3"

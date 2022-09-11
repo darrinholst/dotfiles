@@ -16,6 +16,7 @@ sign define DiagnosticSignHint text= linehl= texthl=DiagnosticSignHint numhl=
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 set <S-F4>=\eO1;2S
 let g:FerretExecutableArguments = { 'rg': '--vimgrep --no-heading --max-columns 4096' }
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " completion
 set wildmode=list:longest,list:full
@@ -70,7 +71,7 @@ let g:tmuxline_preset = {
   \'a'           : '#S',
   \'cwin'        : ['#I', '#W#F'],
   \'win'         : ['#I', '#W'],
-  \'x'           : '#(tmux-spotify-info)#(cut -c3- ~/.tmux.conf | sh -s _testvpn)',
+  \'x'           : '#(tmux-spotify-info)',
   \'y'           : '%l:%M',
   \'z'           : '#(cut -c3- ~/.tmux.conf | sh -s _hostname)',
   \'options'     : {'status-justify' : 'left'},

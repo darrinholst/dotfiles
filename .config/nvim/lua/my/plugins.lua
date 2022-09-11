@@ -7,9 +7,9 @@ Plug "kyazdani42/nvim-tree.lua"
 Plug "kyazdani42/nvim-web-devicons"
 
 -- windowing
-Plug "wesQ3/vim-windowswap"
 Plug "troydm/zoomwintab.vim"
 Plug "fgheng/winbar.nvim"
+Plug "t9md/vim-choosewin"
 
 -- 🌳
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })

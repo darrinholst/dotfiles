@@ -80,10 +80,10 @@ j() {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # vim
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias vi="~/.nvim-nightly/bin/nvim -u NONE"
-alias vim="~/.nvim-nightly/bin/nvim"
-export EDITOR="~/.nvim-nightly/bin/nvim"
-export GIT_EDITOR="~/.nvim-nightly/bin/nvim"
+alias vi="nvim -u NONE"
+alias vim="nvim"
+export EDITOR="nvim"
+export GIT_EDITOR="nvim"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # js

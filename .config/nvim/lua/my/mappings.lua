@@ -90,8 +90,8 @@ map("", "<leader>ch", "<cmd>wincmd h<cr><cmd>close<cr>", opts)
 map("", "<leader>cl", "<cmd>wincmd l<cr><cmd>close<cr>", opts)
 map("", "<leader>cc", "<cmd>close<cr>", opts)
 map("", "<leader>cw", "<cmd>cclose<cr>", opts)
-map("", "<leader>sw", "<cmd>call WindowSwap#EasyWindowSwap()<cr>", opts)
 map("", "<leader>bd", "<cmd>bd<cr>", opts)
+map("", "<leader>p", "<plug>(choosewin)", opts)
 
 -- debugging
 map("n", "<F5>", ":lua require('dap').continue()<cr>", opts)
