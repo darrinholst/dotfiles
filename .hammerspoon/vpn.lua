@@ -80,9 +80,29 @@ local function toggle_vpn(job_id, env)
   os.execute(command)
 end
 
+local function is_aws_authed()
+  local ssoConfig = hs.json.read(home .. "/.aws/sso/cache/66d08d7b7f546523e4f0bf784351e9a2fa5bcd88.json")
+  if (not ssoConfig or not ssoConfig.expiresAt) then return false end
+
+  local currentTime = os.date("*t")
+  local iso8601 = "(%d+)%-(%d+)%-(%d+)T(%d+):(%d+):(%d+)"
+  local year, month, day, hour, min, sec = ssoConfig.expiresAt:match(iso8601)
+  local expiresAt = os.time({ year = year, month = month, day = day, hour = hour - (currentTime.isdst and 5 or 6),
+    min = min, sec = sec })
+
+  return os.time() < expiresAt, string.format("%.1f",(expiresAt - os.time()) / 3600)
+end
+
+local function aws_login()
+  hs.notify.show("SSOing to AWS", "", "")
+  hs.execute("aws sso login --profile test && aws --profile test s3 ls && aws --profile prod s3 ls", true)
+end
+
 MENU = hs.menubar.new()
 MENU:setIcon(home .. "/.hammerspoon/images/vpn-off.pdf")
 MENU:setMenu(function()
+  local aws_authed, hours_remaining = is_aws_authed()
+
   return {
     {
       title = "Test VPN",
@@ -93,6 +113,14 @@ MENU:setMenu(function()
       title = "Prod VPN",
       checked = is_running(prod_job_id),
       fn = function() toggle_vpn(prod_job_id, "prod") end
+    },
+    {
+      title = "-",
+    },
+    {
+      title = "AWS SSO" .. (aws_authed and " (" .. hours_remaining .. "h)"),
+      checked = aws_authed,
+      fn = function() aws_login() end,
     },
   }
 end)
