@@ -108,6 +108,7 @@ MENU:setIcon(home .. "/.hammerspoon/images/vpn-off.pdf")
 MENU:setMenu(function()
   local aws_authed, hours_remaining = is_aws_authed()
   local test_connected = io.open(home .. "/.bin/log/test.connected", "r")
+  local prod_connected = io.open(home .. "/.bin/log/prod.connected", "r")
 
   return {
     {
@@ -116,8 +117,8 @@ MENU:setMenu(function()
       fn = function() toggle_vpn(test_job_id, "test") end
     },
     {
-      title = "Prod VPN",
-      checked = is_running(prod_job_id),
+      title = "Prod VPN" .. (prod_connected and (" (" .. hours_since(prod_connected:read()) .. ")") or ""),
+      checked = prod_connected and true or false,
       fn = function() toggle_vpn(prod_job_id, "prod") end
     },
     {
