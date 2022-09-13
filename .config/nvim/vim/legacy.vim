@@ -15,7 +15,6 @@ sign define DiagnosticSignHint text= linehl= texthl=DiagnosticSignHint numhl=
 " search
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 set <S-F4>=\eO1;2S
-let g:FerretExecutableArguments = { 'rg': '--vimgrep --no-heading --max-columns 4096' }
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " completion

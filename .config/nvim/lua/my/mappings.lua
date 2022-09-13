@@ -51,6 +51,7 @@ map("i", "<C-f>", "<esc><cmd>FormatWrite<cr>")
 
 -- telescope
 map("", "<leader>t", "<cmd>Telescope<cr>", opts)
+map("", "<leader>y", "<cmd>Telescope yank_history<cr>", opts)
 map("", "<C-p>", "<cmd>lua require('my/telescope-recipes').project_files()<cr>", opts)
 map("", "<C-g>", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 map("", "<C-b>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
@@ -64,12 +65,10 @@ map("", "<F4>", "<cmd>cn<cr>", opts)
 map("", "<S-F4>", "<cmd>cp<cr>", opts)
 map("", "<C-F4>", " <cmd>cnf<cr>", opts)
 map("", "<S-C-F4>", "<cmd>cpf<cr>", opts)
-map("", "<leader>f", "<plug>(FerretAck)", {})
-map("", "<leader>F", "<plug>(FerretAckWord)", opts)
+map("", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 map("", "<M-f>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 map("", "<M-F>", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 map("x", "<M-F>", ":lua require('telescope').extensions.live_grep_args.live_grep_args({default_text = 'figure out how to get selection in here'})<CR>", opts)
-
 
 -- smalls
 map("n", "s", "<plug>(smalls)", opts)
