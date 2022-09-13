@@ -1,7 +1,6 @@
-hi CursorLineNR guibg=18 guifg=white
-hi TelescopeSelection guibg=#555555
-hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
 hi LineNr guibg=19 gui=NONE
+hi CursorLineNr guibg=18 guifg=#b7bc72 gui=bold
+hi TelescopeSelection guibg=#555555
 hi MatchParen gui=bold guibg=#b7bc72 guifg=black
 hi SignColumn guibg=18
 hi StatusLine guibg=grey guifg=19 gui=NONE

@@ -56,7 +56,7 @@ map("", "<C-g>", "<cmd>Telescope live_grep<cr>", opts)
 map("", "<C-b>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 map("", "<C-e>", "<cmd>Telescope buffers<cr>", opts)
 map("", "<space>o", "<cmd>Telescope lsp_document_symbols<cr>", opts)
-map("i", "^", "<cmd>Telescope emoji<cr>", opts)
+map("i", "^^", "<cmd>Telescope emoji<cr>", opts)
 
 -- search
 map("", "<leader>n", "<cmd>noh<cr>", opts)
