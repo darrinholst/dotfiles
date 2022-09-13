@@ -4,10 +4,6 @@ require("nvim-tree").setup({
     enable = true,
     ignore = false,
   },
-  view = {
-    adaptive_size = true,
-    side = "right",
-  },
 })
 
 vim.api.nvim_create_autocmd("FileType", {

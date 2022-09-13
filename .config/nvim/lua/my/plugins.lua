@@ -54,9 +54,6 @@ Plug "shumphrey/fugitive-gitlab.vim"
 Plug "tpope/vim-fugitive"
 Plug "tpope/vim-rhubarb"
 
--- search
-Plug "wincent/ferret"
-
 -- lsp/diagnostics
 Plug "neovim/nvim-lspconfig"
 Plug "folke/trouble.nvim"
@@ -71,6 +68,7 @@ Plug "rcarriga/nvim-dap-ui"
 
 -- random
 Plug "chrisbra/csv.vim"
+Plug "gbprod/yanky.nvim"
 Plug "godlygeek/tabular"
 Plug "jiangmiao/auto-pairs"
 Plug "kylechui/nvim-surround"
