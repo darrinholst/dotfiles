@@ -21,6 +21,7 @@ Plug "nvim-telescope/telescope.nvim"
 Plug("nvim-telescope/telescope-fzf-native.nvim",
   { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build" })
 Plug "xiyaowong/telescope-emoji.nvim"
+Plug "nvim-telescope/telescope-live-grep-args.nvim"
 Plug "nvim-lua/plenary.nvim"
 
 -- tmux/terminal integrations

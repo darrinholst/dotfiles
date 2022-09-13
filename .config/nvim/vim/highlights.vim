@@ -15,3 +15,5 @@ hi DiagnosticVirtualTextHint guifg=#969896
 hi GitSignsAdd guibg=18 guifg=#b5bd68
 hi GitSignsChange guibg=18 guifg=#81a2be
 hi GitSignsDelete guibg=18 guifg=#cc6666
+hi TelescopeBorder guifg=#555555 guibg=#1d1f21
+hi TelescopeMatching gui=NONE guibg=#b7bc72 guifg=black
