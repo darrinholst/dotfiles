@@ -21,6 +21,7 @@ telescope.setup({
     sorting_strategy = "ascending",
     layout_config = {
       prompt_position = "top",
+      horizontal = { width = 0.99, height = 0.99 }
     },
   },
   pickers = {
@@ -34,3 +35,4 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 telescope.load_extension("emoji")
+telescope.load_extension("live_grep_args")
