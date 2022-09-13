@@ -52,7 +52,7 @@ cat ${HOME}/.pw | sudo -S bash -c "$VPN_BIN \
     --proto \"$VPN_PROTO\" \
     --remote \"${host}\" \"$VPN_PORT\" \
     --script-security 2 \
-    --route-up '/usr/bin/env bash -c \"rm saml-response.txt && touch log/${VPN_ENV}.connected\"' \
+    --route-up '/usr/bin/env bash -c \"rm saml-response.txt && echo $(date +%s) > log/${VPN_ENV}.connected\"' \
     --down '/usr/bin/env bash -c \"rm log/${VPN_ENV}.connected\"' \
     --auth-retry none \
     --auth-user-pass <( printf \"%s\n%s\n\" \"N/A\" \"CRV1::${vpn_sid}::$(cat saml-response.txt)\" )"

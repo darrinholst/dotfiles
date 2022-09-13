@@ -52,12 +52,12 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.terraform_fmt,
-    -- null_ls.builtins.diagnostics.cspell.with({
-    --   -- filetypes = { "javascript", "javascriptreact" },
-    --   diagnostics_postprocess = function(diagnostic)
-    --     diagnostic.severity = vim.diagnostic.severity["HINT"]
-    --   end,
-    -- })
+    null_ls.builtins.diagnostics.cspell.with({
+      filetypes = { "javascript", "javascriptreact" },
+      diagnostics_postprocess = function(diagnostic)
+        diagnostic.severity = vim.diagnostic.severity["HINT"]
+      end,
+    })
   },
 })
 
