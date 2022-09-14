@@ -146,3 +146,6 @@ local function maybe_update_vpn_status(files)
 end
 
 LOG_PATH_WATCHER = hs.pathwatcher.new(home .. "/.bin/log", maybe_update_vpn_status):start()
+
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "v", function() toggle_vpn(test_job_id, "test") end)
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "a", function() aws_login() end)
