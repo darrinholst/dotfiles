@@ -1,4 +1,2 @@
-require("yanky").setup({
-})
-
+require("yanky").setup()
 require("telescope").load_extension("yank_history")

@@ -30,11 +30,3 @@ vim.g.choosewin_overlay_enable = 1
 
 vim.g.python_host_prog  = "/usr/bin/python"
 vim.g.python3_host_prog = "/usr/bin/python3"
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("Yanker", { clear = true }),
-
-  callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
-  end
-})
