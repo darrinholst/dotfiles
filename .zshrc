@@ -116,9 +116,11 @@ alias gfu='git fu'
 alias gpf='git push --force-with-lease'
 alias gcm='git checkout $(git default-branch)'
 alias gba='git branch --all --color="always" --sort=authordate --format="%(color:blue)%(authordate:relative);%(color:red)%(authorname);%(color:white)%(color:bold)%(refname:short)" "$@" | column -s ";" -t'
-alias gu='git up'
+alias gu='git fetch && git up'
 alias grm='git rebase origin/main'
 alias gs='git st'
+alias ga='git ad'
+alias gca='git commit -v --amend'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # terraform
@@ -200,6 +202,7 @@ use-prod() {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias awsauto='aws --cli-auto-prompt'
+alias yalc='npx yalc'
 
 untilfails() {
   while $@; do :; done

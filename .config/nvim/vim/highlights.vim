@@ -21,3 +21,4 @@ hi GitSignsDelete guibg=18 guifg=#cc6666
 hi TelescopeBorder guifg=#555555 guibg=#1d1f21
 hi TelescopeMatching gui=NONE guibg=#b7bc72 guifg=black
 hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl guisp=#666666
+hi SpellBad cterm=undercurl gui=undercurl guisp=#666666

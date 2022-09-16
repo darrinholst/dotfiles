@@ -3,12 +3,6 @@ require("formatter").setup {
   log_level = vim.log.levels.WARN,
 
   filetype = {
-    json = {
-      function()
-        return nil
-      end
-    },
-
     cucumber = {
       -- npm i -g source-map-support @cucumber/gherkin @cucumber/gherkin-utils
       function()

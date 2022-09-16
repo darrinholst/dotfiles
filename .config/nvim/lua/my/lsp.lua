@@ -111,26 +111,31 @@ lspconfig.jsonls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
-    json = {
-      schemas = {
-        {
-          fileMatch = { "tsconfig.json", "tsconfig.*.json" },
-          url = "https://json.schemastore.org/tsconfig.json",
-        },
-        {
-          fileMatch = { ".eslintrc.json", ".eslintrc" },
-          url = "https://json.schemastore.org/eslintrc.json",
-        },
-        {
-          fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
-          url = "https://json.schemastore.org/prettierrc",
-        },
-        {
-          fileMatch = { "package.json" },
-          url = "https://json.schemastore.org/package.json",
-        },
-      },
-    },
+    -- diagnostics stop working for me when I add schemas
+    -- json = {
+    --   schemas = {
+    --     {
+    --       fileMatch = { "tsconfig.json", "tsconfig.*.json" },
+    --       url = "https://json.schemastore.org/tsconfig.json",
+    --     },
+    --     {
+    --       fileMatch = { ".eslintrc.json", ".eslintrc" },
+    --       url = "https://json.schemastore.org/eslintrc.json",
+    --     },
+    --     {
+    --       fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
+    --       url = "https://json.schemastore.org/prettierrc",
+    --     },
+    --     {
+    --       fileMatch = { "package.json" },
+    --       url = "https://json.schemastore.org/package.json",
+    --     },
+    --     {
+    --       fileMatch = { "*.json" },
+    --       url = "https://json.schemastore.org/base.json",
+    --     },
+    --   },
+    -- },
   },
 }
 
