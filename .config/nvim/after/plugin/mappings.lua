@@ -19,10 +19,6 @@ map("i", "<F3>", "<esc><cmd>wall!|e<cr>", opts)
 map("", "<F3>", "<cmd>wall!|e<cr>", opts)
 map("", "<leader>w", "<cmd>w!|e<cr>", opts)
 
--- floating terminal
-map("n", "<leader><leader>t", '<CMD>lua require("FTerm").toggle()<CR>', opts)
-map("t", "<leader><leader>t", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
-
 -- tree
 map("", "<F6>", "<cmd>NvimTreeFindFile<cr>", opts)
 map("i", "<F6>", "<esc><cmd>NvimTreeFindFile<cr>", opts)
