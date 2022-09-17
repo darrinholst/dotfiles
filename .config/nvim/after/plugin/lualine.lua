@@ -19,12 +19,27 @@ require("lualine").setup({
     }
   },
   sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics" },
-    lualine_c = { "filename" },
-    lualine_x = { "fileformat", "filetype" },
-    lualine_y = { "progress" },
-    lualine_z = { "location" }
+    lualine_a = {
+      { "mode", fmt = function(str) return str:sub(1, 1) end }
+    },
+    lualine_b = {
+      { "branch", icons_enabled = false },
+      { "diff" },
+      { "diagnostics" },
+    },
+    lualine_c = {
+      { "filename" },
+    },
+    lualine_x = {
+    },
+    lualine_y = {
+      { "filetype", separator = "", padding = { left = 1, right = 0 } },
+      { "fileformat" },
+    },
+    lualine_z = {
+      { "progress", padding = { left = 1, right = 0 }, separator = "" },
+      { "location", padding = { left = 0, right = 1 } },
+    },
   },
   tabline = {},
   winbar = {},
