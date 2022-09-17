@@ -82,5 +82,6 @@ Plug "tpope/vim-repeat"
 Plug "tpope/vim-unimpaired"
 Plug "triglav/vim-visual-increment"
 Plug "wakatime/vim-wakatime"
+Plug "norcalli/nvim-colorizer.lua"
 
 vim.call("plug#end")
