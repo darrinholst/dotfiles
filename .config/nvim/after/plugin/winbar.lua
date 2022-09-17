@@ -1,5 +1,3 @@
-vim.o.laststatus = 3
-
 require("winbar").setup({
   enabled = true,
 

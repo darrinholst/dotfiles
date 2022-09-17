@@ -1,4 +1,3 @@
-local jet_blue = "#2b60a7"
 local yella = "#b7bc72"
 local angry_orange = "#de935f"
 local devil_grey = "#666666"
@@ -14,12 +13,14 @@ hi("SignColumn", { bg = background })
 hi("EndOfBuffer", { fg = background })
 hi("SpellBad", { sp = devil_grey, undercurl = true })
 hi("DiagnosticUnderlineHint", { link = "SpellBad" })
-hi("VertSplit", { bg = "NONE", fg = jet_blue })
+hi("VertSplit", { bg = "NONE", fg = devil_grey })
 hi("Visual", { bg = yella, fg = "black" })
 hi("MatchParen", { bg = angry_orange, fg = "black" })
-hi("TelescopeBorder", { fg = jet_blue })
-hi("TelescopeSelection", { bg = jet_blue })
-hi("TelescopeMatching", { bg = yella, fg = "black" })
+hi("TelescopePromptTitle", { bg = background, fg = "#999999" })
+hi("TelescopePreviewTitle", { link = "TelescopePromptTitle" })
+hi("TelescopePromptNormal", { link = "TelescopePromptTitle" })
+hi("TelescopePromptBorder", { link = "TelescopePromptTitle" })
+hi("TelescopePromptPrefix", { link = "TelescopePromptTitle" })
 hi("GitSignsAdd", { bg = background, fg = "#b5bd68" })
 hi("GitSignsChange", { bg = background, fg = "#81a2be" })
 hi("GitSignsDelete", { bg = background, fg = "#cc6666" })

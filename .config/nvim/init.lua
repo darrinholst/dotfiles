@@ -1,6 +1,2 @@
 require("my.plugins")
 require("my.settings")
-require("my.mappings")
-require("my.plugin-config")
-vim.cmd("runtime vim/legacy.vim")
-require("my.highlights")

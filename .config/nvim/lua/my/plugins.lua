@@ -4,7 +4,6 @@ vim.call("plug#begin")
 
 -- file explorer
 Plug "kyazdani42/nvim-tree.lua"
-Plug "kyazdani42/nvim-web-devicons"
 
 -- windowing
 Plug "troydm/zoomwintab.vim"
@@ -26,9 +25,7 @@ Plug "nvim-lua/plenary.nvim"
 
 -- tmux/terminal integrations
 Plug "benmills/vimux"
-Plug "edkolev/tmuxline.vim"
 Plug "sjl/vitality.vim"
-Plug "numToStr/FTerm.nvim"
 
 -- completion
 Plug "hrsh7th/nvim-cmp"
@@ -44,9 +41,10 @@ Plug "quangnguyen30192/cmp-nvim-ultisnips"
 Plug "honza/vim-snippets"
 
 -- colors/theme
-Plug "chriskempson/base16-vim"
-Plug "vim-airline/vim-airline"
-Plug "vim-airline/vim-airline-themes"
+Plug "RRethy/nvim-base16"
+
+-- status line
+Plug 'nvim-lualine/lualine.nvim'
 
 -- git
 Plug "lewis6991/gitsigns.nvim"
@@ -71,9 +69,11 @@ Plug "chrisbra/csv.vim"
 Plug "gbprod/yanky.nvim"
 Plug "godlygeek/tabular"
 Plug "jiangmiao/auto-pairs"
+Plug "kyazdani42/nvim-web-devicons"
 Plug "kylechui/nvim-surround"
 Plug "mhartington/formatter.nvim"
 Plug "mhinz/vim-startify"
+Plug "norcalli/nvim-colorizer.lua"
 Plug "suy/vim-context-commentstring"
 Plug "t9md/vim-smalls"
 Plug "tpope/vim-commentary"
@@ -82,6 +82,5 @@ Plug "tpope/vim-repeat"
 Plug "tpope/vim-unimpaired"
 Plug "triglav/vim-visual-increment"
 Plug "wakatime/vim-wakatime"
-Plug "norcalli/nvim-colorizer.lua"
 
 vim.call("plug#end")
