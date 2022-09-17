@@ -1,4 +1,5 @@
 require("my.cmp")
+require("my.colorizer")
 require("my.dap")
 require("my.diagnostics")
 require("my.filetypes")
