@@ -21,3 +21,5 @@ configs.setup({
     enable = true,
   },
 })
+
+require'treesitter-context'.setup()
