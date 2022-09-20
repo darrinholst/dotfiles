@@ -9,11 +9,15 @@ Plug "kyazdani42/nvim-tree.lua"
 Plug "troydm/zoomwintab.vim"
 Plug "fgheng/winbar.nvim"
 Plug "t9md/vim-choosewin"
+Plug "anuvyklack/animation.nvim"
+Plug "anuvyklack/middleclass"
+Plug "anuvyklack/windows.nvim"
 
 -- 🌳
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug "nvim-treesitter/playground"
 Plug "nvim-treesitter/nvim-treesitter-textobjects"
+Plug "nvim-treesitter/nvim-treesitter-context"
 
 -- 🔭
 Plug "nvim-telescope/telescope.nvim"
@@ -44,7 +48,7 @@ Plug "honza/vim-snippets"
 Plug "RRethy/nvim-base16"
 
 -- status line
-Plug 'nvim-lualine/lualine.nvim'
+Plug "nvim-lualine/lualine.nvim"
 
 -- git
 Plug "lewis6991/gitsigns.nvim"
