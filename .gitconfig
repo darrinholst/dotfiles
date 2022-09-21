@@ -33,7 +33,7 @@
   st = status
   unwip = !git reset HEAD~
   up = !git pull --rebase --prune && git cleanup
-  upall = !"find . -type d -depth 1 -exec printf '\\n\\n%s\\n' {} \\; -exec git --git-dir={}/.git --work-tree={} co main \\; -exec git --git-dir={}/.git --work-tree={} pull origin $(cd {} && git default-branch) --prune --rebase \\;"
+  upall = !"find . -type d -name .git -exec echo \\; -execdir pwd \\; -execdir git co -q main \\; -execdir bash -c \"git up | awk '/Already up/{next} {print}'\" \\;"
   wip = !git add -A && git commit -m 'wip'
 
 [push]

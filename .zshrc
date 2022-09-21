@@ -101,6 +101,10 @@ clean-node-modules() {
   find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
 }
 
+clean-terraform() {
+  find . -name '.terraform' -type d -prune -print -exec rm -rf '{}' \;
+}
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # direnv
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
