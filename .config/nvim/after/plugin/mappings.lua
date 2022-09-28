@@ -18,6 +18,7 @@ map("x", "<C-j>", "<Plug>unimpairedMoveSelectionDowngv", opts)
 map("i", "<F3>", "<esc><cmd>wall!|e<cr>", opts)
 map("", "<F3>", "<cmd>wall!|e<cr>", opts)
 map("", "<leader>w", "<cmd>w!|e<cr>", opts)
+map("", "<leader>q", "<cmd>wall!|q<cr>", opts)
 
 -- tree
 map("", "<F6>", "<cmd>NvimTreeFindFile<cr>", opts)
@@ -122,3 +123,19 @@ vim.api.nvim_create_autocmd("FileType", {
     map("", "o", "<cr>|<cmd>ccl<cr>", { buffer = 0 })
   end
 })
+
+-- harpoon
+map("", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
+map("", "<leader>ha", ":lua require('harpoon.mark').add_file()<cr>", opts)
+map("", "<leader>ht", "<cmd>Telescope harpoon marks<cr>", opts)
+map("", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", opts)
+map("", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", opts)
+map("", "<leader>h1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", opts)
+map("", "<leader>h2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", opts)
+map("", "<leader>h3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", opts)
+map("", "<leader>h4", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", opts)
+map("", "<leader>h5", "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", opts)
+map("", "<leader>h6", "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", opts)
+map("", "<leader>h7", "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", opts)
+map("", "<leader>h8", "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", opts)
+map("", "<leader>h9", "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", opts)
