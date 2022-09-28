@@ -24,7 +24,7 @@ local function set_spotify_status()
   if (hs.spotify.isPlaying()) then
     if (state.spotifying ~= buildSpotifyStatus()) then
       state.spotifying = buildSpotifyStatus()
-      update_status(":headphones:", state.spotifying)
+      update_status(":spotify:", state.spotifying)
     end
   elseif (state.spotifying ~= "") then
     state.spotifying = ""
@@ -58,7 +58,7 @@ end
 local function set_afk_status()
   if (hs.caffeinate.sessionProperties().CGSSessionScreenIsLocked) then
     if (not state.afking) then
-      update_status(":sleeping:", "afk")
+      update_status(":away:", "At the tone, please leave your name and a detailed message.")
       state.afking = true
     end
   elseif (state.afking) then

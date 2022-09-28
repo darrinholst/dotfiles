@@ -86,5 +86,6 @@ Plug "tpope/vim-repeat"
 Plug "tpope/vim-unimpaired"
 Plug "triglav/vim-visual-increment"
 Plug "wakatime/vim-wakatime"
+Plug "ThePrimeagen/harpoon"
 
 vim.call("plug#end")
