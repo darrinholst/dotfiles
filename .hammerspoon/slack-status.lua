@@ -17,18 +17,13 @@ local function update_status(emoji, text)
 end
 
 local function buildSpotifyStatus()
-  return hs.spotify.getCurrentArtist()
+  return hs.spotify.isPlaying() and hs.spotify.getCurrentArtist() or ""
 end
 
 local function set_spotify_status()
-  if (hs.spotify.isPlaying()) then
-    if (state.spotifying ~= buildSpotifyStatus()) then
-      state.spotifying = buildSpotifyStatus()
-      update_status(":spotify:", state.spotifying)
-    end
-  elseif (state.spotifying ~= "") then
-    state.spotifying = ""
-    update_status()
+  if (state.spotifying ~= buildSpotifyStatus()) then
+    state.spotifying = buildSpotifyStatus()
+    update_status(":here:", state.spotifying)
   end
 end
 
