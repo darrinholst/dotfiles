@@ -1,7 +1,7 @@
 SLACK_TIMER = nil -- keep global so it's not garbage collected
 
 local active_interval = 15 -- How often to check when not in do not disturb
-local dnd_interval = 3600 -- How often to check when in do not disturb
+local dnd_interval = 120 -- How often to check when in do not disturb
 local state = {}
 local main = nil
 
@@ -63,13 +63,7 @@ local function set_afk_status()
 end
 
 local function is_dnding()
-  -- TODO: convert to hs.http.asyncGet
-  local raw, status = hs.execute("source ~/.envrc && curl -s --data token=$SLACK_TOKEN https://slack.com/api/dnd.info")
-
-  if (status) then
-    local profile = hs.json.decode(raw)
-    return os.time() > profile.next_dnd_start_ts and os.time() < profile.next_dnd_end_ts
-  end
+  return not hs.application.find("Slack")
 end
 
 local function set_dnd_status()
