@@ -1,19 +1,22 @@
+-- vim.lsp.set_log_level "debug"
+-- require("vim.lsp.log").set_format_func(vim.inspect)
+
 require("mason").setup {}
 
 require("mason-lspconfig").setup {
   ensure_installed = {
-    "bash-language-server",
-    "bash-debug-server",
-    "cucumber-language-server",
-    "eslint-lsp",
-    "json-lsp",
+    -- "bash_debug_server",
+    -- "node_debug2_adapter",
+    -- "xmlformatter",
+    "bashls",
+    "cucumber_language_server",
+    "eslint",
+    "jsonls",
     "lemminx",
-    "lua-language-server",
-    "node-debug2-adapter",
-    "r-languageserver",
-    "typescript-language-server",
-    "xmlformatter",
-    "yaml-language-server",
+    "sumneko_lua",
+    "r_language_server",
+    "tsserver",
+    "yamlls",
   },
 }
 
@@ -46,7 +49,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local null_ls = require("null-ls")
 
 null_ls.setup({
@@ -143,12 +146,6 @@ lspconfig.jsonls.setup {
 -- lspconfig.cucumber_language_server.setup {
 --   capabilities = capabilities,
 --   on_attach = on_attach,
---   settings = {
---     glue = {
---       "features/**/*.js",
---       "features/**/*.ts",
---     }
---   }
 -- }
 
 lspconfig.r_language_server.setup {
