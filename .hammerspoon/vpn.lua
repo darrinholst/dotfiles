@@ -84,6 +84,10 @@ local function hours_since(time)
   return string.format("%.1f", (os.time() - time) / 3600) .. "h"
 end
 
+local function minutes_until(time)
+  return string.format("%.0f", (time - os.time()) / 60) .. "m"
+end
+
 local function is_aws_authed()
   local ssoConfig = hs.json.read(home .. "/.aws/sso/cache/66d08d7b7f546523e4f0bf784351e9a2fa5bcd88.json")
   if (not ssoConfig or not ssoConfig.expiresAt) then return false end
@@ -94,7 +98,7 @@ local function is_aws_authed()
   local expiresAt = os.time({ year = year, month = month, day = day, hour = hour - (currentTime.isdst and 5 or 6),
     min = min, sec = sec })
 
-  return os.time() < expiresAt, hours_since(expiresAt)
+  return os.time() < expiresAt, minutes_until(expiresAt)
 end
 
 local function aws_login()

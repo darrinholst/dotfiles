@@ -11,7 +11,6 @@ Plug "fgheng/winbar.nvim"
 Plug "t9md/vim-choosewin"
 Plug "anuvyklack/animation.nvim"
 Plug "anuvyklack/middleclass"
-Plug "anuvyklack/windows.nvim"
 
 -- 🌳
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })

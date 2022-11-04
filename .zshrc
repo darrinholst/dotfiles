@@ -105,6 +105,10 @@ clean-terraform() {
   find . -name '.terraform' -type d -prune -print -exec rm -rf '{}' \;
 }
 
+clean-mac() {
+  find . -name '.DS_Store' -type f -prune -print -exec rm -rf '{}' \;
+}
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # direnv
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
