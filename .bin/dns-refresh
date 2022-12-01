@@ -12,6 +12,7 @@ if nc -G1 -w1 -z ${test_dns_server} 53 2>/dev/null; then
   cat > /tmp/autohosts <<EOF
 # AUTO TEST START
 $(get_hosts_entry $test_dns_server redis.advancedagtest.com)
+$(get_hosts_entry $test_dns_server tfs-redis.advancedagtest.com)
 $(get_hosts_entry $test_dns_server postgres.advancedagtest.com)
 $(get_hosts_entry $test_dns_server mssql.advancedagtest.com)
 $(get_hosts_entry $test_dns_server farmgate-mysql.advancedagtest.com)
