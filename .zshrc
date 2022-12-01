@@ -176,7 +176,7 @@ base16_tomorrow-night
 # docker
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 clean-docker() {
-  docker system prune --all --force --volumes
+  docker container prune -f && docker image prune -f
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

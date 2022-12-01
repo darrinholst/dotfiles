@@ -73,6 +73,7 @@ Plug "gbprod/yanky.nvim"
 Plug "godlygeek/tabular"
 Plug "ibhagwan/smartyank.nvim"
 Plug "jiangmiao/auto-pairs"
+Plug 'DaikyXendo/nvim-material-icon'
 Plug "kyazdani42/nvim-web-devicons"
 Plug "kylechui/nvim-surround"
 Plug "mhartington/formatter.nvim"
