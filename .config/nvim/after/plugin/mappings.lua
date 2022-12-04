@@ -69,7 +69,9 @@ map("", "<S-C-F4>", "<cmd>cpf<cr>", opts)
 map("", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 map("", "<M-f>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 map("", "<M-F>", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
-map("x", "<M-F>", ":lua require('telescope').extensions.live_grep_args.live_grep_args({default_text = 'figure out how to get selection in here'})<CR>", opts)
+map("x", "<M-F>",
+  ":lua require('telescope').extensions.live_grep_args.live_grep_args({default_text = 'figure out how to get selection in here'})<CR>"
+  , opts)
 
 -- smalls
 map("n", "s", "<plug>(smalls)", opts)
@@ -143,3 +145,10 @@ map("", "<leader>h6", "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", opts)
 map("", "<leader>h7", "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", opts)
 map("", "<leader>h8", "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", opts)
 map("", "<leader>h9", "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", opts)
+
+-- auto manage hlsearch
+vim.on_key(function(char)
+  if vim.fn.mode() == "n" then
+    vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, vim.fn.keytrans(char))
+  end
+end, vim.api.nvim_create_namespace "auto_hlsearch")
