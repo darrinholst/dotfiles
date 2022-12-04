@@ -8,6 +8,10 @@ map("", "<M-c>", '"*y', opts)
 map("", "j", "gj", opts)
 map("", "k", "gk", opts)
 
+-- scroll half pages and move cursor to middle of the screen
+map("n", "<C-d>", "<C-d>zz", opts)
+map("n", "<C-u>", "<C-u>zz", opts)
+
 -- moving lines
 map("", "<C-k>", "<Plug>unimpairedMoveUp", opts)
 map("", "<C-j>", "<Plug>unimpairedMoveDown", opts)
