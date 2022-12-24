@@ -73,9 +73,6 @@ map("x", "<M-F>",
   ":lua require('telescope').extensions.live_grep_args.live_grep_args({default_text = 'figure out how to get selection in here'})<CR>"
   , opts)
 
--- smalls
-map("n", "s", "<plug>(smalls)", opts)
-
 -- cucumber
 map("i", "<Bar>", "<Bar><Esc><cmd>call FormatGherkinTable()<cr>a", opts)
 
@@ -152,3 +149,5 @@ vim.on_key(function(char)
     vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, vim.fn.keytrans(char))
   end
 end, vim.api.nvim_create_namespace "auto_hlsearch")
+
+require('leap').add_default_mappings()
