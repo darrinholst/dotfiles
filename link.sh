@@ -13,7 +13,6 @@ link_it () {
 link_it ".bash_profile"
 link_it ".config/nvim"
 link_it ".config/shbar"
-link_it ".git_template"
 link_it ".gitconfig"
 link_it ".gitignore-global"
 link_it ".hammerspoon"
