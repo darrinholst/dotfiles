@@ -40,7 +40,6 @@
   default = simple
 
 [init]
-  templatedir = ~/.git_template
 	defaultBranch = main
 
 [filter "media"]
