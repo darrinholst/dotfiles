@@ -33,7 +33,7 @@ map("i", "<F7>", "<esc><cmd>NvimTreeToggle<cr>", opts)
 -- git
 map("n", "<leader>gg", "<cmd>Git | resize 20<cr>", opts)
 map("n", "<leader>gp", "<cmd>Git push<cr>", opts)
-map("n", "<leader>gb", "<cmd>Git blame<cr>", opts)
+map("n", "<leader>gb", "<cmd>Gitsigns blame_line<cr>", opts)
 map("n", "<leader>gh", "<cmd>Gitsigns preview_hunk<cr>", opts)
 map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", opts)
 map("n", "]h", "<cmd>Gitsigns next_hunk<cr>", opts)

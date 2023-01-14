@@ -6,7 +6,7 @@ vim.opt.ignorecase     = true --  ignore case
 vim.opt.laststatus     = 3 --     show the nvim global status line
 vim.opt.swapfile       = false
 vim.opt.backup         = false
-vim.opt.number         = true
+vim.opt.number         = false
 vim.opt.relativenumber = false
 vim.opt.scrolloff      = 5 --     Start scrolling 5 lines away from margins
 vim.opt.shiftwidth     = 2 --     autoindent == 2 spaces
