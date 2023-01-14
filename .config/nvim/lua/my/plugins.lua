@@ -88,5 +88,6 @@ Plug "tpope/vim-unimpaired"
 Plug "triglav/vim-visual-increment"
 Plug "wakatime/vim-wakatime"
 Plug "ThePrimeagen/harpoon"
+Plug "lambdalisue/suda.vim"
 
 vim.call("plug#end")
