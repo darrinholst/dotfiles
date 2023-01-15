@@ -1,6 +1,15 @@
 local configs = require("nvim-treesitter.configs")
 
 configs.setup({
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<CR>",
+      node_incremental = "<CR>",
+      scope_incremental = "<S-CR>",
+      node_decremental = "<BS>",
+    },
+  },
   textobjects = {
     select = {
       enable = true,
@@ -22,4 +31,4 @@ configs.setup({
   },
 })
 
-require'treesitter-context'.setup()
+require "treesitter-context".setup()
