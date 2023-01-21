@@ -40,7 +40,7 @@ SPACESHIP_PROMPT_PREFIXES_SHOW=false
 # oh-my-zsh
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZSH=$HOME/.oh-my-zsh
-export DISABLE_UPDATE_PROMPT=true
+zstyle ':omz:update' mode auto
 plugins=(\
   autojump \
   bundler \
@@ -176,7 +176,8 @@ base16_tomorrow-night
 # docker
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 clean-docker() {
-  docker container prune -f && docker image prune -f
+  # docker container prune -f && docker image prune -f
+  docker system prune --all --force --volumes
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
