@@ -27,7 +27,7 @@ SPACESHIP_NODE_SHOW=true
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_PHP_SHOW=false
 SPACESHIP_PYENV_SHOW=false
-SPACESHIP_RUBY_SHOW=false
+SPACESHIP_RUBY_SHOW=true
 SPACESHIP_RUST_SHOW=false
 SPACESHIP_SWIFT_SHOW_LOCAL=false
 SPACESHIP_TIME_SHOW=false
@@ -176,8 +176,8 @@ base16_tomorrow-night
 # docker
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 clean-docker() {
-  # docker container prune -f && docker image prune -f
-  docker system prune --all --force --volumes
+  docker container prune -f && docker image prune -f && docker network prune -f
+  # docker system prune --all --force --volumes
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -276,4 +276,6 @@ fk() { # build menu to kill process
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
+
+eval "$(rbenv init - zsh)"
 

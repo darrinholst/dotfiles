@@ -1,7 +1,6 @@
 local home = os.getenv("HOME")
 
 local test_ip = "10.2.0.2"
-local prod_ip = "172.31.0.2"
 
 local test_job_id = "com.darrinholst.test-vpn"
 local prod_job_id = "com.darrinholst.prod-vpn"
