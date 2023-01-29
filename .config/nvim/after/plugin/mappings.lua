@@ -42,8 +42,8 @@ map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", opts)
 -- diagnostics
 map("n", "<space>d", "<CMD>TroubleToggle<CR>")
 map("n", "<space>e", vim.diagnostic.open_float, opts)
-map("n", "[d", vim.diagnostic.goto_prev, opts)
-map("n", "]d", vim.diagnostic.goto_next, opts)
+map("n", "[d", ":lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<cr>", opts)
+map("n", "]d", ":lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<cr>", opts)
 map("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 -- formatter
@@ -58,6 +58,7 @@ map("", "<C-g>", ":lua require('telescope').extensions.live_grep_args.live_grep_
 map("", "<C-b>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 map("", "<C-e>", "<cmd>Telescope buffers<cr>", opts)
 map("", "<space>o", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+map("", "<space>r", "<cmd>Telescope resume<cr>", opts)
 map("i", "^^", "<cmd>Telescope emoji<cr>", opts)
 
 -- search
