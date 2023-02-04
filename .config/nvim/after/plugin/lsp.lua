@@ -60,7 +60,6 @@ null_ls.setup({
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.code_actions.cspell,
     null_ls.builtins.diagnostics.cspell.with({
-      -- filetypes = { "javascript", "javascriptreact" },
       diagnostics_postprocess = function(diagnostic)
         diagnostic.severity = vim.diagnostic.severity["HINT"]
       end,

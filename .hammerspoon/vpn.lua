@@ -22,7 +22,7 @@ end
 
 --
 -- AWS has decided not to support oss vpn clients with their
--- sso authentiction. This server is needed to circumvent that.
+-- sso authentication. This server is needed to circumvent that.
 -- https://github.com/samm-git/aws-vpn-client
 --
 add_job("com.darrinholst.saml-server", {
@@ -102,7 +102,7 @@ end
 
 local function aws_login()
   hs.notify.show("SSOing to AWS", "", "")
-  hs.execute("aws sso login --profile test && rm -rf ~/.aws/cli/cache && aws --profile test s3 ls && aws --profile prod s3 ls"
+  hs.execute("open https://advancedag.awsapps.com/start#/signout && aws sso login --profile test && rm -rf ~/.aws/cli/cache && aws --profile test s3 ls && aws --profile prod s3 ls"
     , true)
 end
 
