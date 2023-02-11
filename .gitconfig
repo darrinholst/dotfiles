@@ -28,19 +28,19 @@
   default-branch = !git rev-parse --abbrev-ref main > /dev/null 2>&1 && echo main || echo master
   fu = !git add -A && git commit --no-verify -qm 'FU SAVEPOINT' && git reset --hard HEAD~
   lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
-  publish = !git push -u origin $(git branch-name)
   squashemall = !git reset $(git merge-base $(git default-branch) $(git rev-parse --abbrev-ref HEAD))
   st = status
   unwip = !git reset HEAD~
-  up = !git pull --rebase --prune && git cleanup
-  upall = !"find . -type d -name .git -exec echo \\; -execdir pwd \\; -execdir git co -q main \\; -execdir bash -c \"git up | awk '/Already up/{next} {print}'\" \\;"
+  up = !git pull --prune && git cleanup
+  upall = !"gita super up"
   wip = !git add -A && git commit -m 'wip'
 
 [push]
   default = simple
+  autoSetupRemote = true
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [filter "media"]
   clean = git-media-clean %f
@@ -57,22 +57,22 @@
   diff-context = 3
 
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 
 [pull]
-	rebase = true
+  rebase = true
 
 [pager]
-	branch = false
+  branch = false
 
 [url "https://github.com/"]
-	insteadOf = git@github.com:
+  insteadOf = git@github.com:
 
 [url "https://"]
-	insteadOf = git://
+  insteadOf = git://
 
 [rerere]
-	enabled = 1
+  enabled = 1
 
 [log]
   merges = false
