@@ -128,22 +128,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
--- harpoon
-map("", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
-map("", "<leader>ha", ":lua require('harpoon.mark').add_file()<cr>", opts)
-map("", "<leader>ht", "<cmd>Telescope harpoon marks<cr>", opts)
-map("", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", opts)
-map("", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", opts)
-map("", "<leader>h1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", opts)
-map("", "<leader>h2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", opts)
-map("", "<leader>h3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", opts)
-map("", "<leader>h4", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", opts)
-map("", "<leader>h5", "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", opts)
-map("", "<leader>h6", "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", opts)
-map("", "<leader>h7", "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", opts)
-map("", "<leader>h8", "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", opts)
-map("", "<leader>h9", "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", opts)
-
 -- auto manage hlsearch
 vim.on_key(function(char)
   if vim.fn.mode() == "n" then
