@@ -212,6 +212,7 @@ use-prod() {
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias awsauto='aws --cli-auto-prompt'
 alias yalc='npx yalc'
+alias gall='gita super'
 
 untilfails() {
   while $@; do :; done
