@@ -26,11 +26,11 @@ end
 -- https://github.com/samm-git/aws-vpn-client
 --
 add_job("com.darrinholst.saml-server", {
-  KeepAlive = { SuccessfulExit = false },
-  WorkingDirectory = home .. "/.bin",
-  ProgramArguments = { home .. "/.bin/saml-server" },
-  StandardErrorPath = home .. "/.bin/log/saml-server.log",
-  StandardOutPath = home .. "/.bin/log/saml-server.log"
+    KeepAlive = { SuccessfulExit = false },
+    WorkingDirectory = home .. "/.bin",
+    ProgramArguments = { home .. "/.bin/saml-server" },
+    StandardErrorPath = home .. "/.bin/log/saml-server.log",
+    StandardOutPath = home .. "/.bin/log/saml-server.log"
 })
 
 --
@@ -39,37 +39,37 @@ add_job("com.darrinholst.saml-server", {
 -- DNS anyway.
 --
 add_job("com.darrinholst.dns-resolver", {
-  StartInterval = 60,
-  WorkingDirectory = home .. "/.bin",
-  ProgramArguments = { home .. "/.bin/dns-refresh" },
-  StandardErrorPath = home .. "/.bin/log/dns-refresh.log",
-  StandardOutPath = home .. "/.bin/log/dns-refresh.log"
+    StartInterval = 60,
+    WorkingDirectory = home .. "/.bin",
+    ProgramArguments = { home .. "/.bin/dns-refresh" },
+    StandardErrorPath = home .. "/.bin/log/dns-refresh.log",
+    StandardOutPath = home .. "/.bin/log/dns-refresh.log"
 })
 
 add_job(test_job_id, {
-  WorkingDirectory = home .. "/.bin",
-  EnvironmentVariables = {
-    VPN_ENV = "test",
-    VPN_CONF = home .. "/.config/test.ovpn",
-    VPN_HOST = "cvpn-endpoint-01353e4930b3f0ca1.prod.clientvpn.us-east-1.amazonaws.com",
-    PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
-  },
-  ProgramArguments = { home .. "/.bin/vpn" },
-  StandardErrorPath = home .. "/.bin/log/test-vpn.log",
-  StandardOutPath = home .. "/.bin/log/test-vpn.log"
+    WorkingDirectory = home .. "/.bin",
+    EnvironmentVariables = {
+        VPN_ENV = "test",
+        VPN_CONF = home .. "/.config/test.ovpn",
+        VPN_HOST = "cvpn-endpoint-01353e4930b3f0ca1.prod.clientvpn.us-east-1.amazonaws.com",
+        PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
+    },
+    ProgramArguments = { home .. "/.bin/vpn" },
+    StandardErrorPath = home .. "/.bin/log/test-vpn.log",
+    StandardOutPath = home .. "/.bin/log/test-vpn.log"
 })
 
 add_job(prod_job_id, {
-  WorkingDirectory = home .. "/.bin",
-  EnvironmentVariables = {
-    VPN_ENV = "prod",
-    VPN_CONF = home .. "/.config/prod.ovpn",
-    VPN_HOST = "cvpn-endpoint-022d7eb676972a623.prod.clientvpn.us-east-1.amazonaws.com",
-    PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
-  },
-  ProgramArguments = { home .. "/.bin/vpn" },
-  StandardErrorPath = home .. "/.bin/log/prod-vpn.log",
-  StandardOutPath = home .. "/.bin/log/prod-vpn.log"
+    WorkingDirectory = home .. "/.bin",
+    EnvironmentVariables = {
+        VPN_ENV = "prod",
+        VPN_CONF = home .. "/.config/prod.ovpn",
+        VPN_HOST = "cvpn-endpoint-022d7eb676972a623.prod.clientvpn.us-east-1.amazonaws.com",
+        PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
+    },
+    ProgramArguments = { home .. "/.bin/vpn" },
+    StandardErrorPath = home .. "/.bin/log/prod-vpn.log",
+    StandardOutPath = home .. "/.bin/log/prod-vpn.log"
 })
 
 local function toggle_vpn(job_id, env)
@@ -94,16 +94,23 @@ local function is_aws_authed()
   local currentTime = os.date("*t")
   local iso8601 = "(%d+)%-(%d+)%-(%d+)T(%d+):(%d+):(%d+)"
   local year, month, day, hour, min, sec = ssoConfig.expiresAt:match(iso8601)
-  local expiresAt = os.time({ year = year, month = month, day = day, hour = hour - (currentTime.isdst and 5 or 6),
-    min = min, sec = sec })
+  local expiresAt = os.time({
+          year = year,
+          month = month,
+          day = day,
+          hour = hour - (currentTime.isdst and 5 or 6),
+          min = min,
+          sec = sec
+      })
 
   return os.time() < expiresAt, minutes_until(expiresAt)
 end
 
 local function aws_login()
   hs.notify.show("SSOing to AWS", "", "")
-  hs.execute("open https://advancedag.awsapps.com/start#/signout && aws sso login --profile test && rm -rf ~/.aws/cli/cache && aws --profile test s3 ls && aws --profile prod s3 ls"
-    , true)
+  hs.execute(
+      "aws sso login --profile test && rm -rf ~/.aws/cli/cache && aws --profile test s3 ls && aws --profile prod s3 ls"
+      , true)
 end
 
 MENU = hs.menubar.new()
@@ -114,24 +121,24 @@ MENU:setMenu(function()
   local prod_connected = io.open(home .. "/.bin/log/prod.connected", "r")
 
   return {
-    {
-      title = "Test VPN" .. (test_connected and (" (" .. hours_since(test_connected:read()) .. ")") or ""),
-      checked = test_connected and true or false,
-      fn = function() toggle_vpn(test_job_id, "test") end
-    },
-    {
-      title = "Prod VPN" .. (prod_connected and (" (" .. hours_since(prod_connected:read()) .. ")") or ""),
-      checked = prod_connected and true or false,
-      fn = function() toggle_vpn(prod_job_id, "prod") end
-    },
-    {
-      title = "-",
-    },
-    {
-      title = "AWS SSO" .. (aws_authed and (" (" .. hours_remaining .. ")") or ""),
-      checked = aws_authed,
-      fn = function() aws_login() end,
-    },
+      {
+          title = "Test VPN" .. (test_connected and (" (" .. hours_since(test_connected:read()) .. ")") or ""),
+          checked = test_connected and true or false,
+          fn = function() toggle_vpn(test_job_id, "test") end
+      },
+      {
+          title = "Prod VPN" .. (prod_connected and (" (" .. hours_since(prod_connected:read()) .. ")") or ""),
+          checked = prod_connected and true or false,
+          fn = function() toggle_vpn(prod_job_id, "prod") end
+      },
+      {
+          title = "-",
+      },
+      {
+          title = "AWS SSO" .. (aws_authed and (" (" .. hours_remaining .. ")") or ""),
+          checked = aws_authed,
+          fn = function() aws_login() end,
+      },
   }
 end)
 
