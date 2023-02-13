@@ -87,7 +87,7 @@ Plug "tpope/vim-repeat"
 Plug "tpope/vim-unimpaired"
 Plug "triglav/vim-visual-increment"
 Plug "wakatime/vim-wakatime"
-Plug "ThePrimeagen/harpoon"
 Plug "lambdalisue/suda.vim"
+Plug 'echasnovski/mini.nvim'
 
 vim.call("plug#end")
