@@ -91,5 +91,6 @@ Plug 'wakatime/vim-wakatime'
 Plug 'lambdalisue/suda.vim'
 Plug 'echasnovski/mini.nvim'
 Plug 'thinca/vim-qfreplace'
+Plug 'smjonas/inc-rename.nvim'
 
 vim.call('plug#end')

@@ -1,5 +1,5 @@
 require('mini.ai').setup();
-require('mini.cursorword').setup();
+-- require('mini.cursorword').setup();
 
 _G.cursorword_blocklist = function()
   local disabled_filetypes = { 'fugitive', 'NvimTree', 'TelescopePrompt' }
