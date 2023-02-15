@@ -5,9 +5,6 @@ require('mason').setup {}
 
 require('mason-lspconfig').setup {
   ensure_installed = {
-    -- "bash_debug_server",
-    -- "node_debug2_adapter",
-    -- "xmlformatter",
     'bashls',
     'cucumber_language_server',
     'eslint',
@@ -38,7 +35,12 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+
+  vim.keymap.set('n', '<leader>rn', function()
+    return ':IncRename ' .. vim.fn.expand('<cword>')
+  end, { buffer = bufnr, noremap = true, expr = true })
+
   vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
