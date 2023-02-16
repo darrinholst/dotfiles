@@ -10,7 +10,7 @@ require('mason-lspconfig').setup {
     'eslint',
     'jsonls',
     'lemminx',
-    'sumneko_lua',
+    'lua_ls',
     'r_language_server',
     'tsserver',
     'yamlls',
@@ -21,9 +21,9 @@ local lspconfig = require('lspconfig')
 
 local on_attach = function(client, bufnr)
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false,
-      signs = true,
-    })
+    virtual_text = false,
+    signs = true,
+  })
 
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   local disableDiagnostics = function()
@@ -77,7 +77,7 @@ null_ls.setup({
 lspconfig.bashls.setup {
 }
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
