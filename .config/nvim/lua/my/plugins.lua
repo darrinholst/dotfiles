@@ -92,5 +92,6 @@ Plug 'lambdalisue/suda.vim'
 Plug 'echasnovski/mini.nvim'
 Plug 'thinca/vim-qfreplace'
 Plug 'smjonas/inc-rename.nvim'
+Plug 'roobert/search-replace.nvim'
 
 vim.call('plug#end')
