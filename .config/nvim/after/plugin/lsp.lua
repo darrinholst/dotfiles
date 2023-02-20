@@ -1,7 +1,12 @@
 -- vim.lsp.set_log_level "debug"
 -- require("vim.lsp.log").set_format_func(vim.inspect)
+--
 
-require('mason').setup {}
+require('mason').setup({
+  ui = {
+    border = "single"
+  }
+})
 
 require('mason-lspconfig').setup {
   ensure_installed = {
@@ -18,6 +23,7 @@ require('mason-lspconfig').setup {
 }
 
 local lspconfig = require('lspconfig')
+require('lspconfig.ui.windows').default_options.border = 'single'
 
 local on_attach = function(client, bufnr)
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
