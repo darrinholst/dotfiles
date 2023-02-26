@@ -56,12 +56,13 @@ map('', '<leader>y', '<cmd>Telescope yank_history<cr>', opts)
 map('', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
 map('', '<C-p>', "<cmd>lua require('my/telescope-recipes').project_files()<cr>", opts)
 map('', '<C-g>', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
-map('', '<C-f>', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+map('', '<leader>gw', require('telescope.builtin').grep_string, opts)
 map('', '<C-b>', '<cmd>Telescope current_buffer_fuzzy_find<cr>', opts)
 map('', '<C-e>', '<cmd>Telescope buffers<cr>', opts)
 map('', '<space>o', '<cmd>Telescope lsp_document_symbols<cr>', opts)
 map('', '<space>r', '<cmd>Telescope resume<cr>', opts)
 map('i', '^^', '<cmd>Telescope emoji<cr>', opts)
+
 
 -- search
 map('', '<leader>n', '<cmd>noh<cr>', opts)
