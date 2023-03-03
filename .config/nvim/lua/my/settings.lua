@@ -1,7 +1,7 @@
 vim.g.mapleader        = ','
 vim.opt.cursorline     = true --  highlight current line
 vim.opt.expandtab      = true --  spaces, not tabs
-vim.opt.guifont        = 'Fura Code Retina Nerd Font Complete:h17'
+vim.opt.guifont        = 'Fira Code Retina Nerd Font Complete:h17'
 vim.opt.ignorecase     = true --  ignore case
 vim.opt.laststatus     = 3 --     show the nvim global status line
 vim.opt.swapfile       = false
