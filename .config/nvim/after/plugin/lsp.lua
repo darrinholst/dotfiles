@@ -4,8 +4,8 @@
 
 require('mason').setup({
   ui = {
-    border = "single"
-  }
+    border = 'single'
+  },
 })
 
 require('mason-lspconfig').setup {
@@ -26,6 +26,18 @@ local lspconfig = require('lspconfig')
 require('lspconfig.ui.windows').default_options.border = 'single'
 
 local on_attach = function(client, bufnr)
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+      border = 'single',
+    }
+  )
+
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+      border = 'single',
+    }
+  )
+
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
     signs = true,
@@ -91,8 +103,8 @@ lspconfig.lua_ls.setup {
       diagnostics = { globals = { 'vim', 'hs' } },
       workspace = {
         library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.stdpath('config') .. '/lua'] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.stdpath('config') .. '/lua'] = true,
         },
       },
     },
@@ -115,7 +127,7 @@ lspconfig.yamlls.setup {
   settings = {
     yaml = {
       schemas = {
-        ['https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = '.gitlab-ci.yml',
+          ['https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = '.gitlab-ci.yml',
       },
     },
   },
