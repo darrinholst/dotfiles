@@ -22,7 +22,7 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-telescope/telescope.nvim'
 Plug('nvim-telescope/telescope-fzf-native.nvim',
   {
-      ['do'] = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' })
+    ['do'] = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' })
 Plug 'xiyaowong/telescope-emoji.nvim'
 Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -95,5 +95,6 @@ Plug 'smjonas/inc-rename.nvim'
 Plug 'roobert/search-replace.nvim'
 Plug 'stevearc/dressing.nvim'
 Plug 'github/copilot.vim'
+Plug 'ThePrimeagen/refactoring.nvim'
 
 vim.call('plug#end')
