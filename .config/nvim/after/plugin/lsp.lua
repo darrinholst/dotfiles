@@ -1,6 +1,5 @@
 -- vim.lsp.set_log_level "debug"
 -- require("vim.lsp.log").set_format_func(vim.inspect)
---
 
 require('mason').setup({
   ui = {
@@ -11,7 +10,6 @@ require('mason').setup({
 require('mason-lspconfig').setup {
   ensure_installed = {
     'bashls',
-    'cucumber_language_server',
     'eslint',
     'jsonls',
     'lemminx',
@@ -93,6 +91,8 @@ null_ls.setup({
 })
 
 lspconfig.bashls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 lspconfig.lua_ls.setup {
@@ -103,8 +103,8 @@ lspconfig.lua_ls.setup {
       diagnostics = { globals = { 'vim', 'hs' } },
       workspace = {
         library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.stdpath('config') .. '/lua'] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.stdpath('config') .. '/lua'] = true,
         },
       },
     },
@@ -126,8 +126,11 @@ lspconfig.yamlls.setup {
   on_attach = on_attach,
   settings = {
     yaml = {
+      customTags = {
+        '!reference'
+      },
       schemas = {
-          ['https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = '.gitlab-ci.yml',
+        ['https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = '.gitlab-ci.yml',
       },
     },
   },
@@ -136,40 +139,7 @@ lspconfig.yamlls.setup {
 lspconfig.jsonls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  settings = {
-    -- diagnostics stop working for me when I add schemas
-    -- json = {
-    --   schemas = {
-    --     {
-    --       fileMatch = { "tsconfig.json", "tsconfig.*.json" },
-    --       url = "https://json.schemastore.org/tsconfig.json",
-    --     },
-    --     {
-    --       fileMatch = { ".eslintrc.json", ".eslintrc" },
-    --       url = "https://json.schemastore.org/eslintrc.json",
-    --     },
-    --     {
-    --       fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
-    --       url = "https://json.schemastore.org/prettierrc",
-    --     },
-    --     {
-    --       fileMatch = { "package.json" },
-    --       url = "https://json.schemastore.org/package.json",
-    --     },
-    --     {
-    --       fileMatch = { "*.json" },
-    --       url = "https://json.schemastore.org/base.json",
-    --     },
-    --   },
-    -- },
-  },
 }
-
--- not working well for me at the moment
--- lspconfig.cucumber_language_server.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
--- }
 
 lspconfig.r_language_server.setup {
   capabilities = capabilities,
