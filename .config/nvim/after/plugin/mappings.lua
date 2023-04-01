@@ -119,6 +119,9 @@ map('n', '<leader>d', ":lua require('dapui').toggle()<cr>", opts)
 map('', '<leader>vp', '<cmd>wa|VimuxPromptCommand<cr>', opts)
 map('', '<leader>vl', '<cmd>wa|VimuxRunLastCommand<cr>', opts)
 
+-- undo
+map('n', '<leader>u', '<CMD>UndotreeToggle<CR>')
+
 -- startify
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('Startify', { clear = true }),
