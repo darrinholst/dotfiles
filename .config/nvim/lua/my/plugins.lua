@@ -96,5 +96,6 @@ Plug 'roobert/search-replace.nvim'
 Plug 'stevearc/dressing.nvim'
 Plug 'github/copilot.vim'
 Plug 'ThePrimeagen/refactoring.nvim'
+Plug 'mbbill/undotree'
 
 vim.call('plug#end')
