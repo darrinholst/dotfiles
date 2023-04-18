@@ -38,6 +38,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-path'
+Plug 'dmitmel/cmp-cmdline-history'
 
 -- snippets
 Plug 'SirVer/ultisnips'

@@ -11,7 +11,6 @@ test_dns_server=10.2.0.2
 if nc -G1 -w1 -z ${test_dns_server} 53 2>/dev/null; then
   cat > /tmp/autohosts <<EOF
 # AUTO TEST START
-$(get_hosts_entry $test_dns_server redis.advancedagtest.com)
 $(get_hosts_entry $test_dns_server tfs-redis.advancedagtest.com)
 $(get_hosts_entry $test_dns_server postgres.advancedagtest.com)
 $(get_hosts_entry $test_dns_server mssql.advancedagtest.com)
@@ -29,7 +28,7 @@ prod_dns_server=172.31.0.2
 if nc -G1 -w1 -z ${prod_dns_server} 53; then
   cat > /tmp/autohosts <<EOF
 # AUTO PROD START
-$(get_hosts_entry $prod_dns_server redis.advancedag.com)
+$(get_hosts_entry $prod_dns_server tfs-redis.advancedag.com)
 $(get_hosts_entry $prod_dns_server postgres.advancedag.com)
 $(get_hosts_entry $prod_dns_server mssql.advancedag.com)
 $(get_hosts_entry $prod_dns_server farmgate-mysql.advancedag.com)
