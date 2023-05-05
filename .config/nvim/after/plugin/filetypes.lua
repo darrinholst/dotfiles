@@ -1,6 +1,10 @@
 require('filetype').setup({
   overrides = {
     extensions = {
+      sh = 'bash',
+      tf = 'terraform',
+      tfvars = 'terraform',
+      tfstate = 'json',
       R = 'r',
     },
   },

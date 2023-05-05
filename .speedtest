@@ -1,8 +1,9 @@
 #!/bin/bash
+set -e
 
 PATH=/usr/local/bin:/usr/local/opt/awscli@1/bin:$PATH
 
-read download upload ping isp < <(echo $(speedtest --json | jq -r '.download, .upload, .download.latency.icq, .client.isp'))
+read download upload ping isp < <(echo $(speedtest --json | jq -e -r '.download, .upload, .download.latency.icq, .client.isp'))
 
 echo "Speedtest results - download: $download, upload: $upload, ping: $ping, isp: $isp, user: $(whoami)"
 
