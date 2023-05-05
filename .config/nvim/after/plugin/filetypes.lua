@@ -1,3 +1,11 @@
+require('filetype').setup({
+  overrides = {
+    extensions = {
+      R = 'r',
+    },
+  },
+})
+
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   callback = function()

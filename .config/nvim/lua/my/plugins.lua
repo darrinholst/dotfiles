@@ -98,5 +98,6 @@ Plug 'stevearc/dressing.nvim'
 Plug 'github/copilot.vim'
 Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'mbbill/undotree'
+Plug 'nathom/filetype.nvim'
 
 vim.call('plug#end')
