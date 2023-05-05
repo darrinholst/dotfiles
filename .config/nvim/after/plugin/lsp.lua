@@ -14,7 +14,6 @@ require('mason-lspconfig').setup {
     'jsonls',
     'lemminx',
     'lua_ls',
-    'r_language_server',
     'tsserver',
     'yamlls',
   },
@@ -75,7 +74,6 @@ null_ls.setup({
     null_ls.builtins.formatting.codespell,
     null_ls.builtins.formatting.xmlformat,
     null_ls.builtins.formatting.fixjson,
-    null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.code_actions.cspell,
     null_ls.builtins.diagnostics.cspell.with({
       diagnostics_postprocess = function(diagnostic)
@@ -109,6 +107,11 @@ lspconfig.lua_ls.setup {
       },
     },
   },
+}
+
+lspconfig.terraformls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 lspconfig.tsserver.setup {
@@ -147,7 +150,7 @@ lspconfig.r_language_server.setup {
   settings = {
     r = {
       lsp = {
-        diagnostics = false,
+        -- diagnostics = false,
       },
     },
   },
