@@ -5,20 +5,9 @@ local test_ip = "10.2.0.2"
 local test_job_id = "com.darrinholst.test-vpn"
 local prod_job_id = "com.darrinholst.prod-vpn"
 
-local function is_running(job_id)
-  return os.execute("launchctl list | grep -e '^\\d\\+.*" .. job_id .. "'")
-end
-
-local function add_job(job_id, job_plist)
-  local job_plist_location = home .. "/Library/LaunchAgents/" .. job_id .. ".plist"
-  job_plist.Label = job_id
-  hs.plist.write(job_plist_location, job_plist)
-
-  if (not is_running(job_id)) then
-    os.execute("launchctl unload " .. job_plist_location)
-    os.execute("launchctl load " .. job_plist_location)
-  end
-end
+local launchctl = require("launchctl")
+local is_running = launchctl.is_running
+local add_job = launchctl.add_job
 
 --
 -- AWS has decided not to support oss vpn clients with their

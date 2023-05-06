@@ -7,4 +7,5 @@ plug.vim
 .tmuxline.conf
 *secret*
 log
+.bin/*.json
 
