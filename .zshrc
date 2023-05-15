@@ -98,7 +98,8 @@ wtf-node-modules() {
 }
 
 clean-node-modules() {
-  wtf-node-modules && find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+  # wtf-node-modules && find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+  npx npkill
 }
 
 clean-terraform() {
