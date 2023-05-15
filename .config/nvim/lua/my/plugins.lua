@@ -99,5 +99,7 @@ Plug 'github/copilot.vim'
 Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'mbbill/undotree'
 Plug 'nathom/filetype.nvim'
+Plug 'aaditeynair/conduct.nvim'
+Plug 'james1236/backseat.nvim'
 
 vim.call('plug#end')
