@@ -7,7 +7,7 @@ local results_location = home .. "/.bin/speedtest.json"
 SPEEDTEST_MENU = hs.menubar.new()
 
 add_job("com.darrinholst.speedtest", {
-  StartInterval = 60,
+  StartInterval = 300,
   WorkingDirectory = home .. "/.bin",
   ProgramArguments = { "bash", "-c", "/opt/homebrew/bin/speedtest -f json > " .. results_location },
   StandardErrorPath = home .. "/.bin/log/speedtest.log",
