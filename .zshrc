@@ -67,9 +67,8 @@ export GIT_EDITOR="nvim"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # js
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-eval "$(nodenv init -)"
+eval "$(rtx activate zsh)"
 export PATH=~/.bin:./node_modules/.bin:$PATH
-alias npm='~/.nodenv/shims/npm'
 alias run='npm run'
 
 wtf-node-modules() {
@@ -198,6 +197,10 @@ alias gall='gita super'
 
 untilfails() {
   while $@; do :; done
+}
+
+untilworks() {
+  while ! $@; do :; done
 }
 
 listening() {
