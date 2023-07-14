@@ -69,11 +69,13 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 
+-- copy/paste
+Plug 'gbprod/yanky.nvim'
+Plug 'ibhagwan/smartyank.nvim'
+
 -- random
 Plug 'chrisbra/csv.vim'
-Plug 'gbprod/yanky.nvim'
 Plug 'godlygeek/tabular'
-Plug 'ibhagwan/smartyank.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'DaikyXendo/nvim-material-icon'
 Plug 'kyazdani42/nvim-web-devicons'

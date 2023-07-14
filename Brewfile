@@ -29,7 +29,6 @@ brew "colima", args: ["HEAD"]
 brew "ctags"
 brew "curl"
 brew "deno"
-brew "direnv"
 brew "docker"
 brew "docker-compose"
 brew "docker-credential-helper"
