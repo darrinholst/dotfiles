@@ -14,4 +14,5 @@ tags
 .envrc
 .yalc
 yalc.lock
+*.nvim
 

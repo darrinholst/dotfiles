@@ -67,9 +67,13 @@ export GIT_EDITOR="nvim"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # js
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-eval "$(rtx activate zsh)"
 export PATH=~/.bin:./node_modules/.bin:$PATH
 alias run='npm run'
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# rtx
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+eval "$(rtx activate zsh)"
 
 wtf-node-modules() {
   find . -type d -name node_modules -prune | tr '\n' '\0' |  xargs -0 du -sch
@@ -87,12 +91,6 @@ clean-terraform() {
 clean-mac() {
   find . -name '.DS_Store' -type f -prune -print -exec rm -rf '{}' \;
 }
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# direnv
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-eval "$(direnv hook zsh)"
-export DIRENV_LOG_FORMAT=
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # git
