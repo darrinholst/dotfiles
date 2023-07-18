@@ -25,10 +25,14 @@ map('', '<leader>w', '<cmd>w!|e<cr>', opts)
 map('', '<leader>q', '<cmd>wall!|q<cr>', opts)
 
 -- tree
-map('', '<F6>', '<cmd>NvimTreeFindFile<cr>', opts)
-map('i', '<F6>', '<esc><cmd>NvimTreeFindFile<cr>', opts)
-map('', '<F7>', '<cmd>NvimTreeToggle<cr>', opts)
-map('i', '<F7>', '<esc><cmd>NvimTreeToggle<cr>', opts)
+-- map('', '<F6>', '<cmd>NvimTreeFindFile<cr>', opts)
+-- map('i', '<F6>', '<esc><cmd>NvimTreeFindFile<cr>', opts)
+-- map('', '<F7>', '<cmd>NvimTreeToggle<cr>', opts)
+-- map('i', '<F7>', '<esc><cmd>NvimTreeToggle<cr>', opts)
+map('', '<F6>', '<cmd>Neotree reveal<cr>', opts)
+map('i', '<F6>', '<esc><cmd>Neotree reveal<cr>', opts)
+map('', '<F7>', '<cmd>Neotree toggle<cr>', opts)
+map('i', '<F7>', '<esc><cmd>Neotree toggle<cr>', opts)
 
 -- git
 map('n', '<leader>gg', '<cmd>Git | resize 20<cr>', opts)
