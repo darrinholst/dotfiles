@@ -4,6 +4,9 @@ vim.call('plug#begin')
 
 -- file explorer
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'MunifTanjim/nui.nvim'
+Plug('nvim-neo-tree/neo-tree.nvim', { branch = 'v3.x' })
 
 -- windowing
 Plug 'troydm/zoomwintab.vim'
@@ -78,7 +81,7 @@ Plug 'chrisbra/csv.vim'
 Plug 'godlygeek/tabular'
 Plug 'windwp/nvim-autopairs'
 Plug 'DaikyXendo/nvim-material-icon'
-Plug 'kyazdani42/nvim-web-devicons'
+-- Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kylechui/nvim-surround'
 Plug 'mhartington/formatter.nvim'
 Plug 'mhinz/vim-startify'
