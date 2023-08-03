@@ -1,14 +1,15 @@
-require('filetype').setup({
-  overrides = {
-    extensions = {
-      sh = 'bash',
-      tf = 'terraform',
-      tfvars = 'terraform',
-      tfstate = 'json',
-      R = 'r',
-    },
-  },
-})
+-- require('filetype').setup({
+--   overrides = {
+--     extensions = {
+--       sh = 'bash',
+--       tf = 'terraform',
+--       tfvars = 'terraform',
+--       tfstate = 'json',
+--       R = 'r',
+--     },
+--   },
+-- })
+--
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',

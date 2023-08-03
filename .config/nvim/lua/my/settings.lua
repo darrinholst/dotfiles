@@ -25,6 +25,7 @@ vim.opt.vb             = true  --  no beeping
 vim.opt.wrap           = false -- no line wrapping by default
 vim.opt.hlsearch       = true
 vim.opt.undofile       = true
+vim.opt.virtualedit    = 'all'
 vim.wo.foldlevel       = 99
 vim.wo.foldmethod      = 'expr'
 vim.wo.foldexpr        = 'nvim_treesitter#foldexpr()'
@@ -34,6 +35,7 @@ vim.g.choosewin_overlay_enable = 1
 vim.g.VimuxOrientation         = 'h'
 vim.g.VimuxHeight              = '30'
 vim.g.csv_no_conceal           = 1
+vim.g.do_filetype_lua          = 1
 
 vim.g.python_host_prog         = '/usr/bin/python'
 vim.g.python3_host_prog        = '/usr/bin/python3'
