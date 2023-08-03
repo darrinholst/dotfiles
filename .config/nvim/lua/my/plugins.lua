@@ -3,7 +3,6 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 
 -- file explorer
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'MunifTanjim/nui.nvim'
 Plug('nvim-neo-tree/neo-tree.nvim', { branch = 'v3.x' })
@@ -74,7 +73,6 @@ Plug 'rcarriga/nvim-dap-ui'
 
 -- copy/paste
 Plug 'gbprod/yanky.nvim'
-Plug 'ibhagwan/smartyank.nvim'
 
 -- random
 Plug 'chrisbra/csv.vim'
@@ -103,7 +101,6 @@ Plug 'stevearc/dressing.nvim'
 Plug 'github/copilot.vim'
 Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'mbbill/undotree'
-Plug 'nathom/filetype.nvim'
 Plug 'aaditeynair/conduct.nvim'
 Plug 'james1236/backseat.nvim'
 

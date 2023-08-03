@@ -17,7 +17,6 @@ require("winbar").setup({
     "dashboard",
     "packer",
     "neogitstatus",
-    "NvimTree",
     "Trouble",
     "alpha",
     "lir",
