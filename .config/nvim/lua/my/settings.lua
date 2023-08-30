@@ -25,7 +25,6 @@ vim.opt.vb             = true  --  no beeping
 vim.opt.wrap           = false -- no line wrapping by default
 vim.opt.hlsearch       = true
 vim.opt.undofile       = true
-vim.opt.virtualedit    = 'all'
 vim.wo.foldlevel       = 99
 vim.wo.foldmethod      = 'expr'
 vim.wo.foldexpr        = 'nvim_treesitter#foldexpr()'

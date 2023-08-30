@@ -73,6 +73,7 @@ Plug 'rcarriga/nvim-dap-ui'
 
 -- copy/paste
 Plug 'gbprod/yanky.nvim'
+Plug 'ibhagwan/smartyank.nvim'
 
 -- random
 Plug 'chrisbra/csv.vim'
