@@ -133,11 +133,6 @@ zstyle ':completion:*' group-name ''
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias tmux='tmux -2 -u'
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# pdal
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias pdal='docker run --rm -v $(pwd):/data --entrypoint pdal pdal/pdal'
-
 attach() {
   tmux attach -t $1 || tmux new -s $1
 }
