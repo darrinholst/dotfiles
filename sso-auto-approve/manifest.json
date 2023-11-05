@@ -13,7 +13,8 @@
     {
       "all_frames": true,
       "matches": [
-        "https://advancedag.awsapps.com/start/user-consent/authorize.html*"
+        "https://advancedag.awsapps.com/start/user-consent/authorize.html*",
+        "https://device.sso.us-east-1.amazonaws.com/?user_code="
       ],
       "js": [
         "approve.js"
