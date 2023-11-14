@@ -150,8 +150,8 @@ base16_tomorrow-night
 # docker
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 clean-docker() {
-  docker container prune -f && docker image prune -f && docker network prune -f
-  # docker system prune --all --force --volumes
+  # docker container prune -f && docker image prune -f && docker network prune -f
+  docker system prune --all --force --volumes
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
