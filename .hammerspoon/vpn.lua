@@ -1,6 +1,7 @@
 local home = os.getenv("HOME")
 
 local test_ip = "10.2.0.2"
+local prod_ip = "172.31.0.2"
 
 local test_job_id = "com.darrinholst.test-vpn"
 local prod_job_id = "com.darrinholst.prod-vpn"
@@ -28,7 +29,7 @@ add_job("com.darrinholst.saml-server", {
 -- DNS anyway.
 --
 add_job("com.darrinholst.dns-resolver", {
-    StartInterval = 60,
+    StartInterval = 20,
     WorkingDirectory = home .. "/.bin",
     ProgramArguments = { home .. "/.bin/dns-refresh" },
     StandardErrorPath = home .. "/.bin/log/dns-refresh.log",
@@ -103,7 +104,7 @@ local function aws_login()
 end
 
 MENU = hs.menubar.new()
-MENU:setIcon(home .. "/.hammerspoon/images/vpn-off.pdf")
+MENU:setIcon(home .. "/.hammerspoon/images/vpn.pdf")
 MENU:setMenu(function()
   local aws_authed, hours_remaining = is_aws_authed()
   local test_connected = io.open(home .. "/.bin/log/test.connected", "r")
@@ -132,8 +133,9 @@ MENU:setMenu(function()
 end)
 
 local function update_icon()
-  local is_connected = os.execute("nc -G2 -w1 -z " .. test_ip .. " 53")
-  MENU:setIcon(home .. "/.hammerspoon/images/vpn-" .. (is_connected and "on" or "off") .. ".pdf")
+  local is_test_connected = os.execute("nc -G2 -w1 -z " .. test_ip .. " 53")
+  local is_prod_connected = os.execute("nc -G2 -w1 -z " .. prod_ip .. " 53")
+  MENU:setIcon(home .. "/.hammerspoon/images/vpn" .. (is_test_connected and "-test" or "") .. (is_prod_connected and "-prod" or "") ..".pdf")
 end
 
 update_icon()
