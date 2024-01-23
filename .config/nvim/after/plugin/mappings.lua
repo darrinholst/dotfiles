@@ -1,6 +1,8 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+map('', '<leader>rl', '<cmd>LspRestart<cr>', opts)
+
 -- ⌘C for copy (I'm not an animal)
 map('', '<M-c>', '"*y', opts)
 
