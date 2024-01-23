@@ -36,7 +36,7 @@ local on_attach = function(client, bufnr)
   )
 
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
+    virtual_text = true,
     signs = true,
   })
 
@@ -50,8 +50,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 
+  -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>rn', function()
     return ':IncRename ' .. vim.fn.expand('<cword>')
   end, { buffer = bufnr, noremap = true, expr = true })
@@ -72,8 +72,8 @@ local null_ls = require('null-ls')
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.codespell,
-    null_ls.builtins.formatting.xmlformat,
     null_ls.builtins.formatting.fixjson,
+    null_ls.builtins.formatting.xmlformat,
     null_ls.builtins.code_actions.cspell,
     null_ls.builtins.diagnostics.cspell.with({
       diagnostics_postprocess = function(diagnostic)

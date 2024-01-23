@@ -16,6 +16,8 @@ $(get_hosts_entry $test_dns_server postgres.advancedagtest.com)
 $(get_hosts_entry $test_dns_server mssql.advancedagtest.com)
 $(get_hosts_entry $test_dns_server farmgate-mysql.advancedagtest.com)
 $(get_hosts_entry $test_dns_server ds.bayes.advancedagtest.com)
+$(get_hosts_entry $test_dns_server starter-fertilizer.advancedagtest.com)
+$(get_hosts_entry $test_dns_server redshift.advancedagtest.com)
 # AUTO TEST END
 EOF
 
@@ -32,6 +34,7 @@ $(get_hosts_entry $prod_dns_server postgres.advancedag.com)
 $(get_hosts_entry $prod_dns_server mssql.advancedag.com)
 $(get_hosts_entry $prod_dns_server farmgate-mysql.advancedag.com)
 $(get_hosts_entry $prod_dns_server ds.bayes.advancedag.com)
+$(get_hosts_entry $prod_dns_server redshift.advancedag.com)
 # AUTO PROD END
 EOF
 
