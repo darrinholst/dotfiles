@@ -170,16 +170,6 @@ use-cloudflare() {
   which-dns
 }
 
-use-test() {
-  networksetup -setdnsservers Wi-Fi 10.2.0.2 1.1.1.1 208.67.222.222 208.67.220.220
-  which-dns
-}
-
-use-prod() {
-  networksetup -setdnsservers Wi-Fi 172.31.0.2 1.1.1.1 208.67.222.222 208.67.220.220
-  which-dns
-}
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # utils
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
