@@ -60,7 +60,8 @@ j() {
 # vim
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias vi="nvim -u NONE"
-alias vim="nvim"
+alias vim='NVIM_APPNAME="nvim" nvim'
+alias vim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 
