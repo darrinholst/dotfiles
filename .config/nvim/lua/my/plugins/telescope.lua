@@ -69,5 +69,6 @@ return {
     pcall(require("telescope").load_extension, "emoji")
     pcall(require("telescope").load_extension, "live_grep_args")
     pcall(require("telescope").load_extension, "conduct")
+    pcall(require("telescope").load_extension, "yank_history")
   end,
 }

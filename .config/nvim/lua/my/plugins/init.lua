@@ -25,7 +25,7 @@ return {
   { "lambdalisue/suda.vim" },
   { "thinca/vim-qfreplace" },
   { "smjonas/inc-rename.nvim", opts = { input_buffer_type = "dressing" } },
-  { "roobert/search-replace.nvim" },
+  { "roobert/search-replace.nvim", opts = {} },
   { "stevearc/dressing.nvim" },
   { "mbbill/undotree" },
 
@@ -97,9 +97,12 @@ return {
 
   {
     "gbprod/yanky.nvim",
-    config = function()
-      pcall(require("telescope").load_extension, "yank_history")
-    end,
+    dependencies = {
+      { "kkharji/sqlite.lua" },
+    },
+    opts = {
+      ring = { storage = "sqlite" },
+    },
   },
 
   {
@@ -132,19 +135,19 @@ return {
     end,
   },
 
-  -- {
-  --   "stevearc/conform.nvim",
-  --   opts = {
-  --     notify_on_error = false,
-  --     format_on_save = {
-  --       timeout_ms = 500,
-  --       lsp_fallback = true,
-  --     },
-  --     formatters_by_ft = {
-  --       lua = { "stylua" },
-  --     },
-  --   },
-  -- },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      notify_on_error = false,
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+      formatters_by_ft = {
+        lua = { "stylua" },
+      },
+    },
+  },
 
   {
     "mhartington/formatter.nvim",
@@ -173,6 +176,14 @@ return {
     "echasnovski/mini.nvim",
     config = function()
       require("mini.ai").setup({ n_lines = 500 })
+    end,
+  },
+
+  {
+    "folke/which-key.nvim",
+    event = "VimEnter",
+    config = function()
+      require("which-key").setup()
     end,
   },
 }
