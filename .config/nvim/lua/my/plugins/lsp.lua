@@ -5,7 +5,6 @@ return {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    { "j-hui/fidget.nvim", opts = {} },
   },
 
   config = function()
@@ -54,7 +53,7 @@ return {
           diagnostics = {
             ignoredCodes = { 6133, 7016, 80001, 80006, 80007 },
           },
-        }
+        },
       },
       yamlls = {},
 
