@@ -54,10 +54,10 @@ map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic m
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 
 -- formatter
--- map("", "<C-f>", "<cmd>lua require('conform').format()<cr>")
--- map("i", "<C-f>", "<esc><cmd>lua require('conform').format()<cr>")
-map("", "<C-f>", "<cmd>FormatWrite<cr>")
-map("i", "<C-f>", "<esc><cmd>FormatWrite<cr>")
+map("", "<C-f>", "<cmd>lua require('conform').format()<cr>")
+map("i", "<C-f>", "<esc><cmd>lua require('conform').format()<cr>")
+-- map("", "<C-f>", "<cmd>FormatWrite<cr>")
+-- map("i", "<C-f>", "<esc><cmd>FormatWrite<cr>")
 
 -- telescope
 map("", "<leader>t", "<cmd>Telescope<cr>")

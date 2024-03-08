@@ -7,6 +7,8 @@ endif
 " // in visual mode to search buffer for selection
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>    
 
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
 " remember last location in files
 au BufReadPost * if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
