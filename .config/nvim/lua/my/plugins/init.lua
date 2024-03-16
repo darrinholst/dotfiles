@@ -45,7 +45,7 @@ return {
 
       icons = {
         file_icon_default = "",
-        seperator = "/",
+        separator = "/",
         editor_state = "●",
         lock_icon = "",
       },
@@ -144,6 +144,9 @@ return {
       },
       formatters_by_ft = {
         lua = { "stylua" },
+        json = { "jq", "fixjson", "trim_whitespace" },
+        javascript = { "eslint_d", "trim_whitespace" },
+        javascriptreact = { "eslint_d", "trim_whitespace" },
       },
     },
   },
