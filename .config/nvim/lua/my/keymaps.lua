@@ -47,7 +47,6 @@ map("n", "]h", "<cmd>Gitsigns next_hunk<cr>")
 map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>")
 
 -- diagnostics
-map("n", "<space>d", "<CMD>TroubleToggle<CR>")
 map("n", "<space>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
