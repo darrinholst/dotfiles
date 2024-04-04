@@ -2,7 +2,6 @@ return {
   { "DaikyXendo/nvim-material-icon" },
   { "benmills/vimux" },
   { "chrisbra/csv.vim" },
-  { "folke/trouble.nvim", opts = { position = "right" } },
   { "ibhagwan/smartyank.nvim", opts = { highlight = { timeout = 1000 } } },
   { "kylechui/nvim-surround", opts = {} },
   { "mbbill/undotree" },
@@ -24,6 +23,44 @@ return {
   { "triglav/vim-visual-increment" },
   { "troydm/zoomwintab.vim" },
   { "wakatime/vim-wakatime" },
+
+  {
+    "folke/trouble.nvim",
+    branch = "dev", -- IMPORTANT!
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>xl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+    opts = {},
+  },
 
   {
     "ggandor/leap.nvim",
@@ -60,6 +97,7 @@ return {
         "spectre_panel",
         "toggleterm",
         "qf",
+        "fugitiveblame",
       },
     },
   },
@@ -132,10 +170,21 @@ return {
     "stevearc/conform.nvim",
     opts = {
       notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
+      format_on_save = function(bufnr)
+        local ignore_filetypes = { "json" }
+
+        if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+          return
+        end
+
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+        if bufname:match("/node_modules/") then
+          return
+        end
+
+        return { timeout_ms = 500, lsp_fallback = true }
+      end,
       formatters_by_ft = {
         lua = { "stylua" },
         json = { "jq", "fixjson", "trim_whitespace" },

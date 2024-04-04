@@ -10,7 +10,17 @@ return {
     require("nvim-treesitter.configs").setup({
       modules = {},
       ignore_install = {},
-      ensure_installed = { "bash", "html", "lua", "markdown", "vim", "vimdoc", "javascript", "json" },
+      ensure_installed = {
+        "bash",
+        "html",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "vim",
+        "vimdoc",
+        "javascript",
+        "json",
+      },
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },
