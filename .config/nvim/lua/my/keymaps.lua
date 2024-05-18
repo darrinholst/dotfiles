@@ -129,6 +129,9 @@ map("", "<leader>vl", "<cmd>wa|VimuxRunLastCommand<cr>")
 -- undo
 map("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
 
+-- oil
+map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 -- auto manage hlsearch
 vim.on_key(function(char)
   if vim.fn.mode() == "n" then
