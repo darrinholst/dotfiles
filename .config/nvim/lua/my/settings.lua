@@ -7,7 +7,6 @@ vim.opt.breakindent = true -- Enable break indent
 vim.opt.cmdheight = 2
 vim.opt.cursorline = true --  highlight current line
 vim.opt.expandtab = true --  spaces, not tabs
-vim.opt.guifont = "Fira Code Retina Nerd Font Complete:h16"
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true --  ignore case
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!

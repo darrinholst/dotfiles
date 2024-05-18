@@ -1,1 +1,1 @@
-vim.keymap.set("", "r", "<cmd>Startify<cr>")
+vim.keymap.set("", "r", "<cmd>Startify<cr>", { buffer = 0 })
