@@ -23,6 +23,7 @@ return {
   { "triglav/vim-visual-increment" },
   { "troydm/zoomwintab.vim" },
   { "wakatime/vim-wakatime" },
+
   {
     "stevearc/oil.nvim",
     opts = {

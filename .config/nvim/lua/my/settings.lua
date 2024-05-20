@@ -2,6 +2,7 @@ vim.g.mapleader = ","
 vim.g.startify_change_to_vcs_root = 1
 
 -- vim.opt.clipboard = 'unnamedplus'
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.backup = false
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.cmdheight = 2
