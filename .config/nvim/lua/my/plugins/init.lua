@@ -1,5 +1,6 @@
 return {
   { "DaikyXendo/nvim-material-icon" },
+  { "nvim-tree/nvim-web-devicons", lazy = false },
   { "benmills/vimux" },
   { "chrisbra/csv.vim" },
   { "ibhagwan/smartyank.nvim", opts = { highlight = { timeout = 1000 } } },
