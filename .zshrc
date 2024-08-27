@@ -82,8 +82,8 @@ wtf-node-modules() {
 }
 
 clean-node-modules() {
-  # wtf-node-modules && find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
-  npx npkill
+  wtf-node-modules && find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+  # npx -y npkill
 }
 
 clean-terraform() {
@@ -97,6 +97,7 @@ clean-mac() {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # git
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias lg=lazygit
 alias git=hub
 alias tig='tig --no-merges'
 alias gfu='git fu'
@@ -105,6 +106,7 @@ alias gu='git fetch && git up'
 alias gs='git st'
 alias ga='git ad'
 alias gca='git commit -v --amend'
+alias gcan='git commit -v --amend --no-edit'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # terraform
@@ -147,6 +149,7 @@ export CLICOLOR=1
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 base16_tomorrow-night
+# base16_tomorrow
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # docker

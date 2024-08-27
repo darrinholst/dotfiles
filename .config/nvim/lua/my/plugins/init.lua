@@ -1,5 +1,5 @@
 return {
-  { "DaikyXendo/nvim-material-icon" },
+  { "DaikyXendo/nvim-material-icon", lazy = false },
   { "nvim-tree/nvim-web-devicons", lazy = false },
   { "benmills/vimux" },
   { "chrisbra/csv.vim" },
@@ -17,7 +17,6 @@ return {
   { "thinca/vim-qfreplace" },
   { "tpope/vim-commentary" },
   { "tpope/vim-eunuch" },
-  { "tpope/vim-fugitive" },
   { "tpope/vim-repeat" },
   { "tpope/vim-rhubarb" },
   { "tpope/vim-unimpaired" },
@@ -79,6 +78,13 @@ return {
     "ggandor/leap.nvim",
     config = function()
       require("leap").add_default_mappings()
+    end,
+  },
+
+  {
+    "tpope/vim-fugitive",
+    config = function()
+      -- vim.api.nvim_command("command! -nargs=* Browse call fugitive#GBrowse(<f-args>)")
     end,
   },
 
@@ -151,15 +157,7 @@ return {
 
   {
     "lewis6991/gitsigns.nvim",
-    opts = {
-      signs = {
-        add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-        change = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-        delete = { hl = "GitSignsDelete", text = "|", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        changedelete = { hl = "GitSignsChange", text = "|", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-      },
-    },
+    opts = {},
   },
 
   {
