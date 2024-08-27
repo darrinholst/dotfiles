@@ -18,6 +18,7 @@ $(get_hosts_entry $test_dns_server farmgate-mysql.advancedagtest.com)
 $(get_hosts_entry $test_dns_server ds.bayes.advancedagtest.com)
 $(get_hosts_entry $test_dns_server starter-fertilizer.advancedagtest.com)
 $(get_hosts_entry $test_dns_server redshift.advancedagtest.com)
+$(get_hosts_entry $test_dns_server sonar.advancedagrilytics.com)
 # AUTO TEST END
 EOF
 
