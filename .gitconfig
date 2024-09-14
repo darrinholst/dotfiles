@@ -30,7 +30,7 @@
   lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
   ll = !"gita ll"
   publish = !git push -u origin $(git branch-name)
-  squashemall = !git reset $(git merge-base $(git_main_branch) $(git rev-parse --abbrev-ref HEAD))
+  squashemall = !git reset $(git merge-base main $(git rev-parse --abbrev-ref HEAD))
   stashall = stash -u
   unstash = stash pop
   st = status
