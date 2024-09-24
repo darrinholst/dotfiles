@@ -48,7 +48,7 @@ return {
       bashls = {},
       jsonls = {},
       lemminx = {},
-      tsserver = {
+      ts_ls = {
         settings = {
           diagnostics = {
             ignoredCodes = { 6133, 7016, 80001, 80006, 80007 },
