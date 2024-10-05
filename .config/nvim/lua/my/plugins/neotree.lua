@@ -3,20 +3,6 @@ return {
   branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    {
-      "nvim-tree/nvim-web-devicons",
-      opts = {
-        override = {
-          ["cjs"] = {
-            icon = "",
-            color = "#f1e05a",
-            cterm_color = "221",
-            name = "Cjs",
-          },
-        },
-        default = true,
-      },
-    },
     "MunifTanjim/nui.nvim",
     "3rd/image.nvim",
   },
