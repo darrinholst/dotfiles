@@ -49,8 +49,18 @@ map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>")
 -- diagnostics
 map("n", "<space>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+map(
+  "n",
+  "[d",
+  "<cmd>lua vim.diagnostic.goto_prev({ wrap = true, severity = vim.diagnostic.severity.ERROR })<CR>",
+  { desc = "Go to previous [D]iagnostic message" }
+)
+map(
+  "n",
+  "]d",
+  "<cmd>lua vim.diagnostic.goto_next({ wrap = true, severity = vim.diagnostic.severity.ERROR })<CR>",
+  { desc = "Go to next [D]iagnostic message" }
+)
 
 -- formatter
 map("", "<C-f>", "<cmd>lua require('conform').format({lsp_fallback=true, async=true})<cr>")

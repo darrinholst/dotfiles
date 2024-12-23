@@ -61,7 +61,6 @@ j() {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias vi="nvim -u NONE"
 alias vim='NVIM_APPNAME="nvim" nvim'
-alias vim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 bindkey -v
@@ -113,13 +112,19 @@ alias gcan='git commit -v --amend --no-edit'
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias ti="(cd terraform && ./setup-terraform-local.sh)"
 alias tf="terraform fmt terraform"
+alias tsl="terraform -chdir=terraform state list"
+alias trm="terraform -chdir=terraform rm"
+
 alias tp="terraform -chdir=terraform plan --var-file terraform.tfvars"
 alias ta="terraform -chdir=terraform apply --var-file terraform.tfvars"
+
 alias tpt="terraform -chdir=terraform plan --var-file test.tfvars"
-alias tt="terraform -chdir=terraform --var-file test.tfvars"
 alias tat="terraform -chdir=terraform apply --var-file test.tfvars"
+alias tit="terraform -chdir=terraform --var-file test.tfvars import"
+
 alias tpp="terraform -chdir=terraform plan --var-file prod.tfvars"
 alias tap="terraform -chdir=terraform apply --var-file prod.tfvars"
+alias tip="terraform -chdir=terraform --var-file prod.tfvars import"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # autocomplete stuff I copied from the INTERNET

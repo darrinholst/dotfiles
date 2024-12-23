@@ -6,12 +6,12 @@ local results_location = home .. "/.bin/speedtest.json"
 
 SPEEDTEST_MENU = hs.menubar.new()
 
-add_job("com.darrinholst.speedtest", {
+add_job("com.darrinholst.dont-effin-delete-me", {
   StartInterval = 300,
   WorkingDirectory = home .. "/.bin",
   ProgramArguments = { "bash", "-c", "/opt/homebrew/bin/speedtest -f json > " .. results_location },
   StandardErrorPath = home .. "/.bin/log/speedtest.log",
-  StandardOutPath = home .. "/.bin/log/speedtest.log"
+  StandardOutPath = home .. "/.bin/log/speedtest.log",
 })
 
 local function mbps(n)
@@ -27,8 +27,9 @@ main = function()
       io.close(file)
       local json = hs.json.decode(results)
       local isp = json.isp:match("%S+")
-      SPEEDTEST_MENU:setTitle(isp .. ": " .. mbps(json.download.bandwidth) .. "↓ " ..
-      mbps(json.upload.bandwidth) .. "↑")
+      SPEEDTEST_MENU:setTitle(
+        isp .. ": " .. mbps(json.download.bandwidth) .. "↓ " .. mbps(json.upload.bandwidth) .. "↑"
+      )
     end
   end)
 end
