@@ -21,7 +21,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         json = { "jq", "fixjson", "trim_whitespace" },
-        javascript = { "eslint_d", "trim_whitespace" },
+        javascript = { "eslint_d", "prettier", "trim_whitespace" },
         javascriptreact = { "eslint_d", "trim_whitespace" },
         ["_"] = { "trim_whitespace" },
       },

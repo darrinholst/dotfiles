@@ -8,4 +8,6 @@ plug.vim
 *secret*
 log
 .bin/*.json
+node_modules
+results.json
 
