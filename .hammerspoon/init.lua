@@ -1,7 +1,7 @@
 CONFIG_RELOADER = require("config-reloader")
 -- SLACK_STATUS = require("slack-status")
 VPN = require("vpn")
-SPEEDTEST = require("speedtest")
+SPEEDTEST = require("speedtest-cw")
 
 hs.hotkey.bind({ "cmd", "alt" }, "V", function()
   hs.eventtap.keyStrokes(hs.pasteboard.getContents())

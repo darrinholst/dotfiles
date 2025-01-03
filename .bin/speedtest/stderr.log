@@ -1,0 +1,203 @@
+bash: cloudwatch: command not found
+bash: cloudwatch: command not found
+bash: cloudwatch: command not found
+bash: cloudwatch: command not found
+bash: cloudwatch: command not found
+bash: cloudwatch: command not found
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+env: node: No such file or directory
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+Error: getaddrinfo ENOTFOUND monitoring.us-east-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'monitoring.us-east-1.amazonaws.com',
+  '$metadata': { attempts: 1, totalRetryDelay: 0 }
+}
+
+Node.js v23.5.0
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+Error: getaddrinfo ENOTFOUND monitoring.us-east-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'monitoring.us-east-1.amazonaws.com',
+  '$metadata': { attempts: 1, totalRetryDelay: 0 }
+}
+
+Node.js v23.5.0
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+Error: getaddrinfo ENOTFOUND monitoring.us-east-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'monitoring.us-east-1.amazonaws.com',
+  '$metadata': { attempts: 1, totalRetryDelay: 0 }
+}
+
+Node.js v23.5.0
+/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:835
+  const response = new exceptionCtor({
+                   ^
+
+SignatureDoesNotMatch: Signature expired: 20250101T122354Z is now earlier than 20250101T123307Z (20250101T123807Z - 5 min.)
+    at throwDefaultError (/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:835:20)
+    at /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:844:5
+    at de_CommandError (/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@aws-sdk/client-cloudwatch/dist-cjs/index.js:1498:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/middleware-serde/dist-cjs/index.js:35:20
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/core/dist-cjs/index.js:168:18
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:34:22
+    at async getAllIsps (file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:44:23)
+    at async getMetrics (file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:17:16) {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'cd273a57-8a38-4330-9d0a-653e9447f86b',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  Type: 'Sender',
+  Code: 'SignatureDoesNotMatch'
+}
+
+Node.js v23.5.0
+/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:835
+  const response = new exceptionCtor({
+                   ^
+
+SignatureDoesNotMatch: Signature expired: 20250101T151914Z is now earlier than 20250101T153001Z (20250101T153501Z - 5 min.)
+    at throwDefaultError (/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:835:20)
+    at /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:844:5
+    at de_CommandError (/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@aws-sdk/client-cloudwatch/dist-cjs/index.js:1498:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/middleware-serde/dist-cjs/index.js:35:20
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/core/dist-cjs/index.js:168:18
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:34:22
+    at async getAllIsps (file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:44:23)
+    at async getMetrics (file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:17:16) {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'fd41251d-2f22-459b-8061-155bf5e53db4',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  Type: 'Sender',
+  Code: 'SignatureDoesNotMatch'
+}
+
+Node.js v23.5.0
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+Error: getaddrinfo ENOTFOUND monitoring.us-east-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'monitoring.us-east-1.amazonaws.com',
+  '$metadata': { attempts: 1, totalRetryDelay: 0 }
+}
+
+Node.js v23.5.0
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+Error: getaddrinfo ENOTFOUND monitoring.us-east-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'monitoring.us-east-1.amazonaws.com',
+  '$metadata': { attempts: 1, totalRetryDelay: 0 }
+}
+
+Node.js v23.5.0
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+Error: getaddrinfo ENOTFOUND monitoring.us-east-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'monitoring.us-east-1.amazonaws.com',
+  '$metadata': { attempts: 1, totalRetryDelay: 0 }
+}
+
+Node.js v23.5.0
+/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:835
+  const response = new exceptionCtor({
+                   ^
+
+SignatureDoesNotMatch: Signature expired: 20250102T041510Z is now earlier than 20250102T042640Z (20250102T043140Z - 5 min.)
+    at throwDefaultError (/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:835:20)
+    at /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/smithy-client/dist-cjs/index.js:844:5
+    at de_CommandError (/Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@aws-sdk/client-cloudwatch/dist-cjs/index.js:1498:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/middleware-serde/dist-cjs/index.js:35:20
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/core/dist-cjs/index.js:168:18
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@smithy/middleware-retry/dist-cjs/index.js:320:38
+    at async /Users/darrinholst/.dotfiles/.bin/speedtest/node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js:34:22
+    at async getAllIsps (file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:44:23)
+    at async getMetrics (file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:17:16) {
+  '$fault': 'client',
+  '$metadata': {
+    httpStatusCode: 403,
+    requestId: 'ded56cad-74df-4dbe-a8d2-b7941625ebce',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  Type: 'Sender',
+  Code: 'SignatureDoesNotMatch'
+}
+
+Node.js v23.5.0
+Error: BOOM
+    at getMetrics (file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:26:9)
+    at file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:12:23
+    at ModuleJob.run (node:internal/modules/esm/module_job:272:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:552:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:98:5)
+Error: BOOM
+    at getMetrics (file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:26:9)
+    at file:///Users/darrinholst/.dotfiles/.bin/speedtest/cloudwatch:12:23
+    at ModuleJob.run (node:internal/modules/esm/module_job:272:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:552:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:98:5)

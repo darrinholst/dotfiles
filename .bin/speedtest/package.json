@@ -1,0 +1,13 @@
+{
+  "name": "speedtest",
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-cloudwatch": "^3.716.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2"
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}
