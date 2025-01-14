@@ -2,16 +2,16 @@ local home = os.getenv("HOME")
 local main = nil
 local launchctl = require("launchctl")
 local add_job = launchctl.add_job
-local results_location = home .. "/.bin/speedtest.json"
+local results_location = home .. "/.bin/speedtest/local.json"
 
 SPEEDTEST_MENU = hs.menubar.new()
 
-add_job("com.darrinholst.dont-effin-delete-me", {
+add_job("com.darrinholst.speedtest-local", {
   StartInterval = 300,
-  WorkingDirectory = home .. "/.bin",
-  ProgramArguments = { "bash", "-c", "/opt/homebrew/bin/speedtest -f json > " .. results_location },
-  StandardErrorPath = home .. "/.bin/log/speedtest.log",
-  StandardOutPath = home .. "/.bin/log/speedtest.log",
+  WorkingDirectory = home .. "/.bin/speedtest",
+  ProgramArguments = { "bash", "-c", "./local > " .. results_location },
+  StandardErrorPath = home .. "/.bin/speedtest/local.log",
+  StandardOutPath = home .. "/.bin/speedtest/local.log",
 })
 
 local function mbps(n)

@@ -1,0 +1,33 @@
+#!/opt/homebrew/bin/node
+
+import fs from 'node:fs';
+import { spawn } from 'node:child_process';
+
+const resultsFile = './local.json';
+const historyFile = './local-history.json';
+
+const history = fs.existsSync(historyFile)
+  ? JSON.parse(fs.readFileSync(historyFile))
+  : [];
+
+try {
+  history.unshift(JSON.parse(fs.readFileSync(resultsFile)));
+} catch (e) {
+  // no results file or bad format
+}
+
+const stream = fs.createWriteStream(historyFile);
+
+stream.write('[\n');
+
+history.forEach((line, i) => {
+  stream.write('  ');
+  stream.write(JSON.stringify(line));
+  if (i + 1 < history.length) stream.write(',');
+  stream.write('\n');
+});
+
+stream.write(']\n');
+stream.end();
+
+spawn('/opt/homebrew/bin/speedtest', ['-f', 'json'], {stdio: 'inherit'});
