@@ -71,6 +71,10 @@ bindkey -v
 export PATH=~/.bin:./node_modules/.bin:$PATH
 alias run='npm run'
 
+which-node() {
+  find . -name node_modules -prune -o -name .node-version -exec printf "%s " {} \; -exec cat {} \;
+}
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # rtx
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

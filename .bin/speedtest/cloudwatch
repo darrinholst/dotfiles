@@ -8,7 +8,7 @@ import {
 
 const client = new CloudWatchClient();
 const namespace = 'Speedtest';
-const period = 300;
+const period = 5 /* minutes */ * 60 /* seconds */;
 const metrics = await getMetrics().catch((e) => {
   console.error(e);
   return {}
