@@ -3,31 +3,36 @@
 import fs from 'node:fs';
 import { spawn } from 'node:child_process';
 
-const resultsFile = './local.json';
-const historyFile = './local-history.json';
+const stdout = [];
+const stderr = [];
 
-const history = fs.existsSync(historyFile)
-  ? JSON.parse(fs.readFileSync(historyFile))
-  : [];
+const speedtest = spawn('/opt/homebrew/bin/speedtest', ['-f', 'json']);
 
-try {
-  history.unshift(JSON.parse(fs.readFileSync(resultsFile)));
-} catch (e) {
-  // no results file or bad format
-}
+speedtest.stdout.on('data', (data) => stdout.push(data.toString()));
+speedtest.stderr.on('data', (data) => stderr.push(data.toString()));
 
-const stream = fs.createWriteStream(historyFile);
+speedtest.on('close', (code) => {
+  if (stderr.length) console.error(stderr.join(''))
+  if (stdout.length) console.log(stderr.join(''))
 
-stream.write('[\n');
+  if (!code) {
+    const historyFile = './local-history.json';
+    const history = fs.existsSync(historyFile)
+      ? JSON.parse(fs.readFileSync(historyFile))
+      : [];
+    history.unshift(JSON.parse(stdout.join('')));
 
-history.forEach((line, i) => {
-  stream.write('  ');
-  stream.write(JSON.stringify(line));
-  if (i + 1 < history.length) stream.write(',');
-  stream.write('\n');
+    const stream = fs.createWriteStream(historyFile);
+    stream.write('[\n');
+
+    history.forEach((line, i) => {
+      stream.write('  ');
+      stream.write(JSON.stringify(line));
+      if (i + 1 < history.length) stream.write(',');
+      stream.write('\n');
+    });
+
+    stream.write(']\n');
+    stream.end();
+  }
 });
-
-stream.write(']\n');
-stream.end();
-
-spawn('/opt/homebrew/bin/speedtest', ['-f', 'json'], {stdio: 'inherit'});
