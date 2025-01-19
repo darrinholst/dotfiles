@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import { spawn } from 'node:child_process';
 import { stringify } from 'csv-stringify'
+import { Temporal } from '@js-temporal/polyfill';
 
 const jsonFile = './local-history.json';
 const csvFile = './local-history.csv';
@@ -58,7 +59,7 @@ function writeCsvHistory(history) {
 
 function mapForCsv(result) {
   return {
-    time: result.timestamp,
+    time: toLocalTimezone(result.timestamp),
     isp: result.isp,
     idlePing: Math.round(result.ping.latency),
     download: Math.round(result.download.bandwidth / 125000),
@@ -67,4 +68,11 @@ function mapForCsv(result) {
     uploadPing: Math.round(result.upload?.latency?.iqm),
     packetLoss: Math.round(result.packetLoss),
   };
+}
+
+function toLocalTimezone(timestamp) {
+  const instant = Temporal.Instant.from(timestamp);
+  const timeZone = Temporal.Now.timeZoneId();
+  const zonedDateTime = instant.toZonedDateTimeISO(timeZone);
+  return zonedDateTime.toString()
 }
