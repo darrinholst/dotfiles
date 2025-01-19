@@ -2,7 +2,8 @@
   "name": "speedtest",
   "type": "module",
   "dependencies": {
-    "@aws-sdk/client-cloudwatch": "^3.716.0"
+    "@aws-sdk/client-cloudwatch": "^3.716.0",
+    "csv-stringify": "^6.5.2"
   },
   "devDependencies": {
     "prettier": "^3.4.2"
