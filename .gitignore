@@ -7,6 +7,7 @@ plug.vim
 .tmuxline.conf
 *secret*
 log
+.bin/**/*.csv
 .bin/**/*.json
 .bin/**/*.log
 node_modules

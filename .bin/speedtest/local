@@ -2,37 +2,69 @@
 
 import fs from 'node:fs';
 import { spawn } from 'node:child_process';
+import { stringify } from 'csv-stringify'
 
+const jsonFile = './local-history.json';
+const csvFile = './local-history.csv';
 const stdout = [];
 const stderr = [];
 
 const speedtest = spawn('/opt/homebrew/bin/speedtest', ['-f', 'json']);
-
 speedtest.stdout.on('data', (data) => stdout.push(data.toString()));
 speedtest.stderr.on('data', (data) => stderr.push(data.toString()));
+speedtest.on('close', handleResults);
 
-speedtest.on('close', (code) => {
+function handleResults(code) {
   if (stderr.length) console.error(stderr.join(''))
-  if (stdout.length) console.log(stderr.join(''))
+  if (stdout.length) console.log(stdout.join(''))
+  if (!code) writeHistory();
+}
 
-  if (!code) {
-    const historyFile = './local-history.json';
-    const history = fs.existsSync(historyFile)
-      ? JSON.parse(fs.readFileSync(historyFile))
-      : [];
-    history.unshift(JSON.parse(stdout.join('')));
+function writeHistory() {
+   const history = getHistory();
+   history.unshift(JSON.parse(stdout.join('')));
 
-    const stream = fs.createWriteStream(historyFile);
-    stream.write('[\n');
+   writeJsonHistory(history);
+   writeCsvHistory(history);
+}
 
-    history.forEach((line, i) => {
-      stream.write('  ');
-      stream.write(JSON.stringify(line));
-      if (i + 1 < history.length) stream.write(',');
-      stream.write('\n');
-    });
+function getHistory() {
+  return fs.existsSync(jsonFile)
+    ? JSON.parse(fs.readFileSync(jsonFile))
+    : [];
+}
 
-    stream.write(']\n');
-    stream.end();
-  }
-});
+function writeJsonHistory(history) {
+  const jsonStream = fs.createWriteStream(jsonFile);
+  jsonStream.write('[\n');
+
+  history.forEach((line, i) => {
+    jsonStream.write('  ');
+    jsonStream.write(JSON.stringify(line));
+    if (i + 1 < history.length) jsonStream.write(',');
+    jsonStream.write('\n');
+  });
+
+  jsonStream.write(']\n');
+  jsonStream.end();
+}
+
+function writeCsvHistory(history) {
+  const csvStream = stringify({ header: true });
+  csvStream.pipe(fs.createWriteStream(csvFile));
+  history.toReversed().forEach((line) => csvStream.write(mapForCsv(line)));
+  csvStream.end();
+}
+
+function mapForCsv(result) {
+  return {
+    time: result.timestamp,
+    isp: result.isp,
+    idlePing: Math.round(result.ping.latency),
+    download: Math.round(result.download.bandwidth / 125000),
+    downloadPing: Math.round(result.download?.latency?.iqm),
+    upload: Math.round(result.upload.bandwidth / 125000),
+    uploadPing: Math.round(result.upload?.latency?.iqm),
+    packetLoss: Math.round(result.packetLoss),
+  };
+}
