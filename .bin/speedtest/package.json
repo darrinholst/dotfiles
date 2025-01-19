@@ -3,6 +3,7 @@
   "type": "module",
   "dependencies": {
     "@aws-sdk/client-cloudwatch": "^3.716.0",
+    "@js-temporal/polyfill": "^0.4.4",
     "csv-stringify": "^6.5.2"
   },
   "devDependencies": {
