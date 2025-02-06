@@ -11,17 +11,17 @@
         </Source>
     </Sources>
     <Worksheets>
-        <Worksheet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xyChartsWorksheet" chartLayout="STACKED" dividerPosition="0.7546045503791983" fromDateTime="2025-01-19T03:13:06.001-06:00[America/Chicago]" minChartHeight="157.93893129770993" timeRangeLinked="false" timeZone="America/Chicago" toDateTime="2025-01-20T03:13:06.001-06:00[America/Chicago]" name="New Worksheet (0)">
+        <Worksheet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xyChartsWorksheet" chartLayout="STACKED" dividerPosition="0.5769230769230769" fromDateTime="2025-02-03T04:02:32.001-06:00[America/Chicago]" minChartHeight="209.54198473282446" timeRangeLinked="false" timeZone="America/Chicago" toDateTime="2025-02-04T04:02:32.001-06:00[America/Chicago]" name="New Worksheet (0)">
             <Charts>
-                <Chart alwaysIncludeOriginInAutoScale="true" autoScaleYAxis="true" chartType="LINE" graphOpacity="0.7" name="Speedtest" showAreaOutline="false" strokeWidth="1.5343511450381682" unit="mbps" unitPrefixes="NONE" yAxisMaxValue="545.5" yAxisMinValue="0.0">
+                <Chart alwaysIncludeOriginInAutoScale="true" autoScaleYAxis="false" chartType="LINE" graphOpacity="0.7" name="Speedtest" showAreaOutline="false" strokeWidth="1.0" unit="mbps" unitPrefixes="NONE" yAxisMaxValue="500.0" yAxisMinValue="0.0">
                     <SeriesList>
                         <Timeseries displayColor="0x00ff00ff" displayName="download" selected="true">
                             <Binding prefix="UNDEFINED" graphType="UNDEFINED" unitName="-" sourceId="728a6b0e-c86f-4d26-888c-098163daf646" label="3" path="728a6b0e-c86f-4d26-888c-098163daf646//Users/darrinholst/.dotfiles/.bin/speedtest/local-history.csv" treeHierarchy="/[CSV] local-history.csv (America/Chicago)/download" legend="download"/>
                         </Timeseries>
-                        <Timeseries displayColor="0x008000ff" displayName="upload" selected="true">
+                        <Timeseries displayColor="0xffff00ff" displayName="upload" selected="true">
                             <Binding prefix="UNDEFINED" graphType="UNDEFINED" unitName="-" sourceId="728a6b0e-c86f-4d26-888c-098163daf646" label="5" path="728a6b0e-c86f-4d26-888c-098163daf646//Users/darrinholst/.dotfiles/.bin/speedtest/local-history.csv" treeHierarchy="/[CSV] local-history.csv (America/Chicago)/upload" legend="upload"/>
                         </Timeseries>
-                        <Timeseries displayColor="0xff0000ff" displayName="idlePing" selected="true">
+                        <Timeseries displayColor="0x4d4d4dff" displayName="idlePing" selected="true">
                             <Binding prefix="UNDEFINED" graphType="UNDEFINED" unitName="-" sourceId="728a6b0e-c86f-4d26-888c-098163daf646" label="2" path="728a6b0e-c86f-4d26-888c-098163daf646//Users/darrinholst/.dotfiles/.bin/speedtest/local-history.csv" treeHierarchy="/[CSV] local-history.csv (America/Chicago)/idlePing" legend="idlePing"/>
                         </Timeseries>
                     </SeriesList>
