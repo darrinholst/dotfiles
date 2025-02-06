@@ -22,7 +22,7 @@
 [alias]
   ad = !git add -A && git st
   branch-name = !git rev-parse --abbrev-ref HEAD
-  branches = !git branch --all --no-merged main --color='always' --sort=authordate --format='%(color:blue)%(authordate:relative)|%(color:red)%(authorname)|%(color:white)%(color:bold)%(refname:short)' | column -s '|' -t
+  branches = "!git branch --all --color='always' --sort=authordate --format='%(color:blue)%(authordate:relative)|%(color:red)%(authorname)|%(color:white)%(color:bold)%(refname:short)' | grep -vE '\\|\\x1b\\[[0-9;]*m.*(main|origin(/main)?)\\x1b' | column -s '|' -t"
   cleanup = !git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
   co = checkout
   com = checkout main
