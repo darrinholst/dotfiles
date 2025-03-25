@@ -186,6 +186,12 @@ use-cloudflare() {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# dev
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias local-dev='tmux -2 -u attach -t 0 || tmux -2 -u new -s 0'
+alias ha-dev='ssh homeassistant -t "tmux -2 -u attach -t 0 || tmux -2 -u new -s 0"'
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # utils
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     if ! command -v xcode-select &> /dev/null; then
