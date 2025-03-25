@@ -10,8 +10,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true || true
     sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true || true
     sudo defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 || true
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    if [ -f /etc/os-release ]; then
+elif [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "linux"* ]]; then
+    if [ -f /etc/alpine-release ]; then
+        DISTRO="alpine"
+    elif [ -f /etc/os-release ]; then
         . /etc/os-release
         DISTRO=$ID
     elif [ -f /etc/lsb-release ]; then
@@ -32,6 +34,31 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "Detected Linux distribution: $DISTRO"
 
     case $DISTRO in
+        alpine)
+            echo "Installing dependencies for Alpine Linux..."
+            sudo apk update
+            sudo apk add \
+                git \
+                zsh \
+                tmux \
+                neovim \
+                curl \
+                ripgrep \
+                fd \
+                fzf \
+                autojump \
+                build-base \
+                tree-sitter \
+                tree-sitter-dev \
+                luajit \
+                luajit-dev \
+                cmake \
+                make \
+                gcc \
+                g++ \
+                python3 \
+                python3-dev
+            ;;
         ubuntu|debian)
             echo "Installing dependencies for Ubuntu/Debian..."
             sudo apt update
@@ -49,11 +76,11 @@ fi
 #~~~~~~~~~~~~~~~~~~~~#
 #~ install homebrew ~#
 #~~~~~~~~~~~~~~~~~~~~#
-if ! command -v brew &> /dev/null; then
+if [[ "$DISTRO" != "alpine" ]] && ! command -v brew &> /dev/null; then
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "linux"* ]]; then
         test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
         test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -70,8 +97,10 @@ if ! command -v brew &> /dev/null; then
     fi
 fi
 
-brew doctor
-brew bundle install
+if [[ "$DISTRO" != "alpine" ]] && command -v brew &> /dev/null; then
+    brew doctor
+    brew bundle install
+fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing Oh My Zsh..."
@@ -109,3 +138,5 @@ fi
 if [[ "$SHELL" == *"zsh"* ]]; then
     source ~/.zshrc
 fi
+
+
