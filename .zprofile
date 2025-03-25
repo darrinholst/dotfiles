@@ -1,7 +1,13 @@
 export LESS="-FXr"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
-# Added by OrbStack: command-line tools and integration
+if command -v brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
