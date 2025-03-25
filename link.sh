@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 CURRENT_DIR="$(cd "$(dirname "$0")" ; pwd -P )"
 mkdir -p ~/.config ~/.ssh
