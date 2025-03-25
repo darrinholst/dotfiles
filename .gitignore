@@ -12,4 +12,5 @@ log
 .bin/**/*.log
 node_modules
 results.json
+Brewfile.lock.json
 
