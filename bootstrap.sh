@@ -57,7 +57,11 @@ elif [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "linux"* ]]; then
                 gcc \
                 g++ \
                 python3 \
-                python3-dev
+                python3-dev \
+                py3-pynvim \
+                sqlite-dev \
+                sqlite \
+                sqlite-libs 
             ;;
         ubuntu|debian)
             echo "Installing dependencies for Ubuntu/Debian..."
