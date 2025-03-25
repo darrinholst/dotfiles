@@ -4,7 +4,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
-    "3rd/image.nvim",
   },
   opts = {
     close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
