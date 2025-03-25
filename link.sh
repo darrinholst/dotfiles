@@ -34,3 +34,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     link_it ".hammerspoon"
 fi
 
+if grep -q "Alpine" /etc/os-release 2>/dev/null; then
+    SOURCE="${CURRENT_DIR}/.zshrc.slim"
+    TARGET="${HOME}/.zshrc"
+    rm -rf "$TARGET"
+    ln -vfs "$SOURCE" "$TARGET"
+else
+    link_it ".zshrc"
+fi
