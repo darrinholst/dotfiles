@@ -189,7 +189,7 @@ use-cloudflare() {
 # dev
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias local-dev='tmux -2 -u attach -t 0 || tmux -2 -u new -s 0'
-alias ha-dev='ssh homeassistant'
+alias ha-dev='ssh homeassistant -t "tmux -2 -u attach -t 0 || tmux -2 -u new -s 0"'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # utils
