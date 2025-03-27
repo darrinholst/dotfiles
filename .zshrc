@@ -76,9 +76,9 @@ which-node() {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# rtx
+# mise
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-eval "$(rtx activate zsh)"
+eval "$(/Users/darrinholst/.local/bin/mise activate zsh)"
 
 wtf-node-modules() {
   find . -type d -name node_modules -prune | tr '\n' '\0' |  xargs -0 du -sch
