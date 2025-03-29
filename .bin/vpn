@@ -51,6 +51,8 @@ cat ${HOME}/.pw | sudo -S bash -c "$VPN_BIN \
     --verb 3 \
     --proto \"$VPN_PROTO\" \
     --remote \"${host}\" \"$VPN_PORT\" \
+    --tun-mtu 1400 \
+    --mssfix 1300 \
     --script-security 2 \
     --route-up '/usr/bin/env bash -c \"rm saml-response.txt && echo $(date +%s) > log/${VPN_ENV}.connected\"' \
     --down '/usr/bin/env bash -c \"rm log/${VPN_ENV}.connected\"' \
