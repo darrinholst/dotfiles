@@ -4,7 +4,9 @@
   "version": "1.0",
   "description": "What the name says",
   "host_permissions": [
-    "https://advancedag.awsapps.com/"
+    "https://advancedag.awsapps.com/",
+    "https://*.amazonaws.com/",
+    "https://*.aws.amazon.com/"
   ],
   "background": {
     "service_worker": "background.js"
@@ -13,9 +15,9 @@
     {
       "all_frames": true,
       "matches": [
-        "https://advancedag.awsapps.com/start/user-consent/authorize.html*",
         "https://device.sso.us-east-1.amazonaws.com/*",
-        "https://advancedag.awsapps.com/start/*"
+        "https://*.awsapps.com/start/*",
+        "https://*.sso.amazonaws.com/*"
       ],
       "js": [
         "approve.js"
@@ -24,7 +26,7 @@
     {
       "all_frames": true,
       "matches": [
-        "https://advancedag.awsapps.com/start/user-consent/login-success.html"
+        "https://*.awsapps.com/start/*"
       ],
       "js": [
         "close.js"

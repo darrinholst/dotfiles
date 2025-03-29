@@ -28,7 +28,7 @@ if [ "$(ulimit -n)" -lt 65536 ]; then
     ulimit -n
 fi
 
-sudo apt update && sudo apt install -y build-essential curl file git zsh tmux
+sudo apt update && sudo apt install -y build-essential curl file git zsh tmux python3-pynvim
 
 if ! command -v docker &> /dev/null; then
     echo "Installing Docker..."
