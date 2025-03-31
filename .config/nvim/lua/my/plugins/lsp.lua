@@ -8,8 +8,6 @@ return {
   },
 
   config = function()
-    local is_alpine = vim.fn.system("cat /etc/os-release 2>/dev/null"):match("Alpine") ~= nil
-
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
@@ -48,6 +46,56 @@ return {
 
     local servers = {
       bashls = {},
+      jsonls = {},
+      lemminx = {},
+      yamlls = {},
+
+      ts_ls = {
+        settings = {
+          diagnostics = {
+            ignoredCodes = { 6133, 7016, 7044, 80001, 80006, 80007 },
+          },
+
+          typescript = {
+            implicitProjectConfig = {
+              checkJs = true,
+              allowJs = true,
+              allowSyntheticDefaultImports = true,
+              target = "ESNext",
+              module = "ESNext",
+            },
+          },
+          javascript = {
+            implicitProjectConfig = {
+              checkJs = true,
+              allowSyntheticDefaultImports = true,
+              target = "ESNext",
+              module = "ESNext",
+            },
+          },
+        },
+      },
+
+      eslint = {
+        settings = {
+          workingDirectories = { mode = "auto" },
+        },
+
+        on_attach = function(client, bufnr)
+          local group = vim.api.nvim_create_augroup("FixIt", { clear = true })
+
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            group = group,
+            callback = function()
+              vim.schedule(function()
+                vim.cmd("EslintFixAll")
+              end)
+            end,
+          })
+        end,
+      },
+
       lua_ls = {
         settings = {
           Lua = {
@@ -63,67 +111,18 @@ return {
       },
     }
 
-    if not is_alpine then
-      servers.jsonls = {}
-      servers.lemminx = {}
-      servers.ts_ls = {
-        settings = {
-          diagnostics = {
-            ignoredCodes = { 6133, 7016, 80001, 80006, 80007 },
-          },
-        },
-      }
-      servers.yamlls = {}
-      servers.eslint = {
-        settings = {
-          workingDirectories = { mode = "auto" },
-        },
-        on_attach = function(client, bufnr)
-          local group = vim.api.nvim_create_augroup("FixIt", { clear = true })
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            group = group,
-            callback = function()
-              vim.schedule(function()
-                vim.cmd("EslintFixAll")
-              end)
-            end,
-          })
-        end,
-      }
-    end
+    require("mason").setup()
 
-    require("mason").setup({
-      ui = {
-        check_outdated_packages_on_open = false,
-        border = "single",
-      },
-      log_level = vim.log.levels.WARN,
-      max_concurrent_installers = is_alpine and 1 or 4,
-    })
-
-    local ensure_installed = is_alpine and { "bash-language-server", "lua-language-server" }
-      or vim.tbl_keys(servers or {})
-
-    if not is_alpine then
-      vim.list_extend(ensure_installed, { "stylua" })
-    end
-
-    require("mason-tool-installer").setup({
-      ensure_installed = ensure_installed,
-      auto_update = false,
-      run_on_start = not is_alpine,
-    })
+    local ensure_installed = vim.tbl_keys(servers or {})
+    vim.list_extend(ensure_installed, { "stylua" })
+    require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
     require("mason-lspconfig").setup({
-      automatic_installation = not is_alpine,
       handlers = {
         function(server_name)
-          if servers[server_name] then
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end
+          local server = servers[server_name] or {}
+          server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+          require("lspconfig")[server_name].setup(server)
         end,
       },
     })
