@@ -9,8 +9,5 @@ function clickButton(...buttonsToClick) {
   if (element) {
     console.log('SSO Auto Approve: Clicking button with text', element.textContent);
     element.click();
-    return true;
   }
-
-  return false;
 }

@@ -2,6 +2,12 @@ local function map(mode, key, cmd, opts)
   vim.keymap.set(mode, key, cmd, vim.tbl_deep_extend("force", { noremap = true, silent = true }, opts or {}))
 end
 
+-- esc
+vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("n", "<C-c>", "<Esc>")
+vim.keymap.set("v", "<C-c>", "<Esc>")
+vim.keymap.set("c", "<C-c>", "<Esc>")
+
 -- LSP
 map("", "<leader>rl", "<cmd>LspRestart<cr>", { desc = "Restart the LSP" })
 map("", "<leader>n", "<cmd>nohlsearch<cr>")
