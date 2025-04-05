@@ -98,10 +98,13 @@ local function is_aws_authed()
   return os.time() < expiresAt, minutes_until(expiresAt)
 end
 
-local function aws_login()
-  hs.notify.show("SSOing to AWS", "", "")
+local function aws_logout()
+  hs.notify.show("SSO logout happening", "", "")
   hs.urlevent.openURL("https://advancedag.awsapps.com/start/#/signout")
-  os.execute("sleep 2")
+end
+
+local function aws_login()
+  hs.notify.show("SSO login happening", "", "")
   hs.execute(
     "aws sso login --profile test && rm -rf ~/.aws/cli/cache && aws --profile test s3 ls && aws --profile prod s3 ls",
     true
@@ -137,7 +140,11 @@ MENU:setMenu(function()
       title = "AWS SSO" .. (aws_authed and (" (" .. hours_remaining .. ")") or ""),
       checked = aws_authed,
       fn = function()
-        aws_login()
+        if aws_authed then
+          aws_logout()
+        else
+          aws_login()
+        end
       end,
     },
   }
