@@ -71,20 +71,10 @@ map(
 -- formatter
 map("", "<C-f>", "<cmd>lua require('conform').format({lsp_fallback=true, async=true})<cr>")
 map("i", "<C-f>", "<esc><cmd>lua require('conform').format({lsp_fallback=true, async=true})<cr>")
--- map("", "<C-f>", "<cmd>FormatWrite<cr>")
--- map("i", "<C-f>", "<esc><cmd>FormatWrite<cr>")
 
 -- telescope
 map("", "<leader>t", "<cmd>Telescope<cr>")
-map("", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Search keymaps" })
 map("", "<leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Search yank history" })
-map("", "<leader>f", "<cmd>Telescope find_files<cr>", { desc = "Find file" })
-map("", "<C-p>", "<cmd>lua require('my/telescope-recipes').project_files()<cr>", { desc = "Find project file" })
-map("", "<C-g>", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Grep project" })
-map("", "<leader>gw", require("telescope.builtin").grep_string, { desc = "Grep current word" })
-map("", "<C-b>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Find in current buffer" })
-map("", "<C-e>", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
-map("", "<space>o", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Document symbols" })
 map("", "<space>r", "<cmd>Telescope resume<cr>", { desc = "Resume last telescope" })
 map("i", "^^", "<cmd>Telescope emoji<cr>")
 
@@ -106,9 +96,6 @@ map("n", "<leader>rbw", "<CMD>SearchReplaceMultiBufferCWord<CR>")
 map("n", "<leader>rbW", "<CMD>SearchReplaceMultiBufferCWORD<CR>")
 map("n", "<leader>rbe", "<CMD>SearchReplaceMultiBufferCExpr<CR>")
 map("n", "<leader>rbf", "<CMD>SearchReplaceMultiBufferCFile<CR>")
-
--- cucumber
-map("i", "<Bar>", "<Bar><Esc><cmd>call FormatGherkinTable()<cr>a")
 
 -- window management
 map("", "<leader>z", "<cmd>ZoomWinTabToggle<cr>")
@@ -142,9 +129,6 @@ map("", "<leader>p", "<plug>(choosewin)")
 map("", "<leader>vp", "<cmd>wa|VimuxPromptCommand<cr>")
 map("", "<leader>vl", "<cmd>wa|VimuxRunLastCommand<cr>")
 
--- undo
-map("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
-
 -- oil
 map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
@@ -153,4 +137,4 @@ vim.on_key(function(char)
   if vim.fn.mode() == "n" then
     vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, vim.fn.keytrans(char))
   end
-end, vim.api.nvim_create_namespace("auto_hlsearch"))
+end, vim.api.nvim_create_namespace "auto_hlsearch")

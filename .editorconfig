@@ -7,4 +7,7 @@ indent_style = space
 indent_size = 2
 continuation_indent = 2
 trailing_table_separator = smart
-
+collapse_simple_statement = Always
+call_parentheses = None
+indent_table_contents = false
+column_table_width = 120

@@ -21,25 +21,13 @@ return {
   { "troydm/zoomwintab.vim" },
   { "wakatime/vim-wakatime" },
   {
-    "pteroctopus/faster.nvim",
-    opts = {
-      behaviours = {
-        bigfile = {
-          filesize = 0.5,
-        },
-      },
-    },
-  },
-  {
     "ggandor/leap.nvim",
     opts = {
       disable_filetype = { "TelescopePrompt", "vim" },
       disable_in_macro = true,
       disable_in_visualblock = true,
     },
-    config = function()
-      require("leap").add_default_mappings()
-    end,
+    config = function() require("leap").add_default_mappings() end,
   },
   {
     "windwp/nvim-autopairs",
@@ -65,9 +53,14 @@ return {
   },
   {
     "folke/which-key.nvim",
-    event = "VimEnter",
-    config = function()
-      require("which-key").setup()
-    end,
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "<leader>?",
+        function() require("which-key").show { global = false } end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
   },
 }

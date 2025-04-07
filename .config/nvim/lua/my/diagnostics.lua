@@ -1,10 +1,8 @@
-vim.cmd("sign define DiagnosticSignError text= linehl= texthl=DiagnosticSignError numhl=")
-vim.cmd("sign define DiagnosticSignWarn text= linehl= texthl=DiagnosticSignWarn numhl=")
-vim.cmd("sign define DiagnosticSignInfo text= linehl= texthl=DiagnosticSignInfo numhl=")
-vim.cmd("sign define DiagnosticSignHint text= linehl= texthl=DiagnosticSignHint numhl=")
+local x = vim.diagnostic.severity
 
 vim.diagnostic.config({
   virtual_text = false,
+  signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
   update_in_insert = false,
   underline = true,
   severity_sort = true,

@@ -7,7 +7,7 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
   },
   config = function()
-    require("nvim-treesitter.configs").setup({
+    require("nvim-treesitter.configs").setup {
       modules = {},
       ignore_install = {},
       ensure_installed = {
@@ -45,7 +45,7 @@ return {
         },
       },
       sync_install = false,
-    })
+    }
 
     require("treesitter-context").setup()
   end,
