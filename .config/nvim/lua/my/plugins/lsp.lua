@@ -15,6 +15,7 @@ return {
           vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
 
+        map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
         map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
         map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
         map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
@@ -24,7 +25,6 @@ return {
         map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
         map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
         map("K", vim.lsp.buf.hover, "Hover Documentation")
-        map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
           border = "single",
@@ -88,9 +88,7 @@ return {
             buffer = bufnr,
             group = group,
             callback = function()
-              vim.schedule(function()
-                vim.cmd("EslintFixAll")
-              end)
+              vim.schedule(function() vim.cmd "EslintFixAll" end)
             end,
           })
         end,
@@ -115,9 +113,9 @@ return {
 
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, { "stylua" })
-    require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+    require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
-    require("mason-lspconfig").setup({
+    require("mason-lspconfig").setup {
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
@@ -125,6 +123,6 @@ return {
           require("lspconfig")[server_name].setup(server)
         end,
       },
-    })
+    }
   end,
 }
