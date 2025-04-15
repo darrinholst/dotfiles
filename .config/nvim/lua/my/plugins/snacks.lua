@@ -16,13 +16,32 @@ return {
     gitbrowse = { enabled = true },
   },
   keys = {
-    { "<C-p>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-    { "<C-g>", function() Snacks.picker.grep() end, desc = "Grep" },
-    { "<leader>gw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
-    { "<C-e>", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<leader>f", function() Snacks.picker.files() end, desc = "Find Files" },
+    { "<C-p>", function() Snacks.picker.smart { hidden = true } end, desc = "Smart Find Files" },
+    { "<C-g>", function()
+      Snacks.picker.grep {
+        hidden = true,
+      }
+    end, desc = "Grep" },
+    {
+      "<leader>gw",
+      function() Snacks.picker.grep_word { hidden = true } end,
+      desc = "Visual selection or word",
+      mode = { "n", "x" },
+    },
+    {
+      "<C-e>",
+      function()
+        Snacks.picker.buffers {
+          current = false,
+          sort_lastused = true,
+          layout = { preview = false, preset = "select" },
+        }
+      end,
+      desc = "Buffers",
+    },
     { "<C-b>", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     { "<space>o", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+    { "<leader>gl", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
 
     { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
     { "<leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
@@ -77,7 +96,6 @@ return {
     -- { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
     -- { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
     -- { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-    -- { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
     -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
   },
   init = function()

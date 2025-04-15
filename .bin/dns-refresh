@@ -24,7 +24,7 @@ $(get_hosts_entry $test_dns_server sonar.advancedagrilytics.com)
 EOF
 
   cat ~/.pw | sudo -S -p "" sed -i.backup '/# AUTO TEST START/,/# AUTO TEST END/d' /etc/hosts
-  cat ~/.pw | sudo -S -p "" cat /tmp/autohosts >> /etc/hosts
+  cat ~/.pw | sudo -S -p "" bash -c "cat /tmp/autohosts >> /etc/hosts"
 fi
 
 prod_dns_server=172.31.0.2
@@ -42,6 +42,6 @@ $(get_hosts_entry $prod_dns_server redshift.advancedag.com)
 EOF
 
   cat ~/.pw | sudo -S -p "" sed -i.backup '/# AUTO PROD START/,/# AUTO PROD END/d' /etc/hosts
-  cat ~/.pw | sudo -S -p "" cat /tmp/autohosts >> /etc/hosts
+  cat ~/.pw | sudo -S -p "" bash -c "cat /tmp/autohosts >> /etc/hosts"
 fi
 
