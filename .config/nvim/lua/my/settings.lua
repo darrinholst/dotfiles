@@ -44,5 +44,3 @@ vim.g.VimuxOrientation = "h"
 vim.g.choosewin_overlay_enable = 1
 vim.g.csv_no_conceal = 1
 vim.g.do_filetype_lua = 1
-vim.g.python3_host_prog = "/usr/bin/python3"
-vim.g.python_host_prog = "/usr/bin/python"

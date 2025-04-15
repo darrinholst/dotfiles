@@ -1,4 +1,4 @@
-local home = os.getenv("HOME")
+local home = os.getenv "HOME"
 
 local test_ip = "10.2.0.2"
 local prod_ip = "172.31.0.2"
@@ -6,7 +6,7 @@ local prod_ip = "172.31.0.2"
 local test_job_id = "com.darrinholst.test-vpn"
 local prod_job_id = "com.darrinholst.prod-vpn"
 
-local launchctl = require("launchctl")
+local launchctl = require "launchctl"
 local is_running = launchctl.is_running
 local add_job = launchctl.add_job
 
@@ -42,7 +42,7 @@ add_job(test_job_id, {
     VPN_ENV = "test",
     VPN_CONF = home .. "/.config/test.ovpn",
     VPN_HOST = "cvpn-endpoint-01353e4930b3f0ca1.prod.clientvpn.us-east-1.amazonaws.com",
-    PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
+    PATH = os.getenv "PATH" .. ":" .. home .. "/.bin",
   },
   ProgramArguments = { home .. "/.bin/vpn" },
   StandardErrorPath = home .. "/.bin/log/test-vpn.log",
@@ -55,7 +55,7 @@ add_job(prod_job_id, {
     VPN_ENV = "prod",
     VPN_CONF = home .. "/.config/prod.ovpn",
     VPN_HOST = "cvpn-endpoint-022d7eb676972a623.prod.clientvpn.us-east-1.amazonaws.com",
-    PATH = os.getenv("PATH") .. ":" .. home .. "/.bin",
+    PATH = os.getenv "PATH" .. ":" .. home .. "/.bin",
   },
   ProgramArguments = { home .. "/.bin/vpn" },
   StandardErrorPath = home .. "/.bin/log/prod-vpn.log",
@@ -122,16 +122,12 @@ MENU:setMenu(function()
     {
       title = "Test VPN" .. (test_connected and (" (" .. hours_since(test_connected:read()) .. ")") or ""),
       checked = test_connected and true or false,
-      fn = function()
-        toggle_vpn(test_job_id, "test")
-      end,
+      fn = function() toggle_vpn(test_job_id, "test") end,
     },
     {
       title = "Prod VPN" .. (prod_connected and (" (" .. hours_since(prod_connected:read()) .. ")") or ""),
       checked = prod_connected and true or false,
-      fn = function()
-        toggle_vpn(prod_job_id, "prod")
-      end,
+      fn = function() toggle_vpn(prod_job_id, "prod") end,
     },
     {
       title = "-",
@@ -139,13 +135,7 @@ MENU:setMenu(function()
     {
       title = "AWS SSO" .. (aws_authed and (" (" .. hours_remaining .. ")") or ""),
       checked = aws_authed,
-      fn = function()
-        if aws_authed then
-          aws_logout()
-        else
-          aws_login()
-        end
-      end,
+      fn = function() aws_login() end,
     },
   }
 end)
@@ -166,17 +156,11 @@ update_icon()
 
 local function maybe_update_vpn_status(files)
   for _, file in pairs(files) do
-    if file:match(".connected") then
-      update_icon()
-    end
+    if file:match ".connected" then update_icon() end
   end
 end
 
 LOG_PATH_WATCHER = hs.pathwatcher.new(home .. "/.bin/log", maybe_update_vpn_status):start()
 
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "v", function()
-  toggle_vpn(test_job_id, "test")
-end)
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "a", function()
-  aws_login()
-end)
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "v", function() toggle_vpn(test_job_id, "test") end)
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "a", function() aws_login() end)

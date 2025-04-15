@@ -22,7 +22,6 @@ export ZSH=$HOME/.oh-my-zsh
 zstyle ':omz:update' mode auto
 plugins=(\
   autojump \
-  bundler \
   colored-man-pages \
   common-aliases \
   docker \
@@ -266,6 +265,3 @@ fk() { # build menu to kill process
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
-
-eval "$(rbenv init - zsh)"
-
