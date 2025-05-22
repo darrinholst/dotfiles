@@ -24,6 +24,7 @@ return {
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },
+      fold = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {
