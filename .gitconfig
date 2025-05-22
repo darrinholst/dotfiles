@@ -2,6 +2,7 @@
   ignorecase = false
   excludesfile = ~/.gitignore-global
   editor = vim
+  pager = bash -lc 'diff-highlight | strip_diff_leading_symbols | less -r' -
 
 [user]
   email = darrinholst@gmail.com
