@@ -12,7 +12,7 @@ return {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = event.buf, desc = "[R]e[n]ame" })
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "[C]ode [A]ction" })
+        vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "[C]ode [A]ction" })
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Hover Documentation" })
 
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
@@ -35,12 +35,22 @@ return {
       yamlls = {},
 
       ts_ls = {
-        settings = {
-          diagnostics = {
-            ignoredCodes = { 6133, 7016, 7044, 80001, 80006, 80007 },
+        init_options = {
+          preferences = {
+            disableSuggestions = false,
           },
-
+        },
+        settings = {
           typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
             implicitProjectConfig = {
               checkJs = true,
               allowJs = true,
@@ -56,6 +66,9 @@ return {
               target = "ESNext",
               module = "ESNext",
             },
+          },
+          diagnostics = {
+            ignoredCodes = { 6133, 7016, 7044, 80001, 80006, 80007 },
           },
         },
       },
