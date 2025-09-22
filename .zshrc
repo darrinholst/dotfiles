@@ -265,3 +265,6 @@ fk() { # build menu to kill process
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
+
+# opencode
+export PATH=/Users/darrinholst/.opencode/bin:$PATH
