@@ -90,7 +90,10 @@ return {
           buffer = bufnr,
           group = group,
           callback = function()
-            vim.schedule(function() vim.cmd "EslintFixAll" end)
+            vim.lsp.buf.code_action({
+              context = { only = { "source.fixAll.eslint" } },
+              apply = true,
+            })
           end,
         })
       end,
@@ -114,6 +117,7 @@ return {
 
     local mason_packages = {
       "bash-language-server",
+      "gopls",
       "json-lsp",
       "lemminx",
       "yaml-language-server",
@@ -125,6 +129,6 @@ return {
     require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
     -- Enable LSP servers using the new API
-    vim.lsp.enable({ 'bashls', 'jsonls', 'lemminx', 'yamlls', 'tsserver', 'eslint', 'lua_ls' })
+    vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lemminx', 'yamlls', 'tsserver', 'eslint', 'lua_ls' })
   end,
 }

@@ -73,6 +73,9 @@
 [url "https://github.com/"]
   insteadOf = git@github.com:
 
+[url "https://gitlab.com/advanced-agrilytics/engineering/aa-cli"]
+  insteadOf = https://gitlab.com/advanced-agrilytics/aa-cli
+
 [url "https://"]
   insteadOf = git://
 
