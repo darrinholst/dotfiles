@@ -44,3 +44,11 @@ vim.g.VimuxOrientation = "h"
 vim.g.choosewin_overlay_enable = 1
 vim.g.csv_no_conceal = 1
 vim.g.do_filetype_lua = 1
+
+-- Hide tab characters in Go files (Go uses tabs by convention)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    vim.opt_local.list = false
+  end,
+})
