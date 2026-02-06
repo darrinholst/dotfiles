@@ -271,3 +271,4 @@ export PATH=/Users/darrinholst/.opencode/bin:$PATH
 
 # go
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
