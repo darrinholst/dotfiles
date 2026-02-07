@@ -89,10 +89,10 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-if [ ! -d "$HOME/.config/base16-shell" ]; then
-    echo "Installing base16-shell..."
-    mkdir -p ~/.config
-    git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+if [ ! -d "$HOME/.config/tinted-theming/tinted-shell" ]; then
+    echo "Installing tinted-shell..."
+    mkdir -p ~/.config/tinted-theming
+    git clone https://github.com/tinted-theming/tinted-shell.git ~/.config/tinted-theming/tinted-shell
 fi
 
 if [ -f "./link.sh" ]; then

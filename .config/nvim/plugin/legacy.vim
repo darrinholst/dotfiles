@@ -1,4 +1,14 @@
-colorscheme catppuccin-mocha
+let s:theme_name_path = expand("~/.config/tinted-theming/theme_name")
+if filereadable(s:theme_name_path)
+  let s:theme_name = readfile(s:theme_name_path)[0]
+  if s:theme_name =~ '^catppuccin-'
+    execute 'colorscheme ' . s:theme_name
+  else
+    execute 'colorscheme base16-' . s:theme_name
+  endif
+else
+  colorscheme catppuccin-mocha
+endif
 
 " // in visual mode to search buffer for selection
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>    

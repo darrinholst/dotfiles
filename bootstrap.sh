@@ -32,7 +32,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 #~~~~~~~~~~~~~~#
 #~ the colors ~#
 #~~~~~~~~~~~~~~#
-git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+git clone https://github.com/tinted-theming/tinted-shell.git ~/.config/tinted-theming/tinted-shell
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #~ python some crap for ultisnips in neovim ~#

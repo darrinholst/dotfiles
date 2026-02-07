@@ -43,6 +43,11 @@ return {
     priority = 1000,
   },
   {
+    "tinted-theming/tinted-vim",
+    lazy = false,
+    priority = 1000,
+  },
+  {
     "gbprod/yanky.nvim",
     dependencies = {
       { "kkharji/sqlite.lua" },

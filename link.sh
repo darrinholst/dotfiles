@@ -52,6 +52,13 @@ link_it ".vpn"
 link_slim ".zshrc"
 link_slim ".tmux.conf"
 
+# tinted-shell hooks
+if [ -d "$HOME/.config/tinted-theming/tinted-shell/hooks" ]; then
+    for hook in "$CURRENT_DIR"/tinted-hooks/*.sh; do
+        [ -f "$hook" ] && ln -vfs "$hook" "$HOME/.config/tinted-theming/tinted-shell/hooks/$(basename "$hook")"
+    done
+fi
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     link_it ".hammerspoon"
 fi

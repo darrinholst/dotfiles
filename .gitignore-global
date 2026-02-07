@@ -15,4 +15,5 @@ tags
 .yalc
 yalc.lock
 *.nvim
+.claude/settings.local.json
 

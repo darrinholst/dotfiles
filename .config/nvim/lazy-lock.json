@@ -46,6 +46,7 @@
   "smartyank.nvim": { "branch": "master", "commit": "c4e53e0d9316ca790a6f5d78aad73206a763873b" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "sqlite.lua": { "branch": "master", "commit": "50092d60feb242602d7578398c6eb53b4a8ffe7b" },
+  "tinted-vim": { "branch": "main", "commit": "3d4aefaa003ad96535a51ff54d579ecd13fbdb0f" },
   "trouble.nvim": { "branch": "dev", "commit": "8a0394ce7c38d961b355160dfc1e4ab77b9a38d7" },
   "ultisnips": { "branch": "master", "commit": "b22a86f9dcc5257624bff3c72d8b902eac468aad" },
   "undotree": { "branch": "master", "commit": "fc28931fbfba66ab75d9af23fe46ffbbb9de6e8c" },
