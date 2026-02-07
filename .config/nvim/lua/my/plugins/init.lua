@@ -3,16 +3,15 @@ return {
   { "chrisbra/csv.vim" },
   { "ibhagwan/smartyank.nvim", opts = { highlight = { timeout = 1000 } } },
   { "kylechui/nvim-surround", opts = {} },
+  { "lukas-reineke/virt-column.nvim", opts = {} },
   { "mbbill/undotree" },
   { "mhinz/vim-startify" },
-  { "roobert/search-replace.nvim", opts = {} },
-  { "sjl/vitality.vim" },
+  { "windwp/nvim-ts-autotag", opts = {} },
   { "smjonas/inc-rename.nvim", opts = { input_buffer_type = "dressing" } },
   { "stevearc/dressing.nvim" },
-  { "suy/vim-context-commentstring" },
   { "t9md/vim-choosewin" },
   { "thinca/vim-qfreplace" },
-  { "tpope/vim-commentary" },
+  { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
   { "tpope/vim-eunuch" },
   { "tpope/vim-repeat" },
   { "tpope/vim-rhubarb" },
@@ -32,15 +31,16 @@ return {
   {
     "windwp/nvim-autopairs",
     opts = {
-      disable_filetype = { "TelescopePrompt", "vim" },
+      disable_filetype = { "vim" },
       disable_in_macro = true,
       disable_in_visualblock = true,
     },
   },
   {
-    "RRethy/nvim-base16",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
   },
   {
     "gbprod/yanky.nvim",

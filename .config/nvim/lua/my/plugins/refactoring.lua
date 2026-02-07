@@ -1,8 +1,6 @@
 return {
   "ThePrimeagen/refactoring.nvim",
   config = function()
-    require("telescope").load_extension("refactoring")
-
     -- Remaps for the refactoring operations currently offered by the plugin
     vim.api.nvim_set_keymap(
       "v",

@@ -35,7 +35,7 @@ vim.opt.updatetime = 300 --   Smaller updatetime for CursorHold & CursorHoldI
 vim.opt.vb = true --  no beeping
 vim.opt.wrap = false -- no line wrapping by default
 
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.wo.foldlevel = 99
 vim.wo.foldmethod = "expr"
 
@@ -43,7 +43,6 @@ vim.g.VimuxHeight = "30"
 vim.g.VimuxOrientation = "h"
 vim.g.choosewin_overlay_enable = 1
 vim.g.csv_no_conceal = 1
-vim.g.do_filetype_lua = 1
 
 -- Hide tab characters in Go files (Go uses tabs by convention)
 vim.api.nvim_create_autocmd("FileType", {

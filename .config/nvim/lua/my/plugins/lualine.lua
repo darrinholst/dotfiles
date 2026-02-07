@@ -1,7 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
-    local current_theme = "onedark"
+    local current_theme = "catppuccin"
 
     local function setup_lualine(theme)
       current_theme = theme
@@ -10,7 +10,7 @@ return {
           icons_enabled = true,
           theme = theme,
           component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           disabled_filetypes = {
             startify = {},
             statusline = {},

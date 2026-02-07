@@ -1,8 +1,4 @@
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
-else
-  color base16-tomorrow-night
-endif
+colorscheme catppuccin-mocha
 
 " // in visual mode to search buffer for selection
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>    
@@ -10,7 +6,7 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " remember last location in files
-au BufReadPost * if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+au BufReadPost * if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 " Control font size
 nmap <D-+> :let &guifont = substitute(&guifont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
