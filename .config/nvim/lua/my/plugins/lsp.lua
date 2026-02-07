@@ -13,13 +13,9 @@ return {
       callback = function(event)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = event.buf, desc = "[R]e[n]ame" })
         vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "[C]ode [A]ction" })
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Hover Documentation" })
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "single", max_width = math.floor(vim.o.columns * 0.75) }) end, { buffer = event.buf, desc = "Hover Documentation" })
       end,
     })
-
-    -- Configure global LSP handlers
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 
     -- Configure diagnostics using the new API
     vim.diagnostic.config({

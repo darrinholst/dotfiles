@@ -72,30 +72,13 @@ map(
 map("", "<C-f>", "<cmd>lua require('conform').format({lsp_fallback=true, async=true})<cr>")
 map("i", "<C-f>", "<esc><cmd>lua require('conform').format({lsp_fallback=true, async=true})<cr>")
 
--- telescope
-map("", "<leader>t", "<cmd>Telescope<cr>")
-map("", "<leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Search yank history" })
-map("", "<space>r", "<cmd>Telescope resume<cr>", { desc = "Resume last telescope" })
-map("i", "^^", "<cmd>Telescope emoji<cr>")
+-- pickers
+map("", "<leader>y", "<cmd>YankyRingHistory<cr>", { desc = "Search yank history" })
+map("i", "^^", function() Snacks.picker.icons() end, { desc = "Emoji picker" })
 
 -- search
 map("", "<F4>", "<cmd>cn<cr>")
 map("", "<F16>", "<cmd>cp<cr>")
-map("v", "<C-r>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>")
-map("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>")
-map("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>")
-map("n", "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>")
-map("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>")
-map("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>")
-map("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>")
-map("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>")
-map("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>")
-map("n", "<leader>rbs", "<CMD>SearchReplaceMultiBufferSelections<CR>")
-map("n", "<leader>rbo", "<CMD>SearchReplaceMultiBufferOpen<CR>")
-map("n", "<leader>rbw", "<CMD>SearchReplaceMultiBufferCWord<CR>")
-map("n", "<leader>rbW", "<CMD>SearchReplaceMultiBufferCWORD<CR>")
-map("n", "<leader>rbe", "<CMD>SearchReplaceMultiBufferCExpr<CR>")
-map("n", "<leader>rbf", "<CMD>SearchReplaceMultiBufferCFile<CR>")
 
 -- window management
 map("", "<leader>z", "<cmd>ZoomWinTabToggle<cr>")
