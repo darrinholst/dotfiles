@@ -11,6 +11,12 @@ return {
       layout = {
         preset = function() return vim.o.columns >= 150 and "default" or "vertical" end,
       },
+
+      sources = {
+        icons = {
+          layout = { preset = "dropdown", preview = false },
+        },
+      },
     },
     statuscolumn = { enabled = true },
     gitbrowse = { enabled = true },
