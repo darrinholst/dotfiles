@@ -3,8 +3,8 @@ local home = os.getenv "HOME"
 local test_ip = "10.2.0.2"
 local prod_ip = "172.31.0.2"
 
-local test_job_id = "com.darrinholst.test-vpn"
-local prod_job_id = "com.darrinholst.prod-vpn"
+local test_job_id = "com.advancedagrilytics.test-vpn"
+local prod_job_id = "com.advancedagrilytics.prod-vpn"
 
 local launchctl = require "launchctl"
 local is_running = launchctl.is_running
@@ -15,7 +15,7 @@ local add_job = launchctl.add_job
 -- sso authentication. This server is needed to circumvent that.
 -- https://github.com/samm-git/aws-vpn-client
 --
-add_job("com.darrinholst.saml-server", {
+add_job("com.advancedagrilytics.saml-server", {
   KeepAlive = { SuccessfulExit = false },
   WorkingDirectory = home .. "/.bin",
   ProgramArguments = { home .. "/.bin/saml-server" },
@@ -28,7 +28,7 @@ add_job("com.darrinholst.saml-server", {
 -- since DNS doesn't do fallback. And I like to use cloudflare
 -- DNS anyway.
 --
-add_job("com.darrinholst.dns-resolver", {
+add_job("com.advancedagrilytics.dns-resolver", {
   StartInterval = 20,
   WorkingDirectory = home .. "/.bin",
   ProgramArguments = { home .. "/.bin/dns-refresh" },
