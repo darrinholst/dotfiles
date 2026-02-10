@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Returns AWS SSO time remaining for tmux status bar
+
+line=$(aa aws sso status 2>/dev/null | grep "^✅ sso")
+
+if [[ -n "$line" ]]; then
+  echo "$line" | sed 's/.*(\(.*\))/\1/'
+fi
