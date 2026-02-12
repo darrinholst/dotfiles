@@ -1,5 +1,4 @@
 CONFIG_RELOADER = require "config-reloader"
-VPN = require "vpn"
 
 hs.hotkey.bind({ "cmd", "alt" }, "V", function() hs.eventtap.keyStrokes(hs.pasteboard.getContents()) end)
 
