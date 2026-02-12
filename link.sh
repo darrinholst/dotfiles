@@ -41,6 +41,7 @@ link_slim () {
 
 link_it ".bash_profile"
 link_it ".config/nvim"
+link_it ".config/tmux"
 link_it ".gitconfig"
 link_it ".gitignore-global"
 link_it ".ssh/config"

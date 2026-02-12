@@ -79,6 +79,6 @@
   merges = false
 
 [url "git@gitlab.com:"]
-  insteadOf = https://gitlab.com/
+	insteadOf = https://gitlab.com/
 [safe]
 	directory = /Users/darrinholst/.dotfiles
