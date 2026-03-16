@@ -13,4 +13,5 @@ log
 node_modules
 results.json
 Brewfile.lock.json
+saml-response.txt
 

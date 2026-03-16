@@ -9,7 +9,7 @@ return {
   config = function()
     require("nvim-treesitter.configs").setup {
       modules = {},
-      ignore_install = {},
+      ignore_install = { "swift" },
       ensure_installed = {
         "bash",
         "html",

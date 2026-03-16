@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
-# Returns VPN connection status for a given environment
 
-case "$1" in
-  test) ip="10.2.0.2" ;;
-  prod) ip="172.31.0.2" ;;
-  *) exit 1 ;;
-esac
+result=""
 
-if nc -G1 -w1 -z "$ip" 53 2>/dev/null; then
-  echo "$1"
+if nc -G1 -w1 -z "10.2.0.2" 53 2>/dev/null; then
+  result="test"
 fi
+
+if nc -G1 -w1 -z "172.31.0.2" 53 2>/dev/null; then
+  [[ -n "$result" ]] && result+=" | "
+  result+="prod"
+fi
+
+echo "$result"
