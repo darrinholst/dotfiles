@@ -95,6 +95,12 @@ return {
       end,
     })
 
+    vim.lsp.config('sourcekit', {
+      cmd = { 'sourcekit-lsp' },
+      filetypes = { 'swift', 'objc', 'objcpp' },
+      root_markers = { 'Package.swift', '*.xcodeproj', '*.xcworkspace', '.git' },
+    })
+
     vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
@@ -119,12 +125,13 @@ return {
       "yaml-language-server",
       "typescript-language-server",
       "eslint-lsp",
-      "lua-language-server"
+      "lua-language-server",
+      "ruff",
     }
-    local ensure_installed = vim.list_extend(vim.deepcopy(mason_packages), { "stylua" })
+    local ensure_installed = vim.list_extend(vim.deepcopy(mason_packages), { "stylua", "swiftformat" })
     require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
     -- Enable LSP servers using the new API
-    vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lemminx', 'yamlls', 'tsserver', 'eslint', 'lua_ls' })
+    vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lemminx', 'yamlls', 'tsserver', 'eslint', 'lua_ls', 'sourcekit', 'ruff' })
   end,
 }

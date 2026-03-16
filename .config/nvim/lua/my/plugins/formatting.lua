@@ -23,6 +23,8 @@ return {
         json = { "jq", "fixjson", "trim_whitespace" },
         javascript = { "eslint_d", "prettier", "trim_whitespace" },
         javascriptreact = { "eslint_d", "trim_whitespace" },
+        python = { "ruff_fix", "ruff_format" },
+        swift = { "swiftformat" },
         ["_"] = { "trim_whitespace" },
       },
     },
