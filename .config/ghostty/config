@@ -1,0 +1,4 @@
+command = /bin/zsh -c 'tmux -2 -u attach -t 0 || tmux -2 -u new -s 0'
+config-file = ~/.config/tinted-theming/ghostty-theme.conf
+font-family = FiraCode Nerd Font
+font-size = 16

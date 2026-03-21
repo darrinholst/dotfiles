@@ -40,6 +40,7 @@ link_slim () {
 }
 
 link_it ".bash_profile"
+link_it ".config/ghostty"
 link_it ".config/nvim"
 link_it ".config/tmux"
 link_it ".gitconfig"

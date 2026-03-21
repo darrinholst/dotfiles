@@ -1,7 +1,12 @@
 return {
   "nvim-lualine/lualine.nvim",
+  dependencies = { "catppuccin/nvim" },
   config = function()
-    local current_theme = "catppuccin"
+    local theme_name_path = vim.fn.expand("~/.config/tinted-theming/theme_name")
+    local current_theme = "auto"
+    if vim.fn.filereadable(theme_name_path) == 1 then
+      current_theme = vim.fn.readfile(theme_name_path)[1]
+    end
 
     local function setup_lualine(theme)
       current_theme = theme
