@@ -157,6 +157,7 @@ export TERM=xterm-256color
 export CLICOLOR=1
 
 BASE16_SHELL_PATH="$HOME/.config/tinted-theming/tinted-shell"
+export BASE16_SHELL_ENABLE_VARS=1
 [ -n "$PS1" ] && [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && source "$BASE16_SHELL_PATH/profile_helper.sh"
 base16_catppuccin-mocha
 # base16_catppuccin-latte
