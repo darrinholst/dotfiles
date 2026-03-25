@@ -80,3 +80,6 @@
 
 [url "git@gitlab.com:"]
   insteadOf = https://gitlab.com/
+
+[safe]
+  directory = *
