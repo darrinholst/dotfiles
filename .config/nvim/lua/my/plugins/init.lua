@@ -4,7 +4,6 @@ return {
   { "ibhagwan/smartyank.nvim", opts = { highlight = { timeout = 1000 } } },
   { "kylechui/nvim-surround", opts = {} },
   { "lukas-reineke/virt-column.nvim", opts = {} },
-  { "mbbill/undotree" },
   { "mhinz/vim-startify" },
   { "windwp/nvim-ts-autotag", opts = {} },
   { "smjonas/inc-rename.nvim", opts = { input_buffer_type = "dressing" } },

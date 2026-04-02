@@ -35,7 +35,7 @@ return {
     })
 
     -- Configure specific servers using new vim.lsp.config API
-    vim.lsp.config('tsserver', {
+    vim.lsp.config('ts_ls', {
       cmd = { 'typescript-language-server', '--stdio' },
       filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
       init_options = {
@@ -132,6 +132,6 @@ return {
     require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
     -- Enable LSP servers using the new API
-    vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lemminx', 'yamlls', 'tsserver', 'eslint', 'lua_ls', 'sourcekit', 'ruff' })
+    vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lemminx', 'yamlls', 'ts_ls', 'eslint', 'lua_ls', 'sourcekit', 'ruff' })
   end,
 }

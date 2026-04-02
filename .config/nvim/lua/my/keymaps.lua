@@ -58,19 +58,19 @@ map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uic
 map(
   "n",
   "[d",
-  "<cmd>lua vim.diagnostic.goto_prev({ wrap = true, severity = vim.diagnostic.severity.ERROR })<CR>",
+  "<cmd>lua vim.diagnostic.jump({ count = -1, wrap = true, severity = vim.diagnostic.severity.ERROR, float = true })<CR>",
   { desc = "Go to previous [D]iagnostic message" }
 )
 map(
   "n",
   "]d",
-  "<cmd>lua vim.diagnostic.goto_next({ wrap = true, severity = vim.diagnostic.severity.ERROR })<CR>",
+  "<cmd>lua vim.diagnostic.jump({ count = 1, wrap = true, severity = vim.diagnostic.severity.ERROR, float = true })<CR>",
   { desc = "Go to next [D]iagnostic message" }
 )
 
 -- formatter
-map("", "<C-f>", "<cmd>lua require('conform').format({lsp_fallback=true, async=true})<cr>")
-map("i", "<C-f>", "<esc><cmd>lua require('conform').format({lsp_fallback=true, async=true})<cr>")
+map("", "<C-f>", "<cmd>lua require('conform').format({lsp_format='fallback', async=true})<cr>")
+map("i", "<C-f>", "<esc><cmd>lua require('conform').format({lsp_format='fallback', async=true})<cr>")
 
 -- pickers
 map("", "<leader>y", "<cmd>YankyRingHistory<cr>", { desc = "Search yank history" })
@@ -114,6 +114,9 @@ map("", "<leader>vl", "<cmd>wa|VimuxRunLastCommand<cr>")
 
 -- oil
 map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- undo
+map("n", "<leader>u", "<cmd>packadd nvim.undotree | Undotree<cr>", { desc = "Undo tree" })
 
 -- auto manage hlsearch
 vim.on_key(function(char)
