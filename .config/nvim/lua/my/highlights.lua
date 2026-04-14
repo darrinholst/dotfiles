@@ -5,8 +5,7 @@ local function apply_highlights()
 
   if not ok then return end
 
-  local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
-  local background = normal_hl.bg and string.format("#%06x", normal_hl.bg) or "NONE"
+  local background = "NONE"
 
   local function hi(name, val)
     vim.api.nvim_set_hl(0, name, val)
@@ -22,6 +21,8 @@ local function apply_highlights()
   hi("FloatBorder", { fg = palette.overlay0, bg = background })
   hi("LineNr", { bg = background, fg = palette.overlay0 })
   hi("MatchParen", { bg = palette.peach, fg = palette.base })
+  hi("Normal", { bg = "NONE" })
+  hi("NormalNC", { bg = "NONE" })
   hi("NeoTreeNormal", { bg = background })
   hi("NeoTreeNormalNC", { bg = background })
   hi("NeoTreeWinSeparator", { fg = palette.overlay0, bg = background })

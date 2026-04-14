@@ -13,6 +13,7 @@ vim.opt.ignorecase = true --  ignore case
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.laststatus = 3 --     show the nvim global status line
 vim.opt.list = true
+vim.opt.fillchars = { eob = " " }
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.mouse = "a"
 vim.opt.number = true
