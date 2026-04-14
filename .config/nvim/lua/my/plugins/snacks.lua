@@ -2,25 +2,28 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
-  opts = {
-    bigfile = { enabled = true },
-    input = { enabled = true },
-    picker = {
-      enabled = true,
+  config = function()
+    require("snacks").setup {
+      bigfile = { enabled = true },
+      input = { enabled = true },
+      picker = {
+        enabled = true,
 
-      layout = {
-        preset = function() return vim.o.columns >= 150 and "default" or "vertical" end,
-      },
+        layout = {
+          preset = function() return vim.o.columns >= 150 and "default" or "vertical" end,
+        },
 
-      sources = {
-        icons = {
-          layout = { preset = "dropdown", preview = false },
+        sources = {
+          icons = {
+            layout = { preset = "dropdown", preview = false },
+          },
         },
       },
-    },
-    statuscolumn = { enabled = true },
-    gitbrowse = { enabled = true },
-  },
+      statuscolumn = { enabled = true },
+      gitbrowse = { enabled = true },
+    }
+
+  end,
   keys = {
     { "<C-p>", function() Snacks.picker.smart { hidden = true } end, desc = "Smart Find Files" },
     { "<C-g>", function()
