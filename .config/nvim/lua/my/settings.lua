@@ -48,7 +48,5 @@ vim.g.csv_no_conceal = 1
 -- Hide tab characters in Go files (Go uses tabs by convention)
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "go",
-  callback = function()
-    vim.opt_local.list = false
-  end,
+  callback = function() vim.opt_local.list = false end,
 })
