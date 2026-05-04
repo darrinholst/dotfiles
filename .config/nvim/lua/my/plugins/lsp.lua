@@ -115,7 +115,11 @@ return {
       },
     })
 
-    require("mason").setup()
+    require("mason").setup({
+      ui = {
+        border = "rounded",
+      },
+    })
 
     local mason_packages = {
       "bash-language-server",

@@ -8,7 +8,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("my.settings")
-require("lazy").setup("my.plugins")
+require("lazy").setup("my.plugins", {
+  ui = {
+    border = "rounded",
+  },
+})
 require("my.keymaps")
 require("my.highlights")
 require("my.diagnostics")
