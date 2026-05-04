@@ -10,12 +10,6 @@ return {
   config = function()
     require("nvim-treesitter").setup()
 
-    vim.api.nvim_create_autocmd("FileType", {
-      callback = function()
-        pcall(vim.treesitter.start)
-      end,
-    })
-
     require("nvim-treesitter").install({
       "bash",
       "html",
@@ -24,6 +18,8 @@ return {
       "markdown_inline",
       "vim",
       "vimdoc",
+      "hcl",
+      "terraform",
       "javascript",
       "json",
       "typescript",
@@ -45,7 +41,6 @@ return {
 
     require("treesitter-context").setup()
 
-    -- incremental selection using treesitter nodes (replaces old incremental_selection module)
     local selection_stack = {}
 
     local function select_node(node)
@@ -55,29 +50,33 @@ return {
       vim.cmd("normal! gv")
     end
 
-    vim.keymap.set("n", "<CR>", function()
-      local node = vim.treesitter.get_node()
-      if not node then return end
-      selection_stack = { node }
-      select_node(node)
-    end, { desc = "Init treesitter incremental selection" })
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function(args)
+        if not pcall(vim.treesitter.start, args.buf) then return end
 
-    vim.keymap.set("x", "<CR>", function()
-      local current = selection_stack[#selection_stack]
-      if not current then return end
-      local parent = current:parent()
-      if not parent then return end
-      table.insert(selection_stack, parent)
-      select_node(parent)
-    end, { desc = "Increment treesitter selection" })
+        vim.keymap.set("n", "<CR>", function()
+          local node = vim.treesitter.get_node()
+          if not node then return end
+          selection_stack = { node }
+          select_node(node)
+        end, { buffer = args.buf, desc = "Init treesitter incremental selection" })
 
-    vim.keymap.set("x", "<BS>", function()
-      if #selection_stack <= 1 then return end
-      table.remove(selection_stack)
-      local node = selection_stack[#selection_stack]
-      if node then
-        select_node(node)
-      end
-    end, { desc = "Decrement treesitter selection" })
+        vim.keymap.set("x", "<CR>", function()
+          local current = selection_stack[#selection_stack]
+          if not current then return end
+          local parent = current:parent()
+          if not parent then return end
+          table.insert(selection_stack, parent)
+          select_node(parent)
+        end, { buffer = args.buf, desc = "Increment treesitter selection" })
+
+        vim.keymap.set("x", "<BS>", function()
+          if #selection_stack <= 1 then return end
+          table.remove(selection_stack)
+          local node = selection_stack[#selection_stack]
+          if node then select_node(node) end
+        end, { buffer = args.buf, desc = "Decrement treesitter selection" })
+      end,
+    })
   end,
 }

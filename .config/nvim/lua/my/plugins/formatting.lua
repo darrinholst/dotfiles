@@ -26,6 +26,8 @@ return {
         javascriptreact = { "eslint_d", "trim_whitespace" },
         python = { "ruff_fix", "ruff_format" },
         swift = { "swiftformat" },
+        terraform = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
         ["_"] = { "trim_whitespace" },
       },
     },
