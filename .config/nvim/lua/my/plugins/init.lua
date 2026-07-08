@@ -1,6 +1,5 @@
 return {
   { "benmills/vimux" },
-  { "chrisbra/csv.vim" },
   { "ibhagwan/smartyank.nvim", opts = { highlight = { timeout = 1000 } } },
   { "kylechui/nvim-surround", opts = {} },
   { "lukas-reineke/virt-column.nvim", opts = {} },

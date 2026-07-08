@@ -58,8 +58,17 @@ j() {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # aiiiiiiiiiiiiiiiiiiiiiii
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias oc="AWS_PROFILE=prod opencode"
+alias oc="opencode"
 alias cc="claude"
+
+bpi() {
+  local profile="${AWS_PROFILE:-test}"
+  if ! aws configure export-credentials --profile "$profile" --format env >/dev/null 2>&1; then
+    aws sso login --profile "$profile" || return 1
+  fi
+  eval "$(aws configure export-credentials --profile "$profile" --format env)" || return 1
+  pi "$@"
+}
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # vim
