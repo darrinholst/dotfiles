@@ -101,6 +101,55 @@ return {
       root_markers = { 'Package.swift', '*.xcodeproj', '*.xcworkspace', '.git' },
     })
 
+    local function resolve_python_path(root_dir)
+      if vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV ~= "" then
+        return vim.env.VIRTUAL_ENV .. "/bin/python"
+      end
+
+      for _, venv_dir in ipairs({ ".venv", "venv", "env" }) do
+        local candidate = vim.fs.joinpath(root_dir or vim.uv.cwd(), venv_dir, "bin", "python")
+        if vim.uv.fs_stat(candidate) then
+          return candidate
+        end
+      end
+
+      local system_python = vim.fn.exepath("python3")
+      return system_python ~= "" and system_python or "python"
+    end
+
+    vim.lsp.config('basedpyright', {
+      on_init = function(client)
+        client.settings = vim.tbl_deep_extend("force", client.settings or {}, {
+          python = { pythonPath = resolve_python_path(client.root_dir) },
+        })
+        client:notify("workspace/didChangeConfiguration", { settings = client.settings })
+      end,
+      settings = {
+        basedpyright = {
+          disableOrganizeImports = true,
+          analysis = {
+            autoSearchPaths = true,
+            autoImportCompletions = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "openFilesOnly",
+            typeCheckingMode = "standard",
+            diagnosticSeverityOverrides = {
+              reportUnusedImport = "none",
+              reportUnusedVariable = "none",
+              reportMissingTypeStubs = "none",
+            },
+          },
+        },
+      },
+    })
+
+    vim.lsp.config('ruff', {
+      on_attach = function(client)
+        client.server_capabilities.hoverProvider = false
+        client.server_capabilities.definitionProvider = false
+      end,
+    })
+
     vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
@@ -131,11 +180,12 @@ return {
       "eslint-lsp",
       "lua-language-server",
       "ruff",
+      "basedpyright",
     }
     local ensure_installed = vim.list_extend(vim.deepcopy(mason_packages), { "stylua", "swiftformat" })
     require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
     -- Enable LSP servers using the new API
-    vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lemminx', 'yamlls', 'ts_ls', 'eslint', 'lua_ls', 'sourcekit', 'ruff' })
+    vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lemminx', 'yamlls', 'ts_ls', 'eslint', 'lua_ls', 'sourcekit', 'ruff', 'basedpyright' })
   end,
 }

@@ -22,6 +22,8 @@ return {
       "terraform",
       "javascript",
       "json",
+      "python",
+      "toml",
       "typescript",
       "tsx",
     })
