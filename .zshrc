@@ -4,18 +4,6 @@ set -o vi
 export CDPATH=.:~:~/projects:~/projects/aa:~/projects/aa/modules:~/projects/aa/inf:~/projects/aa/apps
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Spaceship (Prompt)
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ZSH_THEME="spaceship"
-SPACESHIP_PROMPT_ASYNC=true
-SPACESHIP_AWS_SHOW=false
-SPACESHIP_BATTERY_THRESHOLD=30
-SPACESHIP_DOCKER_SHOW=false
-SPACESHIP_DOCKER_COMPOSE_SHOW=false
-SPACESHIP_EXIT_CODE_SHOW=true
-SPACESHIP_PROMPT_PREFIXES_SHOW=false
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # oh-my-zsh
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZSH=$HOME/.oh-my-zsh
@@ -37,6 +25,11 @@ plugins=(\
   vi-mode \
 )
 source $ZSH/oh-my-zsh.sh
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Starship (Prompt)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+eval "$(starship init zsh)"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # fzf

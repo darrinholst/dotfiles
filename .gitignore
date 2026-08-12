@@ -1,5 +1,7 @@
 plug.vim
+*.local
 *.local.zsh
+.zshrc.local
 *.cache
 *.o
 *.pyc
@@ -14,4 +16,6 @@ node_modules
 results.json
 Brewfile.lock.json
 saml-response.txt
+.bin/saml-server
+.bin/acvc-openvpn
 

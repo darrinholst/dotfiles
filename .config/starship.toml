@@ -1,0 +1,96 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$nodejs\
+$golang\
+$rust\
+$python\
+$terraform\
+$cmd_duration\
+$line_break\
+$battery\
+$jobs\
+$status\
+$character"""
+
+add_newline = true
+command_timeout = 1000
+
+[directory]
+style = "cyan bold"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+
+[git_branch]
+format = "[$branch]($style) "
+style = "purple bold"
+
+[git_state]
+format = "[$state( $progress_current/$progress_total)]($style) "
+style = "yellow bold"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "red bold"
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+symbol = "⬢ "
+style = "green bold"
+
+[golang]
+format = "[$symbol($version )]($style)"
+style = "cyan bold"
+
+[rust]
+format = "[$symbol($version )]($style)"
+style = "red bold"
+
+[python]
+format = "[$symbol($version )(\\($virtualenv\\) )]($style)"
+style = "yellow bold"
+
+[terraform]
+format = "[$symbol$workspace]($style) "
+style = "purple bold"
+
+[cmd_duration]
+min_time = 2000
+format = "[$duration]($style) "
+style = "yellow"
+
+[battery]
+format = "[$symbol$percentage]($style) "
+
+[[battery.display]]
+threshold = 30
+style = "red bold"
+
+[jobs]
+format = "[$symbol$number]($style) "
+style = "blue bold"
+
+[status]
+disabled = false
+format = "[$symbol$status]($style) "
+symbol = "✘ "
+style = "red bold"
+
+[character]
+success_symbol = "[❯](green bold)"
+error_symbol = "[❯](red bold)"
+vicmd_symbol = "[❮](yellow bold)"
+
+[aws]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[package]
+disabled = true

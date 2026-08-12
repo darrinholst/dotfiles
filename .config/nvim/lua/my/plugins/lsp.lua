@@ -3,7 +3,6 @@ return {
 
   dependencies = {
     { "mason-org/mason.nvim", version = "^1.0.0" },
-    { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
 
@@ -15,16 +14,6 @@ return {
         vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "[C]ode [A]ction" })
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "single", max_width = math.floor(vim.o.columns * 0.75) }) end, { buffer = event.buf, desc = "Hover Documentation" })
       end,
-    })
-
-    -- Configure diagnostics using the new API
-    vim.diagnostic.config({
-      virtual_text = true,
-      signs = true,
-      update_in_insert = false,
-      underline = true,
-      severity_sort = true,
-      float = { border = "single" }
     })
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()

@@ -1,5 +1,4 @@
 return {
-  { "DaikyXendo/nvim-material-icon", lazy = false },
   {
     "nvim-tree/nvim-web-devicons",
     lazy = false,
