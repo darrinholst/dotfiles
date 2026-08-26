@@ -26,6 +26,24 @@ return {
   end,
   keys = {
     { "<C-p>", function() Snacks.picker.smart { hidden = true } end, desc = "Smart Find Files" },
+    {
+      "<C-n>",
+      function()
+        local root = vim.fs.root(0, "node_modules")
+
+        if not root then
+          vim.notify("no node_modules found", vim.log.levels.WARN)
+          return
+        end
+
+        Snacks.picker.files {
+          cwd = root .. "/node_modules",
+          hidden = true,
+          ignored = true,
+        }
+      end,
+      desc = "Find Files (node_modules)",
+    },
     { "<C-g>", function()
       Snacks.picker.grep {
         hidden = true,
