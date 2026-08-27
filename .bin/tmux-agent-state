@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+[[ -n "${TMUX:-}" ]] || exit 0
+command -v tmux >/dev/null 2>&1 || exit 0
+
+PANE_OPTION="@agent_pane_state"
+WINDOW_OPTION="@agent_state"
+FLAG_OPTION="@agent_flag"
+
+rank() {
+  case "$1" in
+    error) echo 3 ;;
+    waiting) echo 2 ;;
+    done) echo 1 ;;
+    *) echo 0 ;;
+  esac
+}
+
+ICON_ERROR='\357\201\261'
+ICON_WAITING='\357\203\263'
+ICON_DONE='\357\200\214'
+
+flag() {
+  case "$1" in
+    error) printf '#[fg=#{@thm_red},bold] '"$ICON_ERROR" ;;
+    waiting) printf '#[fg=#{@thm_peach},bold] '"$ICON_WAITING" ;;
+    done) printf '#[fg=#{@thm_green},bold] '"$ICON_DONE" ;;
+  esac
+}
+
+AGENT_PROCESSES='opencode|claude'
+
+pane_window() {
+  tmux display-message -p -t "$1" '#{window_id}' 2>/dev/null
+}
+
+pane_has_agent() {
+  local tty
+  tty=$(tmux display-message -p -t "$1" '#{pane_tty}' 2>/dev/null)
+  [[ -n "$tty" ]] || return 1
+  ps -t "${tty#/dev/}" -o command= 2>/dev/null |
+    grep -Eq "(^|/)($AGENT_PROCESSES)( |$)"
+}
+
+pane_state() {
+  tmux display-message -p -t "$1" "#{${PANE_OPTION}}" 2>/dev/null
+}
+
+pane_is_watched() {
+  local visible
+  visible=$(tmux display-message -p -t "$1" \
+    '#{&&:#{pane_active},#{&&:#{window_active},#{session_attached}}}' 2>/dev/null)
+  [[ "$visible" == "1" ]]
+}
+
+set_pane_state() {
+  tmux set-option -p -t "$1" "$PANE_OPTION" "$2" 2>/dev/null
+}
+
+clear_pane_state() {
+  tmux set-option -up -t "$1" "$PANE_OPTION" 2>/dev/null
+}
+
+sync_window() {
+  local window=$1 winner="" winner_rank=0 state current
+
+  while IFS= read -r state; do
+    current=$(rank "$state")
+    if ((current > winner_rank)); then
+      winner_rank=$current
+      winner=$state
+    fi
+  done < <(tmux list-panes -t "$window" -F "#{${PANE_OPTION}}" 2>/dev/null)
+
+  if [[ -z "$winner" ]]; then
+    tmux set-option -uw -t "$window" "$WINDOW_OPTION" 2>/dev/null
+    tmux set-option -uw -t "$window" "$FLAG_OPTION" 2>/dev/null
+  else
+    tmux set-option -w -t "$window" "$WINDOW_OPTION" "$winner" 2>/dev/null
+    tmux set-option -w -t "$window" "$FLAG_OPTION" "$(flag "$winner")" 2>/dev/null
+  fi
+
+  tmux refresh-client -S 2>/dev/null
+}
+
+action=${1:-}
+pane=${2:-${TMUX_PANE:-}}
+
+[[ -n "$action" && -n "$pane" ]] || exit 0
+
+window=$(pane_window "$pane")
+[[ -n "$window" ]] || exit 0
+
+case "$action" in
+  waiting | error)
+    set_pane_state "$pane" "$action"
+    ;;
+  done)
+    if pane_is_watched "$pane"; then
+      clear_pane_state "$pane"
+    else
+      set_pane_state "$pane" done
+    fi
+    ;;
+  clear)
+    clear_pane_state "$pane"
+    ;;
+  visit)
+    for candidate in $(tmux list-panes -t "$window" -F '#{pane_id}' 2>/dev/null); do
+      state=$(pane_state "$candidate")
+      [[ -n "$state" ]] || continue
+      if [[ "$state" == "done" ]] || ! pane_has_agent "$candidate"; then
+        clear_pane_state "$candidate"
+      fi
+    done
+    ;;
+  *)
+    printf 'usage: %s waiting|done|error|clear|visit [pane-id]\n' "${0##*/}" >&2
+    exit 64
+    ;;
+esac
+
+sync_window "$window"

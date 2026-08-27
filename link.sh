@@ -18,8 +18,10 @@ link_it () {
 }
 
 link_it ".bash_profile"
+link_it ".claude/settings.json"
 link_it ".config/ghostty"
 link_it ".config/nvim"
+link_it ".config/opencode"
 link_it ".config/starship.toml"
 link_it ".config/tmux"
 link_it ".gitconfig"
