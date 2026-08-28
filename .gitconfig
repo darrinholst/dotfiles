@@ -39,6 +39,8 @@
   up = !git pull --prune && git cleanup
   upall = !"gita super com && gita super up && git ll"
   wip = !git ad && git commit -m 'wip'
+  wt = worktree
+  wtl = worktree list
 
 [push]
   default = simple

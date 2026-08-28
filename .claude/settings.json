@@ -1,7 +1,7 @@
 {
   "statusLine": {
     "type": "command",
-    "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir'); model=$(echo \"$input\" | jq -r '.model.display_name'); remaining=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); git_branch=$(cd \"$cwd\" 2>/dev/null && git -c core.fileMode=false config --global --add safe.directory \"$cwd\" 2>/dev/null; git -c core.fileMode=false rev-parse --abbrev-ref HEAD 2>/dev/null); [ -n \"$git_branch\" ] && git_info=\" on $git_branch\" || git_info=\"\"; [ -n \"$remaining\" ] && ctx_info=\" [ctx: ${remaining}%]\" || ctx_info=\"\"; printf \"\\033[2m%s in %s%s%s\\033[0m\" \"$model\" \"$cwd\" \"$git_info\" \"$ctx_info\""
+    "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir'); model=$(echo \"$input\" | jq -r '.model.display_name'); remaining=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); git_branch=$(git -C \"$cwd\" -c safe.directory='*' rev-parse --abbrev-ref HEAD 2>/dev/null); [ -n \"$git_branch\" ] && git_info=\" on $git_branch\" || git_info=\"\"; [ -n \"$remaining\" ] && ctx_info=\" [ctx: ${remaining}%]\" || ctx_info=\"\"; printf \"\\033[2m%s in %s%s%s\\033[0m\" \"$model\" \"$cwd\" \"$git_info\" \"$ctx_info\""
   },
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
@@ -37,7 +37,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.bin/tmux-agent-state clear >/dev/null 2>&1 || true"
+            "command": "$HOME/.bin/tmux-agent-state busy >/dev/null 2>&1 || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.bin/tmux-agent-state busy >/dev/null 2>&1 || true"
           }
         ]
       }

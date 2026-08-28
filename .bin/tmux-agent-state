@@ -10,9 +10,10 @@ FLAG_OPTION="@agent_flag"
 
 rank() {
   case "$1" in
-    error) echo 3 ;;
-    waiting) echo 2 ;;
-    done) echo 1 ;;
+    error) echo 4 ;;
+    waiting) echo 3 ;;
+    done) echo 2 ;;
+    busy) echo 1 ;;
     *) echo 0 ;;
   esac
 }
@@ -20,12 +21,14 @@ rank() {
 ICON_ERROR='\357\201\261'
 ICON_WAITING='\357\203\263'
 ICON_DONE='\357\200\214'
+ICON_BUSY='\357\207\216'
 
 flag() {
   case "$1" in
     error) printf '#[fg=#{@thm_red},bold] '"$ICON_ERROR" ;;
     waiting) printf '#[fg=#{@thm_peach},bold] '"$ICON_WAITING" ;;
     done) printf '#[fg=#{@thm_green},bold] '"$ICON_DONE" ;;
+    busy) printf '#[fg=#{@thm_blue},bold] '"$ICON_BUSY" ;;
   esac
 }
 
@@ -93,7 +96,8 @@ window=$(pane_window "$pane")
 [[ -n "$window" ]] || exit 0
 
 case "$action" in
-  waiting | error)
+  waiting | error | busy)
+    [[ "$(pane_state "$pane")" == "$action" ]] && exit 0
     set_pane_state "$pane" "$action"
     ;;
   done)
@@ -116,7 +120,7 @@ case "$action" in
     done
     ;;
   *)
-    printf 'usage: %s waiting|done|error|clear|visit [pane-id]\n' "${0##*/}" >&2
+    printf 'usage: %s waiting|busy|done|error|clear|visit [pane-id]\n' "${0##*/}" >&2
     exit 64
     ;;
 esac

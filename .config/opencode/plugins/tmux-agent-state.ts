@@ -36,7 +36,7 @@ export const TmuxAgentState: Plugin = async ({ $ }) => {
 
     if (INPUT_SETTLED.has(type)) {
       blocked = false
-      return report("clear")
+      return report(busySessions.size > 0 ? "busy" : "clear")
     }
 
     if (type === "session.error") return report("error")
@@ -47,7 +47,7 @@ export const TmuxAgentState: Plugin = async ({ $ }) => {
         return
       }
       busySessions.add(properties.sessionID)
-      if (!blocked) return report("clear")
+      if (!blocked) return report("busy")
       return
     }
 
@@ -60,5 +60,9 @@ export const TmuxAgentState: Plugin = async ({ $ }) => {
 
   return {
     event: async ({ event }) => handle(event.type, (event as any).properties ?? {}),
+    "chat.message": async ({ sessionID }) => {
+      busySessions.add(sessionID)
+      if (!blocked) await report("busy")
+    },
   }
 }

@@ -119,6 +119,94 @@ alias gca='git commit -v --amend'
 alias gcan='git commit -v --amend --no-edit'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# worktrees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+WT_SKIP=(.worktrees worktrees .git .DS_Store)
+
+wt-root() {
+  local common=$(command git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || return 1
+  print -r -- "${${common:h}:A}"
+}
+
+wt-linked() {
+  local root=$(wt-root) || return 1
+  command git worktree list --porcelain 2>/dev/null | awk -v prefix="$root/.worktrees/" '
+    /^worktree /{ dir = substr($0, 10) }
+    /^branch /{ sub(/^refs\/heads\//, "", $2); if (index(dir, prefix) == 1) print $2 }
+  '
+}
+
+wt() {
+  local root=$(wt-root) || return 1
+
+  if [[ -z $1 ]]; then
+    local picked=$(command git worktree list | fzf --height 40% --reverse --inline-info | awk '{print $1}')
+    [[ -n $picked ]] && cd "$picked"
+    return
+  fi
+
+  local dir=$root/.worktrees/${1//\//-}
+
+  if [[ ! -d $dir ]]; then
+    command git -C "$root" worktree add "$dir" "$1" 2>/dev/null ||
+      command git -C "$root" worktree add --track -b "$1" "$dir" "origin/$1" 2>/dev/null ||
+      command git -C "$root" worktree add -b "$1" "$dir" || return 1
+    wt-seed "$root" "$dir"
+  fi
+
+  cd "$dir"
+}
+
+wt-seed() {
+  local src=$1 dst=$2 entry skip
+  local -a entries
+  entries=(${(f)"$(command git -C "$src" ls-files --others --ignored --exclude-standard --directory)"})
+
+  for entry in $entries; do
+    entry=${entry%/}
+    for skip in $WT_SKIP; do
+      [[ $entry == $skip || $entry == $skip/* || ${entry:t} == $skip ]] && continue 2
+    done
+    [[ -e $dst/$entry ]] && continue
+    mkdir -p "$dst/${entry:h}"
+    cp -Rc "$src/$entry" "$dst/$entry"
+  done
+
+  [[ -x $dst/.wt-setup ]] && (cd "$dst" && ./.wt-setup)
+  return 0
+}
+
+wtrm() {
+  local root=$(wt-root) || return 1
+  local branch=${1:-$(command git branch --show-current)}
+  cd "$root" &&
+    command git worktree remove --force "$root/.worktrees/${branch//\//-}" &&
+    command git branch -D "$branch" &&
+    command git worktree prune
+}
+
+_wt() {
+  local -a linked others
+  linked=(${(f)"$(wt-linked)"})
+  others=(${(f)"$(command git for-each-ref --format='%(refname:short)' refs/heads 2>/dev/null)"})
+  others+=(${(f)"$(command git for-each-ref --format='%(refname:short)' refs/remotes 2>/dev/null | sed 's|^[^/]*/||')"})
+  others=(${(u)${others:#HEAD}:|linked})
+
+  _alternative \
+    "worktrees:worktree:compadd -a linked" \
+    "branches:branch:compadd -a others"
+}
+
+_wtrm() {
+  local -a linked
+  linked=(${(f)"$(wt-linked)"})
+  _describe -t worktrees worktree linked
+}
+
+compdef _wt wt
+compdef _wtrm wtrm
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # terraform
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias ti="(cd terraform && ./setup-terraform-local.sh)"

@@ -16,3 +16,4 @@ tags
 yalc.lock
 *.nvim
 .claude
+.worktrees/
