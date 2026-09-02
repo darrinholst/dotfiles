@@ -159,7 +159,7 @@ wt() {
 
 wt-seed() {
   local src=$1 dst=$2 entry skip
-  local -a entries
+  local -a entries pairs
   entries=(${(f)"$(command git -C "$src" ls-files --others --ignored --exclude-standard --directory)"})
 
   for entry in $entries; do
@@ -168,9 +168,15 @@ wt-seed() {
       [[ $entry == $skip || $entry == $skip/* || ${entry:t} == $skip ]] && continue 2
     done
     [[ -e $dst/$entry ]] && continue
-    mkdir -p "$dst/${entry:h}"
-    cp -Rc "$src/$entry" "$dst/$entry"
+    pairs+=("$src/$entry" "$dst/$entry")
   done
+
+  if (( $#pairs )); then
+    print -rN -- $pairs | wt-clone ||
+      for entry in ${pairs[1,-1,2]}; do
+        cp -Rc "$entry" "$dst/${entry#$src/}"
+      done
+  fi
 
   [[ -x $dst/.wt-setup ]] && (cd "$dst" && ./.wt-setup)
   return 0
