@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Open the current repo's web page (GitHub, GitLab, whatever the origin is).
+#
+#   git open           # repo home page
+#   git open -b        # current branch
+#   git open upstream  # use a different remote
+set -euo pipefail
+
+branch=false
+remote=origin
+
+for arg in "$@"; do
+  case "$arg" in
+    -b|--branch) branch=true ;;
+    *) remote="$arg" ;;
+  esac
+done
+
+url=$(git remote get-url "$remote")
+
+# git@host:path.git | ssh://git@host[:port]/path.git | https://host/path.git -> https://host/path
+url=${url%.git}
+url=${url%/}
+case "$url" in
+  git@*|*://*)
+    url=$(printf '%s' "$url" | sed -E \
+      -e 's#^[a-z+]+://##' \
+      -e 's#^[^/@]*@##' \
+      -e 's#^([^/:]+):([0-9]+)/#\1/#' \
+      -e 's#^([^/:]+):#\1/#')
+    url="https://$url"
+    ;;
+esac
+
+if $branch; then
+  ref=$(git rev-parse --abbrev-ref HEAD)
+  case "$url" in
+    *gitlab*) url="$url/-/tree/$ref" ;;
+    *) url="$url/tree/$ref" ;;
+  esac
+fi
+
+echo "$url"
+open "$url"

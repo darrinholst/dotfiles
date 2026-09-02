@@ -57,7 +57,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.bin/tmux-agent-state waiting >/dev/null 2>&1 || true"
+            "command": "$HOME/.bin/tmux-agent-state notify >/dev/null 2>&1 || true"
           }
         ]
       }

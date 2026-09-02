@@ -95,6 +95,22 @@ pane=${2:-${TMUX_PANE:-}}
 window=$(pane_window "$pane")
 [[ -n "$window" ]] || exit 0
 
+# Claude Code fires Notification both for "needs your permission" (a real
+# decision) and for an idle "waiting for your input" nudge ~60s after a turn
+# finishes. The latter is not a decision, so map it to done instead of waiting,
+# otherwise the bell sticks on a window whose agent is already finished.
+if [[ "$action" == "notify" ]]; then
+  message=""
+  if command -v jq >/dev/null 2>&1; then
+    message=$(jq -r '.message // empty' 2>/dev/null)
+  fi
+
+  case "$message" in
+    *"waiting for your input"* | *"waiting for input"*) action=done ;;
+    *) action=waiting ;;
+  esac
+fi
+
 case "$action" in
   waiting | error | busy)
     [[ "$(pane_state "$pane")" == "$action" ]] && exit 0
@@ -120,7 +136,7 @@ case "$action" in
     done
     ;;
   *)
-    printf 'usage: %s waiting|busy|done|error|clear|visit [pane-id]\n' "${0##*/}" >&2
+    printf 'usage: %s waiting|busy|done|error|clear|visit|notify [pane-id]\n' "${0##*/}" >&2
     exit 64
     ;;
 esac
