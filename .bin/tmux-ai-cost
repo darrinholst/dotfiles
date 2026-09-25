@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+cache="${TMPDIR:-/tmp}/tmux-ai-cost"
+lock="$cache.lock"
+ttl=60
+
+refresh() {
+  local cost
+  cost=$(aa ai spend -n1 2>/dev/null)
+  [[ "$cost" =~ ^\$[0-9]+\.[0-9]{2}$ ]] || cost=""
+  echo "$cost" >"$cache.tmp"
+  mv "$cache.tmp" "$cache"
+  rmdir "$lock"
+}
+
+age=$(($(date +%s) - $(stat -f %m "$cache" 2>/dev/null || echo 0)))
+
+if ((age > ttl)) && aa ai --help 2>/dev/null | grep -q '^  spend ' && mkdir "$lock" 2>/dev/null; then
+  refresh >/dev/null 2>&1 &
+  disown
+fi
+
+cat "$cache" 2>/dev/null
