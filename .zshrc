@@ -124,20 +124,41 @@ alias gcan='git commit -v --amend --no-edit'
 WT_SKIP=(.worktrees worktrees .git .DS_Store)
 
 wt-root() {
-  local common=$(command git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || return 1
+  local common
+  common=$(command git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || return 1
   print -r -- "${${common:h}:A}"
 }
 
-wt-linked() {
-  local root=$(wt-root) || return 1
+wt-list() {
+  local root
+  root=$(wt-root) || return 1
   command git worktree list --porcelain 2>/dev/null | awk -v prefix="$root/.worktrees/" '
     /^worktree /{ dir = substr($0, 10) }
-    /^branch /{ sub(/^refs\/heads\//, "", $2); if (index(dir, prefix) == 1) print $2 }
+    /^branch /{ sub(/^refs\/heads\//, "", $2); if (index(dir, prefix) == 1) print dir "\t" $2 }
   '
 }
 
+wt-linked() {
+  wt-list | cut -f2
+}
+
+wt-base() {
+  local root candidate
+  root=$(wt-root) || return 1
+
+  for candidate in \
+    $(command git -C "$root" symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null) \
+    main master origin/main origin/master; do
+    command git -C "$root" rev-parse --verify --quiet "$candidate" >/dev/null &&
+      { print -r -- $candidate; return }
+  done
+  print -u2 "wt-base: no default branch found"
+  return 1
+}
+
 wt() {
-  local root=$(wt-root) || return 1
+  local root
+  root=$(wt-root) || return 1
 
   if [[ -z $1 ]]; then
     local picked=$(command git worktree list | fzf --height 40% --reverse --inline-info | awk '{print $1}')
@@ -183,12 +204,98 @@ wt-seed() {
 }
 
 wtrm() {
-  local root=$(wt-root) || return 1
+  local root
+  root=$(wt-root) || return 1
   local branch=${1:-$(command git branch --show-current)}
   cd "$root" &&
     command git worktree remove --force "$root/.worktrees/${branch//\//-}" &&
     command git branch -D "$branch" &&
     command git worktree prune
+}
+
+wt-print-rows() {
+  local width=$1 color=$2 reset=${2:+$reset_color} row
+  shift 2
+  for row in "$@"; do
+    printf "  %s%-${width}s%s  %s\n" "$color" "${row%%$'\t'*}" "$reset" "${row#*$'\t'}"
+  done
+}
+
+wtclean() {
+  local root base branch upstream track dir blocked failed=0 width=0
+  local red green yellow bold off
+  local -A upstreams tracks
+  local -a flags keep drop selected merged
+
+  if [[ -z $NO_COLOR ]]; then
+    red=$fg[red] green=$fg[green] yellow=$fg[yellow] bold=$bold_color off=$reset_color
+  fi
+
+  root=$(wt-root) || return 1
+  base=$(wt-base) || return 1
+  command git -C "$root" fetch --prune --quiet 2>/dev/null
+
+  while IFS=$'\t' read -r branch upstream track; do
+    upstreams[$branch]=$upstream
+    tracks[$branch]=$track
+  done < <(command git -C "$root" for-each-ref \
+    --format='%(refname:short)%09%(upstream)%09%(upstream:track,nobracket)' refs/heads)
+
+  merged=(${(f)"$(command git -C "$root" branch --merged "$base" --format='%(refname:short)')"})
+
+  while IFS=$'\t' read -r dir branch; do
+    flags=()
+    blocked=0
+
+    [[ -n $(command git -C "$dir" status --porcelain) ]] && { flags+=("${red}dirty${off}"); blocked=1 }
+
+    if [[ -n ${upstreams[$branch]} ]]; then
+      case ${tracks[$branch]} in
+        gone) flags+=("${green}remote gone${off}") ;;
+        *ahead*) flags+=("${red}unpushed${off}"); blocked=1 ;;
+        *) flags+=("${yellow}pushed${off}") ;;
+      esac
+    elif (( $(command git -C "$dir" rev-list --count "$base..$branch") )); then
+      flags+=("${red}no remote, unpushed${off}")
+      blocked=1
+    fi
+
+    (( ${merged[(Ie)$branch]} )) && flags+=("${green}merged into ${base}${off}")
+    (( $#flags )) || flags+=("${green}no commits${off}")
+
+    (( ${#branch} > width )) && width=${#branch}
+    if (( blocked )); then
+      keep+=("$branch"$'\t'"${(j:, :)flags}")
+    else
+      drop+=("$branch"$'\t'"${(j:, :)flags}")
+    fi
+  done < <(wt-list)
+
+  if (( ! $#keep && ! $#drop )); then
+    print -r -- "${yellow}no worktrees under $root/.worktrees${off}"
+    return
+  fi
+
+  if (( $#keep )); then
+    print -r -- "${red}keeping, has local work:${off}"
+    wt-print-rows $width "$bold" "$keep[@]"
+  fi
+
+  if (( ! $#drop )); then
+    print -r -- "${yellow}nothing removable${off}"
+    return
+  fi
+
+  selected=(${(f)"$(wt-print-rows $width "$bold" "$drop[@]" |
+    fzf --ansi --multi --height 40% --reverse --inline-info \
+      --header='tab to mark, enter to remove' \
+      --preview="command git -C $root log --oneline --color=always -20 $base..{1}" |
+    awk '{print $1}')"})
+
+  for branch in $selected; do
+    wtrm "$branch" || failed=1
+  done
+  return $failed
 }
 
 _wt() {
