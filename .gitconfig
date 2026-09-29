@@ -73,8 +73,12 @@
 
 [pager]
   branch = false
+
 [url "https://"]
   insteadOf = git://
+
+[url "git@gitlab.com:"]
+  insteadOf = https://gitlab.com/
 
 [rerere]
   enabled = 1

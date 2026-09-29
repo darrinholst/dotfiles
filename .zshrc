@@ -203,6 +203,17 @@ wt-seed() {
   return 0
 }
 
+wt-prompt() {
+  if [[ $PWD == */.worktrees/* ]]; then
+    export WT_REPO=${${PWD%%/.worktrees/*}:t}
+  else
+    unset WT_REPO
+  fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd wt-prompt
+wt-prompt
+
 wtrm() {
   local root
   root=$(wt-root) || return 1
