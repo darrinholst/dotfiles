@@ -1,0 +1,34 @@
+#!/bin/bash
+set -euo pipefail
+
+repos_csv="${XDG_CONFIG_HOME:-$HOME/.config}/gita/repos.csv"
+
+count_refs() {
+  while IFS=, read -r path name _; do
+    printf '%s\0%s\0' "$name" "$path"
+  done <"$repos_csv" | xargs -0 -n2 -P8 sh -c '
+    refs=$(git -C "$2" for-each-ref --format="%(refname)" refs/heads refs/remotes 2>/dev/null)
+    local_count=$(printf "%s\n" "$refs" | grep "^refs/heads/" | grep -Evc "^refs/heads/(main|master)$")
+    remote_count=$(printf "%s\n" "$refs" | grep "^refs/remotes/" | grep -Evc "^refs/remotes/[^/]+/(HEAD|main|master)$")
+    worktree_count=$(git -C "$2" worktree list --porcelain 2>/dev/null | grep -c "^worktree ")
+    printf "%s\t%s\t%s\t%s\n" "$1" "$local_count" "$remote_count" "$((worktree_count > 0 ? worktree_count - 1 : 0))"
+  ' sh
+}
+
+awk -F'\t' '
+  function format_count(count, suffix, color) {
+    return count > 0 ? sprintf("\033[%sm%2d%s\033[0m", color, count, suffix) : "   "
+  }
+  NR == FNR {
+    counts[$1] = sprintf("%s %s %s ", format_count($2, "L", "33"), format_count($3, "R", "36"), format_count($4, "W", "35"))
+    next
+  }
+  match($0, /^[^ ]+ +/) {
+    name = substr($0, 1, index($0, " ") - 1)
+    if (name in counts) {
+      print substr($0, 1, RLENGTH) counts[name] substr($0, RLENGTH + 1)
+      next
+    }
+  }
+  { print }
+' <(count_refs) <(gita ll "$@")
