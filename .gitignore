@@ -19,3 +19,4 @@ saml-response.txt
 .bin/saml-server
 .bin/acvc-openvpn
 
+.config/opencode/service.json

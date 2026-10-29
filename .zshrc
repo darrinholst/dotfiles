@@ -167,11 +167,13 @@ wt() {
   fi
 
   local dir=$root/.worktrees/${1//\//-}
+  local base=${2:-origin/main}
 
   if [[ ! -d $dir ]]; then
+    [[ -z $2 ]] && command git -C "$root" fetch --quiet origin main
     command git -C "$root" worktree add "$dir" "$1" 2>/dev/null ||
       command git -C "$root" worktree add --track -b "$1" "$dir" "origin/$1" 2>/dev/null ||
-      command git -C "$root" worktree add -b "$1" "$dir" || return 1
+      command git -C "$root" worktree add --no-track -b "$1" "$dir" "$base" || return 1
     wt-seed "$root" "$dir"
   fi
 
@@ -379,8 +381,15 @@ export CLICOLOR=1
 BASE16_SHELL_PATH="$HOME/.config/tinted-theming/tinted-shell"
 export BASE16_SHELL_ENABLE_VARS=1
 [ -n "$PS1" ] && [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && source "$BASE16_SHELL_PATH/profile_helper.sh"
-base16_catppuccin-mocha
-# base16_catppuccin-latte
+
+sync-theme-with-appearance() {
+  if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+    base16_catppuccin-mocha
+  else
+    base16_catppuccin-latte
+  fi
+}
+sync-theme-with-appearance
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # docker
