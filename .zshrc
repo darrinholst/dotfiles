@@ -387,6 +387,7 @@ sync-theme-with-appearance() {
     base16_catppuccin-mocha
   else
     base16_catppuccin-latte
+    export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=light,bg+:#ccd0da,fg+:#4c4f69,hl:#d20f39,hl+:#d20f39,info:#8839ef,prompt:#8839ef,pointer:#dc8a78,marker:#7287fd,spinner:#dc8a78,header:#d20f39,gutter:-1"
   fi
 }
 sync-theme-with-appearance
